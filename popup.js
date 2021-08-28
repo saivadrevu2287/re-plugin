@@ -16,14 +16,20 @@ changeColor.addEventListener("click", async () => {
 function doCalc() {
   const cost_selectors = [
     "#details-page-container > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > div.ds-summary-row-container > div > div > span > span > span",
-    "#home-details-content > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > div.ds-summary-row-container > div > div > span > span > span"
+    "#home-details-content > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > div.ds-summary-row-container > div > div > span > span > span",
+    "#ds-data-view > div.ds-chip-mobile.ds-chip-mobile-open > div.ds-home-details-chip > div.ds-summary-row-container > div > div > span > span > span"
   ];
 
   const monthly_selectors = [
     "#home-details-content > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > div.ds-mortgage-row > div > span:nth-child(2)",
-    "#details-page-container > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > div.ds-mortgage-row > div > span:nth-child(2)"
+    "#details-page-container > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > div.ds-mortgage-row > div > span:nth-child(2)",
+    "#ds-data-view > div.ds-chip-mobile.ds-chip-mobile-open > div.ds-home-details-chip > div.ds-mortgage-row > div > span:nth-child(2)"
   ];
-  
+
+  const rental_selectors = [
+    "#ds-rental-home-values > div > div.ds-expandable-card-section-default-padding > div > div > div > span",
+  ]
+
   const scrapeElement = (selectors) => {
     let element = null;
     let i = 0;
@@ -40,8 +46,9 @@ function doCalc() {
   if (m) {
     let cost = scrapeElement(cost_selectors);
     let monthly = scrapeElement(monthly_selectors);
+    let rental = scrapeElement(rental_selectors);
 
-    alert("cost: "+ cost + "; monthly" + monthly);
+    alert("cost: "+ cost + "; monthly" + monthly + "; rental" + rental);
   } else {
     alert("Sorry, not on Zillow!");
   }

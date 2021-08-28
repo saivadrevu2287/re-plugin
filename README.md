@@ -5,6 +5,7 @@
 ### Setup
 1. Download the code
 1. Go to `chrome://extensions/` in your chrome browser
+1. Make sure you switch **Developer Mode** on
 1. Click the `Load Unpacked` button in the top left corner of the screen
 1. Select the folder for this repo
 1. Navigate to a Zillow listing of your choice (options listed below)

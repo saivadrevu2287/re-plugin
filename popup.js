@@ -21,9 +21,7 @@ const getElements = () => {
   ];
 
   const monthly_selectors = [
-    "#home-details-content > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > div.ds-mortgage-row > div > span:nth-child(2)",
-    "#details-page-container > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > div.ds-mortgage-row > div > span:nth-child(2)",
-    "#ds-data-view > div.ds-chip-mobile.ds-chip-mobile-open > div.ds-home-details-chip > div.ds-mortgage-row > div > span:nth-child(2)"
+    "#label-property-tax > div > span"
   ];
 
   const rental_selectors = [

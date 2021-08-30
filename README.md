@@ -18,3 +18,6 @@
 ### Examples
 - https://www.zillow.com/homedetails/3811-Rosemary-Ln-SE-Conyers-GA-30013/15010366_zpid/
 - https://www.zillow.com/homedetails/27-17-42nd-Rd-19E-Long-Island-City-NY-11101/2069919206_zpid/
+
+#### Resources
+- https://developer.chrome.com/docs/extensions/mv3/getstarted/

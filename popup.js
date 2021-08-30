@@ -114,7 +114,7 @@ const handleResults = (r) => {
   document.getElementById("cost").innerHTML = cost;
   document.getElementById("monthly").innerHTML = monthly;
   document.getElementById("rental").innerHTML = rental;
-  document.getElementById("coc").innerHTML = "$" + cashOnCash.toLocaleString();
+  document.getElementById("coc").innerHTML = "$" + cashOnCash.toLocaleString() + " (" + (100*(cashOnCash/price)) + "%)";
 
   if ( cashOnCash > 0 ) {
     document.getElementById("coc").className = "success";

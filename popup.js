@@ -115,4 +115,10 @@ const handleResults = (r) => {
   document.getElementById("monthly").innerHTML = monthly;
   document.getElementById("rental").innerHTML = rental;
   document.getElementById("coc").innerHTML = "$" + cashOnCash.toLocaleString();
+
+  if ( cashOnCash > 0 ) {
+    document.getElementById("coc").className = "success";
+  } else {
+    document.getElementById("coc").className = "error";
+  }
 }

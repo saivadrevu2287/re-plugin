@@ -50,7 +50,7 @@ const calculate = (purchasePrice, taxes, monthlyGrossIncome) => {
   return cashOnCash;
 }
 
-const toInt = (n) => parseInt(n.split("").filter(a => parseInt(a)).join(""));
+const toInt = (n) => parseInt(n.split("").filter(a => parseInt(a) >= 0).join(""));
 
 // this will receive an object of the shape { cost, monthly, rental }
 // it executes in the DOM of the popup

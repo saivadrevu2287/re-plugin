@@ -29,7 +29,7 @@ const MonthlyExpenses = (taxes, monthlyGrossIncome) => {
   const repairs = 0.05 * monthlyGrossIncome;
   const utilities = 0;
 
-  return insurance + vacancy + propertyManagement + capex + repairs + utilities;
+  return taxes + insurance + vacancy + propertyManagement + capex + repairs + utilities;
 }
 
 // Monthly Debt Service = .61 % of Loan
@@ -67,7 +67,7 @@ const handleResults = (r) => {
   document.getElementById("cost").innerHTML = cost;
   document.getElementById("monthly").innerHTML = monthly;
   document.getElementById("rental").innerHTML = rental;
-  document.getElementById("coc").innerHTML = "$" + cashOnCash.toLocaleString() + " (" + percentage.toLocaleString() + "%)";
+  document.getElementById("coc").innerHTML = cashOnCash.toLocaleString() + "%";
 
   if ( cashOnCash > 0 ) {
     document.getElementById("coc").className = "success";

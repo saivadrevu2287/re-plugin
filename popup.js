@@ -52,48 +52,40 @@ const getElements = () => {
   }
 }
 
+// COC = [(Monthly Cash flow (MCF) x 12) / Initial Total Investment (ITI)] x 100
+const CashOnCash = (monthlyCashFlow, initialTotalInvestment) => (((monthlyCashFlow * 12) / initialTotalInvestment) * 100);
+
+// ITI = 29% of Purchase Price(PP)(Which comes from Zillow)
+const InitialTotalInvestment = (purchasePrice) => (0.29 * purchasePrice);
+
+// MCF = Monthly Gross Income(MGI)(comes from Zillow) - Monthly Expenses - Monthly Debt Service
+const MonthlyCashFlow = (monthlyGrossIncome, monthlyExpenses, monthlyDebtService) => (monthlyGrossIncome - monthlyExpenses - monthlyDebtService);
+
+// Monthly Expenses = Taxes(comes from Zillow) + Insurance($60) + Vacancy(5% of MGI) + Property Management(4% of MGI)+ Capex(5% of MGI) + Repairs(5% of MGI) + Utilities($0)
+const MonthlyExpenses = (taxes, monthlyGrossIncome) => {
+  const insurance = 60;
+  const vacancy = 0.05 * monthlyGrossIncome;
+  const propertyManagement = 0.04 * monthlyGrossIncome;
+  const capex = 0.05 * monthlyGrossIncome;
+  const repairs = 0.05 * monthlyGrossIncome;
+  const utilities = 0;
+
+  return insurance + vacancy + propertyManagement + capex + repairs + utilities;
+}
+
+// Monthly Debt Service = .61 % of Loan
+const MonthlyDebtService = (loan) => (0.0061 * loan);
+
+// Loan = 75% of Purchase Price(comes from Zillow)
+const Loan = (purchasePrice) => (0.75 * purchasePrice);
+
 const calculate = (purchasePrice, taxes, monthlyGrossIncome) => {
-
-  console.log({purchasePrice, taxes, monthlyGrossIncome});
-
-  // COC = [(Monthly Cash flow (MCF) x 12) / Initial Total Investment (ITI)] x 100
-  const CashOnCash = (monthlyCashFlow, initialTotalInvestment) => (((monthlyCashFlow * 12) / initialTotalInvestment) * 100);
-
-  // ITI = 29% of Purchase Price(PP)(Which comes from Zillow)
-  const InitialTotalInvestment = (purchasePrice) => (0.29 * purchasePrice);
-
-  // MCF = Monthly Gross Income(MGI)(comes from Zillow) - Monthly Expenses - Monthly Debt Service
-  const MonthlyCashFlow = (monthlyGrossIncome, monthlyExpenses, monthlyDebtService) => (monthlyGrossIncome - monthlyExpenses - monthlyDebtService);
-
-  // Monthly Expenses = Taxes(comes from Zillow) + Insurance($60) + Vacancy(5% of MGI) + Property Management(4% of MGI)+ Capex(5% of MGI) + Repairs(5% of MGI) + Utilities($0)
-  const MonthlyExpenses = (taxes, monthlyGrossIncome) => {
-    const insurance = 60;
-    const vacancy = 0.05 * monthlyGrossIncome;
-    const propertyManagement = 0.04 * monthlyGrossIncome;
-    const capex = 0.05 * monthlyGrossIncome;
-    const repairs = 0.05 * monthlyGrossIncome;
-    const utilities = 0;
-
-    return insurance + vacancy + propertyManagement + capex + repairs + utilities;
-  }
-
-  // Monthly Debt Service = .61 % of Loan
-  const MonthlyDebtService = (loan) => (0.0061 * loan);
-
-  // Loan = 75% of Purchase Price(comes from Zillow)
-  const Loan = (purchasePrice) => (0.75 * purchasePrice);
-
   const loan = Loan(purchasePrice);
-  console.log({loan});
   const monthlyDebtService = MonthlyDebtService(loan);
-  console.log({monthlyDebtService});
   const monthlyExpenses = MonthlyExpenses(taxes, monthlyGrossIncome);
-  console.log({monthlyExpenses});
   const initialTotalInvestment = InitialTotalInvestment(purchasePrice);
-  console.log({initialTotalInvestment});
 
   const monthlyCashFlow = MonthlyCashFlow(monthlyGrossIncome, monthlyExpenses, monthlyDebtService);
-
   const cashOnCash = CashOnCash(monthlyCashFlow, initialTotalInvestment);
 
   return cashOnCash;
@@ -109,10 +101,12 @@ const handleResults = (r) => {
   const rental = results.rental;
 
   let cashOnCash = calculate(toInt(cost), toInt(monthly), toInt(rental));
+  const percentage = 100 * (cashOnCash / toInt(cost));
+
   document.getElementById("cost").innerHTML = cost;
   document.getElementById("monthly").innerHTML = monthly;
   document.getElementById("rental").innerHTML = rental;
-  document.getElementById("coc").innerHTML = "$" + cashOnCash.toLocaleString() + " (" + (100*(cashOnCash/toInt(cost))).toLocaleString() + "%)";
+  document.getElementById("coc").innerHTML = "$" + cashOnCash.toLocaleString() + " (" + percentage.toLocaleString() + "%)";
 
   if ( cashOnCash > 0 ) {
     document.getElementById("coc").className = "success";

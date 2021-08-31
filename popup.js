@@ -11,47 +11,6 @@ actionButton.addEventListener("click", async () => {
   }, handleResults);
 });
 
-// The body of this function will be execuetd as a content script inside the
-// current page
-const getElements = () => {
-  const cost_selectors = [
-    "#details-page-container > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > div.ds-summary-row-container > div > div > span > span > span",
-    "#home-details-content > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > div.ds-summary-row-container > div > div > span > span > span",
-    "#ds-data-view > div.ds-chip-mobile.ds-chip-mobile-open > div.ds-home-details-chip > div.ds-summary-row-container > div > div > span > span > span"
-  ];
-
-  const monthly_selectors = [
-    "#label-property-tax > div > span"
-  ];
-
-  const rental_selectors = [
-    "#ds-rental-home-values > div > div.ds-expandable-card-section-default-padding > div > div > div > span",
-  ]
-
-  const scrapeElement = (selectors) => {
-    let element = null;
-    let i = 0;
-    while ( element == null && i < selectors.length ) {
-      element = document.querySelector(selectors[i]);
-      i += 1;
-    }
-    return element.innerHTML;
-  }
-
-  let host = window.location.host;
-  let m = host == "www.zillow.com";
-
-  if (m) {
-    let cost = scrapeElement(cost_selectors);
-    let monthly = scrapeElement(monthly_selectors);
-    let rental = scrapeElement(rental_selectors);
-
-    return ({ cost, monthly, rental });
-  } else {
-    alert("Sorry, not on Zillow!");
-  }
-}
-
 // COC = [(Monthly Cash flow (MCF) x 12) / Initial Total Investment (ITI)] x 100
 const CashOnCash = (monthlyCashFlow, initialTotalInvestment) => (((monthlyCashFlow * 12) / initialTotalInvestment) * 100);
 
@@ -93,6 +52,8 @@ const calculate = (purchasePrice, taxes, monthlyGrossIncome) => {
 
 const toInt = (n) => parseInt(n.split("").filter(a => parseInt(a)).join(""));
 
+// this will receive an object of the shape { cost, monthly, rental }
+// it executes in the DOM of the popup
 const handleResults = (r) => {
   const results = r[0].result;
 
@@ -112,5 +73,46 @@ const handleResults = (r) => {
     document.getElementById("coc").className = "success";
   } else {
     document.getElementById("coc").className = "error";
+  }
+}
+
+// The body of this function will be execuetd as a content script inside the
+// current page
+const getElements = () => {
+  const cost_selectors = [
+    "#details-page-container > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > div.ds-summary-row-container > div > div > span > span > span",
+    "#home-details-content > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > div.ds-summary-row-container > div > div > span > span > span",
+    "#ds-data-view > div.ds-chip-mobile.ds-chip-mobile-open > div.ds-home-details-chip > div.ds-summary-row-container > div > div > span > span > span"
+  ];
+
+  const monthly_selectors = [
+    "#label-property-tax > div > span"
+  ];
+
+  const rental_selectors = [
+    "#ds-rental-home-values > div > div.ds-expandable-card-section-default-padding > div > div > div > span",
+  ]
+
+  const scrapeElement = (selectors) => {
+    let element = null;
+    let i = 0;
+    while ( element == null && i < selectors.length ) {
+      element = document.querySelector(selectors[i]);
+      i += 1;
+    }
+    return element.innerHTML;
+  }
+
+  let host = window.location.host;
+  let m = host == "www.zillow.com";
+
+  if (m) {
+    let cost = scrapeElement(cost_selectors);
+    let monthly = scrapeElement(monthly_selectors);
+    let rental = scrapeElement(rental_selectors);
+
+    return ({ cost, monthly, rental });
+  } else {
+    alert("Sorry, not on Zillow!");
   }
 }

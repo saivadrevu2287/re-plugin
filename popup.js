@@ -52,6 +52,8 @@ const calculate = (purchasePrice, taxes, monthlyGrossIncome) => {
 
 const toInt = (n) => parseInt(n.split("").filter(a => parseInt(a) >= 0).join(""));
 
+const google_search_query = (s) => `https://www.google.com/search?q=${encodeURIComponent(s)}`;
+
 // this will receive an object of the shape { cost, monthly, rental }
 // it executes in the DOM of the popup
 const handleResults = (r) => {
@@ -60,14 +62,33 @@ const handleResults = (r) => {
   const cost = results.cost;
   const monthly = results.monthly;
   const rental = results.rental;
+  const address = results.address;
+  const estimate = results.estimate;
+  const beds_bath = results.beds_bath;
+  const days_on_market = results.days_on_market;
 
-  let cashOnCash = calculate(toInt(cost), toInt(monthly), toInt(rental));
-  const percentage = 100 * (cashOnCash / toInt(cost));
+  const cost_num = toInt(cost);
+  const monthly_num = toInt(monthly);
+  const rental_num = toInt(rental);
+
+  let cashOnCash = 'N/A';
+  if (cost_num && monthly_num && rental_num) {
+    cashOnCash = calculate(cost_num, monthly_num, rental_num).toLocaleString() + "%";
+  }
+
+  let redfin_search = google_search_query(address + " redfin");
+  let realtor_search = google_search_query(address + " realtor");
 
   document.getElementById("cost").innerHTML = cost;
+  document.getElementById("estimate").innerHTML = estimate;
   document.getElementById("monthly").innerHTML = monthly;
   document.getElementById("rental").innerHTML = rental;
-  document.getElementById("coc").innerHTML = cashOnCash.toLocaleString() + "%";
+  document.getElementById("days_on_market").innerHTML = days_on_market;
+  document.getElementById("address").innerHTML = address;
+  document.getElementById("specs").innerHTML = beds_bath;
+  document.getElementById("coc").innerHTML = cashOnCash;
+  document.getElementById("redfin").href = redfin_search;
+  document.getElementById("realtor").href = realtor_search;
 
   if ( cashOnCash > 0 ) {
     document.getElementById("coc").className = "success";
@@ -93,25 +114,65 @@ const getElements = () => {
     "#ds-rental-home-values > div > div.ds-expandable-card-section-default-padding > div > div > div > span",
   ]
 
+  const address_selectors = [
+    "#ds-chip-property-address"
+  ];
+
+  const beds_bath_selectors = [
+    "#ds-container > div.ds-data-col.ds-white-bg.ds-data-col-data-forward > div.hdp__sc-1tsvzbc-1.FNtGJ.ds-chip > div > div.ds-summary-row-container > div > div > div > span"
+  ]
+
+  const estimate_selectors = [
+    "#ds-container > div.ds-data-col.ds-white-bg.ds-data-col-data-forward > div.hdp__sc-1tsvzbc-1.FNtGJ.ds-chip > div > div.hdp__qf5kuj-12.ivFlOG.ds-chip-removable-content > p > span.hdp__qf5kuj-9.iuGlLh > span:nth-child(2) > span"
+  ]
+
+  const days_on_market_selectors = [
+    "#ds-data-view > ul > li:nth-child(3) > div > div > div.ds-expandable-card-section-default-padding > div.hdp__sc-1f3vlqq-0.jRmwCk > div:nth-child(1) > div.Text-c11n-8-48-0__sc-aiai24-0.fGOvOB"
+  ]
+
   const scrapeElement = (selectors) => {
-    let element = null;
+    let nill = 'N/A';
+
+    let element = nill;
     let i = 0;
-    while ( element == null && i < selectors.length ) {
-      element = document.querySelector(selectors[i]);
+    while ( element == nill && i < selectors.length ) {
+      try {
+        element = document.querySelector(selectors[i]).innerHTML;
+      } catch (error) {
+        element = nill;
+      }
       i += 1;
     }
-    return element.innerHTML;
+
+    return element;
   }
 
-  let host = window.location.host;
-  let m = host == "www.zillow.com";
+  const flatten_html = (el) => {
+    return el.replace(/<\/?[^>]*>/g, ' ').replace(/&[^;]*;/, ' ');
+  }
+
+  const host = window.location.host;
+  const m = host == "www.zillow.com";
 
   if (m) {
-    let cost = scrapeElement(cost_selectors);
-    let monthly = scrapeElement(monthly_selectors);
-    let rental = scrapeElement(rental_selectors);
+    const cost = scrapeElement(cost_selectors);
+    const monthly = scrapeElement(monthly_selectors);
+    const rental = scrapeElement(rental_selectors);
+    const address = flatten_html(scrapeElement(address_selectors));
+    const estimate = scrapeElement(estimate_selectors);
+    const beds_bath = flatten_html(scrapeElement(beds_bath_selectors));
+    const days_on_market = scrapeElement(days_on_market_selectors);
 
-    return ({ cost, monthly, rental });
+    return ({
+      cost,
+      monthly,
+      rental,
+      address,
+      estimate,
+      beds_bath,
+      days_on_market,
+    });
+
   } else {
     alert("Sorry, not on Zillow!");
   }

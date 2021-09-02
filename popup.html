@@ -4,17 +4,22 @@
     <link rel="stylesheet" href="button.css">
   </head>
   <body>
-    <h5>Price: <b id="cost"></b></h5>
-    <h5>Estimate: <b id="estimate"></b></h5>
-    <h5>Taxes: <b id="monthly"></b></h5>
-    <h5>Rental: <b id="rental"></b></h5>
-    <h5>Days On Market: <b id="days_on_market"></b></h5>
+    <h5>Price: <b id="purchase-price"></b></h5>
+    <h5>Estimate: <b id="estimate-price"></b></h5>
+    <h5>Taxes: <b id="monthly-taxes"></b></h5>
+    <h5>Rental: <b id="monthly-rent"></b></h5>
+    <h5>Days On Market: <b id="days-on-market"></b></h5>
     <h5>Address: <b id="address"></b></h5>
     <h5>Specs: <b id="specs"></b></h5>
-    <h4>Cash On Cash: <b id="coc"></b></h4>
-    <a target="_blank" id="redfin">To Redfin</a>
-    <a target="_blank" id="realtor">To Realtor</a>
-    <button id="actionButton">Calculate!</button>
+    <h4>Cash On Cash: <b id="cash-on-cash"></b></h4>
+    <h4>Offer: <b id="offer"></b></h4>
+    <div class="container">
+      <b id="slider-min"></b><input type="range" id="slider" /><b id="slider-max"></b>
+    </div>
+    <br>
+    <a target="_blank" id="redfin-link">To Redfin</a>
+    <a target="_blank" id="realtor-link">To Realtor</a>
+    <button id="action-button">Calculate!</button>
     <script src="popup.js"></script>
   </body>
 </html>

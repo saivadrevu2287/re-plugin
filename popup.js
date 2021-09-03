@@ -153,12 +153,17 @@ const handleResults = (r) => {
   sliderElement.max = toInt(purchasePrice) * (1 + percentRange);
   sliderElement.value = toInt(purchasePrice);
 
+  actionButton.innerHTML = "Coppied to Clipboard!"
+
   setCocClass(cashOnCash);
 }
 
 // The body of this function will be execuetd as a content script inside the
 // current page
 const getElements = () => {
+  const separator = ",";
+  const toCsv = (obj) => Object.keys(obj).reduce((acc, key) => `${acc}${obj[key]}${separator}`, "");
+
   const purchasePriceSelectors = [
     "#details-page-container > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > div.ds-summary-row-container > div > div > span > span > span",
     "#home-details-content > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > div.ds-summary-row-container > div > div > span > span > span",
@@ -182,6 +187,7 @@ const getElements = () => {
   ]
 
   const estimatePriceSelectors = [
+    "#ds-container > div.ds-data-col.ds-white-bg.ds-data-col-data-forward > div.hdp__sc-1tsvzbc-1.FNtGJ.ds-chip > div > div.sc-pbvBv.hmDgXL.ds-chip-removable-content > p > span.sc-pRhbc.ePDsLp > span:nth-child(2) > span",
     "#ds-container > div.ds-data-col.ds-white-bg.ds-data-col-data-forward > div.hdp__sc-1tsvzbc-1.FNtGJ.ds-chip > div > div.hdp__qf5kuj-12.ivFlOG.ds-chip-removable-content > p > span.hdp__qf5kuj-9.iuGlLh > span:nth-child(2) > span"
   ]
 
@@ -231,6 +237,20 @@ const getElements = () => {
       bedsBath,
       daysOnMarket,
     }
+
+    const copy = function (e) {
+        e.preventDefault();
+        console.log('copy');
+        var text = toCsv(results);
+        if (e.clipboardData) {
+            e.clipboardData.setData('text/plain', text);
+        } else if (window.clipboardData) {
+            window.clipboardData.setData('Text', text);
+        }
+    }
+    window.addEventListener('copy', copy);
+    document.execCommand('copy');
+    window.removeEventListener('copy', copy);
 
     return (results);
 

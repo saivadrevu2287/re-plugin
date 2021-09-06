@@ -1,4 +1,3 @@
-
 /**
  *
  * HERE BE HTML ELEMENTS
@@ -35,20 +34,26 @@ const rentSliderElement = document.getElementById("rent-slider");
 const rentSliderMinElement = document.getElementById("rent-slider-min");
 const rentSliderMaxElement = document.getElementById("rent-slider-max");
 
+const copiedMessage = "Coppied to Clipboard!"
+const copyMessage = "Copy Data Fields"
+const csvSeparator = "\n";
 // dynamically set the range of the sliders
 const offerPercentRange = 0.10
 const rentPercentRange = 0.20
+
 offerSliderMinElement.innerHTML = `-${100*offerPercentRange}%`;
 offerSliderMaxElement.innerHTML = `+${100*offerPercentRange}%`;
 rentSliderMinElement.innerHTML = `-${100*rentPercentRange}%`;
 rentSliderMaxElement.innerHTML = `+${100*rentPercentRange}%`;
+
+copyButton.innerHTML = copyMessage;
 
 // vars for the data that comes over
 let purchasePrice;
 let monthlyTaxes;
 let monthlyRent;
 let address;
-let estimate;
+let estimatePrice;
 let bedsBath;
 let daysOnMarket;
 let cashOnCash;
@@ -57,8 +62,24 @@ let cashOnCash;
 let offer;
 let rent;
 
-const copyMessage = "Coppied to Clipboard!"
-const csvSeparator = "\n";
+const getDataFields = () => ({
+  purchasePrice,
+  monthlyTaxes,
+  monthlyRent,
+  address,
+  estimatePrice,
+  bedsBath,
+  daysOnMarket,
+  cashOnCash,
+  offer,
+  rent,
+});
+
+/**
+ *
+ * HERE BE HTML EVENTS
+ *
+ **/
 
 // When the button is clicked, inject doCalc into current page
 actionButton.addEventListener("click", async () => {
@@ -66,25 +87,15 @@ actionButton.addEventListener("click", async () => {
 
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
-    function: getElements,
-  }, handleResults);
+    function: scrapeZillowElements,
+  }, handleZillowResults);
+
+  copyButton.innerHTML = copyMessage;
 });
 
 copyButton.addEventListener("click", () => {
-  const dataFields = {
-    purchasePrice,
-    monthlyTaxes,
-    monthlyRent,
-    address,
-    estimate,
-    bedsBath,
-    daysOnMarket,
-    cashOnCash,
-    offer,
-    rent,
-  };
-
-  handleCopy(copyMessage, csvSeparator, dataFields);
+  handleCopy();
+  copyButton.innerHTML = copiedMessage;
 });
 
 // handle offer slider change
@@ -92,6 +103,7 @@ offerSliderElement.addEventListener("change", (e) => {
   offer = `$${e.target.value.toLocaleString()}`;
   cashOnCashElement.innerHTML = doCOC(offer, monthlyTaxes, rent);
   offerElement.innerHTML = offer;
+  copyButton.innerHTML = copyMessage;
 });
 
 // handle rent slider change
@@ -99,6 +111,7 @@ rentSliderElement.addEventListener("change", (e) => {
   rent = `$${e.target.value.toLocaleString()}/mo`;
   cashOnCashElement.innerHTML = doCOC(offer, monthlyTaxes, rent);
   rentElement.innerHTML = rent;
+  copyButton.innerHTML = copyMessage;
 });
 
 // turn anything with numbers into just a regular integer
@@ -178,9 +191,10 @@ const doCOC = (purchasePrice, monthlyTaxes, monthlyRent) => {
 }
 
 // copy all of the data fields to your clipboard
-const handleCopy = (message, separator, calculations) => {
-  copyButton.innerHTML = message;
-  const toCsv = (obj) => Object.keys(obj).reduce((acc, key) => `${acc}${obj[key]}${separator}`, "");
+const handleCopy = () => {
+  const calculations = getDataFields();
+  console.log(calculations);
+  const toCsv = (obj) => Object.keys(obj).reduce((acc, key) => `${acc}${obj[key]}${csvSeparator}`, "");
   const copy = function (e) {
       e.preventDefault();
       const text = toCsv(calculations);
@@ -198,7 +212,7 @@ const handleCopy = (message, separator, calculations) => {
 
 // this will receive an object
 // it executes in the DOM of the popup
-const handleResults = (r) => {
+const handleZillowResults = (r) => {
   const results = r[0].result;
 
   // destructure the results
@@ -247,7 +261,7 @@ const handleResults = (r) => {
 
 // The body of this function will be execuetd as a content script inside the
 // current page
-const getElements = () => {
+const scrapeZillowElements = () => {
   const purchasePriceSelectors = [
     "#details-page-container > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > div.ds-summary-row-container > div > div > span > span > span",
     "#home-details-content > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > div.ds-summary-row-container > div > div > span > span > span",

@@ -1,17 +1,25 @@
-// Initialize butotn with users's prefered color
-const actionButton = document.getElementById("action-button");
 
+/**
+ *
+ * HERE BE HTML ELEMENTS
+ *
+ **/
+
+// buttons
+const actionButton = document.getElementById("action-button");
+const copyButton = document.getElementById("copy-button");
+
+// data fields
 const purchasePriceElement = document.getElementById("purchase-price");
 const estimatePriceElement = document.getElementById("estimate-price");
-
 const monthlyTaxesElement = document.getElementById("monthly-taxes");
 const monthlyRentElement = document.getElementById("monthly-rent");
-
 const daysOnMarketElement = document.getElementById("days-on-market");
 const addressElement = document.getElementById("address");
 const specsElement = document.getElementById("specs");
 const cashOnCashElement = document.getElementById("cash-on-cash");
 
+// links to other tabs
 const redfinLinkElement = document.getElementById("redfin-link");
 const realtorLinkElement = document.getElementById("realtor-link");
 
@@ -27,11 +35,11 @@ const rentSliderElement = document.getElementById("rent-slider");
 const rentSliderMinElement = document.getElementById("rent-slider-min");
 const rentSliderMaxElement = document.getElementById("rent-slider-max");
 
+// dynamically set the range of the sliders
 const offerPercentRange = 0.10
+const rentPercentRange = 0.20
 offerSliderMinElement.innerHTML = `-${100*offerPercentRange}%`;
 offerSliderMaxElement.innerHTML = `+${100*offerPercentRange}%`;
-
-const rentPercentRange = 0.20
 rentSliderMinElement.innerHTML = `-${100*rentPercentRange}%`;
 rentSliderMaxElement.innerHTML = `+${100*rentPercentRange}%`;
 
@@ -49,6 +57,9 @@ let cashOnCash;
 let offer;
 let rent;
 
+const copyMessage = "Coppied to Clipboard!"
+const csvSeparator = "\n";
+
 // When the button is clicked, inject doCalc into current page
 actionButton.addEventListener("click", async () => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
@@ -59,12 +70,31 @@ actionButton.addEventListener("click", async () => {
   }, handleResults);
 });
 
+copyButton.addEventListener("click", () => {
+  const dataFields = {
+    purchasePrice,
+    monthlyTaxes,
+    monthlyRent,
+    address,
+    estimate,
+    bedsBath,
+    daysOnMarket,
+    cashOnCash,
+    offer,
+    rent,
+  };
+
+  handleCopy(copyMessage, csvSeparator, dataFields);
+});
+
+// handle offer slider change
 offerSliderElement.addEventListener("change", (e) => {
   offer = `$${e.target.value.toLocaleString()}`;
   cashOnCashElement.innerHTML = doCOC(offer, monthlyTaxes, rent);
   offerElement.innerHTML = offer;
 });
 
+// handle rent slider change
 rentSliderElement.addEventListener("change", (e) => {
   rent = `$${e.target.value.toLocaleString()}/mo`;
   cashOnCashElement.innerHTML = doCOC(offer, monthlyTaxes, rent);
@@ -74,8 +104,14 @@ rentSliderElement.addEventListener("change", (e) => {
 // turn anything with numbers into just a regular integer
 const toInt = (n) => parseInt(n.split("").filter(a => a.match(/[0-9.]/g)).join(""));
 
-// generate a url that will send us to a google link
-const googleSearchQuery = (s) => `https://www.google.com/search?q=${encodeURIComponent(s)}&btnI`;
+// generate a url that will send us to a google search
+const googleSearchQuery = (s) => `https://www.google.com/search?q=${encodeURIComponent(s)}`;
+
+/**
+ *
+ * HERE BE MATHS
+ *
+ **/
 
 // COC = [(Monthly Cash flow (MCF) x 12) / Initial Total Investment (ITI)] x 100
 const CashOnCash = (monthlyCashFlow, initialTotalInvestment) => (((monthlyCashFlow * 12) / initialTotalInvestment) * 100);
@@ -116,6 +152,7 @@ const calculateCOC = (purchasePrice, taxes, monthlyGrossIncome) => {
   return cashOnCash;
 }
 
+// change the color of the coc data field
 const setCocClass = (cashOnCash) => {
   if ( cashOnCash > 0 ) {
     cashOnCashElement.className = "success";
@@ -124,6 +161,7 @@ const setCocClass = (cashOnCash) => {
   }
 }
 
+// run calcualtion, set the COC color, return the value
 const doCOC = (purchasePrice, monthlyTaxes, monthlyRent) => {
   const purchasePriceNum = toInt(purchasePrice);
   const monthlyTaxesNum = toInt(monthlyTaxes);
@@ -139,7 +177,26 @@ const doCOC = (purchasePrice, monthlyTaxes, monthlyRent) => {
   }
 }
 
-// this will receive an object of the shape { cost, monthly, rental }
+// copy all of the data fields to your clipboard
+const handleCopy = (message, separator, calculations) => {
+  copyButton.innerHTML = message;
+  const toCsv = (obj) => Object.keys(obj).reduce((acc, key) => `${acc}${obj[key]}${separator}`, "");
+  const copy = function (e) {
+      e.preventDefault();
+      const text = toCsv(calculations);
+      if (e.clipboardData) {
+          e.clipboardData.setData('text/plain', text);
+      } else if (window.clipboardData) {
+          window.clipboardData.setData('Text', text);
+      }
+  }
+
+  window.addEventListener('copy', copy);
+  document.execCommand('copy');
+  window.removeEventListener('copy', copy);
+}
+
+// this will receive an object
 // it executes in the DOM of the popup
 const handleResults = (r) => {
   const results = r[0].result;
@@ -159,17 +216,6 @@ const handleResults = (r) => {
 
   // major calculation
   cashOnCash = doCOC(offer, monthlyTaxes, rent);
-
-  const calculations = {
-    purchasePrice,
-    monthlyTaxes,
-    monthlyRent,
-    address,
-    estimatePrice,
-    bedsBath,
-    daysOnMarket,
-    cashOnCash,
-  }
 
   let redfinSearch = googleSearchQuery(address + " redfin");
   let realtorSearch = googleSearchQuery(address + " realtor");
@@ -197,32 +243,11 @@ const handleResults = (r) => {
   rentSliderElement.min = toInt(rent) * (1 - rentPercentRange);
   rentSliderElement.max = toInt(rent) * (1 + rentPercentRange);
   rentSliderElement.value = toInt(rent);
-
-  actionButton.innerHTML = "Coppied to Clipboard!"
-
-  const separator = "\n";
-  const toCsv = (obj) => Object.keys(obj).reduce((acc, key) => `${acc}${obj[key]}${separator}`, "");
-  const copy = function (e) {
-      e.preventDefault();
-      const text = toCsv(calculations);
-      if (e.clipboardData) {
-          e.clipboardData.setData('text/plain', text);
-      } else if (window.clipboardData) {
-          window.clipboardData.setData('Text', text);
-      }
-  }
-
-  window.addEventListener('copy', copy);
-  document.execCommand('copy');
-  window.removeEventListener('copy', copy);
 }
 
 // The body of this function will be execuetd as a content script inside the
 // current page
 const getElements = () => {
-  const separator = "\n";
-  const toCsv = (obj) => Object.keys(obj).reduce((acc, key) => `${acc}${obj[key]}${separator}`, "");
-
   const purchasePriceSelectors = [
     "#details-page-container > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > div.ds-summary-row-container > div > div > span > span > span",
     "#home-details-content > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > div.ds-summary-row-container > div > div > span > span > span",

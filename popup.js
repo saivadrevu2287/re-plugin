@@ -161,7 +161,7 @@ const handleResults = (r) => {
 // The body of this function will be execuetd as a content script inside the
 // current page
 const getElements = () => {
-  const separator = ",";
+  const separator = "\n";
   const toCsv = (obj) => Object.keys(obj).reduce((acc, key) => `${acc}${obj[key]}${separator}`, "");
 
   const purchasePriceSelectors = [
@@ -248,6 +248,7 @@ const getElements = () => {
             window.clipboardData.setData('Text', text);
         }
     }
+
     window.addEventListener('copy', copy);
     document.execCommand('copy');
     window.removeEventListener('copy', copy);

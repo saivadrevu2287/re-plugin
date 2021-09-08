@@ -21,7 +21,7 @@
 1. Select `options` (see below image if you cannot find it)
 1. Edit your data, which saves automatically
 
-![GitHub Logo](/img/options.png)
+![GitHub Logo](/img/option.png)
 
 
 ### Examples

@@ -34,6 +34,13 @@ const rentSliderElement = document.getElementById("rent-slider");
 const rentSliderMinElement = document.getElementById("rent-slider-min");
 const rentSliderMaxElement = document.getElementById("rent-slider-max");
 
+let configurationFields;
+
+chrome.storage.sync.get("configurationFields", (data) => {
+  configurationFields = data.configurationFields;
+
+})
+
 const copiedMessage = "Coppied to Clipboard!"
 const copyMessage = "Copy Data Fields"
 const csvSeparator = "\n";
@@ -137,12 +144,12 @@ const MonthlyCashFlow = (monthlyGrossIncome, monthlyExpenses, monthlyDebtService
 
 // Monthly Expenses = Taxes(comes from Zillow) + Insurance($60) + Vacancy(5% of MGI) + Property Management(4% of MGI)+ Capex(5% of MGI) + Repairs(5% of MGI) + Utilities($0)
 const MonthlyExpenses = (taxes, monthlyGrossIncome) => {
-  const insurance = 60;
-  const vacancy = 0.05 * monthlyGrossIncome;
-  const propertyManagement = 0.04 * monthlyGrossIncome;
-  const capex = 0.05 * monthlyGrossIncome;
-  const repairs = 0.05 * monthlyGrossIncome;
-  const utilities = 0;
+  const insurance = configurationFields.insurance.value;
+  const vacancy = configurationFields.vacancy.value * monthlyGrossIncome;
+  const propertyManagement = configurationFields.property.value * monthlyGrossIncome;
+  const capex = configurationFields.capex.value * monthlyGrossIncome;
+  const repairs = configurationFields.repairs.value * monthlyGrossIncome;
+  const utilities = configurationFields.utilities.value;
 
   return taxes + insurance + vacancy + propertyManagement + capex + repairs + utilities;
 }
@@ -193,7 +200,6 @@ const doCOC = (purchasePrice, monthlyTaxes, monthlyRent) => {
 // copy all of the data fields to your clipboard
 const handleCopy = () => {
   const calculations = getDataFields();
-  console.log(calculations);
   const toCsv = (obj) => Object.keys(obj).reduce((acc, key) => `${acc}${obj[key]}${csvSeparator}`, "");
   const copy = function (e) {
       e.preventDefault();

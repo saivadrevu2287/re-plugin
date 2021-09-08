@@ -14,6 +14,15 @@
 1. Click the grey square
 1. See the alert message pop up with some numbers
 
+### To Do Options
+1. Click the plugin puzzle piece in the Chrome browser
+1. Locate this plugin from the list
+1. Click the 3 vertical dots to pull up more options
+1. Select `options` (see below image if you cannot find it)
+1. Edit your data, which saves automatically
+
+![GitHub Logo](/img/options.png)
+
 
 ### Examples
 - https://www.zillow.com/homedetails/3811-Rosemary-Ln-SE-Conyers-GA-30013/15010366_zpid/

@@ -137,7 +137,7 @@ const googleSearchQuery = (s) => `https://www.google.com/search?q=${encodeURICom
 const CashOnCash = (monthlyCashFlow, initialTotalInvestment) => (((monthlyCashFlow * 12) / initialTotalInvestment) * 100);
 
 // ITI = 29% of Purchase Price(PP)(Which comes from Zillow)
-const InitialTotalInvestment = (purchasePrice) => (0.29 * purchasePrice);
+const InitialTotalInvestment = (purchasePrice) => ((configurationFields.downPayment.value + configurationFields.closingCost.value) * purchasePrice);
 
 // MCF = Monthly Gross Income(MGI)(comes from Zillow) - Monthly Expenses - Monthly Debt Service
 const MonthlyCashFlow = (monthlyGrossIncome, monthlyExpenses, monthlyDebtService) => (monthlyGrossIncome - monthlyExpenses - monthlyDebtService);
@@ -163,6 +163,7 @@ const Loan = (purchasePrice) => (0.75 * purchasePrice);
 const calculateCOC = (purchasePrice, taxes, monthlyGrossIncome) => {
   const loan = Loan(purchasePrice);
   const monthlyDebtService = MonthlyDebtService(loan);
+  console.log({monthlyDebtService, loan});
   const monthlyExpenses = MonthlyExpenses(taxes, monthlyGrossIncome);
   const initialTotalInvestment = InitialTotalInvestment(purchasePrice);
 

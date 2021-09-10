@@ -137,7 +137,7 @@ const googleSearchQuery = (s) => `https://www.google.com/search?q=${encodeURICom
 const CashOnCash = (monthlyCashFlow, initialTotalInvestment) => (((monthlyCashFlow * 12) / initialTotalInvestment) * 100);
 
 // ITI = 29% of Purchase Price(PP)(Which comes from Zillow)
-const InitialTotalInvestment = (purchasePrice) => ((configurationFields.downPayment.value + configurationFields.closingCost.value) * purchasePrice);
+const InitialTotalInvestment = (purchasePrice) => ((configurationFields['down-payment'].value + configurationFields["closing-cost"].value) * purchasePrice);
 
 // MCF = Monthly Gross Income(MGI)(comes from Zillow) - Monthly Expenses - Monthly Debt Service
 const MonthlyCashFlow = (monthlyGrossIncome, monthlyExpenses, monthlyDebtService) => (monthlyGrossIncome - monthlyExpenses - monthlyDebtService);
@@ -155,7 +155,18 @@ const MonthlyExpenses = (taxes, monthlyGrossIncome) => {
 }
 
 // Monthly Debt Service = .61 % of Loan
-const MonthlyDebtService = (loan) => (0.0061 * loan);
+const MonthlyDebtService = (loan) => {
+  // i
+  const monthlyInterest = configurationFields["loan-interest"].value / 12;
+  // n
+  const months = configurationFields["loan-months"].value;
+  // (1 + i)^-n
+  const exponent = Math.pow(1 + monthlyInterest, -months);
+  // 1 - (1 + i)^-n
+  const denominator = 1 - exponent;
+  // p(i / (1 - (1 + i)^-n))
+  return loan * (monthlyInterest / denominator);
+}
 
 // Loan = 75% of Purchase Price(comes from Zillow)
 const Loan = (purchasePrice) => (0.75 * purchasePrice);
@@ -163,7 +174,6 @@ const Loan = (purchasePrice) => (0.75 * purchasePrice);
 const calculateCOC = (purchasePrice, taxes, monthlyGrossIncome) => {
   const loan = Loan(purchasePrice);
   const monthlyDebtService = MonthlyDebtService(loan);
-  console.log({monthlyDebtService, loan});
   const monthlyExpenses = MonthlyExpenses(taxes, monthlyGrossIncome);
   const initialTotalInvestment = InitialTotalInvestment(purchasePrice);
 

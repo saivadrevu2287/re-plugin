@@ -6,7 +6,9 @@ const configurationFields = {
   repairs: {value: 0.05, type: "percent"},
   utilities: {value: 0, type: "dollars"},
   "down-payment": {value: 0.25, type: "percent"},
-  "closing-cost": {value: 0.04, type: "percent"}
+  "closing-cost": {value: 0.04, type: "percent"},
+  "loan-interest": {value: 0.041, type: "percent"},
+  "loan-months": {value: 240, type: "months"}
 }
 
 chrome.runtime.onInstalled.addListener(() => {

@@ -14,7 +14,7 @@ function constructOptions() {
         field.value = replacement;
         element.value = replacement;
       } else {
-        field.value = field.type === "percent" ? value * 100 : value;
+        field.value = field.type === "percent" ? value / 100 : value;
       }
 
       chrome.storage.sync.set({configurationFields: fields});
@@ -22,7 +22,7 @@ function constructOptions() {
 
     Object.keys(fields).forEach(key => {
       const element = document.getElementById(`${key}-input`);
-      element.value = fields[key].type === "percent" ? fields[key].value / 100 : fields[key].value;
+      element.value = fields[key].type === "percent" ? fields[key].value * 100 : fields[key].value;
       element.addEventListener("input", handleEdit(element, fields[key]));
     })
   });

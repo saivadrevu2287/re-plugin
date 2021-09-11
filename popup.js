@@ -140,25 +140,19 @@ const CashOnCash = (monthlyCashFlow, initialTotalInvestment) => (((monthlyCashFl
 const InitialTotalInvestment = (purchasePrice) => ((configurationFields['down-payment'].value + configurationFields["closing-cost"].value) * purchasePrice);
 
 // MCF = Monthly Gross Income(MGI)(comes from Zillow) - Monthly Expenses - Monthly Debt Service
-const MonthlyCashFlow = (monthlyGrossIncome, monthlyExpenses, monthlyDebtService) => (monthlyGrossIncome - monthlyExpenses - monthlyDebtService);
+const MonthlyCashFlow = (monthlyGrossIncome, monthlyExpenses, monthlyDebtService) => (monthlyGrossIncome - (monthlyGrossIncome * configurationFields.vacancy.value) - monthlyExpenses - monthlyDebtService);
 
 // Monthly Expenses = Taxes(comes from Zillow) + Insurance($60) + Vacancy(5% of MGI) + Property Management(4% of MGI)+ Capex(5% of MGI) + Repairs(5% of MGI) + Utilities($0)
 const MonthlyExpenses = (taxes, monthlyGrossIncome) => {
+  const income = monthlyGrossIncome  - (configurationFields.vacancy.value * monthlyGrossIncome);
+
   const insurance = configurationFields.insurance.value;
-  const vacancy = configurationFields.vacancy.value * monthlyGrossIncome;
-  const propertyManagement = configurationFields.property.value * monthlyGrossIncome;
-  const capex = configurationFields.capex.value * monthlyGrossIncome;
-  const repairs = configurationFields.repairs.value * monthlyGrossIncome;
+  const propertyManagement = configurationFields.property.value * income;
+  const capex = configurationFields.capex.value * income;
+  const repairs = configurationFields.repairs.value * income;
   const utilities = configurationFields.utilities.value;
 
-  console.log({insurance,
-  vacancy,
-  propertyManagement,
-  capex,
-  repairs,
-  utilities,});
-
-  return taxes + insurance + vacancy + propertyManagement + capex + repairs + utilities;
+  return taxes + insurance + propertyManagement + capex + repairs + utilities;
 }
 
 // Monthly Debt Service = .61 % of Loan
@@ -172,7 +166,6 @@ const MonthlyDebtService = (loan) => {
   // 1 - (1 + i)^-n
   const denominator = 1 - exponent;
   // p(i / (1 - (1 + i)^-n))
-  console.log({loan, monthlyInterest, denominator});
   return loan * (monthlyInterest / denominator);
 }
 
@@ -187,13 +180,6 @@ const calculateCOC = (purchasePrice, taxes, monthlyGrossIncome) => {
 
   const monthlyCashFlow = MonthlyCashFlow(monthlyGrossIncome, monthlyExpenses, monthlyDebtService);
   const cashOnCash = CashOnCash(monthlyCashFlow, initialTotalInvestment);
-
-  console.log({loan,
-  monthlyDebtService,
-  monthlyExpenses,
-  initialTotalInvestment,
-  monthlyCashFlow,
-  cashOnCash,});
 
   return cashOnCash;
 }

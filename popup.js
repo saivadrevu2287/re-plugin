@@ -151,6 +151,13 @@ const MonthlyExpenses = (taxes, monthlyGrossIncome) => {
   const repairs = configurationFields.repairs.value * monthlyGrossIncome;
   const utilities = configurationFields.utilities.value;
 
+  console.log({insurance,
+  vacancy,
+  propertyManagement,
+  capex,
+  repairs,
+  utilities,});
+
   return taxes + insurance + vacancy + propertyManagement + capex + repairs + utilities;
 }
 
@@ -165,11 +172,12 @@ const MonthlyDebtService = (loan) => {
   // 1 - (1 + i)^-n
   const denominator = 1 - exponent;
   // p(i / (1 - (1 + i)^-n))
+  console.log({loan, monthlyInterest, denominator});
   return loan * (monthlyInterest / denominator);
 }
 
 // Loan = 75% of Purchase Price(comes from Zillow)
-const Loan = (purchasePrice) => (0.75 * purchasePrice);
+const Loan = (purchasePrice) => ((1 - configurationFields['down-payment'].value) * purchasePrice);
 
 const calculateCOC = (purchasePrice, taxes, monthlyGrossIncome) => {
   const loan = Loan(purchasePrice);
@@ -179,6 +187,13 @@ const calculateCOC = (purchasePrice, taxes, monthlyGrossIncome) => {
 
   const monthlyCashFlow = MonthlyCashFlow(monthlyGrossIncome, monthlyExpenses, monthlyDebtService);
   const cashOnCash = CashOnCash(monthlyCashFlow, initialTotalInvestment);
+
+  console.log({loan,
+  monthlyDebtService,
+  monthlyExpenses,
+  initialTotalInvestment,
+  monthlyCashFlow,
+  cashOnCash,});
 
   return cashOnCash;
 }

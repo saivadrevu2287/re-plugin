@@ -5,7 +5,7 @@ function constructOptions() {
     // Reacts to a button click by marking the selected button and saving
     // the selection
     const handleEdit = (element, field) => (event) => {
-      const value = parseInt(event.target.value);
+      const value = parseFloat(event.target.value);
 
       const isNegative = value < 0;
       const isTooBig = field.type === "percent" && value > 100;

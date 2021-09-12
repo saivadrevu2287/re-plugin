@@ -12,6 +12,5 @@ const configurationFields = {
 }
 
 chrome.runtime.onInstalled.addListener(() => {
-  console.log(configurationFields);
   chrome.storage.sync.set({ configurationFields });
 });

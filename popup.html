@@ -1,29 +1,65 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="button.css">
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h5>Price&nbsp;<span id="purchase-price"></span></h5>
-    <h5>Estimate&nbsp;<span id="estimate-price"></span></h5>
-    <h5>Taxes&nbsp;<span id="monthly-taxes"></span></h5>
-    <h5>Rental Est.&nbsp;<span id="monthly-rent"></span></h5>
-    <h5>Days On Market&nbsp;<span id="days-on-market"></span></h5>
-    <h5>Address&nbsp;<span id="address"></span></h5>
-    <h5>Specs&nbsp;<span id="specs"></span></h5>
-    <h4>Cash On Cash&nbsp;<span id="cash-on-cash"></span></h4>
-    <h4>Offer&nbsp;<span id="offer"></span></h4>
-    <div class="container">
-      <b id="offer-slider-min"></b><input type="range" id="offer-slider" /><b id="offer-slider-max"></b>
+    <div class="data-field small-label">
+      <label>Price:</label>
+      <span id="purchase-price"></span>
     </div>
-    <h4>Rent&nbsp;<span id="rent"></span></h4>
-    <div class="container">
-      <b id="rent-slider-min"></b><input type="range" id="rent-slider" /><b id="rent-slider-max"></b>
+    <div class="data-field small-label">
+      <label>Estimate:</label>
+      <span id="estimate-price"></span>
+    </div>
+    <div class="data-field small-label">
+      <label>Taxes:</label>
+      <span id="monthly-taxes"></span>
+    </div>
+    <div class="data-field small-label">
+      <label>Rental Estimate:</label>
+      <span id="monthly-rent"></span>
+    </div>
+    <div class="data-field small-label">
+      <label>Days On Market:</label>
+      <span id="days-on-market"></span>
+    </div>
+    <div class="data-field small-label">
+      <label>Address:</label>
+      <span id="address"></span>
+    </div>
+    <div class="data-field small-label">
+      <label>Specs:</label>
+      <span id="specs"></span>
+    </div>
+    <div class="data-field mid-label">
+      <label>Offer:</label>
+      <span id="offer"></span>
+    </div>
+    <div class="slider-container">
+      <b id="offer-slider-min"></b>
+      <input type="range" id="offer-slider" />
+      <b id="offer-slider-max"></b>
+    </div>
+    <div class="data-field mid-label">
+      <label >Rent:</label>
+      <span id="rent"></span>
+    </div>
+    <div class="slider-container">
+      <b id="rent-slider-min"></b>
+      <input type="range" id="rent-slider" />
+      <b id="rent-slider-max"></b>
+    </div>
+    <div class="data-field large-label">
+      <label>Cash On Cash:</label>
+      <span id="cash-on-cash"></span>
     </div>
     <br>
     <button id="copy-button"></button>
-    <a target="_blank" id="redfin-link">To Redfin</a>
-    <a target="_blank" id="realtor-link">To Realtor</a>
+    <div class="link-container">
+      <a target="_blank" id="redfin-link">To Redfin</a>
+      <a target="_blank" id="realtor-link">To Realtor</a>
+    </div>
     <button id="action-button">Calculate</button>
     <script src="popup.js"></script>
   </body>

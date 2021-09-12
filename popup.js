@@ -38,7 +38,6 @@ let configurationFields;
 
 chrome.storage.sync.get("configurationFields", (data) => {
   configurationFields = data.configurationFields;
-
 })
 
 const copiedMessage = "Coppied to Clipboard!"
@@ -46,7 +45,7 @@ const copyMessage = "Copy Data Fields"
 const csvSeparator = "\n";
 // dynamically set the range of the sliders
 const offerPercentRange = 0.10
-const rentPercentRange = 0.20
+const rentPercentRange = 0.10
 
 offerSliderMinElement.innerHTML = `-${100*offerPercentRange}%`;
 offerSliderMaxElement.innerHTML = `+${100*offerPercentRange}%`;
@@ -64,6 +63,7 @@ let estimatePrice;
 let bedsBath;
 let daysOnMarket;
 let cashOnCash;
+let href;
 
 // vars for the slider values
 let offer;
@@ -80,6 +80,7 @@ const getDataFields = () => ({
   cashOnCash,
   offer,
   rent,
+  href,
 });
 
 /**
@@ -107,7 +108,7 @@ copyButton.addEventListener("click", () => {
 
 // handle offer slider change
 offerSliderElement.addEventListener("change", (e) => {
-  offer = `$${e.target.value.toLocaleString()}`;
+  offer = `$${parseInt(e.target.value).toLocaleString()}`;
   cashOnCashElement.innerHTML = doCOC(offer, monthlyTaxes, rent);
   offerElement.innerHTML = offer;
   copyButton.innerHTML = copyMessage;
@@ -115,7 +116,7 @@ offerSliderElement.addEventListener("change", (e) => {
 
 // handle rent slider change
 rentSliderElement.addEventListener("change", (e) => {
-  rent = `$${e.target.value.toLocaleString()}/mo`;
+  rent = `$${parseInt(e.target.value).toLocaleString()}/mos`;
   cashOnCashElement.innerHTML = doCOC(offer, monthlyTaxes, rent);
   rentElement.innerHTML = rent;
   copyButton.innerHTML = copyMessage;
@@ -241,6 +242,7 @@ const handleZillowResults = (r) => {
   estimatePrice = results.estimatePrice;
   bedsBath = results.bedsBath;
   daysOnMarket = results.daysOnMarket;
+  href = results.href;
 
   // set these for working calculations
   offer = purchasePrice;
@@ -304,12 +306,14 @@ const scrapeZillowElements = () => {
 
   const estimatePriceSelectors = [
     "#ds-container > div.ds-data-col.ds-white-bg.ds-data-col-data-forward > div.hdp__sc-1tsvzbc-1.FNtGJ.ds-chip > div > div.sc-pbvBv.hmDgXL.ds-chip-removable-content > p > span.sc-pRhbc.ePDsLp > span:nth-child(2) > span",
-    "#ds-container > div.ds-data-col.ds-white-bg.ds-data-col-data-forward > div.hdp__sc-1tsvzbc-1.FNtGJ.ds-chip > div > div.hdp__qf5kuj-12.ivFlOG.ds-chip-removable-content > p > span.hdp__qf5kuj-9.iuGlLh > span:nth-child(2) > span"
+    "#ds-container > div.ds-data-col.ds-white-bg.ds-data-col-data-forward > div.hdp__sc-1tsvzbc-1.FNtGJ.ds-chip > div > div.hdp__qf5kuj-12.ivFlOG.ds-chip-removable-content > p > span.hdp__qf5kuj-9.iuGlLh > span:nth-child(2) > span",
+    "#ds-container > div.ds-data-col.ds-white-bg.ds-data-col-data-forward > div.hdp__sc-1tsvzbc-1.FNtGJ.ds-chip > div > div.sc-prqHV.gZvZRy.ds-chip-removable-content > p > span.sc-oTzDS.fotNMM > span:nth-child(2) > span",
   ]
 
   const daysOnMarketSelectors = [
     "#ds-data-view > ul > li:nth-child(3) > div > div > div.ds-expandable-card-section-default-padding > div.hdp__sc-1f3vlqq-0.jRmwCk > div:nth-child(1) > div.Text-c11n-8-48-0__sc-aiai24-0.fGOvOB",
     "#ds-data-view > ul > li:nth-child(3) > div > div > div.ds-expandable-card-section-default-padding > div.sc-ptScb.hfNvvF > div:nth-child(1) > div.Text-c11n-8-48-0__sc-aiai24-0.fGOvOB",
+    "#ds-data-view > ul > li:nth-child(3) > div > div > div.ds-expandable-card-section-default-padding > div.sc-qWfkp.eXNcZI > div:nth-child(1) > div.Text-c11n-8-48-0__sc-aiai24-0.fGOvOB",
   ]
 
   const scrapeElement = (selectors) => {
@@ -344,6 +348,7 @@ const scrapeZillowElements = () => {
     const estimatePrice = scrapeElement(estimatePriceSelectors);
     const bedsBath = flattenHtml(scrapeElement(bedsBathSelectors));
     const daysOnMarket = scrapeElement(daysOnMarketSelectors);
+    const href = document.location.href;
 
     const results = {
       purchasePrice,
@@ -353,6 +358,7 @@ const scrapeZillowElements = () => {
       estimatePrice,
       bedsBath,
       daysOnMarket,
+      href,
     }
 
     return (results);

@@ -109,7 +109,8 @@ copyButton.addEventListener("click", () => {
 // handle offer slider change
 offerSliderElement.addEventListener("change", (e) => {
   offer = `$${parseInt(e.target.value).toLocaleString()}`;
-  cashOnCashElement.innerHTML = doCOC(offer, monthlyTaxes, rent);
+  cashOnCash = doCOC(offer, monthlyTaxes, rent);
+  cashOnCashElement.innerHTML = cashOnCash;
   offerElement.innerHTML = offer;
   copyButton.innerHTML = copyMessage;
 });
@@ -117,7 +118,8 @@ offerSliderElement.addEventListener("change", (e) => {
 // handle rent slider change
 rentSliderElement.addEventListener("change", (e) => {
   rent = `$${parseInt(e.target.value).toLocaleString()}/mos`;
-  cashOnCashElement.innerHTML = doCOC(offer, monthlyTaxes, rent);
+  cashOnCash = doCOC(offer, monthlyTaxes, rent);
+  cashOnCashElement.innerHTML = cashOnCash;
   rentElement.innerHTML = rent;
   copyButton.innerHTML = copyMessage;
 });

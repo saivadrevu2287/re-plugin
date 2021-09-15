@@ -1,10 +1,21 @@
 button {
   height: 30px;
-  width: 380px;
+  width: 200px;
   outline: none;
   margin: 10px;
   border: none;
   border-radius: 2px;
+}
+
+.link-button {
+  outline: none;
+  margin: 0px;
+  border: none;
+  padding: 0px;
+  background: none;
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .success {
@@ -33,7 +44,7 @@ button {
 .data-field {
   display: flex;
   justify-content: space-between;
-  width: 400px;
+  width: 230px;
 }
 
 .slider-container {
@@ -44,7 +55,7 @@ button {
 }
 
 .link-container {
-  width: 280px;
+  width: 110px;
   margin-left: 60px;
   margin-right: 60px;
   display: flex;
@@ -57,7 +68,6 @@ button {
 
 .mid-label {
   margin-bottom: 12px;
-
 }
 
 .large-label {

@@ -13,6 +13,13 @@
       "128": "/images/ostrichDev.png"
     }
   },
+  "content_scripts": [
+      {
+          "matches": ["https://*/*"],
+          "js": ["ExtPay.js"],
+          "run_at": "document_start"
+      }
+  ],
   "icons": {
     "128": "/images/ostrichDev.png"
   },

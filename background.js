@@ -1,3 +1,14 @@
+importScripts('ExtPay.js')
+
+console.log("Importing script");
+// this line is required in background.js to use ExtPay!
+var extpay = ExtPay('sample-extension');
+extpay.startBackground();
+
+extpay.getUser().then(user => {
+	console.log(user)
+});
+
 const configurationFields = {
   insurance: {value: 60, type: "dollars"},
   vacancy: {value: 0.05, type: "percent"},

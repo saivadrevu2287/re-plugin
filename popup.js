@@ -4,6 +4,8 @@
  *
  **/
 
+const extpay = ExtPay('sample-extension');
+
 // buttons
 const actionButton = document.getElementById("action-button");
 const copyButton = document.getElementById("copy-button");
@@ -89,8 +91,17 @@ const getDataFields = () => ({
  *
  **/
 
+extpay.getUser().then(user => {
+   if (user.paid) {
+       console.log('User has paid! 🎉');
+   }
+}).catch(err => {
+   console.log("Error fetching data :( Check that your ExtensionPay id is correct and you're connected to the internet");
+})
+
 // When the button is clicked, inject doCalc into current page
 actionButton.addEventListener("click", async () => {
+  extpay.openPaymentPage();
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
   chrome.scripting.executeScript({

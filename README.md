@@ -2,6 +2,9 @@
 
 #### Very quick and dirty POC for a plugin that will pull some information from Zillow and do a quick calculation.
 
+### Plugin Url
+https://chrome.google.com/webstore/detail/ostrich/aicgkflmidjkbcenllnnlbnfnmicpmgo
+
 ### Setup
 1. Download the code
 1. Go to `chrome://extensions/` in your chrome browser

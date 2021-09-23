@@ -1,12 +1,12 @@
-importScripts('ExtPay.js')
+importScripts('ExtPay.js');
 
 console.log("Importing script");
 // this line is required in background.js to use ExtPay!
-var extpay = ExtPay('sample-extension');
+const extpay = ExtPay('ostrich');
 extpay.startBackground();
 
 extpay.getUser().then(user => {
-	console.log(user)
+	console.log(user);
 });
 
 const configurationFields = {

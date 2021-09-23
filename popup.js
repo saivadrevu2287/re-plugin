@@ -4,11 +4,12 @@
  *
  **/
 
-const extpay = ExtPay('sample-extension');
+const extpay = ExtPay('ostrich')
 
 // buttons
 const actionButton = document.getElementById("action-button");
 const copyButton = document.getElementById("copy-button");
+const profileButton = document.getElementById("profile-button");
 
 // data fields
 const purchasePriceElement = document.getElementById("purchase-price");
@@ -71,6 +72,8 @@ let href;
 let offer;
 let rent;
 
+let userPaid = false;
+
 const getDataFields = () => ({
   purchasePrice,
   monthlyTaxes,
@@ -93,28 +96,36 @@ const getDataFields = () => ({
 
 extpay.getUser().then(user => {
    if (user.paid) {
-       console.log('User has paid! 🎉');
+       userPaid = true;
+       profileButton.innerHTML = "See Profile";
    }
 }).catch(err => {
    console.log("Error fetching data :( Check that your ExtensionPay id is correct and you're connected to the internet");
-})
+});
 
 // When the button is clicked, inject doCalc into current page
 actionButton.addEventListener("click", async () => {
-  extpay.openPaymentPage();
-  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  if (!userPaid) {
+    extpay.openPaymentPage();
+  } else {
+    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-  chrome.scripting.executeScript({
-    target: { tabId: tab.id },
-    function: scrapeZillowElements,
-  }, handleZillowResults);
+    chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      function: scrapeZillowElements,
+    }, handleZillowResults);
 
-  copyButton.innerHTML = copyMessage;
+    copyButton.innerHTML = copyMessage;
+  }
 });
 
 copyButton.addEventListener("click", () => {
   handleCopy();
   copyButton.innerHTML = copiedMessage;
+});
+
+profileButton.addEventListener("click", () => {
+  openPaymentPage();
 });
 
 // handle offer slider change
@@ -134,6 +145,10 @@ rentSliderElement.addEventListener("change", (e) => {
   rentElement.innerHTML = rent;
   copyButton.innerHTML = copyMessage;
 });
+
+const openPaymentPage = () => {
+  extpay.openPaymentPage();
+}
 
 // turn anything with numbers into just a regular integer
 const toInt = (n) => parseInt(n.split("").filter(a => a.match(/[0-9.]/g)).join(""));

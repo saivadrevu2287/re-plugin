@@ -89,10 +89,8 @@ const getDataFields = () => ({
  *
  **/
 
-// When the button is clicked, inject doCalc into current page
-actionButton.addEventListener("click", async () => {
-  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-
+chrome.tabs.query({ active: true, currentWindow: true }).then((res) => {
+  const [tab] = res;
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
     function: scrapeZillowElements,
@@ -100,6 +98,7 @@ actionButton.addEventListener("click", async () => {
 
   copyButton.innerHTML = copyMessage;
 });
+
 
 copyButton.addEventListener("click", () => {
   handleCopy();
@@ -111,7 +110,7 @@ offerSliderElement.addEventListener("change", (e) => {
   offer = `$${parseInt(e.target.value).toLocaleString()}`;
   cashOnCash = doCOC(offer, monthlyTaxes, rent);
   cashOnCashElement.innerHTML = cashOnCash;
-  offerElement.innerHTML = offer;
+  offerElement.innerHTML = `${offer} (${-100 + Math.round(100 * (toInt(offer) / toInt(purchasePrice)))}%)`;
   copyButton.innerHTML = copyMessage;
 });
 
@@ -120,7 +119,7 @@ rentSliderElement.addEventListener("change", (e) => {
   rent = `$${parseInt(e.target.value).toLocaleString()}/mos`;
   cashOnCash = doCOC(offer, monthlyTaxes, rent);
   cashOnCashElement.innerHTML = cashOnCash;
-  rentElement.innerHTML = rent;
+  rentElement.innerHTML = `${rent} (${-100 + Math.round(100 * (toInt(rent) / toInt(monthlyRent)))}%)`;
   copyButton.innerHTML = copyMessage;
 });
 

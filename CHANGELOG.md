@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Removed calculate button, run calcs on plugin open.
 - Added percentages to the sliders.
+- On missing rent estimation, we remove the slider and show a rent input field
 
 ## [Released]
 

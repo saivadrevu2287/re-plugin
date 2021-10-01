@@ -4,6 +4,35 @@
  *
  **/
 
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-208478356-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = 'https://ssl.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+function track(e) {
+  _gaq.push(['_trackEvent', e.target.id, 'clicked']);
+};
+
+var buttons = document.querySelectorAll('button');
+for (var i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener('click', track);
+}
+
+var inputs = document.querySelectorAll('input');
+for (var i = 0; i < inputs.length; i++) {
+  inputs[i].addEventListener('change', track);
+}
+
+var links = document.querySelectorAll('a');
+for (var i = 0; i < links.length; i++) {
+  links[i].addEventListener('click', track);
+}
+
 // buttons
 const copyButton = document.getElementById("copy-button");
 

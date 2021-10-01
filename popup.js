@@ -146,9 +146,9 @@ rentInputElement.addEventListener("input", (e) => {
 // turn anything with numbers into just a regular integer
 const toInt = (n) => parseInt(n.split("").filter(a => a.match(/[0-9.]/g)).join(""));
 
-const monthlyDollars = (n) => isNaN(n) ? n : `$${n.toLocaleString()}/mo`;
+const monthlyDollars = (n) => isNaN(n) ? 'N/A' : `$${n.toLocaleString()}/mo`;
 
-const dollars = (n) => isNaN(n) ? n : `$${n.toLocaleString()}`;
+const dollars = (n) => isNaN(n) ? 'N/A' : `$${n.toLocaleString()}`;
 
 const percentageDifference = (x, y) => {
   const ratio = x / y;
@@ -230,7 +230,7 @@ const setCocClass = (cashOnCash) => {
 const doCOC = (purchasePrice, monthlyTaxes, monthlyRent) => {
   const err = (m) => {
     setCocClass(-1);
-    return `Provide ${m}!`;
+    return `&uarr;Provide ${m}!`;
   };
 
   if ( isNaN(purchasePrice) ) {
@@ -401,7 +401,7 @@ const scrapeZillowElements = () => {
     const results = {
       purchasePrice,
       monthlyTaxes,
-      monthlyRent: '',
+      monthlyRent,
       address,
       estimatePrice,
       bedsBath,

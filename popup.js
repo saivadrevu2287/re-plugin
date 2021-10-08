@@ -18,6 +18,11 @@ function track(e) {
   _gaq.push(['_trackEvent', e.target.id, 'clicked']);
 };
 
+// not being used yet
+function trackEmail(e) {
+  _gaq.push(['_trackEvent', 'email', 'clicked']);
+}
+
 var buttons = document.querySelectorAll('button');
 for (var i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener('click', track);
@@ -315,7 +320,7 @@ const handleZillowResults = (r) => {
   href = results.href;
 
   // set these for working calculations
-  offer = purchasePrice;
+  offer = isNaN(purchasePrice) ? estimatePrice : purchasePrice;
   rent = monthlyRent;
 
   // major calculation
@@ -363,14 +368,17 @@ const scrapeZillowElements = () => {
     "#details-page-container > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > div.ds-summary-row-container > div > div > span > span > span",
     "#home-details-content > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > div.ds-summary-row-container > div > div > span > span > span",
     "#ds-data-view > div.ds-chip-mobile.ds-chip-mobile-open > div.ds-home-details-chip > div.ds-summary-row-container > div > div > span > span > span"
+
   ];
 
   const monthlyTaxesSelectors = [
-    "#label-property-tax > div > span"
+    "#label-property-tax > div > span",
+    "#home-details-content > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > div.ds-mortgage-row > div > span:nth-child(2)",
   ];
 
   const monthlyRentSelectors = [
     "#ds-rental-home-values > div > div.ds-expandable-card-section-default-padding > div > div > div > span",
+    "#home-details-content > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > p > span:nth-child(3) > span.Text-c11n-8-48-0__sc-aiai24-0.fGOvOB",
   ]
 
   const addressSelectors = [
@@ -385,6 +393,7 @@ const scrapeZillowElements = () => {
     "#ds-container > div.ds-data-col.ds-white-bg.ds-data-col-data-forward > div.hdp__sc-1tsvzbc-1.FNtGJ.ds-chip > div > div.sc-pbvBv.hmDgXL.ds-chip-removable-content > p > span.sc-pRhbc.ePDsLp > span:nth-child(2) > span",
     "#ds-container > div.ds-data-col.ds-white-bg.ds-data-col-data-forward > div.hdp__sc-1tsvzbc-1.FNtGJ.ds-chip > div > div.hdp__qf5kuj-12.ivFlOG.ds-chip-removable-content > p > span.hdp__qf5kuj-9.iuGlLh > span:nth-child(2) > span",
     "#ds-container > div.ds-data-col.ds-white-bg.ds-data-col-data-forward > div.hdp__sc-1tsvzbc-1.FNtGJ.ds-chip > div > div.sc-prqHV.gZvZRy.ds-chip-removable-content > p > span.sc-oTzDS.fotNMM > span:nth-child(2) > span",
+    "#home-details-content > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > p > span:nth-child(2) > span:nth-child(2) > span",
   ]
 
   const daysOnMarketSelectors = [

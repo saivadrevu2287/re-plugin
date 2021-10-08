@@ -4,25 +4,25 @@
  *
  **/
 
-const extpay = ExtPay('ostrich')
+const extpay = ExtPay('ostrich-plugin')
 
 var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-208478356-1']);
-_gaq.push(['_trackPageview']);
+// _gaq.push(['_setAccount', 'UA-208478356-1']);
+// _gaq.push(['_trackPageview']);
 
-(function() {
-  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-  ga.src = 'https://ssl.google-analytics.com/ga.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
+// (function() {
+//   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+//   ga.src = 'https://ssl.google-analytics.com/ga.js';
+//   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+// })();
 
 function track(e) {
-  _gaq.push(['_trackEvent', e.target.id, 'clicked']);
+  //_gaq.push(['_trackEvent', e.target.id, 'clicked']);
 };
 
 // not being used yet
 function trackEmail(e) {
-  _gaq.push(['_trackEvent', 'email', 'clicked']);
+  //_gaq.push(['_trackEvent', 'email', 'clicked']);
 }
 
 var buttons = document.querySelectorAll('button');
@@ -136,24 +136,24 @@ const getDataFields = () => ({
  *
  **/
 
-extpay.getUser().then(async user => {
-   if (user.paid) {
-       userPaid = true;
-       profileButton.innerHTML = "See Profile";
+extpay.getUser().then(user => {
+  console.log(user);
+  if (user.trialStartedAt) {
+    userPaid = true;
+    profileButton.innerHTML = "See Profile";
 
-       chrome.tabs.query({ active: true, currentWindow: true }).then((r) => {
-         let [tab] = r;
-         chrome.scripting.executeScript({
-           target: { tabId: tab.id },
-           function: scrapeZillowElements,
-         }, handleZillowResults);
+    chrome.tabs.query({ active: true, currentWindow: true }).then((r) => {
+      let [tab] = r;
+      chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        function: scrapeZillowElements,
+      }, handleZillowResults);
 
-         copyButton.innerHTML = copyMessage;
-       });
-
-   } else {
-     extpay.openPaymentPage();
-   }
+      copyButton.innerHTML = copyMessage;
+    });
+  } else {
+    extpay.openTrialPage();
+  }
 }).catch(err => {
    console.log("Error fetching data :( Check that your ExtensionPay id is correct and you're connected to the internet");
 });

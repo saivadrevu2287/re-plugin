@@ -1,13 +1,46 @@
 /**
  *
- * HERE BE HTML ELEMENTS
+ * HERE BE GLOBALS
  *
  **/
 
 const extpay = ExtPay('ostrich')
 
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-208478356-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = 'https://ssl.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+function track(e) {
+  _gaq.push(['_trackEvent', e.target.id, 'clicked']);
+};
+
+// not being used yet
+function trackEmail(e) {
+  _gaq.push(['_trackEvent', 'email', 'clicked']);
+}
+
+var buttons = document.querySelectorAll('button');
+for (var i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener('click', track);
+}
+
+var inputs = document.querySelectorAll('input');
+for (var i = 0; i < inputs.length; i++) {
+  inputs[i].addEventListener('change', track);
+}
+
+var links = document.querySelectorAll('a');
+for (var i = 0; i < links.length; i++) {
+  links[i].addEventListener('click', track);
+}
+
 // buttons
-const actionButton = document.getElementById("action-button");
 const copyButton = document.getElementById("copy-button");
 const profileButton = document.getElementById("profile-button");
 
@@ -34,28 +67,11 @@ const offerSliderMaxElement = document.getElementById("offer-slider-max");
 // for the rent slider and the value it holds
 const rentElement = document.getElementById("rent");
 const rentSliderElement = document.getElementById("rent-slider");
+const rentSliderContainerElement = document.getElementById("rent-slider-container");
 const rentSliderMinElement = document.getElementById("rent-slider-min");
 const rentSliderMaxElement = document.getElementById("rent-slider-max");
 
-let configurationFields;
-
-chrome.storage.sync.get("configurationFields", (data) => {
-  configurationFields = data.configurationFields;
-})
-
-const copiedMessage = "Coppied to Clipboard!"
-const copyMessage = "Copy Data Fields"
-const csvSeparator = "\n";
-// dynamically set the range of the sliders
-const offerPercentRange = 0.10
-const rentPercentRange = 0.10
-
-offerSliderMinElement.innerHTML = `-${100*offerPercentRange}%`;
-offerSliderMaxElement.innerHTML = `+${100*offerPercentRange}%`;
-rentSliderMinElement.innerHTML = `-${100*rentPercentRange}%`;
-rentSliderMaxElement.innerHTML = `+${100*rentPercentRange}%`;
-
-copyButton.innerHTML = copyMessage;
+const rentInputElement = document.getElementById("rent-input");
 
 // vars for the data that comes over
 let purchasePrice;
@@ -72,19 +88,45 @@ let href;
 let offer;
 let rent;
 
-let userPaid = false;
+let rentError = false;
 
+// global to hold our configs outside of the below callback
+let configurationFields;
+chrome.storage.sync.get("configurationFields", (data) => {
+  configurationFields = data.configurationFields;
+})
+
+/**
+ *
+ * CONSTANTS
+ *
+ **/
+const copiedMessage = "Coppied to Clipboard!"
+const copyMessage = "Copy Data Fields"
+const csvSeparator = "\n";
+// dynamically set the range of the sliders
+const offerPercentRange = 0.10;
+const rentPercentRange = 0.10;
+
+offerSliderMinElement.innerHTML = `-${100*offerPercentRange}%`;
+offerSliderMaxElement.innerHTML = `+${100*offerPercentRange}%`;
+rentSliderMinElement.innerHTML = `-${100*rentPercentRange}%`;
+rentSliderMaxElement.innerHTML = `+${100*rentPercentRange}%`;
+
+copyButton.innerHTML = copyMessage;
+
+// serialize the data model
 const getDataFields = () => ({
-  purchasePrice,
-  monthlyTaxes,
-  monthlyRent,
+  purchasePrice: dollars(purchasePrice),
+  monthlyTaxes: monthlyDollars(monthlyTaxes),
+  monthlyRent: monthlyDollars(monthlyRent),
   address,
-  estimatePrice,
+  estimatePrice: dollars(estimatePrice),
   bedsBath,
   daysOnMarket,
   cashOnCash,
-  offer,
-  rent,
+  offer: dollars(offer),
+  rent: monthlyDollars(rent),
   href,
 });
 
@@ -94,30 +136,29 @@ const getDataFields = () => ({
  *
  **/
 
-extpay.getUser().then(user => {
+extpay.getUser().then(async user => {
    if (user.paid) {
        userPaid = true;
        profileButton.innerHTML = "See Profile";
+
+       chrome.tabs.query({ active: true, currentWindow: true }).then((r) => {
+         let [tab] = r;
+         chrome.scripting.executeScript({
+           target: { tabId: tab.id },
+           function: scrapeZillowElements,
+         }, handleZillowResults);
+
+         copyButton.innerHTML = copyMessage;
+       });
+
+   } else {
+     extpay.openPaymentPage();
    }
 }).catch(err => {
    console.log("Error fetching data :( Check that your ExtensionPay id is correct and you're connected to the internet");
 });
 
-// When the button is clicked, inject doCalc into current page
-actionButton.addEventListener("click", async () => {
-  if (!userPaid) {
-    extpay.openPaymentPage();
-  } else {
-    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-    chrome.scripting.executeScript({
-      target: { tabId: tab.id },
-      function: scrapeZillowElements,
-    }, handleZillowResults);
-
-    copyButton.innerHTML = copyMessage;
-  }
-});
 
 copyButton.addEventListener("click", () => {
   handleCopy();
@@ -130,19 +171,29 @@ profileButton.addEventListener("click", () => {
 
 // handle offer slider change
 offerSliderElement.addEventListener("change", (e) => {
-  offer = `$${parseInt(e.target.value).toLocaleString()}`;
+  offer = toInt(e.target.value);
   cashOnCash = doCOC(offer, monthlyTaxes, rent);
   cashOnCashElement.innerHTML = cashOnCash;
-  offerElement.innerHTML = offer;
+  const percentageDiff = percentageDifference(offer, purchasePrice);
+  const offerString = dollars(offer);
+  offerElement.innerHTML = `${offerString} (${percentageDiff}%)`;
   copyButton.innerHTML = copyMessage;
 });
 
 // handle rent slider change
 rentSliderElement.addEventListener("change", (e) => {
-  rent = `$${parseInt(e.target.value).toLocaleString()}/mos`;
+  rent = toInt(e.target.value);
   cashOnCash = doCOC(offer, monthlyTaxes, rent);
   cashOnCashElement.innerHTML = cashOnCash;
-  rentElement.innerHTML = rent;
+  const percentageDiff = percentageDifference(rent, monthlyRent);
+  rentElement.innerHTML = `${monthlyDollars(rent)} (${percentageDiff}%)`;
+  copyButton.innerHTML = copyMessage;
+});
+
+rentInputElement.addEventListener("input", (e) => {
+  rent = toInt(e.target.value);
+  cashOnCash = doCOC(offer, monthlyTaxes, rent);
+  cashOnCashElement.innerHTML = cashOnCash;
   copyButton.innerHTML = copyMessage;
 });
 
@@ -152,6 +203,17 @@ const openPaymentPage = () => {
 
 // turn anything with numbers into just a regular integer
 const toInt = (n) => parseInt(n.split("").filter(a => a.match(/[0-9.]/g)).join(""));
+
+const monthlyDollars = (n) => isNaN(n) ? 'N/A' : `$${n.toLocaleString()}/mo`;
+
+const dollars = (n) => isNaN(n) ? 'N/A' : `$${n.toLocaleString()}`;
+
+const percentageDifference = (x, y) => {
+  const ratio = x / y;
+  const percentage = Math.round(100 * ratio);
+  const difference = percentage - 100;
+  return difference <= 0 ? difference : `+${difference}`;
+}
 
 // generate a url that will send us to a google search
 const googleSearchQuery = (s) => `https://www.google.com/search?q=${encodeURIComponent(s)}`;
@@ -194,7 +256,7 @@ const MonthlyDebtService = (loan) => {
   const exponent = Math.pow(1 + monthlyInterest, -months);
   // 1 - (1 + i)^-n
   const denominator = 1 - exponent;
-  // p(i / (1 - (1 + i)^-n))
+  // p * (i / (1 - (1 + i)^-n))
   return loan * (monthlyInterest / denominator);
 }
 
@@ -224,12 +286,21 @@ const setCocClass = (cashOnCash) => {
 
 // run calcualtion, set the COC color, return the value
 const doCOC = (purchasePrice, monthlyTaxes, monthlyRent) => {
-  const purchasePriceNum = toInt(purchasePrice);
-  const monthlyTaxesNum = toInt(monthlyTaxes);
-  const monthlyRentNum = toInt(monthlyRent);
+  const err = (m) => {
+    setCocClass(-1);
+    return `&uarr;Provide ${m}!`;
+  };
 
-  if (purchasePriceNum && monthlyTaxesNum && monthlyRentNum) {
-    const coc = calculateCOC(purchasePriceNum, monthlyTaxesNum, monthlyRentNum);
+  if ( isNaN(purchasePrice) ) {
+    return err("price");
+  } else if ( isNaN(monthlyTaxes) ) {
+    return err("taxes");
+  } else if ( isNaN(monthlyRent) ) {
+    return err("rent");
+  }
+
+  if (purchasePrice && monthlyTaxes && monthlyRent) {
+    const coc = calculateCOC(purchasePrice, monthlyTaxes, monthlyRent);
     const cocString = coc.toLocaleString() + "%";
     setCocClass(coc);
     return cocString;
@@ -263,17 +334,17 @@ const handleZillowResults = (r) => {
   const results = r[0].result;
 
   // destructure the results
-  purchasePrice = results.purchasePrice;
-  monthlyTaxes = results.monthlyTaxes;
-  monthlyRent = results.monthlyRent;
+  purchasePrice = toInt(results.purchasePrice);
+  monthlyTaxes = toInt(results.monthlyTaxes);
+  monthlyRent = toInt(results.monthlyRent);
   address = results.address;
-  estimatePrice = results.estimatePrice;
+  estimatePrice = toInt(results.estimatePrice);
   bedsBath = results.bedsBath;
   daysOnMarket = results.daysOnMarket;
   href = results.href;
 
   // set these for working calculations
-  offer = purchasePrice;
+  offer = isNaN(purchasePrice) ? estimatePrice : purchasePrice;
   rent = monthlyRent;
 
   // major calculation
@@ -283,10 +354,10 @@ const handleZillowResults = (r) => {
   let realtorSearch = googleSearchQuery(address + " realtor");
 
   // update the ui
-  purchasePriceElement.innerHTML = purchasePrice;
-  estimatePriceElement.innerHTML = estimatePrice;
-  monthlyTaxesElement.innerHTML = monthlyTaxes;
-  monthlyRentElement.innerHTML = monthlyRent;
+  purchasePriceElement.innerHTML = dollars(purchasePrice);
+  estimatePriceElement.innerHTML = dollars(estimatePrice);
+  monthlyTaxesElement.innerHTML = monthlyDollars(monthlyTaxes);
+  monthlyRentElement.innerHTML = monthlyDollars(monthlyRent);
   daysOnMarketElement.innerHTML = daysOnMarket;
   addressElement.innerHTML = address;
   specsElement.innerHTML = bedsBath;
@@ -296,15 +367,22 @@ const handleZillowResults = (r) => {
   redfinLinkElement.href = redfinSearch;
   realtorLinkElement.href = realtorSearch;
 
-  offerElement.innerHTML = offer;
-  offerSliderElement.min = toInt(offer) * (1 - offerPercentRange);
-  offerSliderElement.max = toInt(offer) * (1 + offerPercentRange);
-  offerSliderElement.value = toInt(offer);
+  offerElement.innerHTML = dollars(offer);
+  offerSliderElement.min = offer * (1 - offerPercentRange);
+  offerSliderElement.max = offer * (1 + offerPercentRange);
+  offerSliderElement.value = offer;
 
-  rentElement.innerHTML = rent;
-  rentSliderElement.min = toInt(rent) * (1 - rentPercentRange);
-  rentSliderElement.max = toInt(rent) * (1 + rentPercentRange);
-  rentSliderElement.value = toInt(rent);
+  if ( isNaN(rent) )  {
+    rentError = true;
+    rentInputElement.className = "";
+    rentElement.className = "hidden";
+    rentSliderContainerElement.className = "hidden";
+  } else {
+    rentElement.innerHTML = monthlyDollars(rent);
+    rentSliderElement.min = rent * (1 - rentPercentRange);
+    rentSliderElement.max = rent * (1 + rentPercentRange);
+    rentSliderElement.value = rent;
+  }
 }
 
 // The body of this function will be execuetd as a content script inside the
@@ -314,14 +392,17 @@ const scrapeZillowElements = () => {
     "#details-page-container > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > div.ds-summary-row-container > div > div > span > span > span",
     "#home-details-content > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > div.ds-summary-row-container > div > div > span > span > span",
     "#ds-data-view > div.ds-chip-mobile.ds-chip-mobile-open > div.ds-home-details-chip > div.ds-summary-row-container > div > div > span > span > span"
+
   ];
 
   const monthlyTaxesSelectors = [
-    "#label-property-tax > div > span"
+    "#label-property-tax > div > span",
+    "#home-details-content > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > div.ds-mortgage-row > div > span:nth-child(2)",
   ];
 
   const monthlyRentSelectors = [
     "#ds-rental-home-values > div > div.ds-expandable-card-section-default-padding > div > div > div > span",
+    "#home-details-content > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > p > span:nth-child(3) > span.Text-c11n-8-48-0__sc-aiai24-0.fGOvOB",
   ]
 
   const addressSelectors = [
@@ -336,6 +417,7 @@ const scrapeZillowElements = () => {
     "#ds-container > div.ds-data-col.ds-white-bg.ds-data-col-data-forward > div.hdp__sc-1tsvzbc-1.FNtGJ.ds-chip > div > div.sc-pbvBv.hmDgXL.ds-chip-removable-content > p > span.sc-pRhbc.ePDsLp > span:nth-child(2) > span",
     "#ds-container > div.ds-data-col.ds-white-bg.ds-data-col-data-forward > div.hdp__sc-1tsvzbc-1.FNtGJ.ds-chip > div > div.hdp__qf5kuj-12.ivFlOG.ds-chip-removable-content > p > span.hdp__qf5kuj-9.iuGlLh > span:nth-child(2) > span",
     "#ds-container > div.ds-data-col.ds-white-bg.ds-data-col-data-forward > div.hdp__sc-1tsvzbc-1.FNtGJ.ds-chip > div > div.sc-prqHV.gZvZRy.ds-chip-removable-content > p > span.sc-oTzDS.fotNMM > span:nth-child(2) > span",
+    "#home-details-content > div > div > div.layout-wrapper > div.layout-container > div.data-column-container > div.summary-container > div > div.ds-home-details-chip > p > span:nth-child(2) > span:nth-child(2) > span",
   ]
 
   const daysOnMarketSelectors = [

@@ -4,10 +4,6 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class="link-container">
-      <button id="copy-button" class="link-button"></button>
-      <button id="profile-button" class="link-button"></button>
-    </div>
     <div class="data-field small-label">
       <label>Price:</label>
       <span id="purchase-price"></span>
@@ -48,8 +44,9 @@
     <div class="data-field mid-label">
       <label >Rent:</label>
       <span id="rent"></span>
+      <input type="number" id="rent-input" class="hidden" placeholder="Provide Rent Here" />
     </div>
-    <div class="slider-container">
+    <div id="rent-slider-container" class="slider-container">
       <b id="rent-slider-min"></b>
       <input type="range" id="rent-slider" />
       <b id="rent-slider-max"></b>
@@ -63,7 +60,7 @@
       <a target="_blank" id="redfin-link">To Redfin</a>
       <a target="_blank" id="realtor-link">To Realtor</a>
     </div>
-    <button id="action-button">Calculate</button>
+    <button id="copy-button" class="link-button"></button>
     <p id="message" class="error"></p>
     <script src="ExtPay.js"></script>
     <script src="popup.js"></script>

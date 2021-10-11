@@ -6,36 +6,44 @@
 
 const extpay = ExtPay('ostrich-plugin')
 
-var _gaq = _gaq || [];
-// _gaq.push(['_setAccount', 'UA-208478356-1']);
-// _gaq.push(['_trackPageview']);
+const enableGA = false;
+const enablePay = false;
+const enableLogging = true;
 
-// (function() {
-//   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-//   ga.src = 'https://ssl.google-analytics.com/ga.js';
-//   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-// })();
+const log = (m) => enableLogging && console.log(m)
+
+var _gaq = _gaq || [];
+if ( enableGA )  {
+  _gaq.push(['_setAccount', 'UA-208478356-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = 'https://ssl.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
 
 function track(e) {
-  //_gaq.push(['_trackEvent', e.target.id, 'clicked']);
+  enableGA && _gaq.push(['_trackEvent', e.target.id, 'clicked']);
 };
 
 // not being used yet
 function trackEmail(e) {
-  //_gaq.push(['_trackEvent', 'email', 'clicked']);
+  enableGA && _gaq.push(['_trackEvent', 'email', 'clicked']);
 }
 
-var buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('button');
 for (var i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener('click', track);
 }
 
-var inputs = document.querySelectorAll('input');
+const inputs = document.querySelectorAll('input');
 for (var i = 0; i < inputs.length; i++) {
   inputs[i].addEventListener('change', track);
 }
 
-var links = document.querySelectorAll('a');
+const links = document.querySelectorAll('a');
 for (var i = 0; i < links.length; i++) {
   links[i].addEventListener('click', track);
 }
@@ -88,8 +96,6 @@ let href;
 let offer;
 let rent;
 
-let rentError = false;
-
 // global to hold our configs outside of the below callback
 let configurationFields;
 chrome.storage.sync.get("configurationFields", (data) => {
@@ -101,8 +107,8 @@ chrome.storage.sync.get("configurationFields", (data) => {
  * CONSTANTS
  *
  **/
-const copiedMessage = "Coppied to Clipboard!"
-const copyMessage = "Copy Data Fields"
+const copiedMessage = "Copied to Clipboard!";
+const copyMessage = "Copy Data Fields";
 const csvSeparator = "\n";
 // dynamically set the range of the sliders
 const offerPercentRange = 0.10;
@@ -136,29 +142,39 @@ const getDataFields = () => ({
  *
  **/
 
-extpay.getUser().then(user => {
+const handleExtpayUser = (user) => {
   console.log(user);
   if (user.trialStartedAt) {
     userPaid = true;
     profileButton.innerHTML = "See Profile";
-
-    chrome.tabs.query({ active: true, currentWindow: true }).then((r) => {
-      let [tab] = r;
-      chrome.scripting.executeScript({
-        target: { tabId: tab.id },
-        function: scrapeZillowElements,
-      }, handleZillowResults);
-
-      copyButton.innerHTML = copyMessage;
-    });
+    profileButton.className = "link-button";
+    runCalculations();
   } else {
     extpay.openTrialPage();
   }
-}).catch(err => {
-   console.log("Error fetching data :( Check that your ExtensionPay id is correct and you're connected to the internet");
-});
+}
 
+const runCalculations = () => {
+  chrome.tabs.query({ active: true, currentWindow: true }).then((r) => {
+    let [tab] = r;
+    chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      function: scrapeZillowElements,
+    }, handleZillowResults);
 
+    copyButton.innerHTML = copyMessage;
+  });
+}
+
+if ( enablePay )  {
+  extpay.getUser()
+    .then(handleExtpayUser)
+    .catch(err => {
+       console.log("Error fetching data :( Check that your ExtensionPay id is correct and you're connected to the internet");
+    });
+} else {
+  runCalculations();
+}
 
 copyButton.addEventListener("click", () => {
   handleCopy();
@@ -243,6 +259,16 @@ const MonthlyExpenses = (taxes, monthlyGrossIncome) => {
   const repairs = configurationFields.repairs.value * income;
   const utilities = configurationFields.utilities.value;
 
+  log({
+    m: "MonthlyExpenses",
+    income,
+    insurance,
+    propertyManagement,
+    capex,
+    repairs,
+    utilities,
+  });
+
   return taxes + insurance + propertyManagement + capex + repairs + utilities;
 }
 
@@ -272,6 +298,16 @@ const calculateCOC = (purchasePrice, taxes, monthlyGrossIncome) => {
   const monthlyCashFlow = MonthlyCashFlow(monthlyGrossIncome, monthlyExpenses, monthlyDebtService);
   const cashOnCash = CashOnCash(monthlyCashFlow, initialTotalInvestment);
 
+  log({
+    m: "calculateCOC",
+    loan,
+    monthlyDebtService,
+    monthlyExpenses,
+    initialTotalInvestment,
+    monthlyCashFlow,
+    cashOnCash,
+  });
+
   return cashOnCash;
 }
 
@@ -286,6 +322,13 @@ const setCocClass = (cashOnCash) => {
 
 // run calcualtion, set the COC color, return the value
 const doCOC = (purchasePrice, monthlyTaxes, monthlyRent) => {
+  log({
+    m: "doCOC",
+    purchasePrice,
+    monthlyTaxes,
+    monthlyRent
+  });
+
   const err = (m) => {
     setCocClass(-1);
     return `&uarr;Provide ${m}!`;
@@ -323,6 +366,11 @@ const handleCopy = () => {
       }
   }
 
+  log({
+    m: "handleCopy",
+    text,
+  });
+
   window.addEventListener('copy', copy);
   document.execCommand('copy');
   window.removeEventListener('copy', copy);
@@ -332,7 +380,7 @@ const handleCopy = () => {
 // it executes in the DOM of the popup
 const handleZillowResults = (r) => {
   const results = r[0].result;
-
+  log(results);
   // destructure the results
   purchasePrice = toInt(results.purchasePrice);
   monthlyTaxes = toInt(results.monthlyTaxes);
@@ -373,7 +421,6 @@ const handleZillowResults = (r) => {
   offerSliderElement.value = offer;
 
   if ( isNaN(rent) )  {
-    rentError = true;
     rentInputElement.className = "";
     rentElement.className = "hidden";
     rentSliderContainerElement.className = "hidden";
@@ -426,7 +473,7 @@ const scrapeZillowElements = () => {
     "#ds-data-view > ul > li:nth-child(3) > div > div > div.ds-expandable-card-section-default-padding > div.sc-qWfkp.eXNcZI > div:nth-child(1) > div.Text-c11n-8-48-0__sc-aiai24-0.fGOvOB",
   ]
 
-  const scrapeElement = (selectors) => {
+  const scrapeElement = (selectors, name) => {
     let nill = 'N/A';
 
     let element = nill;
@@ -440,6 +487,12 @@ const scrapeZillowElements = () => {
       i += 1;
     }
 
+    console.log({
+      m: (`select ${name}`),
+      element,
+      selector: selectors[i]
+    });
+
     return element;
   }
 
@@ -451,13 +504,13 @@ const scrapeZillowElements = () => {
   const m = host == "www.zillow.com";
 
   if (m) {
-    const purchasePrice = scrapeElement(purchasePriceSelectors);
-    const monthlyTaxes = scrapeElement(monthlyTaxesSelectors);
-    const monthlyRent = scrapeElement(monthlyRentSelectors);
-    const address = flattenHtml(scrapeElement(addressSelectors));
-    const estimatePrice = scrapeElement(estimatePriceSelectors);
-    const bedsBath = flattenHtml(scrapeElement(bedsBathSelectors));
-    const daysOnMarket = scrapeElement(daysOnMarketSelectors);
+    const purchasePrice = scrapeElement(purchasePriceSelectors, "purchasePrice");
+    const monthlyTaxes = scrapeElement(monthlyTaxesSelectors, "monthlyTaxes");
+    const monthlyRent = scrapeElement(monthlyRentSelectors, "monthlyRent");
+    const address = flattenHtml(scrapeElement(addressSelectors, "address"));
+    const estimatePrice = flattenHtml(scrapeElement(estimatePriceSelectors, "estimatePrice"));
+    const bedsBath = flattenHtml(scrapeElement(bedsBathSelectors, "bedsBath"));
+    const daysOnMarket = scrapeElement(daysOnMarketSelectors, "daysOnMarket");
     const href = document.location.href;
 
     const results = {
@@ -471,7 +524,11 @@ const scrapeZillowElements = () => {
       href,
     }
 
-    return (results);
+    console.log({
+      m: "scrapeElements",
+      ...results
+    });
+    return results;
 
   } else {
     alert("Sorry, not on Zillow!");

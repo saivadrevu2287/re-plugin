@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adding ExtensionPay to collect payments.
 - Added info button next to COC.
 - Added feedback button at the bottom.
+- Added extra monthly expenses option field.
 
 ## [Released]
 

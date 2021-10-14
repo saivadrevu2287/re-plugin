@@ -8,7 +8,7 @@ const extpay = ExtPay('ostrich-plugin')
 
 const enableGA = false;
 const enablePay = false;
-const enableLogging = true;
+const enableLogging = false;
 
 const log = (m) => enableLogging && console.log(m)
 
@@ -28,9 +28,9 @@ function track(e) {
   enableGA && _gaq.push(['_trackEvent', e.target.id, 'clicked']);
 };
 
-// not being used yet
+//not being used yet
 function trackEmail(e) {
-  enableGA && _gaq.push(['_trackEvent', 'email', 'clicked']);
+  enableGA && _gaq.push(['_trackEvent', 'email', 'hgmaxwellking@gmail.com']);
 }
 
 const buttons = document.querySelectorAll('button');
@@ -57,6 +57,7 @@ const purchasePriceElement = document.getElementById("purchase-price");
 const estimatePriceElement = document.getElementById("estimate-price");
 const monthlyTaxesElement = document.getElementById("monthly-taxes");
 const monthlyRentElement = document.getElementById("monthly-rent");
+const monthlyExpensesElement = document.getElementById("expenses");
 const daysOnMarketElement = document.getElementById("days-on-market");
 const addressElement = document.getElementById("address");
 const specsElement = document.getElementById("specs");
@@ -292,7 +293,7 @@ const Loan = (purchasePrice) => ((1 - configurationFields['down-payment'].value)
 const calculateCOC = (purchasePrice, taxes, monthlyGrossIncome) => {
   const loan = Loan(purchasePrice);
   const monthlyDebtService = MonthlyDebtService(loan);
-  const monthlyExpenses = MonthlyExpenses(taxes, monthlyGrossIncome);
+  const monthlyExpenses = MonthlyExpenses(taxes, monthlyGrossIncome) + configurationFields['additional-monthly-expenses'].value;
   const initialTotalInvestment = InitialTotalInvestment(purchasePrice);
 
   const monthlyCashFlow = MonthlyCashFlow(monthlyGrossIncome, monthlyExpenses, monthlyDebtService);
@@ -308,7 +309,7 @@ const calculateCOC = (purchasePrice, taxes, monthlyGrossIncome) => {
     cashOnCash,
   });
 
-  return cashOnCash;
+  return {cashOnCash, monthlyExpenses};
 }
 
 // change the color of the coc data field
@@ -343,9 +344,10 @@ const doCOC = (purchasePrice, monthlyTaxes, monthlyRent) => {
   }
 
   if (purchasePrice && monthlyTaxes && monthlyRent) {
-    const coc = calculateCOC(purchasePrice, monthlyTaxes, monthlyRent);
-    const cocString = coc.toLocaleString() + "%";
-    setCocClass(coc);
+    const {cashOnCash, monthlyExpenses} = calculateCOC(purchasePrice, monthlyTaxes, monthlyRent);
+    const cocString = cashOnCash.toLocaleString() + "%";
+    monthlyExpensesElement.innerHTML = monthlyDollars(monthlyExpenses);
+    setCocClass(cashOnCash);
     return cocString;
   } else {
     return 'N/A';
@@ -359,17 +361,13 @@ const handleCopy = () => {
   const copy = function (e) {
       e.preventDefault();
       const text = toCsv(calculations);
+      log({ m: "handleCopy", text, });
       if (e.clipboardData) {
           e.clipboardData.setData('text/plain', text);
       } else if (window.clipboardData) {
           window.clipboardData.setData('Text', text);
       }
   }
-
-  log({
-    m: "handleCopy",
-    text,
-  });
 
   window.addEventListener('copy', copy);
   document.execCommand('copy');

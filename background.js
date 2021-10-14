@@ -2,7 +2,7 @@ importScripts('ExtPay.js');
 
 console.log("Importing script");
 // this line is required in background.js to use ExtPay!
-const extpay = ExtPay('ostrich');
+const extpay = ExtPay('ostrich-plugin');
 extpay.startBackground();
 
 extpay.getUser().then(user => {
@@ -19,7 +19,8 @@ const configurationFields = {
   "down-payment": {value: 0.25, type: "percent"},
   "closing-cost": {value: 0.04, type: "percent"},
   "loan-interest": {value: 0.041, type: "percent"},
-  "loan-months": {value: 240, type: "months"}
+  "loan-months": {value: 240, type: "months"},
+	"additional-monthly-expenses": {value: 0, type: "dollars"}
 }
 
 chrome.runtime.onInstalled.addListener(() => {

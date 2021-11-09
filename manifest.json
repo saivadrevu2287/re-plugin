@@ -16,8 +16,5 @@
   "icons": {
     "128": "/images/ostrich.png"
   },
-  "options_page": "options.html",
-  "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'self'; script-src-elem 'self' 'unsafe-inline' https://ssl.google-analytics.com;"
-  }
+  "options_page": "options.html"
 }

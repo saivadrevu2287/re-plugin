@@ -1,13 +1,13 @@
-importScripts('ExtPay.js');
-
-console.log("Importing script");
-// this line is required in background.js to use ExtPay!
-const extpay = ExtPay('ostrich-plugin');
-extpay.startBackground();
-
-extpay.getUser().then(user => {
-	console.log(user);
-});
+// importScripts('ExtPay.js');
+//
+// console.log("Importing script");
+// // this line is required in background.js to use ExtPay!
+// const extpay = ExtPay('ostrich-plugin');
+// extpay.startBackground();
+//
+// extpay.getUser().then(user => {
+// 	console.log(user);
+// });
 
 const configurationFields = {
   insurance: {value: 60, type: "dollars"},

@@ -78,12 +78,17 @@
       <p id="message" class="error"></p>
     </div>
     <div id="form-container">
-      <form id="rsvp" method="get" action="https://script.google.com/macros/s/AKfycbxgErcSFJm7gk7RT7i5RJJCgGd1tuittU3EPuOW719dG7BS8J_Vu2-6MgdGEyDkAEEtjA/exec">
-        <label>Email</label>
-        <input required class="postcard-input" type="email" name="email" placeholder="email"/>
-        <div class="submit-wrapper">
-          <button type="submit"id="submit-form">Submit</button>
-        </div>
+      <form
+        action="https://formspree.io/f/xnqleakp"
+        method="POST"
+        id="rsvp"
+      >
+        <label>
+          Your email:
+          <input type="email" name="_replyto">
+        </label>
+        <!-- your other form fields go here -->
+        <button type="submit" id="submit-form">Send</button>
       </form>
     </div>
     <script src="ExtPay.js"></script>

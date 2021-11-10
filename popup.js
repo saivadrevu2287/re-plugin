@@ -82,6 +82,11 @@ const rentSliderMaxElement = document.getElementById("rent-slider-max");
 
 const rentInputElement = document.getElementById("rent-input");
 
+const dataContainer = document.getElementById("data-container");
+const formContainer = document.getElementById("form-container");
+const formSubmitButton = document.getElementById("submit-form");
+
+
 // vars for the data that comes over
 let purchasePrice;
 let monthlyTaxes;
@@ -99,9 +104,7 @@ let rent;
 
 // global to hold our configs outside of the below callback
 let configurationFields;
-chrome.storage.sync.get("configurationFields", (data) => {
-  configurationFields = data.configurationFields;
-})
+
 
 /**
  *
@@ -167,15 +170,30 @@ const runCalculations = () => {
   });
 }
 
-if ( enablePay )  {
-  extpay.getUser()
-    .then(handleExtpayUser)
-    .catch(err => {
-       console.log("Error fetching data :( Check that your ExtensionPay id is correct and you're connected to the internet");
-    });
-} else {
-  runCalculations();
-}
+chrome.storage.sync.get("configurationFields", (data) => {
+  configurationFields = data.configurationFields;
+  if ( enablePay )  {
+    extpay.getUser()
+      .then(handleExtpayUser)
+      .catch(err => {
+         console.log("Error fetching data :( Check that your ExtensionPay id is correct and you're connected to the internet");
+      });
+  } else {
+    if ( configurationFields.isLoggedIn ) {
+      formContainer.className = "hidden";
+      runCalculations();
+    } else {
+      dataContainer.className = "hidden";
+      formSubmitButton.addEventListener("click", () => {
+        configurationFields.isLoggedIn = true;
+        formContainer.className = "hidden";
+        dataContainer.className = "";
+        runCalculations();
+        chrome.storage.sync.set({ configurationFields });
+      });
+    }
+  }
+})
 
 copyButton.addEventListener("click", () => {
   handleCopy();

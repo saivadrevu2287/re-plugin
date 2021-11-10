@@ -20,7 +20,8 @@ const configurationFields = {
   "closing-cost": {value: 0.04, type: "percent"},
   "loan-interest": {value: 0.041, type: "percent"},
   "loan-months": {value: 240, type: "months"},
-	"additional-monthly-expenses": {value: 0, type: "dollars"}
+	"additional-monthly-expenses": {value: 0, type: "dollars"},
+	isLoggedIn: false
 }
 
 chrome.runtime.onInstalled.addListener(() => {

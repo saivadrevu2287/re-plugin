@@ -75,7 +75,6 @@
       </div>
       <button id="copy-button" class="link-button"></button>
       <a target="_blank" href="https://docs.google.com/forms/d/1E6h7AbJZxitYnMuT1J6eK-x9AA5CpYHE2Dd3qYghZUA/edit">Provide Feedback!</a>
-      <p id="message" class="error"></p>
     </div>
     <div id="form-container">
       <form
@@ -83,14 +82,17 @@
         method="POST"
         id="rsvp"
       >
-        <label>
-          Your email:
-          <input type="email" name="_replyto">
+        <h5>Please enter Your Email to use Plugin.</h5>
+        <label for="email">
+          Email:
+          <input id="email-input" name="email" >
         </label>
+        <h5>We only email once in months!</h5>
         <!-- your other form fields go here -->
         <button type="submit" id="submit-form">Send</button>
       </form>
     </div>
+    <p id="message" class="error"></p>
     <script src="ExtPay.js"></script>
     <script src="popup.js"></script>
   </body>

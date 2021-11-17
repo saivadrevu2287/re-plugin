@@ -28,11 +28,6 @@ function track(e) {
   enableGA && _gaq.push(['_trackEvent', e.target.id, 'clicked']);
 };
 
-//not being used yet
-function trackEmail(e) {
-  enableGA && _gaq.push(['_trackEvent', 'email', 'hgmaxwellking@gmail.com']);
-}
-
 const buttons = document.querySelectorAll('button');
 for (var i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener('click', track);
@@ -85,7 +80,9 @@ const rentInputElement = document.getElementById("rent-input");
 const dataContainer = document.getElementById("data-container");
 const formContainer = document.getElementById("form-container");
 const formSubmitButton = document.getElementById("submit-form");
+const emailInput = document.getElementById("email-input");
 
+const messageElement = document.getElementById("message");
 
 // vars for the data that comes over
 let purchasePrice;
@@ -185,11 +182,16 @@ chrome.storage.sync.get("configurationFields", (data) => {
     } else {
       dataContainer.className = "hidden";
       formSubmitButton.addEventListener("click", () => {
-        configurationFields.isLoggedIn = true;
-        formContainer.className = "hidden";
-        dataContainer.className = "";
-        runCalculations();
-        chrome.storage.sync.set({ configurationFields });
+        if ( emailInput.value.match(/[^@]+@[^.]+\..+/) ) {
+          messageElement.innerHTML = ""
+          configurationFields.isLoggedIn = true;
+          formContainer.className = "hidden";
+          dataContainer.className = "";
+          runCalculations();
+          chrome.storage.sync.set({ configurationFields });
+        } else {
+          messageElement.innerHTML = "Invalid Email..."
+        }
       });
     }
   }

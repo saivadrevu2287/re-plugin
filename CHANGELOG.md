@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.0.5]
 ### Changed
 - General updates to the html element selectors for Zillow.
+- Requires Emails to be inputted before the user can do calculations.
 
 ## [0.0.4]
 ### Added

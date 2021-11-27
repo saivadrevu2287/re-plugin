@@ -47,6 +47,11 @@ button {
   width: 230px;
 }
 
+.input {
+  text-align: right;
+  width: 100px;
+}
+
 .slider-container {
   display: flex;
   justify-content: flex-start;

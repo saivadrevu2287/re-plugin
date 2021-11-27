@@ -48,11 +48,7 @@ const copyButton = document.getElementById("copy-button");
 const profileButton = document.getElementById("profile-button");
 
 // data fields
-const purchasePriceElement = document.getElementById("purchase-price");
 const estimatePriceElement = document.getElementById("estimate-price");
-const monthlyTaxesElement = document.getElementById("monthly-taxes");
-const monthlyRentElement = document.getElementById("monthly-rent");
-const monthlyExpensesElement = document.getElementById("expenses");
 const daysOnMarketElement = document.getElementById("days-on-market");
 const addressElement = document.getElementById("address");
 const specsElement = document.getElementById("specs");
@@ -62,20 +58,9 @@ const cashOnCashElement = document.getElementById("cash-on-cash");
 const redfinLinkElement = document.getElementById("redfin-link");
 const realtorLinkElement = document.getElementById("realtor-link");
 
-// for the offer slider and the value it holds
-const offerElement = document.getElementById("offer");
-const offerSliderElement = document.getElementById("offer-slider");
-const offerSliderMinElement = document.getElementById("offer-slider-min");
-const offerSliderMaxElement = document.getElementById("offer-slider-max");
-
-// for the rent slider and the value it holds
-const rentElement = document.getElementById("rent");
-const rentSliderElement = document.getElementById("rent-slider");
-const rentSliderContainerElement = document.getElementById("rent-slider-container");
-const rentSliderMinElement = document.getElementById("rent-slider-min");
-const rentSliderMaxElement = document.getElementById("rent-slider-max");
-
 const rentInputElement = document.getElementById("rent-input");
+const monthlyTaxesInputElement = document.getElementById("monthly-taxes-input");
+const priceInputElement = document.getElementById("price-input");
 
 const dataContainer = document.getElementById("data-container");
 const formContainer = document.getElementById("form-container");
@@ -95,10 +80,6 @@ let daysOnMarket;
 let cashOnCash;
 let href;
 
-// vars for the slider values
-let offer;
-let rent;
-
 // global to hold our configs outside of the below callback
 let configurationFields;
 
@@ -112,13 +93,13 @@ const copiedMessage = "Copied to Clipboard!";
 const copyMessage = "Copy Data Fields";
 const csvSeparator = "\n";
 // dynamically set the range of the sliders
-const offerPercentRange = 0.10;
-const rentPercentRange = 0.10;
-
-offerSliderMinElement.innerHTML = `-${100*offerPercentRange}%`;
-offerSliderMaxElement.innerHTML = `+${100*offerPercentRange}%`;
-rentSliderMinElement.innerHTML = `-${100*rentPercentRange}%`;
-rentSliderMaxElement.innerHTML = `+${100*rentPercentRange}%`;
+// const offerPercentRange = 0.20;
+// const rentPercentRange = 0.20;
+//
+// offerSliderMinElement.innerHTML = `-${100*offerPercentRange}%`;
+// offerSliderMaxElement.innerHTML = `+${100*offerPercentRange}%`;
+// rentSliderMinElement.innerHTML = `-${100*rentPercentRange}%`;
+// rentSliderMaxElement.innerHTML = `+${100*rentPercentRange}%`;
 
 copyButton.innerHTML = copyMessage;
 
@@ -132,8 +113,6 @@ const getDataFields = () => ({
   bedsBath,
   daysOnMarket,
   cashOnCash,
-  offer: dollars(offer),
-  rent: monthlyDollars(rent),
   href,
 });
 
@@ -206,30 +185,23 @@ profileButton.addEventListener("click", () => {
   openPaymentPage();
 });
 
-// handle offer slider change
-offerSliderElement.addEventListener("change", (e) => {
-  offer = toInt(e.target.value);
-  cashOnCash = doCOC(offer, monthlyTaxes, rent);
-  cashOnCashElement.innerHTML = cashOnCash;
-  const percentageDiff = percentageDifference(offer, purchasePrice);
-  const offerString = dollars(offer);
-  offerElement.innerHTML = `${offerString} (${percentageDiff}%)`;
-  copyButton.innerHTML = copyMessage;
-});
-
-// handle rent slider change
-rentSliderElement.addEventListener("change", (e) => {
-  rent = toInt(e.target.value);
-  cashOnCash = doCOC(offer, monthlyTaxes, rent);
-  cashOnCashElement.innerHTML = cashOnCash;
-  const percentageDiff = percentageDifference(rent, monthlyRent);
-  rentElement.innerHTML = `${monthlyDollars(rent)} (${percentageDiff}%)`;
-  copyButton.innerHTML = copyMessage;
-});
-
 rentInputElement.addEventListener("input", (e) => {
-  rent = toInt(e.target.value);
-  cashOnCash = doCOC(offer, monthlyTaxes, rent);
+  monthlyRent = toInt(e.target.value);
+  cashOnCash = doCOC(purchasePrice, monthlyTaxes, monthlyRent);
+  cashOnCashElement.innerHTML = cashOnCash;
+  copyButton.innerHTML = copyMessage;
+});
+
+monthlyTaxesInputElement.addEventListener("input", (e) => {
+  monthlyTaxes = toInt(e.target.value);
+  cashOnCash = doCOC(purchasePrice, monthlyTaxes, monthlyRent);
+  cashOnCashElement.innerHTML = cashOnCash;
+  copyButton.innerHTML = copyMessage;
+});
+
+priceInputElement.addEventListener("input", (e) => {
+  purchasePrice = toInt(e.target.value);
+  cashOnCash = doCOC(purchasePrice, monthlyTaxes, monthlyRent);
   cashOnCashElement.innerHTML = cashOnCash;
   copyButton.innerHTML = copyMessage;
 });
@@ -366,7 +338,7 @@ const doCOC = (purchasePrice, monthlyTaxes, monthlyRent) => {
   if (purchasePrice && monthlyTaxes && monthlyRent) {
     const {cashOnCash, monthlyExpenses} = calculateCOC(purchasePrice, monthlyTaxes, monthlyRent);
     const cocString = cashOnCash.toLocaleString() + "%";
-    monthlyExpensesElement.innerHTML = monthlyDollars(monthlyExpenses);
+    // monthlyExpensesElement.innerHTML = monthlyDollars(monthlyExpenses);
     setCocClass(cashOnCash);
     return cocString;
   } else {
@@ -399,31 +371,25 @@ const handleCopy = () => {
 const handleZillowResults = (r) => {
   const results = r[0].result;
   log(results);
+  console.log(results);
   // destructure the results
-  purchasePrice = toInt(results.purchasePrice);
-  monthlyTaxes = toInt(results.monthlyTaxes);
-  monthlyRent = toInt(results.monthlyRent);
   address = results.address;
   estimatePrice = toInt(results.estimatePrice);
   bedsBath = results.bedsBath;
   daysOnMarket = results.daysOnMarket;
   href = results.href;
-
-  // set these for working calculations
-  offer = isNaN(purchasePrice) ? estimatePrice : purchasePrice;
-  rent = monthlyRent;
+  purchasePrice = toInt(results.purchasePrice);
+  monthlyTaxes = toInt(results.monthlyTaxes);
+  monthlyRent = toInt(results.monthlyRent);
 
   // major calculation
-  cashOnCash = doCOC(offer, monthlyTaxes, rent);
+  cashOnCash = doCOC(purchasePrice, monthlyTaxes, monthlyRent);
 
   let redfinSearch = googleSearchQuery(address + " redfin");
   let realtorSearch = googleSearchQuery(address + " realtor");
 
   // update the ui
-  purchasePriceElement.innerHTML = dollars(purchasePrice);
   estimatePriceElement.innerHTML = dollars(estimatePrice);
-  monthlyTaxesElement.innerHTML = monthlyDollars(monthlyTaxes);
-  monthlyRentElement.innerHTML = monthlyDollars(monthlyRent);
   daysOnMarketElement.innerHTML = daysOnMarket;
   addressElement.innerHTML = address;
   specsElement.innerHTML = bedsBath;
@@ -433,20 +399,22 @@ const handleZillowResults = (r) => {
   redfinLinkElement.href = redfinSearch;
   realtorLinkElement.href = realtorSearch;
 
-  offerElement.innerHTML = dollars(offer);
-  offerSliderElement.min = offer * (1 - offerPercentRange);
-  offerSliderElement.max = offer * (1 + offerPercentRange);
-  offerSliderElement.value = offer;
-
-  if ( isNaN(rent) )  {
-    rentInputElement.className = "";
-    rentElement.className = "hidden";
-    rentSliderContainerElement.className = "hidden";
+  if ( isNaN(monthlyRent) )  {
+    rentInputElement.value = "";
   } else {
-    rentElement.innerHTML = monthlyDollars(rent);
-    rentSliderElement.min = rent * (1 - rentPercentRange);
-    rentSliderElement.max = rent * (1 + rentPercentRange);
-    rentSliderElement.value = rent;
+    rentInputElement.value = monthlyRent;
+  }
+
+  if ( isNaN(monthlyTaxes) )  {
+    monthlyTaxesInputElement.value = "";
+  } else {
+    monthlyTaxesInputElement.value = monthlyTaxes;
+  }
+
+  if ( isNaN(purchasePrice) )  {
+    priceInputElement.value = "";
+  } else {
+    priceInputElement.value = purchasePrice;
   }
 }
 
@@ -497,6 +465,7 @@ const scrapeZillowElements = () => {
     "#ds-data-view > ul > li:nth-child(3) > div > div > div.ds-expandable-card-section-default-padding > div.sc-qWfkp.eXNcZI > div:nth-child(1) > div.Text-c11n-8-48-0__sc-aiai24-0.fGOvOB",
     "#ds-data-view > ul > li:nth-child(2) > div.ds-overview > div:nth-child(3) > div.hdp__sc-1j01zad-2.fAXLDd > div.hdp__sc-qe1dn6-0.jAEoY > div:nth-child(1) > div.Text-c11n-8-53-2__sc-aiai24-0.duChdW",
     "#ds-data-view > ul > li:nth-child(3) > div.ds-overview > div:nth-child(3) > div.hdp__sc-1j01zad-1.kuboKK > div.hdp__sc-qe1dn6-0.jAEoY > div:nth-child(1) > div.Text-c11n-8-53-2__sc-aiai24-0.duChdW",
+    "#ds-data-view > ul > li:nth-child(3) > div:nth-child(2) > div > div:nth-child(3) > div.hdp__sc-1j01zad-1.kuboKK > div.hdp__sc-qe1dn6-0.jAEoY > div:nth-child(1) > div.Text-c11n-8-53-2__sc-aiai24-0.duChdW",
   ]
 
   const scrapeElement = (selectors, name) => {

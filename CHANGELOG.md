@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.7]
+### Changed
+- General updates to the html element selectors for Zillow.
+- Removing the sliders, replaced with permanent number inputs.
+
+## [Released]
+
+## [0.0.6]
+### Changed
+- General updates to the html element selectors for Zillow.
+
 ## [0.0.5]
 ### Changed
 - General updates to the html element selectors for Zillow.
@@ -19,8 +30,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added info button next to COC.
 - Added feedback button at the bottom.
 - Added extra monthly expenses option field.
-
-## [Released]
 
 ## [0.0.3]
 ### Added

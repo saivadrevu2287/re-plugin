@@ -91,7 +91,8 @@ let configurationFields;
  **/
 const copiedMessage = "Copied to Clipboard!";
 const copyMessage = "Copy Data Fields";
-const csvSeparator = "\n";
+const csvSeparator = "\t";
+
 // dynamically set the range of the sliders
 // const offerPercentRange = 0.20;
 // const rentPercentRange = 0.20;

@@ -7,12 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.8]
+### Changed
+- Made the copy/paste to paste to sheets in columnar form.
+
+## [Released]
+
 ## [0.0.7]
 ### Changed
 - General updates to the html element selectors for Zillow.
 - Removing the sliders, replaced with permanent number inputs.
-
-## [Released]
 
 ## [0.0.6]
 ### Changed

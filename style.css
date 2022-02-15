@@ -97,15 +97,16 @@ button {
 }
 
 .action-row {
-  font-size: 18px;
+  font-size: 12px;
 }
 
 .big-finger {
-  font-size: 18px;
+  font-size: 12px;
 }
 
 .link-button {
-  font-size: 18px;
+  font-size: 12px;
+  height: 12px;
   outline: none;
   margin: 0px;
   border: none;

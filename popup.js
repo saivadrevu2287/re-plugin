@@ -499,7 +499,7 @@ const scrapeZillowElements = () => {
   const host = window.location.host;
   const m = host == "www.zillow.com";
 
-  if (m) {
+  if (1) {
     const purchasePrice = scrapeElement(purchasePriceSelectors, "purchasePrice");
     const monthlyTaxes = scrapeElement(monthlyTaxesSelectors, "monthlyTaxes");
     const monthlyRent = scrapeElement(monthlyRentSelectors, "monthlyRent");

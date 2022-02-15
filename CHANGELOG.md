@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.0.8]
 ### Changed
 - Made the copy/paste to paste to sheets in columnar form.
+- Removed the error message when using the app on a non-zillow domain.
 
 ## [Released]
 

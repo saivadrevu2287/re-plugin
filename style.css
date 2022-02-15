@@ -7,17 +7,6 @@ button {
   border-radius: 2px;
 }
 
-.link-button {
-  outline: none;
-  margin: 0px;
-  border: none;
-  padding: 0px;
-  background: none;
-  color: blue;
-  cursor: pointer;
-  text-decoration: underline;
-}
-
 .success {
   color: #3aa573;
 }
@@ -71,6 +60,24 @@ button {
   margin-bottom: 12px;
 }
 
+.label-small {
+  width: 40%;
+}
+
+.value-small {
+  width: 60%;
+  text-align: right;
+}
+
+.label-large {
+  width: 20%;
+}
+
+.value-large {
+  width: 80%;
+  text-align: left;
+}
+
 .mid-label {
   margin-bottom: 12px;
 }
@@ -87,4 +94,25 @@ button {
 
 .show {
   visibility: visible;
+}
+
+.action-row {
+  font-size: 18px;
+}
+
+.big-finger {
+  font-size: 18px;
+}
+
+.link-button {
+  font-size: 18px;
+  outline: none;
+  margin: 0px;
+  border: none;
+  padding: 0px;
+  background: none;
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+
 }

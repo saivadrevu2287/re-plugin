@@ -3,42 +3,57 @@
  * HERE BE GLOBALS
  *
  **/
-
 const extpay = ExtPay('ostrich-plugin')
 
-const enableGA = false;
+const enableGA = true;
 const enablePay = false;
 const enableLogging = false;
+
+
+const nullthrows = (v) => {
+    if (v == null) throw new Error("it's a null");
+    return v;
+}
+
+function injectCode(src) {
+  console.log('Hello!!');
+    const script = document.createElement('script');
+    // This is why it works!
+    script.src = src;
+    script.onload = function() {
+        console.log("script injected");
+        this.remove();
+    };
+
+    // This script runs before the <head> element is created,
+    // so we add the script to <html> instead.
+    nullthrows(document.head || document.documentElement).appendChild(script);
+}
+
+
+injectCode(chrome.runtime.getURL('/ga.js'));
 
 const log = (m) => enableLogging && console.log(m)
 
 var _gaq = _gaq || [];
-if ( enableGA )  {
-  _gaq.push(['_setAccount', 'UA-208478356-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = 'https://ssl.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-}
+_gaq.push(['_setAccount', 'UA-208478356-1']);
+_gaq.push(['_trackPageview']);
 
 function track(e) {
-  enableGA && _gaq.push(['_trackEvent', e.target.id, 'clicked']);
+  _gaq.push(['_trackEvent', e.target.id, 'clicked']);
 };
 
-const buttons = document.querySelectorAll('button');
+var buttons = document.querySelectorAll('button');
 for (var i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener('click', track);
 }
 
-const inputs = document.querySelectorAll('input');
+var inputs = document.querySelectorAll('input');
 for (var i = 0; i < inputs.length; i++) {
   inputs[i].addEventListener('change', track);
 }
 
-const links = document.querySelectorAll('a');
+var links = document.querySelectorAll('a');
 for (var i = 0; i < links.length; i++) {
   links[i].addEventListener('click', track);
 }

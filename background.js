@@ -25,5 +25,12 @@ const configurationFields = {
 }
 
 chrome.runtime.onInstalled.addListener(() => {
-  chrome.storage.sync.set({ configurationFields });
+  chrome.storage.sync.get("configurationFields", (data) => {
+    if ( data.configurationFields && data.configurationFields.isLoggedIn )  {
+      console.log("This user was already logged in.");
+    } else {
+      console.log("This user was not already logged in.");
+      chrome.storage.sync.set({ configurationFields });
+    }
+  })
 });

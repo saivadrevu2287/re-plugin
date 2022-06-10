@@ -78,9 +78,17 @@ const monthlyTaxesInputElement = document.getElementById("monthly-taxes-input");
 const priceInputElement = document.getElementById("price-input");
 
 const dataContainer = document.getElementById("data-container");
-const formContainer = document.getElementById("form-container");
-const formSubmitButton = document.getElementById("submit-form");
-const emailInput = document.getElementById("email-input");
+
+const signupContainer = document.getElementById("signup-container");
+const signupForm = document.getElementById("signup-form");
+const signupSubmitButton = document.getElementById("submit-signup");
+
+const verifyContainer = document.getElementById("verify-container");
+const verifyForm = document.getElementById("verify-form");
+const verifySubmitButton = document.getElementById("submit-verify");
+
+const resendCodeButton = document.getElementById("resend-code");
+
 
 const messageElement = document.getElementById("message");
 
@@ -170,26 +178,115 @@ chrome.storage.sync.get("configurationFields", (data) => {
       .catch(err => {
          console.log("Error fetching data :( Check that your ExtensionPay id is correct and you're connected to the internet");
       });
+
+    return;
+  }
+
+  if ( configurationFields.email && !configurationFields.needsVerification ) {
+    verifyContainer.className = "hidden";
+    signupContainer.className = "hidden";
+    runCalculations();
+    return;
+  } else if ( configurationFields.needsVerification ) {
+    dataContainer.className = "hidden";
+    signupContainer.className = "hidden";
   } else {
-    if ( configurationFields.isLoggedIn ) {
-      formContainer.className = "hidden";
-      runCalculations();
+    dataContainer.className = "hidden";
+    verifyContainer.className = "hidden";
+  }
+
+  function handleSubmitSignin(event) {
+    event.preventDefault();
+
+    const data = new FormData(event.target);
+
+    const jsonData = Object.fromEntries(data.entries());
+    if (jsonData.password != jsonData['confirm-password'])  {
+      messageElement.innerHTML = "Passwords need to match..."
     } else {
-      dataContainer.className = "hidden";
-      formSubmitButton.addEventListener("click", () => {
-        if ( emailInput.value.match(/[^@]+@[^.]+\..+/) ) {
-          messageElement.innerHTML = ""
-          configurationFields.isLoggedIn = true;
-          formContainer.className = "hidden";
-          dataContainer.className = "";
-          runCalculations();
+      const req = new XMLHttpRequest();
+      const url = event.target.action;
+
+      // our api is not expecting this value
+      delete jsonData['confirm-password'];
+
+      req.open("POST", url);
+      req.setRequestHeader('Content-Type', 'application/json');
+      req.send(JSON.stringify(jsonData));
+
+      messageElement.innerHTML = "Loading..."
+
+      req.onreadystatechange = (e) => {
+        const data = JSON.parse(req.responseText);
+        messageElement.innerHTML = data.message;
+
+        if (data.code == 200) {
+          signupContainer.className = "hidden";
+          verifyContainer.className = "";
+          configurationFields.email = jsonData.username;
+          configurationFields.needsVerification = true;
           chrome.storage.sync.set({ configurationFields });
-        } else {
-          messageElement.innerHTML = "Invalid Email..."
         }
-      });
+
+      }
     }
   }
+  signupForm.addEventListener('submit', handleSubmitSignin);
+
+  function handleSubmitVerify(event) {
+    event.preventDefault();
+
+    const data = new FormData(event.target);
+
+    const jsonData = Object.fromEntries(data.entries());
+    jsonData.username = configurationFields.email;
+    console.log(jsonData);
+    
+    const req = new XMLHttpRequest();
+    const url = event.target.action;
+
+    req.open("POST", url);
+    req.setRequestHeader('Content-Type', 'application/json');
+    req.send(JSON.stringify(jsonData));
+
+    messageElement.innerHTML = "Loading..."
+
+    req.onreadystatechange = (e) => {
+      const data = JSON.parse(req.responseText);
+      messageElement.innerHTML = data.message;
+
+      if (data.code == 200) {
+        verifyContainer.className = "hidden";
+        dataContainer.className = "";
+        configurationFields.needsVerification = false;
+        chrome.storage.sync.set({ configurationFields });
+        runCalculations();
+      }
+
+    }
+  }
+
+  verifyForm.addEventListener('submit', handleSubmitVerify);
+
+  function handleResendCode(event) {
+    const req = new XMLHttpRequest();
+    const url = "https://i7cryfp1gf.execute-api.us-east-2.amazonaws.com/v1/auth/resend-code";
+
+    req.open("POST", url);
+    req.setRequestHeader('Content-Type', 'application/json');
+    const jsonData = {username: configurationFields.email};
+    console.log(jsonData);
+    req.send(JSON.stringify(jsonData));
+
+    messageElement.innerHTML = "Loading..."
+
+    req.onreadystatechange = (e) => {
+      const data = JSON.parse(req.responseText);
+      messageElement.innerHTML = data.message;
+    }
+  }
+  resendCodeButton.addEventListener('click', handleResendCode);
+
 })
 
 copyButton.addEventListener("click", () => {

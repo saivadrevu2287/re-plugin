@@ -21,7 +21,9 @@ const configurationFields = {
   "loan-interest": {value: 0.041, type: "percent"},
   "loan-months": {value: 240, type: "months"},
 	"additional-monthly-expenses": {value: 0, type: "dollars"},
-	isLoggedIn: false
+  idToken: null,
+  email: null,
+  needsVerification: false,
 }
 
 chrome.runtime.onInstalled.addListener(() => {

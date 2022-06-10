@@ -63,20 +63,45 @@
         <a class="value-large" target="_blank" href="https://docs.google.com/forms/d/1E6h7AbJZxitYnMuT1J6eK-x9AA5CpYHE2Dd3qYghZUA/edit">Provide Feedback!</a>
       </div>
     </div>
-    <div id="form-container">
+
+    <div id="signup-container">
       <form
-        action="https://formspree.io/f/xnqleakp"
+        action="https://i7cryfp1gf.execute-api.us-east-2.amazonaws.com/v1/auth/sign-up"
         method="POST"
-        id="rsvp"
+        id="signup-form"
       >
-        <h5>Please enter Your Email to use Plugin.</h5>
-        <label for="email">
+        <h5>Please Signup With Email to use Plugin.</h5>
+        <label for="username">
           Email:
-          <input id="email-input" name="email" >
+          <input id="email-input" name="username" >
+        </label>
+        <label for="password">
+          Password:
+          <input id="password-input" name="password" type="password">
+        </label>
+        <label for="confirm-password">
+          Confirm Password:
+          <input id="confirm-password-input" name="confirm-password" type="password">
         </label>
         <h5>We only email once in months!</h5>
+        <button type="submit" id="submit-signup">Submit</button>
+      </form>
+    </div>
+
+    <div id="verify-container" >
+      <form
+        action="https://i7cryfp1gf.execute-api.us-east-2.amazonaws.com/v1/auth/verify"
+        method="POST"
+        id="verify-form"
+      >
+        <h5>Please Enter the Verification Code sent to your Email.</h5>
+        <label for="code">
+          Code:
+          <input id="code-input" name="code" >
+        </label>
         <!-- your other form fields go here -->
-        <button type="submit" id="submit-form">Send</button>
+        <button id="resend-code">Resend Code</button>
+        <button type="submit" id="submit-verify">Submit</button>
       </form>
     </div>
     <p id="message" class="error"></p>

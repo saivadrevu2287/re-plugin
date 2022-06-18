@@ -16,7 +16,6 @@ const nullthrows = (v) => {
 }
 
 function injectCode(src) {
-  console.log('Hello!!');
     const script = document.createElement('script');
     // This is why it works!
     script.src = src;
@@ -29,7 +28,6 @@ function injectCode(src) {
     // so we add the script to <html> instead.
     nullthrows(document.head || document.documentElement).appendChild(script);
 }
-
 
 injectCode(chrome.runtime.getURL('/ga.js'));
 
@@ -79,6 +77,7 @@ const priceInputElement = document.getElementById("price-input");
 
 const dataContainer = document.getElementById("data-container");
 
+const loginWithGoogleButtom = document.getElementById("login-with-google");
 const signupContainer = document.getElementById("signup-container");
 const signupForm = document.getElementById("signup-form");
 const signupSubmitButton = document.getElementById("submit-signup");
@@ -158,8 +157,19 @@ const handleExtpayUser = (user) => {
   }
 }
 
+function parseJwt (token) {
+  var base64Url = token.split('.')[1];
+  var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
+
+  return JSON.parse(jsonPayload);
+};
+
 const runCalculations = () => {
   chrome.tabs.query({ active: true, currentWindow: true }).then((r) => {
+    
     let [tab] = r;
     chrome.scripting.executeScript({
       target: { tabId: tab.id },
@@ -181,6 +191,19 @@ chrome.storage.sync.get("configurationFields", (data) => {
 
     return;
   }
+
+  chrome.tabs.query({ active: true, currentWindow: true }).then((r) => {
+    let url = r[0].url;
+    if ( url.match(/testing-auth.webflow/) ) {
+      
+      const idToken = url.split('#')[1].split('&').find(e => e.match(/id_token/)).split('=')[1];
+      const parsedId =  parseJwt(idToken);
+      configurationFields.needsVerification = false;
+      configurationFields.email = parsedId.email;
+      messageElement.innerHTML = `${parsedId.email} logged in!`;
+      chrome.storage.sync.set({ configurationFields });
+    }
+  })
 
   if ( configurationFields.email && !configurationFields.needsVerification ) {
     verifyContainer.className = "hidden";
@@ -266,6 +289,12 @@ chrome.storage.sync.get("configurationFields", (data) => {
     }
   }
 
+  function loginWithGoogle() {
+    const newUrl = "https://ostrich.auth.us-east-2.amazoncognito.com/login?client_id=70apbavl1fsobed4jt7l7ml18h&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://testing-auth.webflow.io/"
+    chrome.tabs.create({url: newUrl})
+  }
+  loginWithGoogleButtom.addEventListener('click', loginWithGoogle)
+
   verifyForm.addEventListener('submit', handleSubmitVerify);
 
   function handleResendCode(event) {
@@ -286,7 +315,6 @@ chrome.storage.sync.get("configurationFields", (data) => {
     }
   }
   resendCodeButton.addEventListener('click', handleResendCode);
-
 })
 
 copyButton.addEventListener("click", () => {

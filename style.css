@@ -7,6 +7,15 @@ button {
   border-radius: 2px;
 }
 
+.container {
+  background-color: rgb(255, 255, 255);
+}
+
+.dark-mode-container {
+  background-color: rgba(0, 0, 0, 0);
+  color: aliceblue;
+}
+
 .success {
   color: #3aa573;
 }
@@ -32,13 +41,14 @@ button {
 
 .data-field {
   display: flex;
-  justify-content: space-between;
-  width: 230px;
+  /* justify-content: space-between; */
+  /* width: 230px; */
 }
 
 .input {
-  text-align: right;
+  text-align: left;
   width: 100px;
+  font-size: x-small;
 }
 
 .slider-container {
@@ -57,6 +67,7 @@ button {
 }
 
 .small-label {
+  /* font-weight: bold; */
   margin-bottom: 12px;
 }
 
@@ -76,6 +87,7 @@ button {
 .value-large {
   width: 80%;
   text-align: left;
+  /* font-weight: bold; */
 }
 
 .mid-label {
@@ -85,7 +97,7 @@ button {
 .large-label {
   margin-bottom: 12px;
   font-size: 16px;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .hidden {
@@ -116,4 +128,64 @@ button {
   cursor: pointer;
   text-decoration: underline;
 
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 12px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 12px;
+  width: 12px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #484a4b;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #484a4b;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(12px);
+  -ms-transform: translateX(12px);
+  transform: translateX(12px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 12px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }

@@ -3,7 +3,14 @@
   <head>
     <link rel="stylesheet" href="style.css">
   </head>
-  <body>
+    <body class="container">
+    <!-- <div class="data-field small-label">
+        Dark Mode
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider round"></span>
+        </label>
+    </div> -->
     <div id="data-container">
       <div class="link-container">
         <button id="profile-button" class="link-button hidden"></button>
@@ -88,6 +95,26 @@
       </form>
     </div>
 
+      <div id="login-container">
+        <!-- action="https://i7cryfp1gf.execute-api.us-east-2.amazonaws.com/v1/auth/sign-up" -->
+        <form
+          action="https://i7cryfp1gf.execute-api.us-east-2.amazonaws.com/v1/auth/login"
+          method="POST"
+          id="login-form"
+        >
+          <h5>Please Login With Email to use Plugin.</h5>
+          <label for="username">
+            Email:
+            <input id="email-input" name="username" >
+          </label>
+          <label for="password">
+            Password:
+            <input id="password-input" name="password" type="password">
+          </label>
+          <button type="submit" id="submit-login">Login</button>
+        </form>
+      </div>
+  
     <div id="verify-container" >
       <form
         action="https://i7cryfp1gf.execute-api.us-east-2.amazonaws.com/v1/auth/verify"

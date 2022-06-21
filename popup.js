@@ -83,6 +83,10 @@ const signupContainer = document.getElementById("signup-container");
 const signupForm = document.getElementById("signup-form");
 const signupSubmitButton = document.getElementById("submit-signup");
 
+const loginContainer = document.getElementById("login-container");
+const loginForm = document.getElementById("login-form");
+const loginSubmitButton = document.getElementById("submit-login");
+
 const verifyContainer = document.getElementById("verify-container");
 const verifyForm = document.getElementById("verify-form");
 const verifySubmitButton = document.getElementById("submit-verify");
@@ -185,17 +189,24 @@ chrome.storage.sync.get("configurationFields", (data) => {
   if ( configurationFields.email && !configurationFields.needsVerification ) {
     verifyContainer.className = "hidden";
     signupContainer.className = "hidden";
+    loginContainer.className = "hidden";
     runCalculations();
     return;
   } else if ( configurationFields.needsVerification ) {
     dataContainer.className = "hidden";
     signupContainer.className = "hidden";
+    loginContainer.className = "hidden";
+  } else if ( configurationFields.email ) {
+    dataContainer.className = "hidden";
+    verifyContainer.className = "hidden";
+    signupContainer.className = "hidden";
   } else {
     dataContainer.className = "hidden";
     verifyContainer.className = "hidden";
+    loginContainer.className = "hidden";
   }
 
-  function handleSubmitSignin(event) {
+  function handleSubmitSignup(event) {
     event.preventDefault();
 
     const data = new FormData(event.target);
@@ -231,7 +242,7 @@ chrome.storage.sync.get("configurationFields", (data) => {
       }
     }
   }
-  signupForm.addEventListener('submit', handleSubmitSignin);
+  signupForm.addEventListener('submit', handleSubmitSignup);
 
   function handleSubmitVerify(event) {
     event.preventDefault();
@@ -265,7 +276,6 @@ chrome.storage.sync.get("configurationFields", (data) => {
 
     }
   }
-
   verifyForm.addEventListener('submit', handleSubmitVerify);
 
   function handleResendCode(event) {
@@ -286,8 +296,43 @@ chrome.storage.sync.get("configurationFields", (data) => {
     }
   }
   resendCodeButton.addEventListener('click', handleResendCode);
-
 })
+
+function handleSubmitLogin(event) {
+  event.preventDefault();
+
+  const data = new FormData(event.target);
+
+  const jsonData = Object.fromEntries(data.entries());
+  const req = new XMLHttpRequest();
+  const url = event.target.action;
+
+  req.open("POST", url);
+  req.setRequestHeader('Content-Type', 'application/json');
+  req.send(JSON.stringify(jsonData));
+
+  messageElement.innerHTML = "Loading..."
+
+  // TODO: For some reason the first time req doesn't have responseText. The same doesn't happen with other requests.
+  req.onreadystatechange = (e) => {
+    console.log(req.responseText);
+    const data = req.responseText && JSON.parse(req.responseText);
+    messageElement.innerHTML = data.message;
+
+    if (data?.code == 200) {
+      loginContainer.className = "hidden";
+      verifyContainer.className = "hidden";
+      dataContainer.className = "";
+      console.log({jsonData});
+      configurationFields.email = jsonData.username;
+      configurationFields.needsVerification = false;
+      chrome.storage.sync.set({ configurationFields });
+      runCalculations();
+    }
+
+  }
+}
+loginForm.addEventListener('submit', handleSubmitLogin);
 
 copyButton.addEventListener("click", () => {
   handleCopy();

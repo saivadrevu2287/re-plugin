@@ -50,13 +50,45 @@ button {
   width: 400px;
 }
 
+#signup-container {
+  background-color: rgb(165, 202, 119);
+  padding: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-bottom: 6px;
+}
+
+.link {
+  color: blue;
+  cursor: pointer;
+}
+
+#verify-container {
+  background-color: rgb(165, 202, 119);
+  padding: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-bottom: 6px;
+}
+
+#login-container {
+  background-color: rgb(165, 202, 119);
+  padding: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-bottom: 6px;
+}
+
+.padded {
+  padding: 8px;
+}
+
 .top-half {
   background-color: rgb(165, 202, 119);
   padding: 8px;
   padding-left: 12px;
   padding-right: 12px;
   padding-bottom: 6px;
-
 }
 
 .bottom-half {

@@ -32,7 +32,7 @@ chrome.runtime.onInstalled.addListener(() => {
       console.log("This user was already logged in.");
     } else {
       console.log("This user was not already logged in.");
-      const newUrl = "https://www.hgking.net"
+      const newUrl = "https://rehacks.io/blog-new/a-chrome-extension-to-analyze-roi-of-a-rental-property-in-5-sec"
       chrome.tabs.create({url: newUrl})
       chrome.storage.sync.set({ configurationFields });
     }

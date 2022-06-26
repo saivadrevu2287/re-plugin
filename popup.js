@@ -277,6 +277,7 @@ chrome.storage.sync.get("configurationFields", (data) => {
         messageElement.innerHTML = data.message;
 
         if (data.code == 200) {
+          messageElement.innerHTML = "";
           signupContainer.className = "hidden";
           verifyContainer.className = "";
           configurationFields.email = jsonData.username;
@@ -284,7 +285,6 @@ chrome.storage.sync.get("configurationFields", (data) => {
           configurationFields.login = false;
           chrome.storage.sync.set({ configurationFields });
         }
-
       }
     }
   }
@@ -313,6 +313,7 @@ chrome.storage.sync.get("configurationFields", (data) => {
       messageElement.innerHTML = data.message;
 
       if (data.code == 200) {
+        messageElement.innerHTML = "";
         verifyContainer.className = "hidden";
         dataContainer.className = "";
         configurationFields.needsVerification = false;

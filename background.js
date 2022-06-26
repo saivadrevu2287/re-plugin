@@ -38,3 +38,40 @@ chrome.runtime.onInstalled.addListener(() => {
     }
   })
 });
+
+chrome.webNavigation.onCompleted.addListener(function(details) {
+  chrome.scripting.executeScript({
+    target: { tabId: details.tabId },
+    function: () => console.log("hello world on zillow?"),
+  }, autoSignin(details));
+}, {
+  url: [{
+      // Runs on example.com, example.net, but also example.foo.com
+      hostContains: 'rehacks.io'
+  }],
+});
+
+const autoSignin = (details) => () => {
+  chrome.storage.sync.get("configurationFields", (data) => {
+    console.log("Gonna run this time!", details)
+    let url = details.url
+    if ( url.match(/rehacks.io\/ostrich-token/) ) {
+      const idToken = url.split('#')[1].split('&').find(e => e.match(/id_token/)).split('=')[1];
+      const parsedId =  parseJwt(idToken);
+      configurationFields.needsVerification = false;
+      configurationFields.email = parsedId.email;
+      chrome.storage.sync.set({ configurationFields });
+    }
+  })
+}
+
+function parseJwt (token) {
+  var base64Url = token.split('.')[1];
+  var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
+
+  return JSON.parse(jsonPayload);
+};
+// https://rehacks.io/ostrich-token

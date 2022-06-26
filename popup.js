@@ -199,21 +199,21 @@ chrome.storage.sync.get("configurationFields", (data) => {
     return;
   }
 
-  chrome.tabs.query({ active: true, currentWindow: true }).then((r) => {
-    let url = r[0].url;
-    if ( url.match(/rehacks.io\/ostrich-token/) ) {
+  // chrome.tabs.query({ active: true, currentWindow: true }).then((r) => {
+  //   let url = r[0].url;
+  //   if ( url.match(/rehacks.io\/ostrich-token/) ) {
       
-      const idToken = url.split('#')[1].split('&').find(e => e.match(/id_token/)).split('=')[1];
-      const parsedId =  parseJwt(idToken);
-      configurationFields.needsVerification = false;
-      configurationFields.email = parsedId.email;
-      signupContainer.className = "hidden";
-      verifyContainer.className = "hidden";
-      loginContainer.className = "hidden";
-      dataContainer.className = "";
-      chrome.storage.sync.set({ configurationFields });
-    }
-  })
+  //     const idToken = url.split('#')[1].split('&').find(e => e.match(/id_token/)).split('=')[1];
+  //     const parsedId =  parseJwt(idToken);
+  //     configurationFields.needsVerification = false;
+  //     configurationFields.email = parsedId.email;
+  //     signupContainer.className = "hidden";
+  //     verifyContainer.className = "hidden";
+  //     loginContainer.className = "hidden";
+  //     dataContainer.className = "";
+  //     chrome.storage.sync.set({ configurationFields });
+  //   }
+  // })
 
   if ( configurationFields.email && !configurationFields.needsVerification ) {
     verifyContainer.className = "hidden";

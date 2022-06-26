@@ -20,7 +20,11 @@ function constructOptions() {
       chrome.storage.sync.set({configurationFields: fields});
     }
 
-    Object.keys(fields).filter(key => key != "isLoggedIn").forEach(key => {
+    const badProperties = [
+      'idToken', 'email', 'needsVerification'
+    ]
+
+    Object.keys(fields).filter(key => !badProperties.includes(key)).forEach(key => {
       const element = document.getElementById(`${key}-input`);
       element.value = fields[key].type === "percent" ? fields[key].value * 100 : fields[key].value;
       element.addEventListener("input", handleEdit(element, fields[key]));

@@ -201,13 +201,16 @@ chrome.storage.sync.get("configurationFields", (data) => {
 
   chrome.tabs.query({ active: true, currentWindow: true }).then((r) => {
     let url = r[0].url;
-    if ( url.match(/testing-auth.webflow/) ) {
+    if ( url.match(/rehacks.io\/ostrich-token/) ) {
       
       const idToken = url.split('#')[1].split('&').find(e => e.match(/id_token/)).split('=')[1];
       const parsedId =  parseJwt(idToken);
       configurationFields.needsVerification = false;
       configurationFields.email = parsedId.email;
-      messageElement.innerHTML = `${parsedId.email} logged in!`;
+      signupContainer.className = "hidden";
+      verifyContainer.className = "hidden";
+      loginContainer.className = "hidden";
+      dataContainer.className = "";
       chrome.storage.sync.set({ configurationFields });
     }
   })
@@ -325,7 +328,7 @@ chrome.storage.sync.get("configurationFields", (data) => {
   }
 
   function loginWithGoogle() {
-    const newUrl = "https://ostrich.auth.us-east-2.amazoncognito.com/login?client_id=70apbavl1fsobed4jt7l7ml18h&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://testing-auth.webflow.io/"
+    const newUrl = "https://ostrich.auth.us-east-2.amazoncognito.com/login?client_id=70apbavl1fsobed4jt7l7ml18h&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://rehacks.io/ostrich-token"
     chrome.tabs.create({url: newUrl})
   }
   loginWithGoogleButtom.addEventListener('click', loginWithGoogle)

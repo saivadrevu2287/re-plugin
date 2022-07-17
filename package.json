@@ -1,0 +1,42 @@
+{
+  "name": "re-plugin",
+  "version": "1.0.0",
+  "description": "#### Very quick and dirty POC for a plugin that will pull some information from Zillow and do a quick calculation.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "build": "webpack --node-env production",
+    "serve": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HGHimself/re-plugin.git"
+  },
+  "author": "HG King",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HGHimself/re-plugin/issues"
+  },
+  "homepage": "https://github.com/HGHimself/re-plugin#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-react": "^7.12.1",
+    "@wasm-tool/wasm-pack-plugin": "^1.6.0",
+    "babel-loader": "^8.1.0",
+    "copy-webpack-plugin": "^5.0.0",
+    "css-loader": "^6.3.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "prettier": "^2.6.2",
+    "style-loader": "^3.3.1",
+    "text-encoding": "^0.7.0",
+    "webpack": "^5",
+    "webpack-cli": "^4",
+    "webpack-dev-server": "^4"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "preact": "^10.3.2"
+  }
+}

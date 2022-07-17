@@ -179,7 +179,7 @@ export default function ListingData(props) {
             id="redfin-link"
             class="value-large"
             href={`https://www.google.com/search?q=${encodeURIComponent(
-              address + ' realtor'
+              address + ' redfin'
             )}`}
           >
             To Redfin

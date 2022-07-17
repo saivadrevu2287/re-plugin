@@ -4,7 +4,7 @@ import axios from 'axios'
 
 const eliminateEvent = (callback) => (event) => callback(event.target.value)
 const loginUrl =
-  'https://i7cryfp1gf.execute-api.us-east-2.amazonaws.com/v1/auth/login'
+  'https://q0sku06vtg.execute-api.us-east-2.amazonaws.com/v1/auth/login'
 
 export default function Login(props) {
   const {

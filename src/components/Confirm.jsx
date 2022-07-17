@@ -4,9 +4,9 @@ import axios from 'axios'
 
 const eliminateEvent = (callback) => (event) => callback(event.target.value)
 const verifyCodeUrl =
-  'https://i7cryfp1gf.execute-api.us-east-2.amazonaws.com/v1/auth/verify'
+  'https://q0sku06vtg.execute-api.us-east-2.amazonaws.com/v1/auth/verify'
 const resendCodeUrl =
-  'https://i7cryfp1gf.execute-api.us-east-2.amazonaws.com/v1/auth/resend-code'
+  'https://q0sku06vtg.execute-api.us-east-2.amazonaws.com/v1/auth/resend-code'
 
 export default function Confirm(props) {
   const { configurationFields, setConfigurationFields } = props

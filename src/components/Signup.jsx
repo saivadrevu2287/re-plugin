@@ -4,7 +4,7 @@ import axios from 'axios'
 
 const eliminateEvent = (callback) => (event) => callback(event.target.value)
 const signupUrl =
-  'https://i7cryfp1gf.execute-api.us-east-2.amazonaws.com/v1/auth/sign-up'
+  'https://q0sku06vtg.execute-api.us-east-2.amazonaws.com/v1/auth/sign-up'
 
 export default function Signup(props) {
   const {
@@ -15,7 +15,6 @@ export default function Signup(props) {
   } = props
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
 
   const signUp = () => {
@@ -60,16 +59,6 @@ export default function Signup(props) {
           type="password"
           value={password}
           onInput={eliminateEvent(setPassword)}
-        />
-      </label>
-      <label for="confirm-password">
-        Confirm Password:
-        <input
-          id="confirm-password-input"
-          name="confirm-password"
-          type="password"
-          value={confirmPassword}
-          onInput={eliminateEvent(setConfirmPassword)}
         />
       </label>
       <button type="submit" id="submit-signup" onClick={signUp}>

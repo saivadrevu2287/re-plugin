@@ -21,6 +21,39 @@ export default function Popup(props) {
     })
   }, [])
 
+  const handleLoginResults = (email) => (r) => {
+    console.log(r.data.message)
+    const newConfigurationFields = JSON.parse(
+      JSON.stringify(configurationFields)
+    )
+    newConfigurationFields.isLoggedIn = true
+    newConfigurationFields.email = email
+    setConfigurationFields(newConfigurationFields)
+    chrome.storage.sync.set({ configurationFields: newConfigurationFields })
+  }
+
+  const handleSignupResults = (email) => (r) => {
+    console.log(r.data.message)
+    const newConfigurationFields = JSON.parse(
+      JSON.stringify(configurationFields)
+    )
+    newConfigurationFields.email = email
+    newConfigurationFields.needsVerification = true
+    setConfigurationFields(newConfigurationFields)
+    chrome.storage.sync.set({ configurationFields: newConfigurationFields })
+  }
+
+  const handleVerifyResults = (email) => (r) => {
+    console.log(r.data.message)
+    const newConfigurationFields = JSON.parse(
+      JSON.stringify(configurationFields)
+    )
+    newConfigurationFields.isLoggedIn = true
+    newConfigurationFields.needsVerification = false
+    setConfigurationFields(newConfigurationFields)
+    chrome.storage.sync.set({ configurationFields: newConfigurationFields })
+  }
+
   const proceedWithGoogle = () =>
     chrome.tabs.create({ url: loginWithGoogleUrl })
 
@@ -33,29 +66,22 @@ export default function Popup(props) {
   }
 
   if (configurationFields.needsVerification) {
-    return (
-      <Confirm
-        configurationFields={configurationFields}
-        setConfigurationFields={setConfigurationFields}
-      />
-    )
+    return <Confirm handleVerifyResults={handleVerifyResults} />
   }
 
   if (showLogin) {
     return (
       <Login
-        configurationFields={configurationFields}
+        handleLoginResults={handleLoginResults}
         toSignup={() => setShowLogin(false)}
-        setConfigurationFields={setConfigurationFields}
         proceedWithGoogle={proceedWithGoogle}
       />
     )
   } else {
     return (
       <Signup
-        configurationFields={configurationFields}
+        handleSignupResults={handleSignupResults}
         toLogin={() => setShowLogin(true)}
-        setConfigurationFields={setConfigurationFields}
         proceedWithGoogle={proceedWithGoogle}
       />
     )

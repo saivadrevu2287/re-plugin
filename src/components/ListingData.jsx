@@ -36,9 +36,7 @@ export default function ListingData(props) {
     })
   }, [])
 
-  console.log({price,
-    taxes,
-    rentEstimate})
+  console.log({ price, taxes, rentEstimate })
 
   const { cashOnCash } = calculateCOC(
     configurationFields,
@@ -60,12 +58,12 @@ export default function ListingData(props) {
   })
 
   const handleUpdate = (field) => {
-    let stateFunction;
-    if ( field == 'price' ) {
+    let stateFunction
+    if (field == 'price') {
       stateFunction = setPrice
-    } else if ( field == 'taxes' ) {
+    } else if (field == 'taxes') {
       stateFunction = setTaxes
-    } else if ( field ==  'rent' ) {
+    } else if (field == 'rent') {
       stateFunction = setRentEstimate
     }
 
@@ -200,8 +198,12 @@ export default function ListingData(props) {
         </div>
         <div class="action-row data-field">
           <span class="label-large big-finger">&#x261E;</span>
-          <button id="copy-button" class="link-button value-large" onClick={handleCopyClick}>
-            {hasBeenCopied ? "Copied!" : "Copy Data Fields"}
+          <button
+            id="copy-button"
+            class="link-button value-large"
+            onClick={handleCopyClick}
+          >
+            {hasBeenCopied ? 'Copied!' : 'Copy Data Fields'}
           </button>
         </div>
         <div class="action-row data-field">

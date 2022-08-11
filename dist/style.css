@@ -4,60 +4,17 @@ body {
   background-color: rgb(241, 245, 252);
   margin: auto;
   max-width: 850px;
-}
-
-.super-margin-top {
-  margin-top: 100px;
-  margin-bottom: 100px;
+  min-width: 250px;
 }
 
 main {
-  height: 90vh;
+  height: 80vh;
   overflow-y: scroll;
-}
-
-.buttons {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  margin-top: 1rem;
-}
-
-.half {
-  width: 50%;
-}
-
-.fifth {
-  width: 20%;
-}
-
-.third {
-  width: 33%;
-}
-
-.two-thirds {
-  width: 66%;
-}
-
-.three-fifths {
-  width: 60%;
-}
-
-.two-fifths {
-  width: 40%;
-}
-
-.fourty-five {
-  width: 45%;
 }
 
 .card {
   margin-top: 2rem;
   margin-bottom: 2rem;
-}
-
-.padded {
-  padding: 1rem;
 }
 
 .profile-container {
@@ -117,19 +74,16 @@ h6 {
   font-size: 1rem;
 }
 
-.logo-container {
-  display: flex;
-  align-items: center;
-}
-
-.logo-container img {
+.header-image {
   height: 68px;
 }
 
-.logo-container span {
+.header-title {
   font-size: 1.5rem;
-  margin: auto;
-  padding-left: 1rem;
+}
+
+.link-button {
+  text-decoration: none;
 }
 
 .ostrich-container {
@@ -138,37 +92,27 @@ h6 {
   color: white;
 }
 
-.ostrich-button {
-  padding: 10px 30px 10px 30px;
-  background-image: linear-gradient(rgb(255, 87, 36), rgb(202, 21, 5));
-  border-radius: 8px;
-  color: white;
-  margin-top: 8px;
-  margin-bottom: 8px;
-}
-
-.personal-space-top {
-  margin-top: 24px;
-}
-
-.plain-button {
-  background-image: none;
-  border: 1px solid white;
-  margin-bottom: 24px;
-}
-
-.align-center {
-  text-align: center;
-}
-
-#cash-on-cash {
-  font-size: 1.7rem;
-  width: 60%;
-}
-
 button {
   outline: none;
   border: none;
+  padding: 10px 30px 10px 30px;
+  border-radius: 8px;
+}
+
+.ostrich-button {
+  background-image: linear-gradient(rgb(255, 87, 36), rgb(202, 21, 5));
+  color: white;
+}
+
+.plain-button {
+  background-color: rgb(53, 36, 154);
+  color: white;
+  border: 1px solid white;
+}
+
+.cash-on-cash {
+  font-size: 1.7rem;
+  width: 60%;
 }
 
 nav {
@@ -177,24 +121,10 @@ nav {
   justify-content: space-between;
 }
 
-footer {
-  margin-top: 24px;
-}
-
-.nav-link-buttons {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.nav-link-button {
-  margin-right: 1rem;
-  text-decoration: none;
-}
-
-.nav-link-buttons a {
-  text-decoration: none;
+.thin-container {
+  width: 50%;
+  margin: auto;
+  padding: 1rem;
 }
 
 .success {
@@ -202,30 +132,135 @@ footer {
 }
 
 .error {
-  color: rgb(215, 63, 35);
+  color: #d73f23;
 }
 
-.form-input-container {
+.label {
+  width: 30%;
+}
+
+.break-to-full {
+  margin: 0rem;
+}
+
+.flex {
   display: flex;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.between {
   justify-content: space-between;
+}
+
+.around {
+  justify-content: space-around;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.centered {
+  align-content: center;
+}
+
+.centered-items {
   align-items: center;
-  margin-bottom: 24px;
+}
+
+.wrap {
   flex-wrap: wrap;
 }
 
-.form-input-container label {
-  width: 100px;
+.align-center {
+  text-align: center;
 }
 
-.form-input-container div {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 250px;
+.align-right {
+  text-align: right;
 }
 
-.input {
+.align-left {
+  text-align: left;
+}
+
+.full {
   width: 100%;
+}
+
+.half {
+  width: 50%;
+}
+
+.fifth {
+  width: 20%;
+}
+
+.fourth {
+  width: 25%;
+}
+
+.third {
+  width: 33%;
+}
+
+.two-thirds {
+  width: 66%;
+}
+
+.three-fifths {
+  width: 60%;
+}
+
+.two-fifths {
+  width: 40%;
+}
+
+.fourty-five {
+  width: 45%;
+}
+
+.ninety {
+  width: 90%;
+}
+
+.padded {
+  padding: 1rem;
+}
+
+.super-margin-top {
+  margin-top: 100px;
+}
+
+.super-margin-bottom {
+  margin-bottom: 100px;
+}
+
+.personal-space-top {
+  margin-top: 1rem;
+}
+
+.personal-space-bottom {
+  margin-bottom: 1rem;
+}
+
+.personal-space-left {
+  margin-left: 1rem;
+}
+
+.personal-space-right {
+  margin-right: 1rem;
+}
+
+.personal-space-small-bottom {
+  margin-bottom: 8px;
+}
+
+.personal-space-small-top {
+  margin-top: 8px;
 }
 
 @media screen and (max-width: 480px) {
@@ -235,20 +270,26 @@ footer {
   }
 
   .thin-container {
-    padding: 1rem;
-    margin-bottom: 24px;
-  }
-}
-
-@media screen and (min-width: 480px) {
-  .break-to-full {
-    margin: 0rem;
+    width: 80%;
   }
 
-  .thin-container {
-    width: 50%;
-    margin: auto;
-    padding: 1rem;
-    margin-bottom: 24px;
+  button {
+    padding: 5px 20px 5px 20px;
+  }
+
+  .input {
+    width: 64%;
+  }
+
+  .input-container {
+    width: 114px;
+  }
+
+  .label {
+    width: 35%;
+  }
+
+  .super-margin-top {
+    margin-top: 0px;
   }
 }

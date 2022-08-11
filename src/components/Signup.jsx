@@ -30,39 +30,43 @@ export default function Signup(props) {
 
   return (
     <div className="align-center super-margin-top">
-      <h4>Sign Up</h4>
-      <div className="thin-container ostrich-container">
-        <div id="login-email-container" class="form-input-container">
-          <label htmlFor="username">Email:</label>
-          <div>
+      <h4>Signup</h4>
+      <div className="thin-container ostrich-container personal-space-bottom">
+        <div class="flex between centered-items personal-space-bottom">
+          <label className="fourth align-right" htmlFor="username">
+            Email:
+          </label>
+          <div className="two-thirds align-left">
             <input
-              id="email-input"
               name="username"
-              class="input"
+              className="ninety"
               value={email}
               onInput={eliminateEvent(setEmail)}
             />
           </div>
         </div>
-        <div id="login-email-container" class="form-input-container">
-          <label htmlFor="password">Password:</label>
-          <div>
+        <div class="flex between centered-items personal-space-bottom">
+          <label className="fourth align-right" htmlFor="password">
+            Password:
+          </label>
+          <div className="two-thirds align-left">
             <input
-              id="password-input"
               name="password"
               type="password"
-              class="input"
+              className="ninety"
               value={password}
               onInput={eliminateEvent(setPassword)}
             />
           </div>
         </div>
-        <div id="login-email-container" class="form-input-container">
-          <label htmlFor="confirm-password">Confirm Password:</label>
-          <div>
+        <div class="flex between centered-items personal-space-bottom">
+          <label className="fourth align-right" htmlFor="confirm-password">
+            Confirm Password:
+          </label>
+          <div className="two-thirds align-left">
             <input
-              id="password-input"
               name="confirm-password"
+              className="ninety"
               type="password"
               value={confirmPassword}
               onInput={eliminateEvent(setConfirmPassword)}
@@ -70,18 +74,13 @@ export default function Signup(props) {
           </div>
         </div>
         <p>{errorMessage}</p>
-        <button
-          className="ostrich-button"
-          type="submit"
-          id="submit-signup"
-          onClick={signUp}
-        >
+        <button className="ostrich-button" type="submit" onClick={signUp}>
           Sign Up
         </button>
       </div>
-      <span onClick={proceedWithGoogle}>Continue With Google</span>
+      <button className="plain-button personal-space-bottom" onClick={proceedWithGoogle}>Continue With Google</button>
       <h6>Already Signed Up?</h6>
-      <span onClick={toLogin}>Log in here!</span>
+      <button className="plain-button" onClick={toLogin}>Log in here!</button>
     </div>
   )
 }

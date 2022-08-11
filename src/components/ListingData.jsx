@@ -19,6 +19,8 @@ export default function ListingData(props) {
   const [href, setHref] = useState()
   const [hasBeenCopied, setHasBeenCopied] = useState(false)
 
+  const logout = () => {}
+
   useEffect(() => {
     console.log('Running scraper!')
     runScraper((res) => {
@@ -78,144 +80,112 @@ export default function ListingData(props) {
     handleCopy(getDataFields(), tabSeparator)
   }
 
+  const redfinLink = `https://www.google.com/search?q=${encodeURIComponent(
+    address + ' redfin'
+  )}`
+
+  const realtorLink = `https://www.google.com/search?q=${encodeURIComponent(
+    address + ' realtor'
+  )}`
+
+  const cashOnCashClass = `cash-on-cash ${cashOnCash > 0 ? 'success' : 'error'}`
+
+  const cashOnCashString = cashOnCash.toLocaleString() + '%'
+
+  const infoLink =
+    'https://rehacks.io/blog-new/a-chrome-extension-to-analyze-roi-of-a-rental-property-in-5-sec'
+  const feedbackLink =
+    'https://docs.google.com/forms/d/1E6h7AbJZxitYnMuT1J6eK-x9AA5CpYHE2Dd3qYghZUA/edit'
+
   return (
-    <div id="data-container">
-      <div class="top-half">
-        <div class="link-container">
-          <button id="profile-button" class="link-button hidden"></button>
-        </div>
-        <div class="data-field small-label">
-          <label class="label-small">Price:</label>
-          <div class="value-small">
-            $
+    <div className="align-center personal-space-top">
+      <h5>COC Calculator</h5>
+      <div className="thin-container ostrich-container">
+        <div class="flex between centered-items personal-space-small-bottom">
+          <label className="label align-right">Price:</label>
+          <div className="input-container align-left">
             <input
-              class="input"
               type="number"
-              id="price-input"
-              placeholder="Provide Offer Price"
+              className="input"
+              placeholder="Provide Price"
               value={price}
               onInput={handleUpdate('price')}
             />
+            $
           </div>
         </div>
-        <div class="data-field small-label">
-          <label class="label-small">Estimate:</label>
-          <span class="value-small" id="estimate-price">
-            {priceEstimate}
-          </span>
+        <div class="flex between centered-items personal-space-small-bottom">
+          <label className="label align-right">Estimate:</label>
+          <span className="input-container align-left">{priceEstimate}</span>
         </div>
-        <div class="data-field small-label">
-          <label class="label-small">Taxes ($/mo):</label>
-          <div class="value-small">
-            $
+        <div class="flex between centered-items personal-space-small-bottom">
+          <label className="label align-right">Taxes:</label>
+          <div className="input-container align-left">
             <input
-              class="input"
               type="number"
-              id="monthly-taxes-input"
-              placeholder="Provide Monthly Taxes"
+              className="input"
+              placeholder="Provide Taxes"
               value={taxes}
               onInput={handleUpdate('taxes')}
             />
+            $/mo
           </div>
         </div>
-        <div class="data-field small-label">
-          <label class="label-small">Rent Estimate ($/mo):</label>
-          <div class="value-small">
-            $
+        <div class="flex between centered-items personal-space-small-bottom">
+          <label className="label align-right">Rent Estimate:</label>
+          <div className="input-container align-left">
             <input
-              class="input"
+              className="input"
               type="number"
-              id="rent-input"
               placeholder="Provide Rent"
               value={rentEstimate}
               onInput={handleUpdate('rent')}
             />
+            $/mo
           </div>
         </div>
-        <div class="data-field small-label">
-          <label class="label-small">Days On Market:</label>
-          <span class="value-small" id="days-on-market">
-            {daysOnMarket}
-          </span>
+        <div class="flex between centered-items personal-space-small-bottom">
+          <label className="label align-right">Days On Market:</label>
+          <span className="input-container align-left">{daysOnMarket}</span>
         </div>
-        <div class="data-field small-label">
-          <label class="label-small">Address:</label>
-          <span class="value-small" id="address">
-            {address}
-          </span>
+        <div class="flex between centered-items personal-space-small-bottom">
+          <label className="label align-right">Address:</label>
+          <span className="input-container align-left">{address}</span>
         </div>
-        <div class="data-field small-label">
-          <label class="label-small">Specs:</label>
-          <span class="value-small" id="specs">
-            {specs}
-          </span>
+        <div class="flex between centered-items personal-space-small-bottom">
+          <label className="label align-right">Specs:</label>
+          <span className="input-container align-left">{specs}</span>
         </div>
+        <button className="link-button plain-button" onClick={handleCopyClick}>
+          {hasBeenCopied ? 'Copied!' : 'Copy Data Fields'}
+        </button>
       </div>
-      <div class="bottom-half">
-        <div class="data-field large-label">
-          <label class="label-small">
+      <div className="bottom-half">
+        <div className="flex centered-items between personal-space-bottom personal-space-top">
+          <label className="label align-right">
             Cash On Cash
-            <a
-              target="_blank"
-              href="https://rehacks.io/blog-new/a-chrome-extension-to-analyze-roi-of-a-rental-property-in-5-sec"
-            >
+            <a target="_blank" href={infoLink}>
               (?)
             </a>
             :
           </label>
-          <span
-            class={`value-small ${cashOnCash > 0 ? 'success' : 'error'}`}
-            id="cash-on-cash"
-          >
-            {cashOnCash.toLocaleString() + '%'}
-          </span>
+          <span className={cashOnCashClass}>{cashOnCashString}</span>
         </div>
-        <div class="action-row data-field">
-          <span class="label-large big-finger">&#x261E;</span>
-          <a
-            target="_blank"
-            id="redfin-link"
-            class="value-large"
-            href={`https://www.google.com/search?q=${encodeURIComponent(
-              address + ' redfin'
-            )}`}
-          >
-            To Redfin
+        <div className="flex around personal-space-bottom">
+          <a target="_blank" className="link-button" href={redfinLink}>
+            <button className="ostrich-button">
+              To Redfin
+            </button>
           </a>
-        </div>
-        <div class="action-row data-field">
-          <span class="label-large big-finger">&#x261E;</span>
-          <a
-            target="_blank"
-            id="realtor-link"
-            class="value-large"
-            href={`https://www.google.com/search?q=${encodeURIComponent(
-              address + ' realtor'
-            )}`}
-          >
+          <a target="_blank" className="link-button" href={realtorLink}>
+          <button className="ostrich-button">
             To Realtor
-          </a>
-        </div>
-        <div class="action-row data-field">
-          <span class="label-large big-finger">&#x261E;</span>
-          <button
-            id="copy-button"
-            class="link-button value-large"
-            onClick={handleCopyClick}
-          >
-            {hasBeenCopied ? 'Copied!' : 'Copy Data Fields'}
           </button>
+        </a>
         </div>
-        <div class="action-row data-field">
-          <span class="label-large big-finger">&#x261E;</span>
-          <a
-            class="value-large"
-            target="_blank"
-            href="https://docs.google.com/forms/d/1E6h7AbJZxitYnMuT1J6eK-x9AA5CpYHE2Dd3qYghZUA/edit"
-          >
+          <a className="value-large" target="_blank" href={feedbackLink}>
             Provide Feedback!
           </a>
-        </div>
       </div>
     </div>
   )

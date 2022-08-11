@@ -8,9 +8,11 @@ const eliminateEvent = (callback) => (event) => callback(event.target.value)
 
 export default function Confirm(props) {
   const { backendUrl, handleVerifyResults } = props
-  const email = parseQueryParams(window.location.search).email || props.email
+  const handoverEmail =
+    parseQueryParams(window.location.search).email || props.email
 
   const [code, setCode] = useState('')
+  const [email, setEmail] = useState(handoverEmail)
   const [errorMessage, setErrorMessage] = useState('')
 
   const verify = () => {
@@ -46,28 +48,39 @@ export default function Confirm(props) {
         <br />
         sent to your Email ({email}).
       </h6>
-      <div className="thin-container ostrich-container">
-        <div id="login-email-container" class="form-input-container">
-          <label htmlFor="code">Code:</label>
-          <input
-            id="code-input"
-            name="code"
-            class="input"
-            value={code}
-            onInput={eliminateEvent(setCode)}
-          />
+      <div className="thin-container ostrich-container personal-space-bottom">
+        <div class="flex between centered-items personal-space-bottom">
+          <label className="fourth align-right" htmlFor="username">
+            Email:
+          </label>
+          <div className="two-thirds align-left">
+            <input
+              name="username"
+              className="ninety"
+              value={email}
+              onInput={eliminateEvent(setEmail)}
+            />
+          </div>
         </div>
-        <button
-          className="ostrich-button"
-          type="submit"
-          id="submit-verify"
-          onClick={verify}
-        >
+        <div class="flex between centered-items personal-space-bottom">
+          <label className="fourth align-right" htmlFor="code">
+            Code:
+          </label>
+          <div className="two-thirds align-left">
+            <input
+              name="code"
+              className="ninety"
+              value={code}
+              onInput={eliminateEvent(setCode)}
+            />
+          </div>
+        </div>
+        <button className="ostrich-button" type="submit" onClick={verify}>
           Submit
         </button>
         <p class="error">{errorMessage}</p>
       </div>
-      <button className="ostrich-button" id="resend-code" onClick={resendCode}>
+      <button className="ostrich-button" onClick={resendCode}>
         Resend Code
       </button>
     </div>

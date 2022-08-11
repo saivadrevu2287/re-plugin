@@ -30,45 +30,42 @@ export default function Login(props) {
   return (
     <div className="align-center super-margin-top">
       <h4>Login</h4>
-      <div className="thin-container ostrich-container">
-        <div id="login-email-container" class="form-input-container">
-          <label htmlFor="username">Email:</label>
-          <div>
+      <div className="thin-container ostrich-container personal-space-bottom">
+        <div className="flex between centered-items personal-space-bottom">
+          <label className="fourth align-right" htmlFor="username">
+            Email:
+          </label>
+          <div className="two-thirds align-left">
             <input
-              id="email-input"
               name="username"
-              class="input"
+              className="ninety"
               value={email}
               onInput={eliminateEvent(setEmail)}
             />
           </div>
         </div>
-        <div id="login-email-container" class="form-input-container">
-          <label htmlFor="password">Password:</label>
-          <div>
+        <div className="flex between centered-items personal-space-bottom">
+          <label className="fourth align-right" htmlFor="password">
+            Password:
+          </label>
+          <div className="two-thirds align-left">
             <input
-              id="password-input"
               name="password"
               type="password"
-              class="input"
+              className="ninety"
               value={password}
               onInput={eliminateEvent(setPassword)}
             />
           </div>
         </div>
         <p>{errorMessage}</p>
-        <button
-          className="ostrich-button"
-          type="submit"
-          id="submit-login"
-          onClick={login}
-        >
+        <button className="ostrich-button" type="submit" onClick={login}>
           Login
         </button>
       </div>
-      <span onClick={proceedWithGoogle}>Continue With Google</span>
+      <button className="plain-button personal-space-bottom" onClick={proceedWithGoogle}>Continue With Google</button>
       <h6>Not Signed Up?</h6>
-      <span onClick={toSignup}>Sign up here!</span>
+      <button className="plain-button" onClick={toSignup}>Sign up here!</button>
     </div>
   )
 }

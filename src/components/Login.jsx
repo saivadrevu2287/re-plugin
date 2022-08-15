@@ -63,9 +63,16 @@ export default function Login(props) {
           Login
         </button>
       </div>
-      <button className="plain-button personal-space-bottom" onClick={proceedWithGoogle}>Continue With Google</button>
+      <button
+        className="plain-button personal-space-bottom"
+        onClick={proceedWithGoogle}
+      >
+        Continue With Google
+      </button>
       <h6>Not Signed Up?</h6>
-      <button className="plain-button" onClick={toSignup}>Sign up here!</button>
+      <button className="plain-button" onClick={toSignup}>
+        Sign up here!
+      </button>
     </div>
   )
 }

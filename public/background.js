@@ -21,8 +21,7 @@ chrome.runtime.onInstalled.addListener(() => {
       console.log('This user was already logged in.')
     } else {
       console.log('This user was not already logged in.')
-      const newUrl =
-        'https://ostr.ch'
+      const newUrl = 'https://ostr.ch'
       chrome.tabs.create({ url: newUrl })
       chrome.storage.sync.set({ configurationFields })
     }

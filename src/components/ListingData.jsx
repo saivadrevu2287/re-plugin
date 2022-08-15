@@ -173,19 +173,15 @@ export default function ListingData(props) {
         </div>
         <div className="flex around personal-space-bottom">
           <a target="_blank" className="link-button" href={redfinLink}>
-            <button className="ostrich-button">
-              To Redfin
-            </button>
+            <button className="ostrich-button">To Redfin</button>
           </a>
           <a target="_blank" className="link-button" href={realtorLink}>
-          <button className="ostrich-button">
-            To Realtor
-          </button>
-        </a>
-        </div>
-          <a className="value-large" target="_blank" href={feedbackLink}>
-            Provide Feedback!
+            <button className="ostrich-button">To Realtor</button>
           </a>
+        </div>
+        <a className="value-large" target="_blank" href={feedbackLink}>
+          Provide Feedback!
+        </a>
       </div>
     </div>
   )

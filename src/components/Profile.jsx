@@ -46,12 +46,12 @@ export default function Profile(props) {
   }
 
   const formatNumber = (number) =>
-    number ? `$${number.toLocaleString()}` : 'x'
+    number ? `$${number.toLocaleString()}` : '$X'
 
   const submitScheduledEmails = () => {
     try {
       axios
-        .post(`${backendUrl}/emailers`, {
+        .post(`${backendUrl}/api/emailers`, {
           insurance: parseInt(insurance),
           vacancy: parseInt(vacancy),
           property_management: parseInt(propertyManagement),
@@ -85,12 +85,24 @@ export default function Profile(props) {
     if (!searchParams) {
       setErrorMessage('Need to fill out Search Parameters')
     } else {
+      let testerUrl = `${backendUrl}/api/emailers/test-search-param?search_param=${encodeURI(
+        searchParams
+      )}`
+
+      if (minPrice) {
+        testerUrl = `${testerUrl}&min_price=${minPrice}`
+      }
+
+      if (maxPrice) {
+        testerUrl = `${testerUrl}&max_price=${maxPrice}`
+      }
+
+      if (numBedrooms) {
+        testerUrl = `${testerUrl}&no_bedrooms=${numBedrooms}`
+      }
+
       axios
-        .get(
-          `${backendUrl}/emailers/test-search-param?search_param=${encodeURI(
-            searchParams
-          )}&min_price=${minPrice}&max_price=${maxPrice}&no_bedrooms=${numBedrooms}`
-        )
+        .get(testerUrl)
         .then((r) => {
           setSearchResults(r.data)
           setErrorMessage('')
@@ -142,148 +154,157 @@ export default function Profile(props) {
 
   const cocCalculationParams = !hideCocCalculations && (
     <div>
-      <div id="insurance-container" className="form-input-container">
-        <label htmlFor="insurance-input">Insurance:</label>
+      <div className="flex between centered-items personal-space-bottom">
+        <label className="fourth align-right" htmlFor="insurance-input">
+          Insurance:
+        </label>
         <div>
           <input
-            id="insurance-input"
             type="number"
-            class="input"
+            class="nintey"
             value={insurance}
             onInput={eliminateEvent(setInsurance)}
           />
           <b>$</b>
         </div>
       </div>
-      <div id="vacancy-container" className="form-input-container">
-        <label htmlFor="vacancy-input">Vacancy:</label>
+      <div className="flex between centered-items personal-space-bottom">
+        <label className="fourth align-right" htmlFor="vacancy-input">
+          Vacancy:
+        </label>
         <div>
           <input
-            id="vacancy-input"
             type="number"
-            class="input"
+            class="nintey"
             value={vacancy}
             onInput={eliminateEvent(setVacancy)}
           />
           <b>%</b>
         </div>
       </div>
-      <div id="property-container" className="form-input-container">
-        <label htmlFor="property-input">Property Management:</label>
+      <div className="flex between centered-items personal-space-bottom">
+        <label className="fourth align-right" htmlFor="property-input">
+          Property Management:
+        </label>
         <div>
           <input
-            id="property-input"
             type="number"
-            class="input"
+            class="nintey"
             value={propertyManagement}
             onInput={eliminateEvent(setPropertyManagement)}
           />
           <b>%</b>
         </div>
       </div>
-      <div id="capex-container" className="form-input-container">
-        <label htmlFor="capex-input">Capex:</label>
+      <div className="flex between centered-items personal-space-bottom">
+        <label className="fourth align-right" htmlFor="capex-input">
+          Capex:
+        </label>
         <div>
           <input
-            id="capex-input"
             type="number"
-            class="input"
+            class="nintey"
             value={capex}
             onInput={eliminateEvent(setCapex)}
           />
           <b>%</b>
         </div>
       </div>
-      <div id="repairs-container" className="form-input-container">
-        <label htmlFor="repairs-input">Repairs:</label>
+      <div className="flex between centered-items personal-space-bottom">
+        <label className="fourth align-right" htmlFor="repairs-input">
+          Repairs:
+        </label>
         <div>
           <input
-            id="repairs-input"
             type="number"
-            class="input"
+            class="nintey"
             value={repairs}
             onInput={eliminateEvent(setRepairs)}
           />
           <b>%</b>
         </div>
       </div>
-      <div id="utilities-container" className="form-input-container">
-        <label htmlFor="utilities-input">Utilities:</label>
+      <div className="flex between centered-items personal-space-bottom">
+        <label className="fourth align-right" htmlFor="utilities-input">
+          Utilities:
+        </label>
         <div>
           <input
-            id="utilities-input"
             type="number"
-            class="input"
+            class="nintey"
             value={utilities}
             onInput={eliminateEvent(setUtilities)}
           />
           <b>$</b>
         </div>
       </div>
-      <div id="down-payment-container" className="form-input-container">
-        <label htmlFor="down-payment-input">Down Payment:</label>
+      <div className="flex between centered-items personal-space-bottom">
+        <label className="fourth align-right" htmlFor="down-payment-input">
+          Down Payment:
+        </label>
         <div>
           <input
-            id="down-payment-input"
             type="number"
-            class="input"
+            class="nintey"
             value={downPayment}
             onInput={eliminateEvent(setDownPayment)}
           />
           <b>%</b>
         </div>
       </div>
-      <div id="closing-cost-container" className="form-input-container">
-        <label htmlFor="closing-cost-input">Closing Cost:</label>
+      <div className="flex between centered-items personal-space-bottom">
+        <label className="fourth align-right" htmlFor="closing-cost-input">
+          Closing Cost:
+        </label>
         <div>
           <input
-            id="closing-cost-input"
             type="number"
-            class="input"
+            class="nintey"
             value={closingCosts}
             onInput={eliminateEvent(setClosingCosts)}
           />
           <b>%</b>
         </div>
       </div>
-      <div id="loan-interest-container" className="form-input-container">
-        <label htmlFor="loan-interest-input">Loan Interest:</label>
+      <div className="flex between centered-items personal-space-bottom">
+        <label className="fourth align-right" htmlFor="loan-interest-input">
+          Loan Interest:
+        </label>
         <div>
           <input
-            id="loan-interest-input"
             type="number"
-            class="input"
+            class="nintey"
             value={loanInterest}
             onInput={eliminateEvent(setLoanInterest)}
           />
           <b>%</b>
         </div>
       </div>
-      <div id="loan-months-container" className="form-input-container">
-        <label htmlFor="loan-months-input">Loan Months:</label>
+      <div className="flex between centered-items personal-space-bottom">
+        <label className="fourth align-right" htmlFor="loan-months-input">
+          Loan Months:
+        </label>
         <div>
           <input
-            id="loan-months-input"
             type="number"
-            class="input"
+            class="nintey"
             value={loanMonths}
             onInput={eliminateEvent(setLoanMonths)}
           />
           <b>mos</b>
         </div>
       </div>
-      <div
-        id="additional-monthly-expenses-container"
-        className="form-input-container"
-      >
-        <label htmlFor="additional-monthly-expenses-input">
+      <div className="flex between centered-items personal-space-bottom">
+        <label
+          className="fourth align-right"
+          htmlFor="additional-monthly-expenses-input"
+        >
           Additional Monthly Expenses:
         </label>
         <div>
           <input
-            id="additional-monthly-expenses-input"
             type="number"
-            class="input"
+            class="nintey"
             value={additionalMonthlyExpenses}
             onInput={eliminateEvent(setAdditionalMonthlyExpenses)}
           />
@@ -317,63 +338,79 @@ export default function Profile(props) {
         <div className="fourty-five break-to-full">
           <h5>Schedule a New Email</h5>
           <div className="ostrich-container padded">
-            <div id="search-params-container" className="form-input-container">
-              <label htmlFor="search-params-input">Search Parameters:</label>
+            <div className="flex between centered-items personal-space-bottom">
+              <label
+                className="fourth align-right"
+                htmlFor="search-params-input"
+              >
+                Search Parameters:
+              </label>
               <div>
                 <input
-                  id="search-params-input"
                   value={searchParams}
-                  class="input"
+                  class="nintey"
                   onInput={eliminateEvent(setSearchParams)}
                 />
               </div>
             </div>
-            <div id="min-price-container" className="form-input-container">
-              <label htmlFor="min-price-input">Minimum Price:</label>
+            <div className="flex between centered-items personal-space-bottom">
+              <label
+                className="fourth align-right"
+                htmlFor="min-price-input"
+              >
+                Minimum Price:
+              </label>
               <div>
                 <input
-                  id="min-price-input"
                   type="number"
-                  class="input"
+                  class="nintey"
                   value={minPrice}
                   onInput={eliminateEvent(setMinPrice)}
                 />
                 <b>$</b>
               </div>
             </div>
-            <div id="max-price-container" className="form-input-container">
-              <label htmlFor="max-price-input">Maximum Price:</label>
+            <div className="flex between centered-items personal-space-bottom">
+              <label
+                className="fourth align-right"
+                htmlFor="max-price-input"
+              >
+                Maximum Price:
+              </label>
               <div>
                 <input
-                  id="max-price-input"
                   type="number"
-                  class="input"
+                  class="nintey"
                   value={maxPrice}
                   onInput={eliminateEvent(setMaxPrice)}
                 />
                 <b>$</b>
               </div>
             </div>
-            <div id="num-bedrooms-container" className="form-input-container">
-              <label htmlFor="num-bedrooms-input">Num. Bedrooms:</label>
+            <div className="flex between centered-items personal-space-bottom">
+              <label
+                className="fourth align-right"
+                htmlFor="num-bedrooms-input"
+              >
+                Num. Bedrooms:
+              </label>
               <div>
                 <input
-                  id="num-bedrooms-input"
                   type="number"
-                  class="input"
+                  class="nintey"
                   value={numBedrooms}
                   onInput={eliminateEvent(setNumBedrooms)}
                 />
               </div>
             </div>
-            <span
+            <button
               onClick={flipHideCocCalculations}
-              className="plain-button ostrich-button"
+              className="plain-button personal-space-small-top"
             >
               {hideCocCalculations ? 'Show' : 'Hide'} Calculation Params
-            </span>
+            </button>
             <div className="personal-space-top">{cocCalculationParams}</div>
-            <div className="buttons">
+            <div className="flex around">
               <button
                 className="ostrich-button"
                 onClick={submitScheduledEmails}

@@ -3,7 +3,7 @@ import { h, Fragment } from 'preact'
 import { useState, useEffect } from 'preact/hooks'
 import { route } from 'preact-router'
 import entry from '../build/entry'
-import { parseQueryParams } from "../subroutines/utils"
+import { parseQueryParams } from '../subroutines/utils'
 
 import Login from '../components/Login'
 import Signup from '../components/Signup'
@@ -11,7 +11,6 @@ import Confirm from '../components/Confirm'
 import Profile from '../components/Profile'
 import Home from '../components/Home'
 import Logout from '../components/Logout'
-
 
 const loginWithGoogleUrl =
   'https://ostrich.auth.us-east-2.amazoncognito.com/login?client_id=70apbavl1fsobed4jt7l7ml18h&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://ostr.ch'
@@ -21,14 +20,16 @@ function App(props) {
   const [jwt, setJwt] = useState(null)
   useEffect(() => {}, [jwt])
 
-  if ( window.location.hash ) {
-    setJwt(parseQueryParams(window.location.hash))
-  }
+  useEffect(() => {
+    if (window.location.hash) {
+      setJwt(parseQueryParams(window.location.hash))
+    }
+  }, [])
 
   const handleLoginResults = (email) => (r) => {
     console.log(r)
     setJwt(r.data)
-    route('/profile', true)
+    // route('/profile', true)
   }
 
   const handleVerifyResults = (email) => (r) => {
@@ -55,15 +56,12 @@ function App(props) {
     route('/')
   }
 
-  const proceedWithGoogle = () => window.open(loginWithGoogleUrl,'_blank')
+  const proceedWithGoogle = () => window.open(loginWithGoogleUrl, '_blank')
 
   const loginOrLogout = jwt ? (
     <Fragment>
       <a href="/profile" className="link-button">
         <button className="ostrich-button personal-space-right">Profile</button>
-      </a>
-      <a href="/logout" className="link-button">
-        <button className="ostrich-button personal-space-right">Logout</button>
       </a>
     </Fragment>
   ) : (
@@ -81,7 +79,12 @@ function App(props) {
     <div>
       <nav className="ostrich-container">
         <div className="flex centered-items">
-          <img className="header-image link-button" src="/ostrich.new.png" alt="ostrich" onClick={toHome} />
+          <img
+            className="header-image link-button"
+            src="/ostrich.new.png"
+            alt="ostrich"
+            onClick={toHome}
+          />
           <span className="header-title personal-space-left">
             Ostrich Real Estate Tools
           </span>
@@ -113,7 +116,12 @@ function App(props) {
           />
           <Profile path="/profile" jwt={jwt} backendUrl={backendUrl} />
           <Logout path="/logout" backendUrl={backendUrl} />
-          <Home path="/" backendUrl={backendUrl} jwt={jwt} toProfile={toProfile} />
+          <Home
+            path="/"
+            backendUrl={backendUrl}
+            jwt={jwt}
+            toProfile={toProfile}
+          />
         </Router>
       </main>
       <footer class="align-center">Ostrich Tools Ltd.</footer>

@@ -78,9 +78,16 @@ export default function Signup(props) {
           Sign Up
         </button>
       </div>
-      <button className="plain-button personal-space-bottom" onClick={proceedWithGoogle}>Continue With Google</button>
+      <button
+        className="plain-button personal-space-bottom"
+        onClick={proceedWithGoogle}
+      >
+        Continue With Google
+      </button>
       <h6>Already Signed Up?</h6>
-      <button className="plain-button" onClick={toLogin}>Log in here!</button>
+      <button className="plain-button" onClick={toLogin}>
+        Log in here!
+      </button>
     </div>
   )
 }

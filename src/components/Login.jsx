@@ -1,39 +1,26 @@
 import { h } from 'preact'
 import { useState } from 'preact/hooks'
 import axios from 'axios'
+import { parseQueryParams } from '../subroutines/utils'
 
 const eliminateEvent = (callback) => (event) => callback(event.target.value)
-const loginUrl =
-  'https://q0sku06vtg.execute-api.us-east-2.amazonaws.com/v1/auth/login'
 
 export default function Login(props) {
-  const {
-    configurationFields,
-    toSignup,
-    proceedWithGoogle,
-    setConfigurationFields,
-  } = props
+  const { backendUrl, handleLoginResults, proceedWithGoogle, toSignup } = props
 
-  const [email, setEmail] = useState('')
+  const emailFromQp = parseQueryParams(window.location.search).email
+
+  const [email, setEmail] = useState(emailFromQp)
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
 
   const login = () => {
     axios
-      .post(loginUrl, {
+      .post(`${backendUrl}/auth/login`, {
         username: email,
         password: password,
       })
-      .then((r) => {
-        console.log(r.data.message)
-        const newConfigurationFields = JSON.parse(
-          JSON.stringify(configurationFields)
-        )
-        newConfigurationFields.isLoggedIn = true
-        newConfigurationFields.email = email
-        setConfigurationFields(newConfigurationFields)
-        chrome.storage.sync.set({ configurationFields: newConfigurationFields })
-      })
+      .then(handleLoginResults(email))
       .catch((e) => {
         console.log(e)
         setErrorMessage(e.response.data.message)
@@ -41,40 +28,51 @@ export default function Login(props) {
   }
 
   return (
-    <div id="login-container">
-      <h5>Please Login With Email to use Plugin.</h5>
-      <label for="username">
-        Email:
-        <input
-          id="email-input"
-          name="username"
-          value={email}
-          onInput={eliminateEvent(setEmail)}
-        />
-      </label>
-      <label for="password">
-        Password:
-        <input
-          id="password-input"
-          name="password"
-          type="password"
-          value={password}
-          onInput={eliminateEvent(setPassword)}
-        />
-      </label>
-      <button type="submit" id="submit-login" onClick={login}>
-        Login
+    <div className="align-center super-margin-top">
+      <h4>Login</h4>
+      <div className="thin-container ostrich-container personal-space-bottom">
+        <div className="flex between centered-items personal-space-bottom">
+          <label className="fourth align-right" htmlFor="username">
+            Email:
+          </label>
+          <div className="two-thirds align-left">
+            <input
+              name="username"
+              className="ninety"
+              value={email}
+              onInput={eliminateEvent(setEmail)}
+            />
+          </div>
+        </div>
+        <div className="flex between centered-items personal-space-bottom">
+          <label className="fourth align-right" htmlFor="password">
+            Password:
+          </label>
+          <div className="two-thirds align-left">
+            <input
+              name="password"
+              type="password"
+              className="ninety"
+              value={password}
+              onInput={eliminateEvent(setPassword)}
+            />
+          </div>
+        </div>
+        <p>{errorMessage}</p>
+        <button className="ostrich-button" type="submit" onClick={login}>
+          Login
+        </button>
+      </div>
+      <button
+        className="plain-button personal-space-bottom"
+        onClick={proceedWithGoogle}
+      >
+        Continue With Google
       </button>
-      <button id="login-with-google" onClick={proceedWithGoogle}>
-        Log In With Google
+      <h6>Not Signed Up?</h6>
+      <button className="plain-button" onClick={toSignup}>
+        Sign up here!
       </button>
-      <h5>
-        Not Signed Up?{' '}
-        <span id="signup-link" class="link" onClick={toSignup}>
-          Sign Up Here!
-        </span>
-      </h5>
-      <p>{errorMessage}</p>
     </div>
   )
 }

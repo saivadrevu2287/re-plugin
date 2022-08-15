@@ -1,14 +1,3 @@
-// importScripts('ExtPay.js');
-//
-// console.log("Importing script");
-// // this line is required in background.js to use ExtPay!
-// const extpay = ExtPay('ostrich-plugin');
-// extpay.startBackground();
-//
-// extpay.getUser().then(user => {
-// 	console.log(user);
-// });
-
 const configurationFields = {
   insurance: { value: 60, type: 'dollars' },
   vacancy: { value: 0.05, type: 'percent' },
@@ -32,8 +21,7 @@ chrome.runtime.onInstalled.addListener(() => {
       console.log('This user was already logged in.')
     } else {
       console.log('This user was not already logged in.')
-      const newUrl =
-        'https://rehacks.io/blog-new/a-chrome-extension-to-analyze-roi-of-a-rental-property-in-5-sec'
+      const newUrl = 'https://ostr.ch'
       chrome.tabs.create({ url: newUrl })
       chrome.storage.sync.set({ configurationFields })
     }
@@ -54,7 +42,7 @@ chrome.webNavigation.onCompleted.addListener(
     url: [
       {
         // Runs on example.com, example.net, but also example.foo.com
-        hostContains: 'supermode.io',
+        hostContains: 'ostr.ch',
       },
     ],
   }
@@ -64,7 +52,7 @@ const autoSignin = (details) => () => {
   chrome.storage.sync.get('configurationFields', (data) => {
     console.log('Watching for the autosignin', details)
     let url = details.url
-    if (url.match(/supermode.io\/ostrich-token/)) {
+    if (url.match(/ostr.ch/)) {
       console.log('Url matches!')
       const idToken = url
         .split('#')[1]

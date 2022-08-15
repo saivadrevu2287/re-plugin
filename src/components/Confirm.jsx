@@ -1,77 +1,88 @@
 import { h } from 'preact'
 import { useState } from 'preact/hooks'
 import axios from 'axios'
+import { route } from 'preact-router'
+import { parseQueryParams } from '../subroutines/utils'
 
 const eliminateEvent = (callback) => (event) => callback(event.target.value)
-const verifyCodeUrl =
-  'https://q0sku06vtg.execute-api.us-east-2.amazonaws.com/v1/auth/verify'
-const resendCodeUrl =
-  'https://q0sku06vtg.execute-api.us-east-2.amazonaws.com/v1/auth/resend-code'
 
 export default function Confirm(props) {
-  const { configurationFields, setConfigurationFields } = props
+  const { backendUrl, handleVerifyResults } = props
+  const handoverEmail =
+    parseQueryParams(window.location.search).email || props.email
+
   const [code, setCode] = useState('')
+  const [email, setEmail] = useState(handoverEmail)
   const [errorMessage, setErrorMessage] = useState('')
 
   const verify = () => {
     axios
-      .post(verifyCodeUrl, {
-        username: configurationFields.email,
+      .post(`${backendUrl}/auth/verify`, {
+        username: email,
         code: code,
       })
-      .then((r) => {
-        console.log(r.data.message)
-        const newConfigurationFields = JSON.parse(
-          JSON.stringify(configurationFields)
-        )
-        newConfigurationFields.isLoggedIn = true
-        newConfigurationFields.needsVerification = false
-        setConfigurationFields(newConfigurationFields)
-        chrome.storage.sync.set({ configurationFields: newConfigurationFields })
-      })
+      .then(handleVerifyResults(email))
       .catch((e) => {
-        console.log(e)
         setErrorMessage(e.response.data.message)
       })
   }
 
   const resendCode = () => {
     axios
-      .post(resendCodeUrl, {
-        username: configurationFields.email,
+      .post(`${backendUrl}/auth/resend-code`, {
+        username: email,
       })
       .then((r) => {
-        console.log(r.data.message)
         setErrorMessage(r.data.message)
       })
       .catch((e) => {
-        console.log(e)
         setErrorMessage(e.response.data.message)
       })
   }
 
   return (
-    <div id="verify-container">
-      <h5>
-        Please Enter the Verification Code sent to your Email (
-        {configurationFields.email}).
-      </h5>
-      <label for="code">
-        Code:
-        <input
-          id="code-input"
-          name="code"
-          value={code}
-          onInput={eliminateEvent(setCode)}
-        />
-      </label>
-      <button type="submit" id="submit-verify" onClick={verify}>
-        Submit
-      </button>
-      <button id="resend-code" onClick={resendCode}>
+    <div className="align-center super-margin-top">
+      <h4>Verify</h4>
+      <h6>
+        Please Enter the Verification Code
+        <br />
+        sent to your Email ({email}).
+      </h6>
+      <div className="thin-container ostrich-container personal-space-bottom">
+        <div class="flex between centered-items personal-space-bottom">
+          <label className="fourth align-right" htmlFor="username">
+            Email:
+          </label>
+          <div className="two-thirds align-left">
+            <input
+              name="username"
+              className="ninety"
+              value={email}
+              onInput={eliminateEvent(setEmail)}
+            />
+          </div>
+        </div>
+        <div class="flex between centered-items personal-space-bottom">
+          <label className="fourth align-right" htmlFor="code">
+            Code:
+          </label>
+          <div className="two-thirds align-left">
+            <input
+              name="code"
+              className="ninety"
+              value={code}
+              onInput={eliminateEvent(setCode)}
+            />
+          </div>
+        </div>
+        <button className="ostrich-button" type="submit" onClick={verify}>
+          Submit
+        </button>
+        <p class="error">{errorMessage}</p>
+      </div>
+      <button className="ostrich-button" onClick={resendCode}>
         Resend Code
       </button>
-      <p>{errorMessage}</p>
     </div>
   )
 }

@@ -1,79 +1,93 @@
 import { h } from 'preact'
 import { useState } from 'preact/hooks'
+import { route } from 'preact-router'
 import axios from 'axios'
 
 const eliminateEvent = (callback) => (event) => callback(event.target.value)
-const signupUrl =
-  'https://q0sku06vtg.execute-api.us-east-2.amazonaws.com/v1/auth/sign-up'
 
 export default function Signup(props) {
-  const {
-    configurationFields,
-    toLogin,
-    proceedWithGoogle,
-    setConfigurationFields,
-  } = props
+  const { proceedWithGoogle, backendUrl, handleSignupResults, toLogin } = props
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
 
   const signUp = () => {
-    axios
-      .post(signupUrl, {
-        username: email,
-        password: password,
-      })
-      .then((r) => {
-        console.log(r.data.message)
-        const newConfigurationFields = JSON.parse(
-          JSON.stringify(configurationFields)
-        )
-        newConfigurationFields.email = email
-        newConfigurationFields.needsVerification = true
-        setConfigurationFields(newConfigurationFields)
-        chrome.storage.sync.set({ configurationFields: newConfigurationFields })
-      })
-      .catch((e) => {
-        console.log(e)
-        setErrorMessage(e.response.data.message)
-      })
+    if (password != confirmPassword) {
+      setErrorMessage('Passwords do not match!')
+    } else {
+      axios
+        .post(`${backendUrl}/auth/sign-up`, {
+          username: email,
+          password: password,
+        })
+        .then(handleSignupResults(email))
+        .catch((e) => {
+          setErrorMessage(e.response.data.message)
+        })
+    }
   }
 
   return (
-    <div id="signup-container">
-      <h5>Please Signup With Email to use Plugin.</h5>
-      <label for="username">
-        Email:
-        <input
-          id="email-input"
-          name="username"
-          value={email}
-          onInput={eliminateEvent(setEmail)}
-        />
-      </label>
-      <label for="password">
-        Password:
-        <input
-          id="password-input"
-          name="password"
-          type="password"
-          value={password}
-          onInput={eliminateEvent(setPassword)}
-        />
-      </label>
-      <button type="submit" id="submit-signup" onClick={signUp}>
-        Sign Up
+    <div className="align-center super-margin-top">
+      <h4>Signup</h4>
+      <div className="thin-container ostrich-container personal-space-bottom">
+        <div class="flex between centered-items personal-space-bottom">
+          <label className="fourth align-right" htmlFor="username">
+            Email:
+          </label>
+          <div className="two-thirds align-left">
+            <input
+              name="username"
+              className="ninety"
+              value={email}
+              onInput={eliminateEvent(setEmail)}
+            />
+          </div>
+        </div>
+        <div class="flex between centered-items personal-space-bottom">
+          <label className="fourth align-right" htmlFor="password">
+            Password:
+          </label>
+          <div className="two-thirds align-left">
+            <input
+              name="password"
+              type="password"
+              className="ninety"
+              value={password}
+              onInput={eliminateEvent(setPassword)}
+            />
+          </div>
+        </div>
+        <div class="flex between centered-items personal-space-bottom">
+          <label className="fourth align-right" htmlFor="confirm-password">
+            Confirm Password:
+          </label>
+          <div className="two-thirds align-left">
+            <input
+              name="confirm-password"
+              className="ninety"
+              type="password"
+              value={confirmPassword}
+              onInput={eliminateEvent(setConfirmPassword)}
+            />
+          </div>
+        </div>
+        <p>{errorMessage}</p>
+        <button className="ostrich-button" type="submit" onClick={signUp}>
+          Sign Up
+        </button>
+      </div>
+      <button
+        className="plain-button personal-space-bottom"
+        onClick={proceedWithGoogle}
+      >
+        Continue With Google
       </button>
-      <button id="signup-with-google" onClick={proceedWithGoogle}>
-        Sign Up With Google
+      <h6>Already Signed Up?</h6>
+      <button className="plain-button" onClick={toLogin}>
+        Log in here!
       </button>
-      <h5>
-        Already Signed Up?{' '}
-        <span id="login-link" class="link" onClick={toLogin}>
-          Login Here!
-        </span>
-      </h5>
-      <p>{errorMessage}</p>
     </div>
   )
 }

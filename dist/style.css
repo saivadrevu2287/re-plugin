@@ -138,7 +138,6 @@ button {
 .value-small {
   width: 60%;
   text-align: right;
-  color: black;
 }
 
 .label-large {
@@ -148,7 +147,6 @@ button {
 .value-large {
   width: 80%;
   text-align: left;
-  /* font-weight: bold; */
 }
 
 .mid-label {
@@ -191,7 +189,6 @@ button {
   color: blue;
   cursor: pointer;
   text-decoration: underline;
-
 }
 
 .switch {
@@ -201,7 +198,7 @@ button {
   height: 12px;
 }
 
-.switch input { 
+.switch input {
   opacity: 0;
   width: 0;
   height: 0;
@@ -215,20 +212,20 @@ button {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 12px;
   width: 12px;
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
@@ -262,6 +259,6 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type='number'] {
   -moz-appearance: textfield;
 }

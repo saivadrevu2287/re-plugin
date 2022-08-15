@@ -18,8 +18,8 @@
   },
   "web_accessible_resources": [
     {
-      "resources": [ "ga.js" ],
-      "matches": [ "https://*/*" ]
+      "resources": ["ga.js"],
+      "matches": ["https://*/*"]
     }
   ],
   "options_page": "options.html"

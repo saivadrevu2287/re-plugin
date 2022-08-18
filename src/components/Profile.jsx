@@ -354,10 +354,7 @@ export default function Profile(props) {
               </div>
             </div>
             <div className="flex between centered-items personal-space-bottom">
-              <label
-                className="fourth align-right"
-                htmlFor="min-price-input"
-              >
+              <label className="fourth align-right" htmlFor="min-price-input">
                 Minimum Price:
               </label>
               <div>
@@ -371,10 +368,7 @@ export default function Profile(props) {
               </div>
             </div>
             <div className="flex between centered-items personal-space-bottom">
-              <label
-                className="fourth align-right"
-                htmlFor="max-price-input"
-              >
+              <label className="fourth align-right" htmlFor="max-price-input">
                 Maximum Price:
               </label>
               <div>

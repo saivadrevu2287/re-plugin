@@ -6,24 +6,31 @@ import { parseQueryParams } from '../subroutines/utils'
 const eliminateEvent = (callback) => (event) => callback(event.target.value)
 
 export default function Confirm(props) {
-  const { backendUrl, handleVerifyResults } = props
+  const { backendUrl, handleConfirmForgotPasswordResults } = props
   const handoverEmail =
     parseQueryParams(window.location.search).email || props.email
 
   const [code, setCode] = useState('')
   const [email, setEmail] = useState(handoverEmail)
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
 
-  const verify = () => {
-    axios
-      .post(`${backendUrl}/auth/verify`, {
-        username: email,
-        code: code,
-      })
-      .then(handleVerifyResults(email))
-      .catch((e) => {
-        setErrorMessage(e.response.data.message)
-      })
+  const confirmForgotPassword = () => {
+    if (password != confirmPassword) {
+      setErrorMessage('Passwords do not match!')
+    } else {
+      axios
+        .post(`${backendUrl}/auth/confirm-forgot-password`, {
+          username: email,
+          password: password,
+          code: code,
+        })
+        .then(handleConfirmForgotPasswordResults(email))
+        .catch((e) => {
+          setErrorMessage(e.response.data.message)
+        })
+    }
   }
 
   const resendCode = () => {
@@ -41,12 +48,7 @@ export default function Confirm(props) {
 
   return (
     <div className="align-center super-margin-top">
-      <h4>Verify</h4>
-      <h6>
-        Please Enter the Verification Code
-        <br />
-        sent to your Email ({email}).
-      </h6>
+      <h4>Confirm Password</h4>
       <div className="thin-container ostrich-container personal-space-bottom">
         <div class="flex between centered-items personal-space-bottom">
           <label className="fourth align-right" htmlFor="username">
@@ -58,6 +60,34 @@ export default function Confirm(props) {
               className="ninety"
               value={email}
               onInput={eliminateEvent(setEmail)}
+            />
+          </div>
+        </div>
+        <div class="flex between centered-items personal-space-bottom">
+          <label className="fourth align-right" htmlFor="password">
+            New Password:
+          </label>
+          <div className="two-thirds align-left">
+            <input
+              name="password"
+              type="password"
+              className="ninety"
+              value={password}
+              onInput={eliminateEvent(setPassword)}
+            />
+          </div>
+        </div>
+        <div class="flex between centered-items personal-space-bottom">
+          <label className="fourth align-right" htmlFor="confirm-password">
+            Confirm Password:
+          </label>
+          <div className="two-thirds align-left">
+            <input
+              name="confirm-password"
+              className="ninety"
+              type="password"
+              value={confirmPassword}
+              onInput={eliminateEvent(setConfirmPassword)}
             />
           </div>
         </div>
@@ -74,7 +104,11 @@ export default function Confirm(props) {
             />
           </div>
         </div>
-        <button className="ostrich-button" type="submit" onClick={verify}>
+        <button
+          className="ostrich-button"
+          type="submit"
+          onClick={confirmForgotPassword}
+        >
           Submit
         </button>
         <p class="error">{errorMessage}</p>

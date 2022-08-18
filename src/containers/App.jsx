@@ -11,6 +11,8 @@ import Confirm from '../components/Confirm'
 import Profile from '../components/Profile'
 import Home from '../components/Home'
 import Logout from '../components/Logout'
+import ForgotPassword from '../components/ForgotPassword'
+import ConfirmForgotPassword from '../components/ConfirmForgotPassword'
 
 const loginWithGoogleUrl =
   'https://ostrich.auth.us-east-2.amazoncognito.com/login?client_id=70apbavl1fsobed4jt7l7ml18h&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://ostr.ch'
@@ -29,7 +31,7 @@ function App(props) {
   const handleLoginResults = (email) => (r) => {
     console.log(r)
     setJwt(r.data)
-    // route('/profile', true)
+    route('/profile', true)
   }
 
   const handleVerifyResults = (email) => (r) => {
@@ -38,6 +40,14 @@ function App(props) {
 
   const handleSignupResults = (email) => (r) => {
     route(`/confirm?email=${email}`, true)
+  }
+
+  const handleForgotPasswordResults = (email) => (r) => {
+    route(`/confirm-forgot-password?email=${email}`, true)
+  }
+
+  const handleConfirmForgotPasswordResults = (email) => (r) => {
+    route(`/login?email=${email}`, true)
   }
 
   const toSignup = () => {
@@ -54,6 +64,10 @@ function App(props) {
 
   const toHome = () => {
     route('/')
+  }
+
+  const toForgotPassword = () => {
+    route('/forgot-password')
   }
 
   const proceedWithGoogle = () => window.open(loginWithGoogleUrl, '_blank')
@@ -101,6 +115,7 @@ function App(props) {
             handleLoginResults={handleLoginResults}
             toSignup={toSignup}
             proceedWithGoogle={proceedWithGoogle}
+            toForgotPassword={toForgotPassword}
           />
           <Signup
             path="/signup"
@@ -116,6 +131,18 @@ function App(props) {
           />
           <Profile path="/profile" jwt={jwt} backendUrl={backendUrl} />
           <Logout path="/logout" backendUrl={backendUrl} />
+          <ForgotPassword
+            path="/forgot-password"
+            backendUrl={backendUrl}
+            handleForgotPasswordResults={handleForgotPasswordResults}
+          />
+          <ConfirmForgotPassword
+            path="/confirm-forgot-password"
+            backendUrl={backendUrl}
+            handleConfirmForgotPasswordResults={
+              handleConfirmForgotPasswordResults
+            }
+          />
           <Home
             path="/"
             backendUrl={backendUrl}

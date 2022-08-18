@@ -6,7 +6,13 @@ import { parseQueryParams } from '../subroutines/utils'
 const eliminateEvent = (callback) => (event) => callback(event.target.value)
 
 export default function Login(props) {
-  const { backendUrl, handleLoginResults, proceedWithGoogle, toSignup } = props
+  const {
+    backendUrl,
+    handleLoginResults,
+    proceedWithGoogle,
+    toSignup,
+    toForgotPassword,
+  } = props
 
   const emailFromQp = parseQueryParams(window.location.search).email
 
@@ -73,6 +79,11 @@ export default function Login(props) {
       <button className="plain-button" onClick={toSignup}>
         Sign up here!
       </button>
+      <div>
+        <button className="plain-button" onClick={toForgotPassword}>
+          Forgot Password
+        </button>
+      </div>
     </div>
   )
 }

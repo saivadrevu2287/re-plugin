@@ -2503,8 +2503,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var preact_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! preact-router */ "./node_modules/preact-router/dist/preact-router.mjs");
-/* harmony import */ var _subroutines_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../subroutines/utils */ "./src/subroutines/utils.js");
+/* harmony import */ var _subroutines_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../subroutines/utils */ "./src/subroutines/utils.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2522,7 +2521,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
 var eliminateEvent = function eliminateEvent(callback) {
   return function (event) {
     return callback(event.target.value);
@@ -2532,7 +2530,7 @@ var eliminateEvent = function eliminateEvent(callback) {
 function Confirm(props) {
   var backendUrl = props.backendUrl,
       handleVerifyResults = props.handleVerifyResults;
-  var handoverEmail = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_4__.parseQueryParams)(window.location.search).email || props.email;
+  var handoverEmail = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_3__.parseQueryParams)(window.location.search).email || props.email;
 
   var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
@@ -2910,7 +2908,8 @@ function Login(props) {
   var backendUrl = props.backendUrl,
       handleLoginResults = props.handleLoginResults,
       proceedWithGoogle = props.proceedWithGoogle,
-      toSignup = props.toSignup;
+      toSignup = props.toSignup,
+      toForgotPassword = props.toForgotPassword;
   var emailFromQp = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_3__.parseQueryParams)(window.location.search).email;
 
   var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(emailFromQp),
@@ -2977,7 +2976,10 @@ function Login(props) {
   }, "Continue With Google"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "Not Signed Up?"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "plain-button",
     onClick: toSignup
-  }, "Sign up here!"));
+  }, "Sign up here!"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+    className: "plain-button",
+    onClick: toForgotPassword
+  }, "Forgot Password")));
 }
 
 /***/ }),

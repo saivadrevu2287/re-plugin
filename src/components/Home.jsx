@@ -1,8 +1,9 @@
 import { h } from 'preact'
+import { useReducer } from 'preact/hooks'
 import { parseJwt } from '../subroutines/utils'
 
 export default function Home(props) {
-  const { jwt, toProfile } = props
+  const { jwt, user } = props
 
   return (
     <div>
@@ -31,6 +32,15 @@ export default function Home(props) {
           You are currently logged in as {parseJwt(jwt.id_token).email}.
           <br />
           Features are locked at the time being, as they are in a trial stage.
+        </div>
+      )}
+      {user && user.user_tier > 1 && (
+        <div>
+          <a href="/dashboard" className="link-button">
+            <button className="ostrich-button personal-space-right">
+              EmailerDashboard
+            </button>
+          </a>
         </div>
       )}
     </div>

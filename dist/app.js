@@ -2503,8 +2503,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var preact_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! preact-router */ "./node_modules/preact-router/dist/preact-router.mjs");
-/* harmony import */ var _subroutines_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../subroutines/utils */ "./src/subroutines/utils.js");
+/* harmony import */ var _subroutines_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../subroutines/utils */ "./src/subroutines/utils.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2522,7 +2521,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
 var eliminateEvent = function eliminateEvent(callback) {
   return function (event) {
     return callback(event.target.value);
@@ -2532,7 +2530,7 @@ var eliminateEvent = function eliminateEvent(callback) {
 function Confirm(props) {
   var backendUrl = props.backendUrl,
       handleVerifyResults = props.handleVerifyResults;
-  var handoverEmail = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_4__.parseQueryParams)(window.location.search).email || props.email;
+  var handoverEmail = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_3__.parseQueryParams)(window.location.search).email || props.email;
 
   var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
@@ -2610,6 +2608,371 @@ function Confirm(props) {
 
 /***/ }),
 
+/***/ "./src/components/ConfirmForgotPassword.jsx":
+/*!**************************************************!*\
+  !*** ./src/components/ConfirmForgotPassword.jsx ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Confirm)
+/* harmony export */ });
+/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
+/* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _subroutines_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../subroutines/utils */ "./src/subroutines/utils.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+var eliminateEvent = function eliminateEvent(callback) {
+  return function (event) {
+    return callback(event.target.value);
+  };
+};
+
+function Confirm(props) {
+  var backendUrl = props.backendUrl,
+      handleConfirmForgotPasswordResults = props.handleConfirmForgotPasswordResults;
+  var handoverEmail = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_3__.parseQueryParams)(window.location.search).email || props.email;
+
+  var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      code = _useState2[0],
+      setCode = _useState2[1];
+
+  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(handoverEmail),
+      _useState4 = _slicedToArray(_useState3, 2),
+      email = _useState4[0],
+      setEmail = _useState4[1];
+
+  var _useState5 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      password = _useState6[0],
+      setPassword = _useState6[1];
+
+  var _useState7 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+      _useState8 = _slicedToArray(_useState7, 2),
+      confirmPassword = _useState8[0],
+      setConfirmPassword = _useState8[1];
+
+  var _useState9 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+      _useState10 = _slicedToArray(_useState9, 2),
+      errorMessage = _useState10[0],
+      setErrorMessage = _useState10[1];
+
+  var confirmForgotPassword = function confirmForgotPassword() {
+    if (password != confirmPassword) {
+      setErrorMessage('Passwords do not match!');
+    } else {
+      axios__WEBPACK_IMPORTED_MODULE_2___default().post("".concat(backendUrl, "/auth/confirm-forgot-password"), {
+        username: email,
+        password: password,
+        code: code
+      }).then(handleConfirmForgotPasswordResults(email))["catch"](function (e) {
+        setErrorMessage(e.response.data.message);
+      });
+    }
+  };
+
+  var resendCode = function resendCode() {
+    axios__WEBPACK_IMPORTED_MODULE_2___default().post("".concat(backendUrl, "/auth/resend-code"), {
+      username: email
+    }).then(function (r) {
+      setErrorMessage(r.data.message);
+    })["catch"](function (e) {
+      setErrorMessage(e.response.data.message);
+    });
+  };
+
+  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "align-center super-margin-top"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Confirm Password"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "thin-container ostrich-container personal-space-bottom"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "flex between centered-items personal-space-bottom"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
+    className: "fourth align-right",
+    htmlFor: "username"
+  }, "Email:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "two-thirds align-left"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+    name: "username",
+    className: "ninety",
+    value: email,
+    onInput: eliminateEvent(setEmail)
+  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "flex between centered-items personal-space-bottom"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
+    className: "fourth align-right",
+    htmlFor: "password"
+  }, "New Password:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "two-thirds align-left"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+    name: "password",
+    type: "password",
+    className: "ninety",
+    value: password,
+    onInput: eliminateEvent(setPassword)
+  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "flex between centered-items personal-space-bottom"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
+    className: "fourth align-right",
+    htmlFor: "confirm-password"
+  }, "Confirm Password:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "two-thirds align-left"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+    name: "confirm-password",
+    className: "ninety",
+    type: "password",
+    value: confirmPassword,
+    onInput: eliminateEvent(setConfirmPassword)
+  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "flex between centered-items personal-space-bottom"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
+    className: "fourth align-right",
+    htmlFor: "code"
+  }, "Code:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "two-thirds align-left"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+    name: "code",
+    className: "ninety",
+    value: code,
+    onInput: eliminateEvent(setCode)
+  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+    className: "ostrich-button",
+    type: "submit",
+    onClick: confirmForgotPassword
+  }, "Submit"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+    "class": "error"
+  }, errorMessage)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+    className: "ostrich-button",
+    onClick: resendCode
+  }, "Resend Code"));
+}
+
+/***/ }),
+
+/***/ "./src/components/EmailerDashboard.jsx":
+/*!*********************************************!*\
+  !*** ./src/components/EmailerDashboard.jsx ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Profile)
+/* harmony export */ });
+/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
+/* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
+/* harmony import */ var _subroutines_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../subroutines/utils */ "./src/subroutines/utils.js");
+/* harmony import */ var _ScheduleEmailForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ScheduleEmailForm */ "./src/components/ScheduleEmailForm.jsx");
+/* harmony import */ var _ScheduledEmails__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ScheduledEmails */ "./src/components/ScheduledEmails.jsx");
+/* harmony import */ var _TestSearch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./TestSearch */ "./src/components/TestSearch.jsx");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+var eliminateEvent = function eliminateEvent(callback) {
+  return function (event) {
+    return callback(event.target.value);
+  };
+};
+
+function Profile(props) {
+  var jwt = props.jwt,
+      backendUrl = props.backendUrl,
+      user = props.user;
+
+  var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      errorMessage = _useState2[0],
+      setErrorMessage = _useState2[1];
+
+  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
+      _useState4 = _slicedToArray(_useState3, 2),
+      successfulSubmition = _useState4[0],
+      setSuccessfulSubmition = _useState4[1];
+
+  var _useState5 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
+      _useState6 = _slicedToArray(_useState5, 2),
+      minPrice = _useState6[0],
+      setMinPrice = _useState6[1];
+
+  var _useState7 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
+      _useState8 = _slicedToArray(_useState7, 2),
+      maxPrice = _useState8[0],
+      setMaxPrice = _useState8[1];
+
+  var _useState9 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
+      _useState10 = _slicedToArray(_useState9, 2),
+      searchParams = _useState10[0],
+      setSearchParams = _useState10[1];
+
+  var _useState11 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
+      _useState12 = _slicedToArray(_useState11, 2),
+      numBedrooms = _useState12[0],
+      setNumBedrooms = _useState12[1];
+
+  var email = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_2__.parseJwt)(jwt.id_token).email;
+  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "page"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "card"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "Welcome!"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, email)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "profile-container align-center"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "fourty-five break-to-full"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_ScheduleEmailForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    backendUrl: backendUrl,
+    setSuccessfulSubmition: setSuccessfulSubmition,
+    setSearchParams: setSearchParams,
+    searchParams: searchParams,
+    setMinPrice: setMinPrice,
+    minPrice: minPrice,
+    setMaxPrice: setMaxPrice,
+    maxPrice: maxPrice,
+    setNumBedrooms: setNumBedrooms,
+    numBedrooms: numBedrooms
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "two-fifths break-to-full"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_ScheduledEmails__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    backendUrl: backendUrl,
+    user: user,
+    externalReload: successfulSubmition
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "two-fifths break-to-full"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_TestSearch__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    searchParams: searchParams,
+    minPrice: minPrice,
+    maxPrice: maxPrice,
+    numBedrooms: numBedrooms,
+    backendUrl: backendUrl
+  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+    className: "error"
+  }, errorMessage));
+}
+
+/***/ }),
+
+/***/ "./src/components/ForgotPassword.jsx":
+/*!*******************************************!*\
+  !*** ./src/components/ForgotPassword.jsx ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ForgotPassword)
+/* harmony export */ });
+/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
+/* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var eliminateEvent = function eliminateEvent(callback) {
+  return function (event) {
+    return callback(event.target.value);
+  };
+};
+
+function ForgotPassword(props) {
+  var backendUrl = props.backendUrl,
+      handleForgotPasswordResults = props.handleForgotPasswordResults;
+
+  var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      email = _useState2[0],
+      setEmail = _useState2[1];
+
+  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      errorMessage = _useState4[0],
+      setErrorMessage = _useState4[1];
+
+  var forgotPassword = function forgotPassword() {
+    axios__WEBPACK_IMPORTED_MODULE_2___default().post("".concat(backendUrl, "/auth/forgot-password"), {
+      username: email
+    }).then(handleForgotPasswordResults(email))["catch"](function (e) {
+      setErrorMessage(e.response.data.message);
+    });
+  };
+
+  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "align-center super-margin-top"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Forgot Password"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "thin-container ostrich-container personal-space-bottom"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "flex between centered-items personal-space-bottom"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
+    className: "fourth align-right",
+    htmlFor: "username"
+  }, "Email:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "two-thirds align-left"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+    name: "username",
+    className: "ninety",
+    value: email,
+    onInput: eliminateEvent(setEmail)
+  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+    className: "ostrich-button",
+    type: "submit",
+    onClick: forgotPassword
+  }, "Submit"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+    "class": "error"
+  }, errorMessage)));
+}
+
+/***/ }),
+
 /***/ "./src/components/Home.jsx":
 /*!*********************************!*\
   !*** ./src/components/Home.jsx ***!
@@ -2622,15 +2985,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ Home)
 /* harmony export */ });
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
-/* harmony import */ var _subroutines_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../subroutines/utils */ "./src/subroutines/utils.js");
+/* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
+/* harmony import */ var _subroutines_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../subroutines/utils */ "./src/subroutines/utils.js");
+
 
 
 function Home(props) {
   var jwt = props.jwt,
-      toProfile = props.toProfile;
+      user = props.user;
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Automate your Real Estate Workflow with Ostrich Tool Suite!"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Our site is currently under construction; more exciting features are soon to come."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "Current Tool Offerings"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Sign up here and explore our Property Notifier. Get emails directly to your inbox when properties in your areas of interest go onto the market. Get advanced investment analysis and calculations immediately."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Our", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
     href: "https://chrome.google.com/webstore/detail/ostrich/aicgkflmidjkbcenllnnlbnfnmicpmgo"
-  }, "Chrome Extension"), ' ', "helps you quickly run Cash On Cash calculations for listings."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), jwt && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "You are currently logged in as ", (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_1__.parseJwt)(jwt.id_token).email, ".", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), "Features are locked at the time being, as they are in a trial stage."));
+  }, "Chrome Extension"), ' ', "helps you quickly run Cash On Cash calculations for listings."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), jwt && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "You are currently logged in as ", (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_2__.parseJwt)(jwt.id_token).email, ".", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), "Features are locked at the time being, as they are in a trial stage."), user && user.user_tier > 1 && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    href: "/dashboard",
+    className: "link-button"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+    className: "ostrich-button personal-space-right"
+  }, "EmailerDashboard"))));
 }
 
 /***/ }),
@@ -2678,7 +3048,8 @@ function Login(props) {
   var backendUrl = props.backendUrl,
       handleLoginResults = props.handleLoginResults,
       proceedWithGoogle = props.proceedWithGoogle,
-      toSignup = props.toSignup;
+      toSignup = props.toSignup,
+      toForgotPassword = props.toForgotPassword;
   var emailFromQp = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_3__.parseQueryParams)(window.location.search).email;
 
   var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(emailFromQp),
@@ -2745,7 +3116,10 @@ function Login(props) {
   }, "Continue With Google"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "Not Signed Up?"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "plain-button",
     onClick: toSignup
-  }, "Sign up here!"));
+  }, "Sign up here!"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+    className: "plain-button",
+    onClick: toForgotPassword
+  }, "Forgot Password")));
 }
 
 /***/ }),
@@ -2779,23 +3153,21 @@ function Logout(props) {
 
 /***/ }),
 
-/***/ "./src/components/Profile.jsx":
-/*!************************************!*\
-  !*** ./src/components/Profile.jsx ***!
-  \************************************/
+/***/ "./src/components/ScheduleEmailForm.jsx":
+/*!**********************************************!*\
+  !*** ./src/components/ScheduleEmailForm.jsx ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Profile)
+/* harmony export */   "default": () => (/* binding */ ScheduleEmailForm)
 /* harmony export */ });
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
 /* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
-/* harmony import */ var preact_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! preact-router */ "./node_modules/preact-router/dist/preact-router.mjs");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _subroutines_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../subroutines/utils */ "./src/subroutines/utils.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2812,135 +3184,101 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
-
 var eliminateEvent = function eliminateEvent(callback) {
   return function (event) {
     return callback(event.target.value);
   };
 };
 
-function Profile(props) {
-  var jwt = props.jwt,
-      backendUrl = props.backendUrl;
+function ScheduleEmailForm(props) {
+  var backendUrl = props.backendUrl,
+      setSuccessfulSubmition = props.setSuccessfulSubmition,
+      searchParams = props.searchParams,
+      setSearchParams = props.setSearchParams,
+      setNumBedrooms = props.setNumBedrooms,
+      numBedrooms = props.numBedrooms,
+      setMaxPrice = props.setMaxPrice,
+      maxPrice = props.maxPrice,
+      setMinPrice = props.setMinPrice,
+      minPrice = props.minPrice;
 
   var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
       errorMessage = _useState2[0],
       setErrorMessage = _useState2[1];
 
-  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(true),
       _useState4 = _slicedToArray(_useState3, 2),
-      successMessage = _useState4[0],
-      setSuccessMessage = _useState4[1];
+      hideCocCalculations = _useState4[0],
+      setHideCocCalculations = _useState4[1];
 
-  var _useState5 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
+  var _useState5 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(60),
       _useState6 = _slicedToArray(_useState5, 2),
-      scheduledEmails = _useState6[0],
-      setScheduledEmails = _useState6[1];
+      insurance = _useState6[0],
+      setInsurance = _useState6[1];
 
-  var _useState7 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
+  var _useState7 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(5),
       _useState8 = _slicedToArray(_useState7, 2),
-      searchResults = _useState8[0],
-      setSearchResults = _useState8[1];
+      vacancy = _useState8[0],
+      setVacancy = _useState8[1];
 
-  var _useState9 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(60),
+  var _useState9 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(4),
       _useState10 = _slicedToArray(_useState9, 2),
-      insurance = _useState10[0],
-      setInsurance = _useState10[1];
+      propertyManagement = _useState10[0],
+      setPropertyManagement = _useState10[1];
 
   var _useState11 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(5),
       _useState12 = _slicedToArray(_useState11, 2),
-      vacancy = _useState12[0],
-      setVacancy = _useState12[1];
+      capex = _useState12[0],
+      setCapex = _useState12[1];
 
-  var _useState13 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(4),
+  var _useState13 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(5),
       _useState14 = _slicedToArray(_useState13, 2),
-      propertyManagement = _useState14[0],
-      setPropertyManagement = _useState14[1];
+      repairs = _useState14[0],
+      setRepairs = _useState14[1];
 
-  var _useState15 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(5),
+  var _useState15 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
       _useState16 = _slicedToArray(_useState15, 2),
-      capex = _useState16[0],
-      setCapex = _useState16[1];
+      utilities = _useState16[0],
+      setUtilities = _useState16[1];
 
-  var _useState17 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(5),
+  var _useState17 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(25),
       _useState18 = _slicedToArray(_useState17, 2),
-      repairs = _useState18[0],
-      setRepairs = _useState18[1];
+      downPayment = _useState18[0],
+      setDownPayment = _useState18[1];
 
-  var _useState19 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+  var _useState19 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(4),
       _useState20 = _slicedToArray(_useState19, 2),
-      utilities = _useState20[0],
-      setUtilities = _useState20[1];
+      closingCosts = _useState20[0],
+      setClosingCosts = _useState20[1];
 
-  var _useState21 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(25),
+  var _useState21 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(4),
       _useState22 = _slicedToArray(_useState21, 2),
-      downPayment = _useState22[0],
-      setDownPayment = _useState22[1];
+      loanInterest = _useState22[0],
+      setLoanInterest = _useState22[1];
 
-  var _useState23 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(4),
+  var _useState23 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(240),
       _useState24 = _slicedToArray(_useState23, 2),
-      closingCosts = _useState24[0],
-      setClosingCosts = _useState24[1];
+      loanMonths = _useState24[0],
+      setLoanMonths = _useState24[1];
 
-  var _useState25 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(4),
+  var _useState25 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
       _useState26 = _slicedToArray(_useState25, 2),
-      loanInterest = _useState26[0],
-      setLoanInterest = _useState26[1];
+      additionalMonthlyExpenses = _useState26[0],
+      setAdditionalMonthlyExpenses = _useState26[1];
 
-  var _useState27 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(240),
-      _useState28 = _slicedToArray(_useState27, 2),
-      loanMonths = _useState28[0],
-      setLoanMonths = _useState28[1];
-
-  var _useState29 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
-      _useState30 = _slicedToArray(_useState29, 2),
-      additionalMonthlyExpenses = _useState30[0],
-      setAdditionalMonthlyExpenses = _useState30[1];
-
-  var _useState31 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(true),
-      _useState32 = _slicedToArray(_useState31, 2),
-      hideCocCalculations = _useState32[0],
-      setHideCocCalculations = _useState32[1];
-
-  var _useState33 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
-      _useState34 = _slicedToArray(_useState33, 2),
-      minPrice = _useState34[0],
-      setMinPrice = _useState34[1];
-
-  var _useState35 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
-      _useState36 = _slicedToArray(_useState35, 2),
-      maxPrice = _useState36[0],
-      setMaxPrice = _useState36[1];
-
-  var _useState37 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
-      _useState38 = _slicedToArray(_useState37, 2),
-      searchParams = _useState38[0],
-      setSearchParams = _useState38[1];
-
-  var _useState39 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
-      _useState40 = _slicedToArray(_useState39, 2),
-      numBedrooms = _useState40[0],
-      setNumBedrooms = _useState40[1];
-
-  var email = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_4__.parseJwt)(jwt.id_token).email;
-
-  var loadScheduledEmails = function loadScheduledEmails() {
-    axios__WEBPACK_IMPORTED_MODULE_3___default().get("".concat(backendUrl, "/api/emailers")).then(function (r) {
-      setScheduledEmails(r.data);
-    })["catch"](function (e) {
-      setErrorMessage(e.response.data.message);
-    });
+  var flipHideCocCalculations = function flipHideCocCalculations() {
+    return setHideCocCalculations(!hideCocCalculations);
   };
 
-  var formatNumber = function formatNumber(number) {
-    return number ? "$".concat(number.toLocaleString()) : '$X';
-  };
+  var scheduledEmail = function scheduledEmail() {
+    if (!searchParams) {
+      setErrorMessage('Missing Search Param!');
+      return;
+    }
 
-  var submitScheduledEmails = function submitScheduledEmails() {
     try {
-      axios__WEBPACK_IMPORTED_MODULE_3___default().post("".concat(backendUrl, "/api/emailers"), {
+      axios__WEBPACK_IMPORTED_MODULE_2___default().post("".concat(backendUrl, "/api/emailers"), {
         insurance: parseInt(insurance),
         vacancy: parseInt(vacancy),
         property_management: parseInt(propertyManagement),
@@ -2958,9 +3296,8 @@ function Profile(props) {
         no_bedrooms: parseInt(numBedrooms),
         frequency: 'Daily'
       }).then(function (r) {
-        setSuccessMessage(Math.random());
+        setSuccessfulSubmition(Math.random());
       })["catch"](function (e) {
-        setSearchResults(null);
         setErrorMessage(e.response.data.message);
       });
     } catch (error) {
@@ -2968,62 +3305,7 @@ function Profile(props) {
     }
   };
 
-  var testEmailerParams = function testEmailerParams() {
-    if (!searchParams) {
-      setErrorMessage('Need to fill out Search Parameters');
-    } else {
-      var testerUrl = "".concat(backendUrl, "/api/emailers/test-search-param?search_param=").concat(encodeURI(searchParams));
-
-      if (minPrice) {
-        testerUrl = "".concat(testerUrl, "&min_price=").concat(minPrice);
-      }
-
-      if (maxPrice) {
-        testerUrl = "".concat(testerUrl, "&max_price=").concat(maxPrice);
-      }
-
-      if (numBedrooms) {
-        testerUrl = "".concat(testerUrl, "&no_bedrooms=").concat(numBedrooms);
-      }
-
-      axios__WEBPACK_IMPORTED_MODULE_3___default().get(testerUrl).then(function (r) {
-        setSearchResults(r.data);
-        setErrorMessage('');
-      })["catch"](function (e) {
-        setSearchResults(null);
-        setErrorMessage(e.response.data.message);
-      });
-    }
-  };
-
-  (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    (axios__WEBPACK_IMPORTED_MODULE_3___default().defaults.headers.common.Authorization) = "Bearer ".concat(jwt.id_token);
-    loadScheduledEmails();
-  }, [successMessage]);
-  var scheduledEmailList = !scheduledEmails ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h3", null, "Loading...") : scheduledEmails.map(function (scheduledEmail, i) {
-    var handleDeleteButton = function handleDeleteButton() {
-      axios__WEBPACK_IMPORTED_MODULE_3___default()["delete"]("".concat(backendUrl, "/emailers/").concat(scheduledEmail.id)).then(function (r) {
-        setSuccessMessage(Math.random());
-      })["catch"](function (e) {
-        setSearchResults(null);
-        setErrorMessage(e.response.data.message);
-      });
-    };
-
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-      key: i,
-      className: "scheduled-emailer-element"
-    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, scheduledEmail.search_param, ",", ' ', formatNumber(scheduledEmail.min_price), "-", formatNumber(scheduledEmail.max_price)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-      className: "ostrich-button",
-      onClick: handleDeleteButton
-    }, "Delete"));
-  });
-
-  var flipHideCocCalculations = function flipHideCocCalculations() {
-    return setHideCocCalculations(!hideCocCalculations);
-  };
-
-  var cocCalculationParams = !hideCocCalculations && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  var cocCalculationParams = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "fourth align-right",
@@ -3134,21 +3416,7 @@ function Profile(props) {
     value: additionalMonthlyExpenses,
     onInput: eliminateEvent(setAdditionalMonthlyExpenses)
   }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "$"))));
-  var searchResultsElements = searchResults && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "Search Results"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "If you are okay with these results, press submit!"), searchResults.map(function (address, i) {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-      key: i,
-      className: "scheduled-emailer-element"
-    }, address);
-  }));
-  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "page"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "card"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "Welcome!"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, email)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "profile-container align-center"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "fourty-five break-to-full"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "Schedule a New Email"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "Schedule a New Email"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "ostrich-container padded"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
@@ -3194,17 +3462,101 @@ function Profile(props) {
     className: "plain-button personal-space-small-top"
   }, hideCocCalculations ? 'Show' : 'Hide', " Calculation Params"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "personal-space-top"
-  }, cocCalculationParams), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }, !hideCocCalculations && cocCalculationParams), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+    className: "error"
+  }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex around"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "ostrich-button",
-    onClick: submitScheduledEmails
-  }, "Submit"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "ostrich-button",
-    onClick: testEmailerParams
-  }, "Test these params!"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "Hint: Test your search before submitting. This will help you dial in your parameters."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "two-fifths break-to-full"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "Scheduled Emails \u2709\uFE0F"), scheduledEmailList, searchResultsElements)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+    onClick: scheduledEmail
+  }, "Submit"))));
+}
+
+/***/ }),
+
+/***/ "./src/components/ScheduledEmails.jsx":
+/*!********************************************!*\
+  !*** ./src/components/ScheduledEmails.jsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ScheduledEmails)
+/* harmony export */ });
+/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
+/* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var formatNumber = function formatNumber(number) {
+  return number ? "$".concat(number.toLocaleString()) : '$X';
+};
+
+function ScheduledEmails(props) {
+  var backendUrl = props.backendUrl,
+      user = props.user,
+      externalReload = props.externalReload;
+
+  var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      errorMessage = _useState2[0],
+      setErrorMessage = _useState2[1];
+
+  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      reloadSelf = _useState4[0],
+      setReloadSelf = _useState4[1];
+
+  var _useState5 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      scheduledEmails = _useState6[0],
+      setScheduledEmails = _useState6[1];
+
+  (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    if (user) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default().get("".concat(backendUrl, "/api/emailers")).then(function (r) {
+        setScheduledEmails(r.data);
+      })["catch"](function (e) {
+        setErrorMessage(e.response.data.message);
+      });
+    }
+  }, [user, reloadSelf, externalReload]);
+  var scheduledEmailList = scheduledEmails.map(function (scheduledEmail, i) {
+    var handleDeleteButton = function handleDeleteButton() {
+      axios__WEBPACK_IMPORTED_MODULE_2___default()["delete"]("".concat(backendUrl, "/api/emailers/").concat(scheduledEmail.id)).then(function (r) {
+        setReloadSelf(Math.random());
+      })["catch"](function (e) {
+        setSearchResults([]);
+        setErrorMessage(e.response.data.message);
+      });
+    };
+
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      key: i,
+      className: "scheduled-emailer-element"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, scheduledEmail.search_param, ",", ' ', formatNumber(scheduledEmail.min_price), "-", formatNumber(scheduledEmail.max_price)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+      className: "ostrich-button",
+      onClick: handleDeleteButton
+    }, "Delete"));
+  });
+  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "Your Scheduled Emails"), !scheduledEmails ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "Loading...") : scheduledEmailList, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     className: "error"
   }, errorMessage));
 }
@@ -3342,6 +3694,96 @@ function Signup(props) {
     className: "plain-button",
     onClick: toLogin
   }, "Log in here!"));
+}
+
+/***/ }),
+
+/***/ "./src/components/TestSearch.jsx":
+/*!***************************************!*\
+  !*** ./src/components/TestSearch.jsx ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ TestSearch)
+/* harmony export */ });
+/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
+/* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+function TestSearch(props) {
+  var backendUrl = props.backendUrl,
+      searchParams = props.searchParams,
+      numBedrooms = props.numBedrooms,
+      maxPrice = props.maxPrice,
+      minPrice = props.minPrice;
+
+  var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      testResults = _useState2[0],
+      setTestResults = _useState2[1];
+
+  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
+      _useState4 = _slicedToArray(_useState3, 2),
+      errorMessage = _useState4[0],
+      setErrorMessage = _useState4[1];
+
+  var testEmailerParams = function testEmailerParams() {
+    if (!searchParams) {
+      setErrorMessage('Need to fill out Search Parameters');
+    } else {
+      var testerUrl = "".concat(backendUrl, "/api/emailers/test-search-param?search_param=").concat(encodeURI(searchParams));
+
+      if (minPrice) {
+        testerUrl = "".concat(testerUrl, "&min_price=").concat(minPrice);
+      }
+
+      if (maxPrice) {
+        testerUrl = "".concat(testerUrl, "&max_price=").concat(maxPrice);
+      }
+
+      if (numBedrooms) {
+        testerUrl = "".concat(testerUrl, "&no_bedrooms=").concat(numBedrooms);
+      }
+
+      axios__WEBPACK_IMPORTED_MODULE_2___default().get(testerUrl).then(function (r) {
+        setTestResults(r.data);
+        setErrorMessage('');
+      })["catch"](function (e) {
+        setTestResults([]);
+        setErrorMessage(e.response.data.message);
+      });
+    }
+  };
+
+  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "Search Results"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "Hint: Test your search before submitting. This will help you dial in your parameters."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+    className: "error"
+  }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+    className: "ostrich-button",
+    onClick: testEmailerParams
+  }, "Test these params!"), testResults.map(function (address, i) {
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      key: i,
+      className: "scheduled-emailer-element"
+    }, address);
+  }));
 }
 
 /***/ }),
@@ -3578,9 +4020,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Login__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Login */ "./src/components/Login.jsx");
 /* harmony import */ var _components_Signup__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Signup */ "./src/components/Signup.jsx");
 /* harmony import */ var _components_Confirm__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/Confirm */ "./src/components/Confirm.jsx");
-/* harmony import */ var _components_Profile__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/Profile */ "./src/components/Profile.jsx");
+/* harmony import */ var _components_EmailerDashboard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/EmailerDashboard */ "./src/components/EmailerDashboard.jsx");
 /* harmony import */ var _components_Home__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/Home */ "./src/components/Home.jsx");
 /* harmony import */ var _components_Logout__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/Logout */ "./src/components/Logout.jsx");
+/* harmony import */ var _components_ForgotPassword__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/ForgotPassword */ "./src/components/ForgotPassword.jsx");
+/* harmony import */ var _components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../components/ConfirmForgotPassword */ "./src/components/ConfirmForgotPassword.jsx");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_13__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3605,6 +4051,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
+
 var loginWithGoogleUrl = 'https://ostrich.auth.us-east-2.amazoncognito.com/login?client_id=70apbavl1fsobed4jt7l7ml18h&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://ostr.ch';
 var backendUrl = 'https://q0sku06vtg.execute-api.us-east-2.amazonaws.com/v1';
 
@@ -3614,7 +4063,21 @@ function App(props) {
       jwt = _useState2[0],
       setJwt = _useState2[1];
 
-  (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {}, [jwt]);
+  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useState)(null),
+      _useState4 = _slicedToArray(_useState3, 2),
+      user = _useState4[0],
+      setUser = _useState4[1];
+
+  (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
+    if (jwt) {
+      (axios__WEBPACK_IMPORTED_MODULE_13___default().defaults.headers.common.Authorization) = "Bearer ".concat(jwt.id_token);
+      axios__WEBPACK_IMPORTED_MODULE_13___default().get("".concat(backendUrl, "/api/users")).then(function (r) {
+        setUser(r.data);
+      })["catch"](function (e) {
+        setErrorMessage(e.response.data.message);
+      });
+    }
+  }, [jwt]);
   (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
     if (window.location.hash) {
       setJwt((0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_4__.parseQueryParams)(window.location.hash));
@@ -3623,49 +4086,60 @@ function App(props) {
 
   var handleLoginResults = function handleLoginResults(email) {
     return function (r) {
-      console.log(r);
-      setJwt(r.data); // route('/profile', true)
+      setJwt(r.data);
+      (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/', true);
     };
   };
 
   var handleVerifyResults = function handleVerifyResults(email) {
     return function (r) {
-      (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)("/login?email=".concat(email), true);
+      return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)("/login?email=".concat(email), true);
     };
   };
 
   var handleSignupResults = function handleSignupResults(email) {
     return function (r) {
-      (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)("/confirm?email=".concat(email), true);
+      return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)("/confirm?email=".concat(email), true);
+    };
+  };
+
+  var handleForgotPasswordResults = function handleForgotPasswordResults(email) {
+    return function (r) {
+      return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)("/confirm-forgot-password?email=".concat(email), true);
+    };
+  };
+
+  var handleConfirmForgotPasswordResults = function handleConfirmForgotPasswordResults(email) {
+    return function (r) {
+      return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)("/login?email=".concat(email), true);
     };
   };
 
   var toSignup = function toSignup() {
-    (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/signup');
+    return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/signup');
   };
 
   var toLogin = function toLogin() {
-    (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/login');
+    return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/login');
   };
 
-  var toProfile = function toProfile() {
-    (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/profile');
+  var toEmailerDashboard = function toEmailerDashboard() {
+    return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/dashboard');
   };
 
   var toHome = function toHome() {
-    (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/');
+    return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/');
+  };
+
+  var toForgotPassword = function toForgotPassword() {
+    return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/forgot-password');
   };
 
   var proceedWithGoogle = function proceedWithGoogle() {
     return window.open(loginWithGoogleUrl, '_blank');
   };
 
-  var loginOrLogout = jwt ? (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("a", {
-    href: "/profile",
-    className: "link-button"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("button", {
-    className: "ostrich-button personal-space-right"
-  }, "Profile"))) : (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("a", {
+  var loginOrLogout = jwt ? (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact__WEBPACK_IMPORTED_MODULE_1__.Fragment, null) : (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("a", {
     href: "/",
     className: "link-button"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("button", {
@@ -3696,7 +4170,8 @@ function App(props) {
     backendUrl: backendUrl,
     handleLoginResults: handleLoginResults,
     toSignup: toSignup,
-    proceedWithGoogle: proceedWithGoogle
+    proceedWithGoogle: proceedWithGoogle,
+    toForgotPassword: toForgotPassword
   }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Signup__WEBPACK_IMPORTED_MODULE_6__["default"], {
     path: "/signup",
     backendUrl: backendUrl,
@@ -3707,18 +4182,28 @@ function App(props) {
     path: "/confirm",
     backendUrl: backendUrl,
     handleVerifyResults: handleVerifyResults
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Profile__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    path: "/profile",
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_EmailerDashboard__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    path: "/dashboard",
     jwt: jwt,
-    backendUrl: backendUrl
+    backendUrl: backendUrl,
+    user: user
   }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Logout__WEBPACK_IMPORTED_MODULE_10__["default"], {
     path: "/logout",
     backendUrl: backendUrl
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_ForgotPassword__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    path: "/forgot-password",
+    backendUrl: backendUrl,
+    handleForgotPasswordResults: handleForgotPasswordResults
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    path: "/confirm-forgot-password",
+    backendUrl: backendUrl,
+    handleConfirmForgotPasswordResults: handleConfirmForgotPasswordResults
   }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Home__WEBPACK_IMPORTED_MODULE_9__["default"], {
     path: "/",
     backendUrl: backendUrl,
     jwt: jwt,
-    toProfile: toProfile
+    user: user,
+    toEmailerDashboard: toEmailerDashboard
   }))), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("footer", {
     "class": "align-center"
   }, "Ostrich Tools Ltd."));

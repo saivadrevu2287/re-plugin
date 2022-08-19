@@ -2760,13 +2760,15 @@ function ListingData(props) {
 
   var redfinLink = "https://www.google.com/search?q=".concat(encodeURIComponent(address + ' redfin'));
   var realtorLink = "https://www.google.com/search?q=".concat(encodeURIComponent(address + ' realtor'));
-  var cashOnCashClass = "cash-on-cash ".concat(cashOnCash > 0 ? 'success' : 'error');
-  var cashOnCashString = cashOnCash.toLocaleString() + '%';
+  var cocErrorState = !cashOnCash ? '' : cashOnCash > 0 ? 'success' : 'error';
+  var cashOnCashClass = "cash-on-cash ".concat(cocErrorState);
+  var cashOnCashValue = !cashOnCash ? 0 : cashOnCash;
+  var cashOnCashString = cashOnCashValue.toLocaleString() + '%';
   var infoLink = 'https://rehacks.io/blog-new/a-chrome-extension-to-analyze-roi-of-a-rental-property-in-5-sec';
   var feedbackLink = 'https://docs.google.com/forms/d/1E6h7AbJZxitYnMuT1J6eK-x9AA5CpYHE2Dd3qYghZUA/edit';
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "align-center personal-space-top"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "COC Calculator"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "COC Calculator"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "thin-container ostrich-container"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     "class": "flex between centered-items personal-space-small-bottom"
@@ -2777,7 +2779,7 @@ function ListingData(props) {
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     className: "input",
-    placeholder: "Provide Price",
+    placeholder: "",
     value: price,
     onInput: handleUpdate('price')
   }), "$")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
@@ -2795,7 +2797,7 @@ function ListingData(props) {
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     className: "input",
-    placeholder: "Provide Taxes",
+    placeholder: "",
     value: taxes,
     onInput: handleUpdate('taxes')
   }), "$/mo")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
@@ -2807,8 +2809,8 @@ function ListingData(props) {
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     className: "input",
     type: "number",
-    placeholder: "Provide Rent",
-    value: rentEstimate,
+    placeholder: "",
+    value: !rentEstimate ? "N/A" : rentEstimate,
     onInput: handleUpdate('rent')
   }), "$/mo")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     "class": "flex between centered-items personal-space-small-bottom"
@@ -2829,7 +2831,7 @@ function ListingData(props) {
   }, "Specs:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
     className: "input-container align-left"
   }, specs)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "link-button plain-button",
+    className: "link-button ostrich-button",
     onClick: handleCopyClick
   }, hasBeenCopied ? 'Copied!' : 'Copy Data Fields')), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "bottom-half"
@@ -2837,7 +2839,7 @@ function ListingData(props) {
     className: "flex centered-items between personal-space-bottom personal-space-top"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "label align-right"
-  }, "Cash On Cash", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+  }, "COC", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
     target: "_blank",
     href: infoLink
   }, "(?)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
@@ -2849,18 +2851,20 @@ function ListingData(props) {
     className: "link-button",
     href: redfinLink
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "ostrich-button"
+    className: "plain-button"
   }, "To Redfin")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
     target: "_blank",
     className: "link-button",
     href: realtorLink
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "ostrich-button"
-  }, "To Realtor"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    className: "plain-button"
+  }, "To Realtor"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "align-left"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
     className: "value-large",
     target: "_blank",
     href: feedbackLink
-  }, "Provide Feedback!")));
+  }, "Provide Feedback!"))));
 }
 
 /***/ }),

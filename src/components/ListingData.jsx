@@ -88,9 +88,10 @@ export default function ListingData(props) {
     address + ' realtor'
   )}`
 
-  const cashOnCashClass = `cash-on-cash ${cashOnCash > 0 ? 'success' : 'error'}`
-
-  const cashOnCashString = cashOnCash.toLocaleString() + '%'
+  const cocErrorState = !cashOnCash ? '' : cashOnCash > 0 ? 'success' : 'error'
+  const cashOnCashClass = `cash-on-cash ${cocErrorState}`
+  const cashOnCashValue = !cashOnCash ? 0 : cashOnCash
+  const cashOnCashString = cashOnCashValue.toLocaleString() + '%'
 
   const infoLink =
     'https://rehacks.io/blog-new/a-chrome-extension-to-analyze-roi-of-a-rental-property-in-5-sec'
@@ -99,7 +100,7 @@ export default function ListingData(props) {
 
   return (
     <div className="align-center personal-space-top">
-      <h5>COC Calculator</h5>
+      <h6>COC Calculator</h6>
       <div className="thin-container ostrich-container">
         <div class="flex between centered-items personal-space-small-bottom">
           <label className="label align-right">Price:</label>
@@ -107,7 +108,7 @@ export default function ListingData(props) {
             <input
               type="number"
               className="input"
-              placeholder="Provide Price"
+              placeholder=""
               value={price}
               onInput={handleUpdate('price')}
             />
@@ -124,7 +125,7 @@ export default function ListingData(props) {
             <input
               type="number"
               className="input"
-              placeholder="Provide Taxes"
+              placeholder=""
               value={taxes}
               onInput={handleUpdate('taxes')}
             />
@@ -137,8 +138,8 @@ export default function ListingData(props) {
             <input
               className="input"
               type="number"
-              placeholder="Provide Rent"
-              value={rentEstimate}
+              placeholder=""
+              value={!rentEstimate ? "N/A" : rentEstimate}
               onInput={handleUpdate('rent')}
             />
             $/mo
@@ -156,14 +157,14 @@ export default function ListingData(props) {
           <label className="label align-right">Specs:</label>
           <span className="input-container align-left">{specs}</span>
         </div>
-        <button className="link-button plain-button" onClick={handleCopyClick}>
+        <button className="link-button ostrich-button" onClick={handleCopyClick}>
           {hasBeenCopied ? 'Copied!' : 'Copy Data Fields'}
         </button>
       </div>
       <div className="bottom-half">
         <div className="flex centered-items between personal-space-bottom personal-space-top">
           <label className="label align-right">
-            Cash On Cash
+            COC
             <a target="_blank" href={infoLink}>
               (?)
             </a>
@@ -173,15 +174,17 @@ export default function ListingData(props) {
         </div>
         <div className="flex around personal-space-bottom">
           <a target="_blank" className="link-button" href={redfinLink}>
-            <button className="ostrich-button">To Redfin</button>
+            <button className="plain-button">To Redfin</button>
           </a>
           <a target="_blank" className="link-button" href={realtorLink}>
-            <button className="ostrich-button">To Realtor</button>
+            <button className="plain-button">To Realtor</button>
           </a>
         </div>
+        <div className='align-left'>
         <a className="value-large" target="_blank" href={feedbackLink}>
           Provide Feedback!
         </a>
+        </div>
       </div>
     </div>
   )

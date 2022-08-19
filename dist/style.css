@@ -1,7 +1,7 @@
 body {
   font-size: 0.9rem;
   font-family: Helvetica;
-  background-color: rgb(241, 245, 252);
+  background-color: #ffffff;
   margin: auto;
   max-width: 850px;
   min-width: 250px;
@@ -87,32 +87,32 @@ h6 {
 }
 
 .ostrich-container {
-  background-color: rgb(53, 36, 154);
   border-radius: 13px;
-  color: white;
+  color: black;
 }
 
 button {
   outline: none;
   border: none;
   padding: 10px 30px 10px 30px;
-  border-radius: 8px;
+  border-radius: 2px;
 }
 
 .ostrich-button {
-  background-image: linear-gradient(rgb(255, 87, 36), rgb(202, 21, 5));
-  color: white;
-}
-
-.plain-button {
-  background-color: rgb(53, 36, 154);
+  background-color: #4d2ad4;
   color: white;
   border: 1px solid white;
 }
 
+.plain-button {
+  color: #4d2ad4;
+  background-color: white;
+  border: 1px solid #4d2ad4;
+}
+
 .cash-on-cash {
-  font-size: 1.7rem;
-  width: 60%;
+  font-weight: bold;
+  width: 50%;
 }
 
 nav {
@@ -123,8 +123,9 @@ nav {
 
 .thin-container {
   width: 50%;
-  margin: auto;
-  padding: 1rem;
+  padding-right: 0.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .success {
@@ -270,7 +271,7 @@ nav {
   }
 
   .thin-container {
-    width: 80%;
+    width: 95%;
   }
 
   button {

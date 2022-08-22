@@ -68,22 +68,23 @@ export default function Login(props) {
         <button className="ostrich-button" type="submit" onClick={login}>
           Login
         </button>
+        <div>
+        <button className="plain-button" onClick={toForgotPassword}>
+          Forgot Password
+        </button>
+        
       </div>
       <button
-        className="plain-button personal-space-bottom"
-        onClick={proceedWithGoogle}
-      >
-        Continue With Google
-      </button>
+          className="plain-button personal-space-bottom"
+          onClick={proceedWithGoogle}
+        >
+          Continue With Google
+        </button>
+      </div>
       <h6>Not Signed Up?</h6>
       <button className="plain-button" onClick={toSignup}>
         Sign up here!
       </button>
-      <div>
-        <button className="plain-button" onClick={toForgotPassword}>
-          Forgot Password
-        </button>
-      </div>
     </div>
   )
 }

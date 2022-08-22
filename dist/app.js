@@ -3110,16 +3110,16 @@ function Login(props) {
     className: "ostrich-button",
     type: "submit",
     onClick: login
-  }, "Login")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "plain-button personal-space-bottom",
-    onClick: proceedWithGoogle
-  }, "Continue With Google"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "Not Signed Up?"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "plain-button",
-    onClick: toSignup
-  }, "Sign up here!"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+  }, "Login"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "plain-button",
     onClick: toForgotPassword
-  }, "Forgot Password")));
+  }, "Forgot Password")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+    className: "plain-button personal-space-bottom",
+    onClick: proceedWithGoogle
+  }, "Continue With Google")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "Not Signed Up?"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+    className: "plain-button",
+    onClick: toSignup
+  }, "Sign up here!"));
 }
 
 /***/ }),

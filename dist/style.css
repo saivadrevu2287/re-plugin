@@ -126,6 +126,7 @@ nav {
   padding-right: 0.5rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  margin: auto;
 }
 
 .success {
@@ -272,6 +273,7 @@ nav {
 
   .thin-container {
     width: 95%;
+    margin: 0px;
   }
 
   button {

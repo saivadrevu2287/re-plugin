@@ -2477,6 +2477,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var entry = function entry(container) {
+  setTimeout(function () {
+    console.log("Running!!!");
+
+    _gaq.push(['_setAccount', 'UA-208478356-1']);
+
+    _gaq.push(['_trackPageview']);
+  }, 1000);
   var root = 'root';
   var errorMsg = "Error: We could not locate element with id ".concat(root, " to mount!");
   console.log("Mounting on ".concat(root, "!"));
@@ -2993,9 +3000,28 @@ __webpack_require__.r(__webpack_exports__);
 function Home(props) {
   var jwt = props.jwt,
       user = props.user;
-  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Automate your Real Estate Workflow with Ostrich Tool Suite!"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Our site is currently under construction; more exciting features are soon to come."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "Current Tool Offerings"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Sign up here and explore our Property Notifier. Get emails directly to your inbox when properties in your areas of interest go onto the market. Get advanced investment analysis and calculations immediately."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Our", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: "https://chrome.google.com/webstore/detail/ostrich/aicgkflmidjkbcenllnnlbnfnmicpmgo"
-  }, "Chrome Extension"), ' ', "helps you quickly run Cash On Cash calculations for listings."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), jwt && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "You are currently logged in as ", (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_2__.parseJwt)(jwt.id_token).email, ".", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), "Features are locked at the time being, as they are in a trial stage."), user && user.user_tier > 1 && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex around super-margin-top wrap"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "fourty-five personal-margin-top break-to-full"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h3", null, "The fastest way ever to analyze rentals"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "A daily email that delivers the cash flow analysis of the newest properties in your market."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex around personal-margin-top-double"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    href: "https://chrome.google.com/webstore/detail/ostrich/aicgkflmidjkbcenllnnlbnfnmicpmgo",
+    className: "link-button"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+    className: "ostrich-button"
+  }, "Try Ostrich for Free")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    href: "https://chrome.google.com/webstore/detail/ostrich/aicgkflmidjkbcenllnnlbnfnmicpmgo",
+    className: "link-button"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+    className: "plain-button"
+  }, "How it Works")))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "fourty-five break-to-full"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+    src: "/guy-with-charts.svg",
+    className: "full"
+  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), jwt && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "You are currently logged in as ", (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_2__.parseJwt)(jwt.id_token).email, ".", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), "Features are locked at the time being, as they are in a trial stage."), user && user.user_tier > 1 && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
     href: "/dashboard",
     className: "link-button"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
@@ -4140,16 +4166,16 @@ function App(props) {
   };
 
   var loginOrLogout = jwt ? (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact__WEBPACK_IMPORTED_MODULE_1__.Fragment, null) : (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("a", {
-    href: "/",
-    className: "link-button"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("button", {
-    className: "ostrich-button personal-space-right"
-  }, " Home")), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("a", {
     href: "/login",
     className: "link-button"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("button", {
+    className: "plain-button personal-space-right"
+  }, "Login")), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("a", {
+    href: "/signup",
+    className: "link-button"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("button", {
     className: "ostrich-button personal-space-right"
-  }, "Login")));
+  }, ' ', "Sign Up")));
   return (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("nav", {
     className: "ostrich-container"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("div", {

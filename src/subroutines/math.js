@@ -59,13 +59,6 @@ const MonthlyDebtService = (configurationFields, loan) => {
   // 1 - (1 + i)^-n
   const denominator = 1 - exponent
 
-  console.log({
-    monthlyInterest,
-    months,
-    exponent,
-    denominator,
-  })
-
   // p * (i / (1 - (1 + i)^-n))
   return loan * (monthlyInterest / denominator)
 }
@@ -97,19 +90,6 @@ export const calculateCOC = (
     monthlyDebtService
   )
   const cashOnCash = CashOnCash(monthlyCashFlow, initialTotalInvestment)
-
-  console.log({
-    configurationFields,
-    purchasePrice,
-    taxes,
-    monthlyGrossIncome,
-    loan,
-    monthlyDebtService,
-    monthlyExpenses,
-    initialTotalInvestment,
-    monthlyCashFlow,
-    cashOnCash,
-  })
 
   return { cashOnCash, monthlyExpenses }
 }

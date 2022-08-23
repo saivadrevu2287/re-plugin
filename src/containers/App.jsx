@@ -68,11 +68,14 @@ function App(props) {
     <Fragment></Fragment>
   ) : (
     <Fragment>
-      <a href="/" className="link-button">
-        <button className="ostrich-button personal-space-right"> Home</button>
-      </a>
       <a href="/login" className="link-button">
-        <button className="ostrich-button personal-space-right">Login</button>
+        <button className="plain-button personal-space-right">Login</button>
+      </a>
+      <a href="/signup" className="link-button">
+        <button className="ostrich-button personal-space-right">
+          {' '}
+          Sign Up
+        </button>
       </a>
     </Fragment>
   )

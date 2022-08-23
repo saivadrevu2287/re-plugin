@@ -2477,6 +2477,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var entry = function entry(container) {
+  setTimeout(function () {
+    console.log("Running!!!");
+
+    _gaq.push(['_setAccount', 'UA-208478356-1']);
+
+    _gaq.push(['_trackPageview']);
+  }, 1000);
   var root = 'root';
   var errorMsg = "Error: We could not locate element with id ".concat(root, " to mount!");
   console.log("Mounting on ".concat(root, "!"));
@@ -2810,7 +2817,7 @@ function ListingData(props) {
     className: "input",
     type: "number",
     placeholder: "",
-    value: !rentEstimate ? "N/A" : rentEstimate,
+    value: !rentEstimate ? 'N/A' : rentEstimate,
     onInput: handleUpdate('rent')
   }), "$/mo")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     "class": "flex between centered-items personal-space-small-bottom"
@@ -3184,13 +3191,7 @@ var MonthlyDebtService = function MonthlyDebtService(configurationFields, loan) 
 
   var exponent = Math.pow(1 + monthlyInterest, -months); // 1 - (1 + i)^-n
 
-  var denominator = 1 - exponent;
-  console.log({
-    monthlyInterest: monthlyInterest,
-    months: months,
-    exponent: exponent,
-    denominator: denominator
-  }); // p * (i / (1 - (1 + i)^-n))
+  var denominator = 1 - exponent; // p * (i / (1 - (1 + i)^-n))
 
   return loan * (monthlyInterest / denominator);
 }; // Loan = 75% of Purchase Price(comes from Zillow)
@@ -3207,18 +3208,6 @@ var calculateCOC = function calculateCOC(configurationFields, purchasePrice, tax
   var initialTotalInvestment = InitialTotalInvestment(configurationFields, purchasePrice);
   var monthlyCashFlow = MonthlyCashFlow(configurationFields, monthlyGrossIncome, monthlyExpenses, monthlyDebtService);
   var cashOnCash = CashOnCash(monthlyCashFlow, initialTotalInvestment);
-  console.log({
-    configurationFields: configurationFields,
-    purchasePrice: purchasePrice,
-    taxes: taxes,
-    monthlyGrossIncome: monthlyGrossIncome,
-    loan: loan,
-    monthlyDebtService: monthlyDebtService,
-    monthlyExpenses: monthlyExpenses,
-    initialTotalInvestment: initialTotalInvestment,
-    monthlyCashFlow: monthlyCashFlow,
-    cashOnCash: cashOnCash
-  });
   return {
     cashOnCash: cashOnCash,
     monthlyExpenses: monthlyExpenses

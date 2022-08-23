@@ -24,33 +24,32 @@ export default function ScheduledEmails(props) {
     }
   }, [user, reloadSelf, externalReload])
 
-  const scheduledEmailList = 
-    scheduledEmails.map((scheduledEmail, i) => {
-      const handleDeleteButton = () => {
-        axios
-          .delete(`${backendUrl}/api/emailers/${scheduledEmail.id}`)
-          .then((r) => {
-            setReloadSelf(Math.random())
-          })
-          .catch((e) => {
-            setSearchResults([])
-            setErrorMessage(e.response.data.message)
-          })
-      }
+  const scheduledEmailList = scheduledEmails.map((scheduledEmail, i) => {
+    const handleDeleteButton = () => {
+      axios
+        .delete(`${backendUrl}/api/emailers/${scheduledEmail.id}`)
+        .then((r) => {
+          setReloadSelf(Math.random())
+        })
+        .catch((e) => {
+          setSearchResults([])
+          setErrorMessage(e.response.data.message)
+        })
+    }
 
-      return (
-        <div key={i} className="scheduled-emailer-element">
-          <p>
-            {scheduledEmail.search_param},{' '}
-            {formatNumber(scheduledEmail.min_price)}-
-            {formatNumber(scheduledEmail.max_price)}
-          </p>
-          <button className="ostrich-button" onClick={handleDeleteButton}>
-            Delete
-          </button>
-        </div>
-      )
-    })
+    return (
+      <div key={i} className="scheduled-emailer-element">
+        <p>
+          {scheduledEmail.search_param},{' '}
+          {formatNumber(scheduledEmail.min_price)}-
+          {formatNumber(scheduledEmail.max_price)}
+        </p>
+        <button className="ostrich-button" onClick={handleDeleteButton}>
+          Delete
+        </button>
+      </div>
+    )
+  })
 
   return (
     <Fragment>

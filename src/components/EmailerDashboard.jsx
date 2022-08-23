@@ -49,7 +49,7 @@ export default function Profile(props) {
           />
         </div>
         <div className="two-fifths break-to-full">
-          <TestSearch 
+          <TestSearch
             searchParams={searchParams}
             minPrice={minPrice}
             maxPrice={maxPrice}

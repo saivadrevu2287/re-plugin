@@ -1,4 +1,4 @@
-import { h } from 'preact'
+import { h, Fragment } from 'preact'
 import { useReducer } from 'preact/hooks'
 import { parseJwt } from '../subroutines/utils'
 
@@ -6,26 +6,35 @@ export default function Home(props) {
   const { jwt, user } = props
 
   return (
-    <div>
-      <h4>Automate your Real Estate Workflow with Ostrich Tool Suite!</h4>
-      <br />
-      <p>
-        Our site is currently under construction; more exciting features are
-        soon to come.
-      </p>
-      <h6>Current Tool Offerings</h6>
-      <p>
-        Sign up here and explore our Property Notifier. Get emails directly to
-        your inbox when properties in your areas of interest go onto the market.
-        Get advanced investment analysis and calculations immediately.
-      </p>
-      <p>
-        Our{' '}
-        <a href="https://chrome.google.com/webstore/detail/ostrich/aicgkflmidjkbcenllnnlbnfnmicpmgo">
-          Chrome Extension
-        </a>{' '}
-        helps you quickly run Cash On Cash calculations for listings.
-      </p>
+    <Fragment>
+      <div className="flex around super-margin-top wrap">
+        <div className="fourty-five personal-margin-top break-to-full">
+          <h3>The fastest way ever to analyze rentals</h3>
+          <br />
+          <h5>
+            A daily email that delivers the cash flow analysis of the newest
+            properties in your market.
+          </h5>
+          <div className="flex around personal-margin-top-double">
+            <a
+              href="https://chrome.google.com/webstore/detail/ostrich/aicgkflmidjkbcenllnnlbnfnmicpmgo"
+              className="link-button"
+            >
+              <button className="ostrich-button">Try Ostrich for Free</button>
+            </a>
+            <a
+              href="https://chrome.google.com/webstore/detail/ostrich/aicgkflmidjkbcenllnnlbnfnmicpmgo"
+              className="link-button"
+            >
+              <button className="plain-button">How it Works</button>
+            </a>
+          </div>
+        </div>
+        <div className="fourty-five break-to-full">
+          <img src="/guy-with-charts.svg" className="full" />
+        </div>
+      </div>
+
       <br />
       {jwt && (
         <div>
@@ -43,6 +52,6 @@ export default function Home(props) {
           </a>
         </div>
       )}
-    </div>
+    </Fragment>
   )
 }

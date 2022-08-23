@@ -69,12 +69,11 @@ export default function Login(props) {
           Login
         </button>
         <div>
-        <button className="plain-button" onClick={toForgotPassword}>
-          Forgot Password
-        </button>
-        
-      </div>
-      <button
+          <button className="plain-button" onClick={toForgotPassword}>
+            Forgot Password
+          </button>
+        </div>
+        <button
           className="plain-button personal-space-bottom"
           onClick={proceedWithGoogle}
         >

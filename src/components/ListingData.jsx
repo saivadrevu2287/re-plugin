@@ -139,7 +139,7 @@ export default function ListingData(props) {
               className="input"
               type="number"
               placeholder=""
-              value={!rentEstimate ? "N/A" : rentEstimate}
+              value={!rentEstimate ? 'N/A' : rentEstimate}
               onInput={handleUpdate('rent')}
             />
             $/mo
@@ -157,7 +157,10 @@ export default function ListingData(props) {
           <label className="label align-right">Specs:</label>
           <span className="input-container align-left">{specs}</span>
         </div>
-        <button className="link-button ostrich-button" onClick={handleCopyClick}>
+        <button
+          className="link-button ostrich-button"
+          onClick={handleCopyClick}
+        >
           {hasBeenCopied ? 'Copied!' : 'Copy Data Fields'}
         </button>
       </div>
@@ -180,10 +183,10 @@ export default function ListingData(props) {
             <button className="plain-button">To Realtor</button>
           </a>
         </div>
-        <div className='align-left'>
-        <a className="value-large" target="_blank" href={feedbackLink}>
-          Provide Feedback!
-        </a>
+        <div className="align-left">
+          <a className="value-large" target="_blank" href={feedbackLink}>
+            Provide Feedback!
+          </a>
         </div>
       </div>
     </div>

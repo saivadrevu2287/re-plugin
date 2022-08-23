@@ -21,7 +21,8 @@ chrome.runtime.onInstalled.addListener(() => {
       console.log('This user was already logged in.')
     } else {
       console.log('This user was not already logged in.')
-      const newUrl = 'https://ostrch.notion.site/Ostrich-Extension-Tutorial-1c29f7df3db543c6b795c55f44ff9acb'
+      const newUrl =
+        'https://ostrch.notion.site/Ostrich-Extension-Tutorial-1c29f7df3db543c6b795c55f44ff9acb'
       chrome.tabs.create({ url: newUrl })
       chrome.storage.sync.set({ configurationFields })
     }

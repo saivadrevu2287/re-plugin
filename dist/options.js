@@ -20,7 +20,12 @@ function constructOptions() {
       chrome.storage.sync.set({ configurationFields: fields })
     }
 
-    const badProperties = ['idToken', 'email', 'needsVerification', 'isLoggedIn']
+    const badProperties = [
+      'idToken',
+      'email',
+      'needsVerification',
+      'isLoggedIn',
+    ]
 
     Object.keys(fields)
       .filter((key) => !badProperties.includes(key))

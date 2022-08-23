@@ -3,7 +3,7 @@ body {
   font-family: Helvetica;
   background-color: #ffffff;
   margin: auto;
-  max-width: 850px;
+  max-width: 1200px;
   min-width: 250px;
 }
 
@@ -96,6 +96,8 @@ button {
   border: none;
   padding: 10px 30px 10px 30px;
   border-radius: 2px;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 .ostrich-button {
@@ -119,6 +121,8 @@ nav {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .thin-container {
@@ -234,11 +238,19 @@ nav {
 }
 
 .super-margin-top {
-  margin-top: 100px;
+  margin-top: 80px;
 }
 
 .super-margin-bottom {
   margin-bottom: 100px;
+}
+
+.personal-margin-top {
+  margin-top: 1rem;
+}
+
+.personal-margin-top-double {
+  margin-top: 2rem;
 }
 
 .personal-space-top {
@@ -278,6 +290,8 @@ nav {
 
   button {
     padding: 5px 20px 5px 20px;
+    font-size: 12px;
+    font-weight: normal;
   }
 
   .input {

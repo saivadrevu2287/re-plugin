@@ -126,7 +126,7 @@ nav {
 }
 
 .thin-container {
-  width: 50%;
+  max-width: 400px;
   padding-right: 0.5rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -193,14 +193,6 @@ nav {
   text-align: left;
 }
 
-.full {
-  width: 100%;
-}
-
-.half {
-  width: 50%;
-}
-
 .fifth {
   width: 20%;
 }
@@ -213,14 +205,6 @@ nav {
   width: 33%;
 }
 
-.two-thirds {
-  width: 66%;
-}
-
-.three-fifths {
-  width: 60%;
-}
-
 .two-fifths {
   width: 40%;
 }
@@ -229,8 +213,28 @@ nav {
   width: 45%;
 }
 
+.half {
+  width: 50%;
+}
+
+.two-thirds {
+  width: 66%;
+}
+
+.three-fifths {
+  width: 60%;
+}
+
+.three-fourths {
+  width: 75%;
+}
+
 .ninety {
   width: 90%;
+}
+
+.full {
+  width: 100%;
 }
 
 .padded {
@@ -247,6 +251,10 @@ nav {
 
 .personal-margin-top {
   margin-top: 1rem;
+}
+
+.personal-margin-bottom {
+  margin-bottom: 1rem;
 }
 
 .personal-margin-top-double {

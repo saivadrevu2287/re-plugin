@@ -16,6 +16,7 @@ export default function Signup(props) {
     if (password != confirmPassword) {
       setErrorMessage('Passwords do not match!')
     } else {
+      setErrorMessage('')
       axios
         .post(`${backendUrl}/auth/sign-up`, {
           username: email,
@@ -32,62 +33,45 @@ export default function Signup(props) {
     <div className="align-center super-margin-top">
       <h4>Signup</h4>
       <div className="thin-container ostrich-container personal-space-bottom">
-        <div class="flex between centered-items personal-space-bottom">
-          <label className="fourth align-right" htmlFor="username">
-            Email:
-          </label>
-          <div className="two-thirds align-left">
-            <input
-              name="username"
-              className="ninety"
-              value={email}
-              onInput={eliminateEvent(setEmail)}
-            />
-          </div>
-        </div>
-        <div class="flex between centered-items personal-space-bottom">
-          <label className="fourth align-right" htmlFor="password">
-            Password:
-          </label>
-          <div className="two-thirds align-left">
-            <input
-              name="password"
-              type="password"
-              className="ninety"
-              value={password}
-              onInput={eliminateEvent(setPassword)}
-            />
-          </div>
-        </div>
-        <div class="flex between centered-items personal-space-bottom">
-          <label className="fourth align-right" htmlFor="confirm-password">
-            Confirm Password:
-          </label>
-          <div className="two-thirds align-left">
-            <input
-              name="confirm-password"
-              className="ninety"
-              type="password"
-              value={confirmPassword}
-              onInput={eliminateEvent(setConfirmPassword)}
-            />
-          </div>
-        </div>
-        <p>{errorMessage}</p>
+        <input
+          name="username"
+          className="three-fourths personal-margin-bottom"
+          placeholder="Email"
+          value={email}
+          onInput={eliminateEvent(setEmail)}
+        />
+        <input
+          name="password"
+          type="password"
+          className="three-fourths personal-margin-bottom"
+          placeholder="Password"
+          value={password}
+          onInput={eliminateEvent(setPassword)}
+        />
+        <input
+          name="confirm-password"
+          className="three-fourths personal-margin-bottom"
+          type="password"
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          onInput={eliminateEvent(setConfirmPassword)}
+        />
+
         <button className="ostrich-button" type="submit" onClick={signUp}>
           Sign Up
         </button>
+        <p class="error">{errorMessage}</p>
+        <button
+          className="plain-button personal-space-bottom"
+          onClick={proceedWithGoogle}
+        >
+          Continue With Google
+        </button>
+        <h6>Already Signed Up?</h6>
+        <button className="plain-button" onClick={toLogin}>
+          Log in here!
+        </button>
       </div>
-      <button
-        className="plain-button personal-space-bottom"
-        onClick={proceedWithGoogle}
-      >
-        Continue With Google
-      </button>
-      <h6>Already Signed Up?</h6>
-      <button className="plain-button" onClick={toLogin}>
-        Log in here!
-      </button>
     </div>
   )
 }

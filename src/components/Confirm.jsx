@@ -15,6 +15,7 @@ export default function Confirm(props) {
   const [errorMessage, setErrorMessage] = useState('')
 
   const verify = () => {
+    setErrorMessage('')
     axios
       .post(`${backendUrl}/auth/verify`, {
         username: email,

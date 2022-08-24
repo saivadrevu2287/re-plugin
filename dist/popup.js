@@ -2478,7 +2478,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var entry = function entry(container) {
   setTimeout(function () {
-    console.log("Running!!!");
+    console.log('Running!!!');
 
     _gaq.push(['_setAccount', 'UA-208478356-1']);
 
@@ -2555,6 +2555,7 @@ function Confirm(props) {
       setErrorMessage = _useState6[1];
 
   var verify = function verify() {
+    setErrorMessage('');
     axios__WEBPACK_IMPORTED_MODULE_2___default().post("".concat(backendUrl, "/auth/verify"), {
       username: email,
       code: code
@@ -2615,6 +2616,226 @@ function Confirm(props) {
 
 /***/ }),
 
+/***/ "./src/components/ConfirmForgotPassword.jsx":
+/*!**************************************************!*\
+  !*** ./src/components/ConfirmForgotPassword.jsx ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Confirm)
+/* harmony export */ });
+/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
+/* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _subroutines_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../subroutines/utils */ "./src/subroutines/utils.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+var eliminateEvent = function eliminateEvent(callback) {
+  return function (event) {
+    return callback(event.target.value);
+  };
+};
+
+function Confirm(props) {
+  var backendUrl = props.backendUrl,
+      handleConfirmForgotPasswordResults = props.handleConfirmForgotPasswordResults;
+  var handoverEmail = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_3__.parseQueryParams)(window.location.search).email || props.email;
+
+  var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      code = _useState2[0],
+      setCode = _useState2[1];
+
+  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(handoverEmail),
+      _useState4 = _slicedToArray(_useState3, 2),
+      email = _useState4[0],
+      setEmail = _useState4[1];
+
+  var _useState5 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      password = _useState6[0],
+      setPassword = _useState6[1];
+
+  var _useState7 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+      _useState8 = _slicedToArray(_useState7, 2),
+      confirmPassword = _useState8[0],
+      setConfirmPassword = _useState8[1];
+
+  var _useState9 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+      _useState10 = _slicedToArray(_useState9, 2),
+      errorMessage = _useState10[0],
+      setErrorMessage = _useState10[1];
+
+  var confirmForgotPassword = function confirmForgotPassword() {
+    if (password != confirmPassword) {
+      setErrorMessage('Passwords do not match!');
+    } else {
+      setErrorMessage('');
+      axios__WEBPACK_IMPORTED_MODULE_2___default().post("".concat(backendUrl, "/auth/confirm-forgot-password"), {
+        username: email,
+        password: password,
+        code: code
+      }).then(handleConfirmForgotPasswordResults(email))["catch"](function (e) {
+        setErrorMessage(e.response.data.message);
+      });
+    }
+  };
+
+  var resendCode = function resendCode() {
+    setErrorMessage('');
+    axios__WEBPACK_IMPORTED_MODULE_2___default().post("".concat(backendUrl, "/auth/resend-code"), {
+      username: email
+    }).then(function (r) {
+      setErrorMessage(r.data.message);
+    })["catch"](function (e) {
+      setErrorMessage(e.response.data.message);
+    });
+  };
+
+  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "align-center super-margin-top"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Confirm Password"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "thin-container ostrich-container personal-space-bottom"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+    name: "username",
+    className: "three-fourths personal-margin-bottom",
+    value: email,
+    placeholder: "Email",
+    onInput: eliminateEvent(setEmail)
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+    name: "password",
+    type: "password",
+    placeholder: "Password",
+    className: "three-fourths personal-margin-bottom",
+    value: password,
+    onInput: eliminateEvent(setPassword)
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+    name: "confirm-password",
+    className: "three-fourths personal-margin-bottom",
+    type: "password",
+    placeholder: "Confirm Password",
+    value: confirmPassword,
+    onInput: eliminateEvent(setConfirmPassword)
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+    name: "code",
+    className: "three-fourths personal-margin-bottom",
+    value: code,
+    placeholder: "Code",
+    onInput: eliminateEvent(setCode)
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+    className: "ostrich-button",
+    type: "submit",
+    onClick: confirmForgotPassword
+  }, "Submit"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+    "class": "error"
+  }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+    className: "ostrich-button personal-margin-bottom",
+    onClick: resendCode
+  }, "Resend Code")));
+}
+
+/***/ }),
+
+/***/ "./src/components/ForgotPassword.jsx":
+/*!*******************************************!*\
+  !*** ./src/components/ForgotPassword.jsx ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ForgotPassword)
+/* harmony export */ });
+/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
+/* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var eliminateEvent = function eliminateEvent(callback) {
+  return function (event) {
+    return callback(event.target.value);
+  };
+};
+
+function ForgotPassword(props) {
+  var backendUrl = props.backendUrl,
+      handleForgotPasswordResults = props.handleForgotPasswordResults;
+
+  var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      email = _useState2[0],
+      setEmail = _useState2[1];
+
+  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      errorMessage = _useState4[0],
+      setErrorMessage = _useState4[1];
+
+  var forgotPassword = function forgotPassword() {
+    setErrorMessage('');
+    axios__WEBPACK_IMPORTED_MODULE_2___default().post("".concat(backendUrl, "/auth/forgot-password"), {
+      username: email
+    }).then(handleForgotPasswordResults(email))["catch"](function (e) {
+      setErrorMessage(e.response.data.message);
+    });
+  };
+
+  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "align-center super-margin-top"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Forgot Password"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "thin-container ostrich-container personal-space-bottom"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+    name: "username",
+    className: "three-fourths personal-margin-bottom",
+    value: email,
+    placeholder: "Email",
+    onInput: eliminateEvent(setEmail)
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+    className: "ostrich-button",
+    type: "submit",
+    onClick: forgotPassword
+  }, "Submit"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+    "class": "error"
+  }, errorMessage)));
+}
+
+/***/ }),
+
 /***/ "./src/components/ListingData.jsx":
 /*!****************************************!*\
   !*** ./src/components/ListingData.jsx ***!
@@ -2655,7 +2876,8 @@ var eliminateEvent = function eliminateEvent(e) {
 
 var tabSeparator = '\t';
 function ListingData(props) {
-  var configurationFields = props.configurationFields;
+  var configurationFields = props.configurationFields,
+      handleSignout = props.handleSignout;
 
   var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
       _useState2 = _slicedToArray(_useState, 2),
@@ -2866,12 +3088,14 @@ function ListingData(props) {
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "plain-button"
   }, "To Realtor"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "align-left"
+    className: "flex between full"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
     className: "value-large",
     target: "_blank",
     href: feedbackLink
-  }, "Provide Feedback!"))));
+  }, "Provide Feedback!"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    onClick: handleSignout
+  }, "Logout"))));
 }
 
 /***/ }),
@@ -2939,6 +3163,7 @@ function Login(props) {
       setErrorMessage = _useState6[1];
 
   var login = function login() {
+    setErrorMessage('');
     axios__WEBPACK_IMPORTED_MODULE_2___default().post("".concat(backendUrl, "/auth/login"), {
       username: email,
       password: password
@@ -2951,46 +3176,36 @@ function Login(props) {
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "align-center super-margin-top"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Login"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "thin-container ostrich-container personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
-    htmlFor: "username"
-  }, "Email:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "two-thirds align-left"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+    className: "thin-container ostrich-container personal-space-bottom align-center"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     name: "username",
-    className: "ninety",
+    className: "three-fourths personal-margin-bottom",
+    placeholder: "Email",
     value: email,
     onInput: eliminateEvent(setEmail)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
-    htmlFor: "password"
-  }, "Password:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "two-thirds align-left"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     name: "password",
     type: "password",
-    className: "ninety",
+    className: "three-fourths personal-margin-bottom",
+    placeholder: "Password",
     value: password,
     onInput: eliminateEvent(setPassword)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "ostrich-button",
     type: "submit",
     onClick: login
-  }, "Login"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "plain-button",
+  }, "Login"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+    "class": "error"
+  }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+    className: "plain-button personal-space-bottom",
     onClick: toForgotPassword
   }, "Forgot Password")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "plain-button personal-space-bottom",
     onClick: proceedWithGoogle
-  }, "Continue With Google")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "Not Signed Up?"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+  }, "Continue With Google"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "Not Signed Up?"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "plain-button",
     onClick: toSignup
-  }, "Sign up here!"));
+  }, "Sign up here!")));
 }
 
 /***/ }),
@@ -3064,6 +3279,7 @@ function Signup(props) {
     if (password != confirmPassword) {
       setErrorMessage('Passwords do not match!');
     } else {
+      setErrorMessage('');
       axios__WEBPACK_IMPORTED_MODULE_3___default().post("".concat(backendUrl, "/auth/sign-up"), {
         username: email,
         password: password
@@ -3077,55 +3293,39 @@ function Signup(props) {
     className: "align-center super-margin-top"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Signup"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "thin-container ostrich-container personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "flex between centered-items personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
-    htmlFor: "username"
-  }, "Email:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "two-thirds align-left"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     name: "username",
-    className: "ninety",
+    className: "three-fourths personal-margin-bottom",
+    placeholder: "Email",
     value: email,
     onInput: eliminateEvent(setEmail)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "flex between centered-items personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
-    htmlFor: "password"
-  }, "Password:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "two-thirds align-left"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     name: "password",
     type: "password",
-    className: "ninety",
+    className: "three-fourths personal-margin-bottom",
+    placeholder: "Password",
     value: password,
     onInput: eliminateEvent(setPassword)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "flex between centered-items personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
-    htmlFor: "confirm-password"
-  }, "Confirm Password:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "two-thirds align-left"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     name: "confirm-password",
-    className: "ninety",
+    className: "three-fourths personal-margin-bottom",
     type: "password",
+    placeholder: "Confirm Password",
     value: confirmPassword,
     onInput: eliminateEvent(setConfirmPassword)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "ostrich-button",
     type: "submit",
     onClick: signUp
-  }, "Sign Up")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+  }, "Sign Up"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+    "class": "error"
+  }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "plain-button personal-space-bottom",
     onClick: proceedWithGoogle
   }, "Continue With Google"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "Already Signed Up?"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "plain-button",
     onClick: toLogin
-  }, "Log in here!"));
+  }, "Log in here!")));
 }
 
 /***/ }),
@@ -3552,6 +3752,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Signup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Signup */ "./src/components/Signup.jsx");
 /* harmony import */ var _components_Login__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Login */ "./src/components/Login.jsx");
 /* harmony import */ var _components_Confirm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Confirm */ "./src/components/Confirm.jsx");
+/* harmony import */ var _components_ForgotPassword__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/ForgotPassword */ "./src/components/ForgotPassword.jsx");
+/* harmony import */ var _components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/ConfirmForgotPassword */ "./src/components/ConfirmForgotPassword.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3563,6 +3765,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -3586,10 +3790,20 @@ function Popup(props) {
       showLogin = _useState4[0],
       setShowLogin = _useState4[1];
 
-  var _useState5 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+  var _useState5 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
       _useState6 = _slicedToArray(_useState5, 2),
-      changingPage = _useState6[0],
-      setChangingPage = _useState6[1];
+      showForgotPassword = _useState6[0],
+      setShowForgotPassword = _useState6[1];
+
+  var _useState7 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      showForgotPasswordCode = _useState8[0],
+      setShowForgotPasswordCode = _useState8[1];
+
+  var _useState9 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+      _useState10 = _slicedToArray(_useState9, 2),
+      changingPage = _useState10[0],
+      setChangingPage = _useState10[1];
 
   (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     chrome.storage.sync.get('configurationFields', function (data) {
@@ -3597,6 +3811,17 @@ function Popup(props) {
       setConfigurationFields(data.configurationFields);
     });
   }, [changingPage]);
+
+  var handleSignout = function handleSignout() {
+    var newConfigurationFields = JSON.parse(JSON.stringify(configurationFields));
+    setShowLogin(true);
+    newConfigurationFields.isLoggedIn = false;
+    newConfigurationFields.email = '';
+    setConfigurationFields(newConfigurationFields);
+    chrome.storage.sync.set({
+      configurationFields: newConfigurationFields
+    });
+  };
 
   var handleLoginResults = function handleLoginResults(email) {
     return function (r) {
@@ -3646,6 +3871,33 @@ function Popup(props) {
     };
   };
 
+  var handleForgotPasswordResults = function handleForgotPasswordResults(email) {
+    return function (r) {
+      setShowLogin(false);
+      setShowForgotPassword(false);
+      setShowForgotPasswordCode(true);
+      var newConfigurationFields = JSON.parse(JSON.stringify(configurationFields));
+      newConfigurationFields.email = email;
+      setConfigurationFields(newConfigurationFields);
+      chrome.storage.sync.set({
+        configurationFields: newConfigurationFields
+      });
+    };
+  };
+
+  var handleConfirmForgotPasswordResults = function handleConfirmForgotPasswordResults(email) {
+    return function (r) {
+      setShowLogin(true);
+      setShowForgotPasswordCode(false);
+      var newConfigurationFields = JSON.parse(JSON.stringify(configurationFields));
+      newConfigurationFields.email = email;
+      setConfigurationFields(newConfigurationFields);
+      chrome.storage.sync.set({
+        configurationFields: newConfigurationFields
+      });
+    };
+  };
+
   var proceedWithGoogle = function proceedWithGoogle() {
     return chrome.tabs.create({
       url: loginWithGoogleUrl
@@ -3656,9 +3908,25 @@ function Popup(props) {
     return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "Loading...");
   }
 
+  if (showForgotPassword) {
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_ForgotPassword__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      backendUrl: backendUrl,
+      handleForgotPasswordResults: handleForgotPasswordResults
+    });
+  }
+
+  if (showForgotPasswordCode) {
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      email: configurationFields.email,
+      backendUrl: backendUrl,
+      handleConfirmForgotPasswordResults: handleConfirmForgotPasswordResults
+    });
+  }
+
   if (configurationFields.isLoggedIn) {
     return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_ListingData__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      configurationFields: configurationFields
+      configurationFields: configurationFields,
+      handleSignout: handleSignout
     });
   }
 
@@ -3675,6 +3943,9 @@ function Popup(props) {
       handleLoginResults: handleLoginResults,
       toSignup: function toSignup() {
         return setShowLogin(false);
+      },
+      toForgotPassword: function toForgotPassword() {
+        return setShowForgotPassword(true);
       },
       proceedWithGoogle: proceedWithGoogle,
       backendUrl: backendUrl

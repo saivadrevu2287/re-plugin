@@ -21,6 +21,7 @@ export default function Login(props) {
   const [errorMessage, setErrorMessage] = useState('')
 
   const login = () => {
+    setErrorMessage('')
     axios
       .post(`${backendUrl}/auth/login`, {
         username: email,
@@ -36,40 +37,33 @@ export default function Login(props) {
   return (
     <div className="align-center super-margin-top">
       <h4>Login</h4>
-      <div className="thin-container ostrich-container personal-space-bottom">
-        <div className="flex between centered-items personal-space-bottom">
-          <label className="fourth align-right" htmlFor="username">
-            Email:
-          </label>
-          <div className="two-thirds align-left">
-            <input
-              name="username"
-              className="ninety"
-              value={email}
-              onInput={eliminateEvent(setEmail)}
-            />
-          </div>
+      <div className="thin-container ostrich-container personal-space-bottom align-center">
+        <div>
+          <input
+            name="username"
+            className="three-fourths personal-margin-bottom"
+            placeholder="Email"
+            value={email}
+            onInput={eliminateEvent(setEmail)}
+          />
+          <input
+            name="password"
+            type="password"
+            className="three-fourths personal-margin-bottom"
+            placeholder="Password"
+            value={password}
+            onInput={eliminateEvent(setPassword)}
+          />
         </div>
-        <div className="flex between centered-items personal-space-bottom">
-          <label className="fourth align-right" htmlFor="password">
-            Password:
-          </label>
-          <div className="two-thirds align-left">
-            <input
-              name="password"
-              type="password"
-              className="ninety"
-              value={password}
-              onInput={eliminateEvent(setPassword)}
-            />
-          </div>
-        </div>
-        <p>{errorMessage}</p>
         <button className="ostrich-button" type="submit" onClick={login}>
           Login
         </button>
+        <p class="error">{errorMessage}</p>
         <div>
-          <button className="plain-button" onClick={toForgotPassword}>
+          <button
+            className="plain-button personal-space-bottom"
+            onClick={toForgotPassword}
+          >
             Forgot Password
           </button>
         </div>
@@ -79,11 +73,11 @@ export default function Login(props) {
         >
           Continue With Google
         </button>
+        <h6>Not Signed Up?</h6>
+        <button className="plain-button" onClick={toSignup}>
+          Sign up here!
+        </button>
       </div>
-      <h6>Not Signed Up?</h6>
-      <button className="plain-button" onClick={toSignup}>
-        Sign up here!
-      </button>
     </div>
   )
 }

@@ -2478,7 +2478,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var entry = function entry(container) {
   setTimeout(function () {
-    console.log("Running!!!");
+    console.log('Running!!!');
 
     _gaq.push(['_setAccount', 'UA-208478356-1']);
 
@@ -2555,6 +2555,7 @@ function Confirm(props) {
       setErrorMessage = _useState6[1];
 
   var verify = function verify() {
+    setErrorMessage('');
     axios__WEBPACK_IMPORTED_MODULE_2___default().post("".concat(backendUrl, "/auth/verify"), {
       username: email,
       code: code
@@ -2688,6 +2689,7 @@ function Confirm(props) {
     if (password != confirmPassword) {
       setErrorMessage('Passwords do not match!');
     } else {
+      setErrorMessage('');
       axios__WEBPACK_IMPORTED_MODULE_2___default().post("".concat(backendUrl, "/auth/confirm-forgot-password"), {
         username: email,
         password: password,
@@ -2699,6 +2701,7 @@ function Confirm(props) {
   };
 
   var resendCode = function resendCode() {
+    setErrorMessage('');
     axios__WEBPACK_IMPORTED_MODULE_2___default().post("".concat(backendUrl, "/auth/resend-code"), {
       username: email
     }).then(function (r) {
@@ -2712,66 +2715,42 @@ function Confirm(props) {
     className: "align-center super-margin-top"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Confirm Password"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "thin-container ostrich-container personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "flex between centered-items personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
-    htmlFor: "username"
-  }, "Email:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "two-thirds align-left"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     name: "username",
-    className: "ninety",
+    className: "three-fourths personal-margin-bottom",
     value: email,
+    placeholder: "Email",
     onInput: eliminateEvent(setEmail)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "flex between centered-items personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
-    htmlFor: "password"
-  }, "New Password:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "two-thirds align-left"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     name: "password",
     type: "password",
-    className: "ninety",
+    placeholder: "Password",
+    className: "three-fourths personal-margin-bottom",
     value: password,
     onInput: eliminateEvent(setPassword)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "flex between centered-items personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
-    htmlFor: "confirm-password"
-  }, "Confirm Password:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "two-thirds align-left"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     name: "confirm-password",
-    className: "ninety",
+    className: "three-fourths personal-margin-bottom",
     type: "password",
+    placeholder: "Confirm Password",
     value: confirmPassword,
     onInput: eliminateEvent(setConfirmPassword)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "flex between centered-items personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
-    htmlFor: "code"
-  }, "Code:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "two-thirds align-left"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     name: "code",
-    className: "ninety",
+    className: "three-fourths personal-margin-bottom",
     value: code,
+    placeholder: "Code",
     onInput: eliminateEvent(setCode)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "ostrich-button",
     type: "submit",
     onClick: confirmForgotPassword
   }, "Submit"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     "class": "error"
-  }, errorMessage)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "ostrich-button",
+  }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+    className: "ostrich-button personal-margin-bottom",
     onClick: resendCode
-  }, "Resend Code"));
+  }, "Resend Code")));
 }
 
 /***/ }),
@@ -2946,6 +2925,7 @@ function ForgotPassword(props) {
       setErrorMessage = _useState4[1];
 
   var forgotPassword = function forgotPassword() {
+    setErrorMessage('');
     axios__WEBPACK_IMPORTED_MODULE_2___default().post("".concat(backendUrl, "/auth/forgot-password"), {
       username: email
     }).then(handleForgotPasswordResults(email))["catch"](function (e) {
@@ -2957,19 +2937,13 @@ function ForgotPassword(props) {
     className: "align-center super-margin-top"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Forgot Password"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "thin-container ostrich-container personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "flex between centered-items personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
-    htmlFor: "username"
-  }, "Email:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "two-thirds align-left"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     name: "username",
-    className: "ninety",
+    className: "three-fourths personal-margin-bottom",
     value: email,
+    placeholder: "Email",
     onInput: eliminateEvent(setEmail)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "ostrich-button",
     type: "submit",
     onClick: forgotPassword
@@ -3094,6 +3068,7 @@ function Login(props) {
       setErrorMessage = _useState6[1];
 
   var login = function login() {
+    setErrorMessage('');
     axios__WEBPACK_IMPORTED_MODULE_2___default().post("".concat(backendUrl, "/auth/login"), {
       username: email,
       password: password
@@ -3106,46 +3081,36 @@ function Login(props) {
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "align-center super-margin-top"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Login"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "thin-container ostrich-container personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
-    htmlFor: "username"
-  }, "Email:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "two-thirds align-left"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+    className: "thin-container ostrich-container personal-space-bottom align-center"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     name: "username",
-    className: "ninety",
+    className: "three-fourths personal-margin-bottom",
+    placeholder: "Email",
     value: email,
     onInput: eliminateEvent(setEmail)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
-    htmlFor: "password"
-  }, "Password:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "two-thirds align-left"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     name: "password",
     type: "password",
-    className: "ninety",
+    className: "three-fourths personal-margin-bottom",
+    placeholder: "Password",
     value: password,
     onInput: eliminateEvent(setPassword)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "ostrich-button",
     type: "submit",
     onClick: login
-  }, "Login"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "plain-button",
+  }, "Login"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+    "class": "error"
+  }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+    className: "plain-button personal-space-bottom",
     onClick: toForgotPassword
   }, "Forgot Password")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "plain-button personal-space-bottom",
     onClick: proceedWithGoogle
-  }, "Continue With Google")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "Not Signed Up?"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+  }, "Continue With Google"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "Not Signed Up?"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "plain-button",
     onClick: toSignup
-  }, "Sign up here!"));
+  }, "Sign up here!")));
 }
 
 /***/ }),
@@ -3658,6 +3623,7 @@ function Signup(props) {
     if (password != confirmPassword) {
       setErrorMessage('Passwords do not match!');
     } else {
+      setErrorMessage('');
       axios__WEBPACK_IMPORTED_MODULE_3___default().post("".concat(backendUrl, "/auth/sign-up"), {
         username: email,
         password: password
@@ -3671,55 +3637,39 @@ function Signup(props) {
     className: "align-center super-margin-top"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Signup"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "thin-container ostrich-container personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "flex between centered-items personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
-    htmlFor: "username"
-  }, "Email:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "two-thirds align-left"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     name: "username",
-    className: "ninety",
+    className: "three-fourths personal-margin-bottom",
+    placeholder: "Email",
     value: email,
     onInput: eliminateEvent(setEmail)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "flex between centered-items personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
-    htmlFor: "password"
-  }, "Password:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "two-thirds align-left"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     name: "password",
     type: "password",
-    className: "ninety",
+    className: "three-fourths personal-margin-bottom",
+    placeholder: "Password",
     value: password,
     onInput: eliminateEvent(setPassword)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "flex between centered-items personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
-    htmlFor: "confirm-password"
-  }, "Confirm Password:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "two-thirds align-left"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     name: "confirm-password",
-    className: "ninety",
+    className: "three-fourths personal-margin-bottom",
     type: "password",
+    placeholder: "Confirm Password",
     value: confirmPassword,
     onInput: eliminateEvent(setConfirmPassword)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "ostrich-button",
     type: "submit",
     onClick: signUp
-  }, "Sign Up")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+  }, "Sign Up"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+    "class": "error"
+  }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "plain-button personal-space-bottom",
     onClick: proceedWithGoogle
   }, "Continue With Google"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "Already Signed Up?"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "plain-button",
     onClick: toLogin
-  }, "Log in here!"));
+  }, "Log in here!")));
 }
 
 /***/ }),

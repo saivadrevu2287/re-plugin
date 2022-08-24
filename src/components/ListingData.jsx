@@ -8,7 +8,8 @@ const eliminateEvent = (e) => e.target.value
 const tabSeparator = '\t'
 
 export default function ListingData(props) {
-  const { configurationFields } = props
+  const { configurationFields, handleSignout } = props
+
   const [price, setPrice] = useState()
   const [priceEstimate, setPriceEstimate] = useState()
   const [taxes, setTaxes] = useState()
@@ -183,10 +184,11 @@ export default function ListingData(props) {
             <button className="plain-button">To Realtor</button>
           </a>
         </div>
-        <div className="align-left">
+        <div className="flex between full">
           <a className="value-large" target="_blank" href={feedbackLink}>
             Provide Feedback!
           </a>
+          <span onClick={handleSignout}>Logout</span>
         </div>
       </div>
     </div>

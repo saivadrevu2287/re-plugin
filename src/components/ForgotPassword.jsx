@@ -11,6 +11,7 @@ export default function ForgotPassword(props) {
   const [errorMessage, setErrorMessage] = useState('')
 
   const forgotPassword = () => {
+    setErrorMessage('')
     axios
       .post(`${backendUrl}/auth/forgot-password`, {
         username: email,
@@ -25,18 +26,14 @@ export default function ForgotPassword(props) {
     <div className="align-center super-margin-top">
       <h4>Forgot Password</h4>
       <div className="thin-container ostrich-container personal-space-bottom">
-        <div class="flex between centered-items personal-space-bottom">
-          <label className="fourth align-right" htmlFor="username">
-            Email:
-          </label>
-          <div className="two-thirds align-left">
-            <input
-              name="username"
-              className="ninety"
-              value={email}
-              onInput={eliminateEvent(setEmail)}
-            />
-          </div>
+        <div>
+          <input
+            name="username"
+            className="three-fourths personal-margin-bottom"
+            value={email}
+            placeholder="Email"
+            onInput={eliminateEvent(setEmail)}
+          />
         </div>
         <button
           className="ostrich-button"

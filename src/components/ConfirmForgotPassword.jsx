@@ -20,6 +20,7 @@ export default function Confirm(props) {
     if (password != confirmPassword) {
       setErrorMessage('Passwords do not match!')
     } else {
+      setErrorMessage('')
       axios
         .post(`${backendUrl}/auth/confirm-forgot-password`, {
           username: email,
@@ -34,6 +35,7 @@ export default function Confirm(props) {
   }
 
   const resendCode = () => {
+    setErrorMessage('')
     axios
       .post(`${backendUrl}/auth/resend-code`, {
         username: email,
@@ -50,59 +52,37 @@ export default function Confirm(props) {
     <div className="align-center super-margin-top">
       <h4>Confirm Password</h4>
       <div className="thin-container ostrich-container personal-space-bottom">
-        <div class="flex between centered-items personal-space-bottom">
-          <label className="fourth align-right" htmlFor="username">
-            Email:
-          </label>
-          <div className="two-thirds align-left">
-            <input
-              name="username"
-              className="ninety"
-              value={email}
-              onInput={eliminateEvent(setEmail)}
-            />
-          </div>
-        </div>
-        <div class="flex between centered-items personal-space-bottom">
-          <label className="fourth align-right" htmlFor="password">
-            New Password:
-          </label>
-          <div className="two-thirds align-left">
-            <input
-              name="password"
-              type="password"
-              className="ninety"
-              value={password}
-              onInput={eliminateEvent(setPassword)}
-            />
-          </div>
-        </div>
-        <div class="flex between centered-items personal-space-bottom">
-          <label className="fourth align-right" htmlFor="confirm-password">
-            Confirm Password:
-          </label>
-          <div className="two-thirds align-left">
-            <input
-              name="confirm-password"
-              className="ninety"
-              type="password"
-              value={confirmPassword}
-              onInput={eliminateEvent(setConfirmPassword)}
-            />
-          </div>
-        </div>
-        <div class="flex between centered-items personal-space-bottom">
-          <label className="fourth align-right" htmlFor="code">
-            Code:
-          </label>
-          <div className="two-thirds align-left">
-            <input
-              name="code"
-              className="ninety"
-              value={code}
-              onInput={eliminateEvent(setCode)}
-            />
-          </div>
+        <div>
+          <input
+            name="username"
+            className="three-fourths personal-margin-bottom"
+            value={email}
+            placeholder="Email"
+            onInput={eliminateEvent(setEmail)}
+          />
+          <input
+            name="password"
+            type="password"
+            placeholder='Password'
+            className="three-fourths personal-margin-bottom"
+            value={password}
+            onInput={eliminateEvent(setPassword)}
+          />
+          <input
+            name="confirm-password"
+            className="three-fourths personal-margin-bottom"
+            type="password"
+            placeholder='Confirm Password'
+            value={confirmPassword}
+            onInput={eliminateEvent(setConfirmPassword)}
+          />
+          <input
+            name="code"
+            className="three-fourths personal-margin-bottom"
+            value={code}
+            placeholder='Code'
+            onInput={eliminateEvent(setCode)}
+          />
         </div>
         <button
           className="ostrich-button"
@@ -112,10 +92,10 @@ export default function Confirm(props) {
           Submit
         </button>
         <p class="error">{errorMessage}</p>
+        <button className="ostrich-button personal-margin-bottom" onClick={resendCode}>
+          Resend Code
+        </button>
       </div>
-      <button className="ostrich-button" onClick={resendCode}>
-        Resend Code
-      </button>
     </div>
   )
 }

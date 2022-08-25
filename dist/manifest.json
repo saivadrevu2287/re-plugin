@@ -10,11 +10,11 @@
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "128": "/images/Ostrich128.png"
+      "128": "Ostrich128.png"
     }
   },
   "icons": {
-    "128": "/images/Ostrich128.png"
+    "128": "Ostrich128.png"
   },
   "web_accessible_resources": [
     {

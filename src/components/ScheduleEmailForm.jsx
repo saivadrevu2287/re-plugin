@@ -11,7 +11,9 @@ export default function ScheduleEmailForm(props) {
     searchParams,
     setSearchParams,
     setNumBedrooms,
+    setNumBathrooms,
     numBedrooms,
+    numBathrooms,
     setMaxPrice,
     maxPrice,
     setMinPrice,
@@ -22,6 +24,7 @@ export default function ScheduleEmailForm(props) {
 
   const [hideCocCalculations, setHideCocCalculations] = useState(true)
 
+  const [notes, setNotes] = useState('')
   const [insurance, setInsurance] = useState(60)
   const [vacancy, setVacancy] = useState(5)
   const [propertyManagement, setPropertyManagement] = useState(4)
@@ -38,8 +41,13 @@ export default function ScheduleEmailForm(props) {
     setHideCocCalculations(!hideCocCalculations)
 
   const scheduledEmail = () => {
+    if (!notes) {
+      setErrorMessage('Missing Title!')
+      return
+    }
+
     if (!searchParams) {
-      setErrorMessage('Missing Search Param!')
+      setErrorMessage('Missing Location!')
       return
     }
 
@@ -61,10 +69,18 @@ export default function ScheduleEmailForm(props) {
           max_price: parseInt(maxPrice),
           search_param: searchParams,
           no_bedrooms: parseInt(numBedrooms),
+          no_bathrooms: parseInt(numBathrooms),
+          notes: notes,
           frequency: 'Daily',
         })
         .then((r) => {
           setSuccessfulSubmition(Math.random())
+          setSearchParams()
+          setNumBedrooms()
+          setNumBathrooms()
+          setMaxPrice()
+          setMinPrice()
+          setNotes()
         })
         .catch((e) => {
           setErrorMessage(e.response.data.message)
@@ -242,7 +258,19 @@ export default function ScheduleEmailForm(props) {
       <div className="ostrich-container padded">
         <div className="flex between centered-items personal-space-bottom">
           <label className="fourth align-right" htmlFor="search-params-input">
-            Search Parameters:
+            Title:
+          </label>
+          <div>
+            <input
+              value={notes}
+              class="nintey"
+              onInput={eliminateEvent(setNotes)}
+            />
+          </div>
+        </div>
+        <div className="flex between centered-items personal-space-bottom">
+          <label className="fourth align-right" htmlFor="search-params-input">
+            Location:
           </label>
           <div>
             <input
@@ -290,6 +318,19 @@ export default function ScheduleEmailForm(props) {
               class="nintey"
               value={numBedrooms}
               onInput={eliminateEvent(setNumBedrooms)}
+            />
+          </div>
+        </div>
+        <div className="flex between centered-items personal-space-bottom">
+          <label className="fourth align-right" htmlFor="num-bedrooms-input">
+            Num. Bathrooms:
+          </label>
+          <div>
+            <input
+              type="number"
+              class="nintey"
+              value={numBathrooms}
+              onInput={eliminateEvent(setNumBathrooms)}
             />
           </div>
         </div>

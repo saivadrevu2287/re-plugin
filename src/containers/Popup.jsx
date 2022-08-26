@@ -125,7 +125,12 @@ export default function Popup(props) {
   }
 
   if (configurationFields.isLoggedIn) {
-    return <ListingData configurationFields={configurationFields} handleSignout={handleSignout} />
+    return (
+      <ListingData
+        configurationFields={configurationFields}
+        handleSignout={handleSignout}
+      />
+    )
   }
 
   if (configurationFields.needsVerification) {

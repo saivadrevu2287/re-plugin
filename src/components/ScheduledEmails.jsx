@@ -10,6 +10,7 @@ export default function ScheduledEmails(props) {
   const [errorMessage, setErrorMessage] = useState('')
   const [reloadSelf, setReloadSelf] = useState('')
   const [scheduledEmails, setScheduledEmails] = useState([])
+  const [selectedMarket, setSelectedMarket] = useState(0)
 
   useEffect(() => {
     if (user) {
@@ -25,36 +26,60 @@ export default function ScheduledEmails(props) {
   }, [user, reloadSelf, externalReload])
 
   const scheduledEmailList = scheduledEmails.map((scheduledEmail, i) => {
-    const handleDeleteButton = () => {
-      axios
-        .delete(`${backendUrl}/api/emailers/${scheduledEmail.id}`)
-        .then((r) => {
-          setReloadSelf(Math.random())
-        })
-        .catch((e) => {
-          setSearchResults([])
-          setErrorMessage(e.response.data.message)
-        })
-    }
-
     return (
-      <div key={i} className="scheduled-emailer-element">
-        <p>
-          {scheduledEmail.search_param},{' '}
-          {formatNumber(scheduledEmail.min_price)}-
-          {formatNumber(scheduledEmail.max_price)}
-        </p>
-        <button className="ostrich-button" onClick={handleDeleteButton}>
-          Delete
-        </button>
+      <div
+        onClick={() => setSelectedMarket(i)}
+        key={i}
+        className="personal-margin-bottom padded gray"
+      >
+        <h5>{scheduledEmail.notes}</h5>
+        <h6>{scheduledEmail.search_param}</h6>
       </div>
     )
   })
 
+  const selectedMarketHtml = scheduledEmails.length ? (
+    <div className="personal-margin-left">
+      <p>Location: {scheduledEmails[selectedMarket].search_param}</p>
+      <p>
+        Price Range: {formatNumber(scheduledEmails[selectedMarket].min_price)}-
+        {formatNumber(scheduledEmails[selectedMarket].max_price)}
+      </p>
+      <p>
+        Specs: {scheduledEmails[selectedMarket].no_bedrooms} Beds |{' '}
+        {scheduledEmails[selectedMarket].no_bathrooms} Baths
+      </p>
+      <p>Email Notifications: Enabled</p>
+      <button
+        className="ostrich-button"
+        onClick={() => {
+          axios
+            .delete(
+              `${backendUrl}/api/emailers/${scheduledEmails[selectedMarket].id}`
+            )
+            .then((r) => {
+              setReloadSelf(Math.random())
+            })
+            .catch((e) => {
+              setSearchResults([])
+              setErrorMessage(e.response.data.message)
+            })
+        }}
+      >
+        Delete
+      </button>
+    </div>
+  ) : (
+    <h4>Loading Markets...</h4>
+  )
+
   return (
     <Fragment>
-      <h5>Your Scheduled Emails</h5>
-      {!scheduledEmails ? <h6>Loading...</h6> : scheduledEmailList}
+      <h5>Your Target Markets</h5>
+      <div className="flex personal-space-top-double">
+        <div className='personal-space-right'>{scheduledEmailList}</div>
+        {selectedMarketHtml}
+      </div>
       <p className="error">{errorMessage}</p>
     </Fragment>
   )

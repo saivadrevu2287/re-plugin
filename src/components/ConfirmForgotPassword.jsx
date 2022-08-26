@@ -63,7 +63,7 @@ export default function Confirm(props) {
           <input
             name="password"
             type="password"
-            placeholder='Password'
+            placeholder="Password"
             className="three-fourths personal-margin-bottom"
             value={password}
             onInput={eliminateEvent(setPassword)}
@@ -72,7 +72,7 @@ export default function Confirm(props) {
             name="confirm-password"
             className="three-fourths personal-margin-bottom"
             type="password"
-            placeholder='Confirm Password'
+            placeholder="Confirm Password"
             value={confirmPassword}
             onInput={eliminateEvent(setConfirmPassword)}
           />
@@ -80,7 +80,7 @@ export default function Confirm(props) {
             name="code"
             className="three-fourths personal-margin-bottom"
             value={code}
-            placeholder='Code'
+            placeholder="Code"
             onInput={eliminateEvent(setCode)}
           />
         </div>
@@ -92,9 +92,6 @@ export default function Confirm(props) {
           Submit
         </button>
         <p class="error">{errorMessage}</p>
-        <button className="ostrich-button personal-margin-bottom" onClick={resendCode}>
-          Resend Code
-        </button>
       </div>
     </div>
   )

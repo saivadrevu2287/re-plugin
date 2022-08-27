@@ -5,25 +5,17 @@ import axios from 'axios'
 const eliminateEvent = (callback) => (event) => callback(event.target.value)
 
 export default function ScheduleEmailForm(props) {
-  const {
-    backendUrl,
-    setSuccessfulSubmition,
-    searchParams,
-    setSearchParams,
-    setNumBedrooms,
-    setNumBathrooms,
-    numBedrooms,
-    numBathrooms,
-    setMaxPrice,
-    maxPrice,
-    setMinPrice,
-    minPrice,
-  } = props
+  const { backendUrl, setSuccessfulSubmition } = props
 
   const [errorMessage, setErrorMessage] = useState('')
 
   const [hideCocCalculations, setHideCocCalculations] = useState(true)
 
+  const [minPrice, setMinPrice] = useState()
+  const [maxPrice, setMaxPrice] = useState()
+  const [searchParams, setSearchParams] = useState()
+  const [numBedrooms, setNumBedrooms] = useState()
+  const [numBathrooms, setNumBathrooms] = useState()
   const [notes, setNotes] = useState('')
   const [insurance, setInsurance] = useState(60)
   const [vacancy, setVacancy] = useState(5)
@@ -40,7 +32,7 @@ export default function ScheduleEmailForm(props) {
   const flipHideCocCalculations = () =>
     setHideCocCalculations(!hideCocCalculations)
 
-  const scheduledEmail = () => {
+  const scheduleEmail = () => {
     if (!notes) {
       setErrorMessage('Missing Title!')
       return
@@ -75,12 +67,6 @@ export default function ScheduleEmailForm(props) {
         })
         .then((r) => {
           setSuccessfulSubmition(Math.random())
-          setSearchParams()
-          setNumBedrooms()
-          setNumBathrooms()
-          setMaxPrice()
-          setMinPrice()
-          setNotes()
         })
         .catch((e) => {
           setErrorMessage(e.response.data.message)
@@ -99,7 +85,7 @@ export default function ScheduleEmailForm(props) {
         <div>
           <input
             type="number"
-            class="nintey"
+            class="three-fourths"
             value={insurance}
             onInput={eliminateEvent(setInsurance)}
           />
@@ -113,7 +99,7 @@ export default function ScheduleEmailForm(props) {
         <div>
           <input
             type="number"
-            class="nintey"
+            class="three-fourths"
             value={vacancy}
             onInput={eliminateEvent(setVacancy)}
           />
@@ -127,7 +113,7 @@ export default function ScheduleEmailForm(props) {
         <div>
           <input
             type="number"
-            class="nintey"
+            class="three-fourths"
             value={propertyManagement}
             onInput={eliminateEvent(setPropertyManagement)}
           />
@@ -141,7 +127,7 @@ export default function ScheduleEmailForm(props) {
         <div>
           <input
             type="number"
-            class="nintey"
+            class="three-fourths"
             value={capex}
             onInput={eliminateEvent(setCapex)}
           />
@@ -155,7 +141,7 @@ export default function ScheduleEmailForm(props) {
         <div>
           <input
             type="number"
-            class="nintey"
+            class="three-fourths"
             value={repairs}
             onInput={eliminateEvent(setRepairs)}
           />
@@ -169,7 +155,7 @@ export default function ScheduleEmailForm(props) {
         <div>
           <input
             type="number"
-            class="nintey"
+            class="three-fourths"
             value={utilities}
             onInput={eliminateEvent(setUtilities)}
           />
@@ -183,7 +169,7 @@ export default function ScheduleEmailForm(props) {
         <div>
           <input
             type="number"
-            class="nintey"
+            class="three-fourths"
             value={downPayment}
             onInput={eliminateEvent(setDownPayment)}
           />
@@ -197,7 +183,7 @@ export default function ScheduleEmailForm(props) {
         <div>
           <input
             type="number"
-            class="nintey"
+            class="three-fourths"
             value={closingCosts}
             onInput={eliminateEvent(setClosingCosts)}
           />
@@ -211,7 +197,7 @@ export default function ScheduleEmailForm(props) {
         <div>
           <input
             type="number"
-            class="nintey"
+            class="three-fourths"
             value={loanInterest}
             onInput={eliminateEvent(setLoanInterest)}
           />
@@ -225,7 +211,7 @@ export default function ScheduleEmailForm(props) {
         <div>
           <input
             type="number"
-            class="nintey"
+            class="three-fourths"
             value={loanMonths}
             onInput={eliminateEvent(setLoanMonths)}
           />
@@ -242,7 +228,7 @@ export default function ScheduleEmailForm(props) {
         <div>
           <input
             type="number"
-            class="nintey"
+            class="three-fourths"
             value={additionalMonthlyExpenses}
             onInput={eliminateEvent(setAdditionalMonthlyExpenses)}
           />
@@ -253,9 +239,8 @@ export default function ScheduleEmailForm(props) {
   )
 
   return (
-    <Fragment>
-      <h5>Schedule a New Email</h5>
-      <div className="ostrich-container padded">
+    <div className="flex  wrap-reverse centered">
+      <div className="">
         <div className="flex between centered-items personal-space-bottom">
           <label className="fourth align-right" htmlFor="search-params-input">
             Title:
@@ -263,7 +248,7 @@ export default function ScheduleEmailForm(props) {
           <div>
             <input
               value={notes}
-              class="nintey"
+              class="three-fourths"
               onInput={eliminateEvent(setNotes)}
             />
           </div>
@@ -275,7 +260,7 @@ export default function ScheduleEmailForm(props) {
           <div>
             <input
               value={searchParams}
-              class="nintey"
+              class="three-fourths"
               onInput={eliminateEvent(setSearchParams)}
             />
           </div>
@@ -287,7 +272,7 @@ export default function ScheduleEmailForm(props) {
           <div>
             <input
               type="number"
-              class="nintey"
+              class="three-fourths"
               value={minPrice}
               onInput={eliminateEvent(setMinPrice)}
             />
@@ -301,7 +286,7 @@ export default function ScheduleEmailForm(props) {
           <div>
             <input
               type="number"
-              class="nintey"
+              class="three-fourths"
               value={maxPrice}
               onInput={eliminateEvent(setMaxPrice)}
             />
@@ -315,7 +300,7 @@ export default function ScheduleEmailForm(props) {
           <div>
             <input
               type="number"
-              class="nintey"
+              class="three-fourths"
               value={numBedrooms}
               onInput={eliminateEvent(setNumBedrooms)}
             />
@@ -328,7 +313,7 @@ export default function ScheduleEmailForm(props) {
           <div>
             <input
               type="number"
-              class="nintey"
+              class="three-fourths"
               value={numBathrooms}
               onInput={eliminateEvent(setNumBathrooms)}
             />
@@ -345,11 +330,14 @@ export default function ScheduleEmailForm(props) {
         </div>
         <p className="error">{errorMessage}</p>
         <div className="flex around">
-          <button className="ostrich-button" onClick={scheduledEmail}>
+          <button className="ostrich-button" onClick={scheduleEmail}>
             Submit
           </button>
         </div>
       </div>
-    </Fragment>
+      <div className="personal-space-left">
+        <h5>Schedule a New Email</h5>
+      </div>
+    </div>
   )
 }

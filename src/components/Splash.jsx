@@ -3,7 +3,7 @@ import { h } from 'preact'
 export default function Splash(props) {
   return (
     <div className="flex around wrap">
-      <div className="fourty-five personal-margin-top break-to-full">
+      <div className="two-fifths personal-margin-top break-to-full">
         <h3>The fastest way ever to analyze rentals</h3>
         <br />
         <h5>
@@ -25,7 +25,7 @@ export default function Splash(props) {
           </a>
         </div>
       </div>
-      <div className="fourty-five break-to-full">
+      <div className="three-fifths break-to-full">
         <img src="/guy-with-charts.svg" className="full" />
       </div>
     </div>

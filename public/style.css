@@ -8,7 +8,7 @@ body {
 }
 
 main {
-  height: 80vh;
+  height: 75vh;
   overflow-y: scroll;
 }
 
@@ -51,7 +51,7 @@ h2 {
 }
 
 h3 {
-  font-size: 4.5rem;
+  font-size: 4rem;
 }
 
 h4 {
@@ -176,6 +176,10 @@ nav {
   flex-wrap: wrap;
 }
 
+.wrap-reverse {
+  flex-wrap: wrap-reverse;
+}
+
 .align-center {
   text-align: center;
 }
@@ -212,6 +216,10 @@ nav {
   width: 50%;
 }
 
+.three-fifths {
+  width: 60%;
+}
+
 .two-thirds {
   width: 66%;
 }
@@ -241,8 +249,18 @@ nav {
   border-radius: 2px;
 }
 
+.green {
+  background-color: rgb(170, 208, 153);
+  border-radius: 2px;
+}
+
 .gray:hover {
   background-color: rgb(208, 208, 214);
+}
+
+.green:hover {
+  background-color: rgb(123, 159, 106);
+  border-radius: 2px;
 }
 
 .border-bottom {

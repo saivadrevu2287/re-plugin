@@ -8,19 +8,13 @@ body {
 }
 
 main {
-  height: 80vh;
+  height: 75vh;
   overflow-y: scroll;
 }
 
 .card {
   margin-top: 2rem;
   margin-bottom: 2rem;
-}
-
-.profile-container {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
 }
 
 .scheduled-emailer-element {
@@ -57,7 +51,7 @@ h2 {
 }
 
 h3 {
-  font-size: 4.5rem;
+  font-size: 4rem;
 }
 
 h4 {
@@ -98,6 +92,7 @@ button {
   border-radius: 2px;
   font-size: 1rem;
   font-weight: bold;
+  height: min-content;
 }
 
 .ostrich-button {
@@ -181,6 +176,10 @@ nav {
   flex-wrap: wrap;
 }
 
+.wrap-reverse {
+  flex-wrap: wrap-reverse;
+}
+
 .align-center {
   text-align: center;
 }
@@ -217,6 +216,10 @@ nav {
   width: 50%;
 }
 
+.three-fifths {
+  width: 60%;
+}
+
 .two-thirds {
   width: 66%;
 }
@@ -241,6 +244,41 @@ nav {
   padding: 1rem;
 }
 
+.gray {
+  background-color: rgb(233, 233, 236);
+  border-radius: 2px;
+}
+
+.green {
+  background-color: rgb(170, 208, 153);
+  border-radius: 2px;
+}
+
+.gray:hover {
+  background-color: rgb(208, 208, 214);
+}
+
+.green:hover {
+  background-color: rgb(123, 159, 106);
+  border-radius: 2px;
+}
+
+.border-bottom {
+  border-bottom: 1px solid black;
+}
+
+.border-top {
+  border-top: 1px solid black;
+}
+
+.border-left {
+  border-left: 1px solid black;
+}
+
+.border-right {
+  border-right: 1px solid black;
+}
+
 .super-margin-top {
   margin-top: 80px;
 }
@@ -257,32 +295,44 @@ nav {
   margin-bottom: 1rem;
 }
 
+.personal-margin-left {
+  margin-left: 1rem;
+}
+
+.personal-margin-right {
+  margin-right: 1rem;
+}
+
 .personal-margin-top-double {
   margin-top: 2rem;
 }
 
 .personal-space-top {
-  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
+.personal-space-top-double {
+  padding-top: 2rem;
 }
 
 .personal-space-bottom {
-  margin-bottom: 1rem;
+  padding-bottom: 1rem;
 }
 
 .personal-space-left {
-  margin-left: 1rem;
+  padding-left: 1rem;
 }
 
 .personal-space-right {
-  margin-right: 1rem;
+  padding-right: 1rem;
 }
 
 .personal-space-small-bottom {
-  margin-bottom: 8px;
+  padding-bottom: 8px;
 }
 
 .personal-space-small-top {
-  margin-top: 8px;
+  padding-top: 8px;
 }
 
 @media screen and (max-width: 480px) {

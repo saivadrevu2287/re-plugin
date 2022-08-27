@@ -61,14 +61,14 @@ export default function Login(props) {
         <p class="error">{errorMessage}</p>
         <div>
           <button
-            className="plain-button personal-space-bottom"
+            className="plain-button personal-margin-bottom"
             onClick={toForgotPassword}
           >
             Forgot Password
           </button>
         </div>
         <button
-          className="plain-button personal-space-bottom"
+          className="plain-button personal-margin-bottom"
           onClick={proceedWithGoogle}
         >
           Continue With Google

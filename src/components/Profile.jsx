@@ -13,8 +13,6 @@ export default function Profile(props) {
   return (
     <Fragment>
       <h2 className="border-bottom">Profile</h2>
-      <h5 className="personal-space-top">Signed in as: {user.email}</h5>
-      <h6>User Tier: {user.user_tier == 1 ? 'Free' : 'Full Access'}</h6>
       <div className="personal-space-top-double">
         <button onClick={() => setSelectedTab('details')}>User 👤</button>
         {user.user_tier > 1 && (

@@ -56,13 +56,12 @@ export default function Signup(props) {
           value={confirmPassword}
           onInput={eliminateEvent(setConfirmPassword)}
         />
-
         <button className="ostrich-button" type="submit" onClick={signUp}>
           Sign Up
         </button>
         <p class="error">{errorMessage}</p>
         <button
-          className="plain-button personal-space-bottom"
+          className="plain-button personal-margin-bottom"
           onClick={proceedWithGoogle}
         >
           Continue With Google

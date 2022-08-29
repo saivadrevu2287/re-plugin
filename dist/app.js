@@ -2939,6 +2939,7 @@ function EditEmailForm(props) {
 
     try {
       axios__WEBPACK_IMPORTED_MODULE_2___default().put("".concat(backendUrl, "/api/emailers"), {
+        id: scheduledEmail.id,
         insurance: parseInt(insurance),
         vacancy: parseInt(vacancy),
         property_management: parseInt(propertyManagement),
@@ -3175,13 +3176,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
 /* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
-/* harmony import */ var _subroutines_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../subroutines/utils */ "./src/subroutines/utils.js");
-/* harmony import */ var _ScheduleEmailForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ScheduleEmailForm */ "./src/components/ScheduleEmailForm.jsx");
-/* harmony import */ var _ScheduledEmails__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ScheduledEmails */ "./src/components/ScheduledEmails.jsx");
-/* harmony import */ var _TestSearch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./TestSearch */ "./src/components/TestSearch.jsx");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _EditEmailForm__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./EditEmailForm */ "./src/components/EditEmailForm.jsx");
+/* harmony import */ var _ScheduleEmailForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ScheduleEmailForm */ "./src/components/ScheduleEmailForm.jsx");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _EditEmailForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./EditEmailForm */ "./src/components/EditEmailForm.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3198,16 +3196,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
-
-
-
-
-var eliminateEvent = function eliminateEvent(callback) {
-  return function (event) {
-    return callback(event.target.value);
-  };
-};
 
 function EmailerDashboard(props) {
   var backendUrl = props.backendUrl,
@@ -3228,21 +3216,33 @@ function EmailerDashboard(props) {
       selectedMarket = _useState6[0],
       setSelectedMarket = _useState6[1];
 
-  var _useState7 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+  var _useState7 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
       _useState8 = _slicedToArray(_useState7, 2),
-      successfulSubmition = _useState8[0],
-      setSuccessfulSubmition = _useState8[1];
+      loadingState = _useState8[0],
+      setLoadingState = _useState8[1];
+
+  var _useState9 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+      _useState10 = _slicedToArray(_useState9, 2),
+      successfulSubmition = _useState10[0],
+      setSuccessfulSubmition = _useState10[1];
 
   (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     if (user) {
-      axios__WEBPACK_IMPORTED_MODULE_6___default().get("".concat(backendUrl, "/api/emailers")).then(function (r) {
+      axios__WEBPACK_IMPORTED_MODULE_3___default().get("".concat(backendUrl, "/api/emailers")).then(function (r) {
         setScheduledEmails(r.data);
+        setLoadingState(false);
+
+        if (!scheduledEmails.length) {
+          setSelectedMarket(-1);
+        } else {
+          setSelectedMarket(0);
+        }
       })["catch"](function (e) {
         setErrorMessage(e.response.data.message);
       });
     }
 
-    setSelectedMarket(0);
+    setLoadingState(true);
   }, [user, successfulSubmition]);
   var scheduledEmailList = scheduledEmails.map(function (scheduledEmail, i) {
     return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
@@ -3254,14 +3254,10 @@ function EmailerDashboard(props) {
       className: "personal-margin-bottom padded gray"
     }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, scheduledEmail.notes), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, scheduledEmail.search_param));
   });
-  console.log({
-    scheduledEmails: scheduledEmails,
-    selectedMarket: selectedMarket
-  });
-  var emailerForm = selectedMarket == -1 ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_ScheduleEmailForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  var emailerForm = selectedMarket == -1 ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_ScheduleEmailForm__WEBPACK_IMPORTED_MODULE_2__["default"], {
     backendUrl: backendUrl,
     setSuccessfulSubmition: setSuccessfulSubmition
-  }) : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_EditEmailForm__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }) : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_EditEmailForm__WEBPACK_IMPORTED_MODULE_4__["default"], {
     backendUrl: backendUrl,
     setSuccessfulSubmition: setSuccessfulSubmition,
     scheduledEmail: scheduledEmails[selectedMarket]
@@ -3281,7 +3277,7 @@ function EmailerDashboard(props) {
     },
     key: "create",
     className: "personal-margin-bottom padded green"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "Create New Market"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "Schedule notifications for a market")), scheduledEmailList), emailerForm)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "Create New Market"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "Schedule notifications for a market")), scheduledEmailList), loadingState ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Loading Data...") : emailerForm)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     className: "error"
   }, errorMessage));
 }
@@ -3975,54 +3971,6 @@ function ScheduleEmailForm(props) {
 
 /***/ }),
 
-/***/ "./src/components/ScheduledEmails.jsx":
-/*!********************************************!*\
-  !*** ./src/components/ScheduledEmails.jsx ***!
-  \********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ ScheduledEmails)
-/* harmony export */ });
-/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
-/* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-
-
-
-
-var formatNumber = function formatNumber(number) {
-  return number ? "$".concat(number.toLocaleString()) : '$X';
-};
-
-function ScheduledEmails(props) {
-  var selectedMarketHtml = scheduledEmails.length ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "personal-margin-left"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Location: ", scheduledEmails[selectedMarket].search_param), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Price Range: ", formatNumber(scheduledEmails[selectedMarket].min_price), "-", formatNumber(scheduledEmails[selectedMarket].max_price)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Specs: ", scheduledEmails[selectedMarket].no_bedrooms, " Beds |", ' ', scheduledEmails[selectedMarket].no_bathrooms, " Baths"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Email Notifications: Enabled"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "ostrich-button",
-    onClick: function onClick() {
-      axios__WEBPACK_IMPORTED_MODULE_2___default()["delete"]("".concat(backendUrl, "/api/emailers/").concat(scheduledEmails[selectedMarket].id)).then(function (r) {
-        setReloadSelf(Math.random());
-      })["catch"](function (e) {
-        setSearchResults([]);
-        setErrorMessage(e.response.data.message);
-      });
-    }
-  }, "Delete")) : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Loading Markets...");
-  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "Your Target Markets"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex personal-space-top-double"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "personal-space-right"
-  }, scheduledEmailList), selectedMarketHtml), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
-    className: "error"
-  }, errorMessage));
-}
-
-/***/ }),
-
 /***/ "./src/components/Signup.jsx":
 /*!***********************************!*\
   !*** ./src/components/Signup.jsx ***!
@@ -4179,96 +4127,6 @@ function Splash(props) {
     src: "/guy-with-charts.svg",
     className: "full"
   })));
-}
-
-/***/ }),
-
-/***/ "./src/components/TestSearch.jsx":
-/*!***************************************!*\
-  !*** ./src/components/TestSearch.jsx ***!
-  \***************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ TestSearch)
-/* harmony export */ });
-/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
-/* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-function TestSearch(props) {
-  var backendUrl = props.backendUrl,
-      searchParams = props.searchParams,
-      numBedrooms = props.numBedrooms,
-      maxPrice = props.maxPrice,
-      minPrice = props.minPrice;
-
-  var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
-      _useState2 = _slicedToArray(_useState, 2),
-      testResults = _useState2[0],
-      setTestResults = _useState2[1];
-
-  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
-      _useState4 = _slicedToArray(_useState3, 2),
-      errorMessage = _useState4[0],
-      setErrorMessage = _useState4[1];
-
-  var testEmailerParams = function testEmailerParams() {
-    if (!searchParams) {
-      setErrorMessage('Need to fill out Search Parameters');
-    } else {
-      var testerUrl = "".concat(backendUrl, "/api/emailers/test-search-param?search_param=").concat(encodeURI(searchParams));
-
-      if (minPrice) {
-        testerUrl = "".concat(testerUrl, "&min_price=").concat(minPrice);
-      }
-
-      if (maxPrice) {
-        testerUrl = "".concat(testerUrl, "&max_price=").concat(maxPrice);
-      }
-
-      if (numBedrooms) {
-        testerUrl = "".concat(testerUrl, "&no_bedrooms=").concat(numBedrooms);
-      }
-
-      axios__WEBPACK_IMPORTED_MODULE_2___default().get(testerUrl).then(function (r) {
-        setTestResults(r.data);
-        setErrorMessage('');
-      })["catch"](function (e) {
-        setTestResults([]);
-        setErrorMessage(e.response.data.message);
-      });
-    }
-  };
-
-  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "Search Results"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "Hint: Test your search before submitting. This will help you dial in your parameters."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
-    className: "error"
-  }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "ostrich-button",
-    onClick: testEmailerParams
-  }, "Test these params!"), testResults.map(function (address, i) {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-      key: i,
-      className: "scheduled-emailer-element"
-    }, address);
-  }));
 }
 
 /***/ }),

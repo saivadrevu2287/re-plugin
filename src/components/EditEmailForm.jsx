@@ -1,4 +1,4 @@
-import { h, Fragment } from 'preact'
+import { h } from 'preact'
 import { useState, useEffect } from 'preact/hooks'
 import axios from 'axios'
 
@@ -120,6 +120,7 @@ export default function EditEmailForm(props) {
     try {
       axios
         .put(`${backendUrl}/api/emailers`, {
+          id: scheduledEmail.id,
           insurance: parseInt(insurance),
           vacancy: parseInt(vacancy),
           property_management: parseInt(propertyManagement),

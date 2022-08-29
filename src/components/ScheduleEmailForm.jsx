@@ -1,5 +1,5 @@
-import { h, Fragment } from 'preact'
-import { useState, useEffect } from 'preact/hooks'
+import { h } from 'preact'
+import { useState } from 'preact/hooks'
 import axios from 'axios'
 
 const eliminateEvent = (callback) => (event) => callback(event.target.value)

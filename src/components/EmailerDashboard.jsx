@@ -1,13 +1,8 @@
 import { h, Fragment } from 'preact'
 import { useEffect, useState } from 'preact/hooks'
-import { parseJwt } from '../subroutines/utils'
 import ScheduleEmailForm from './ScheduleEmailForm'
-import ScheduledEmails from './ScheduledEmails'
-import TestSearch from './TestSearch'
 import axios from 'axios'
 import EditEmailForm from './EditEmailForm'
-
-const eliminateEvent = (callback) => (event) => callback(event.target.value)
 
 export default function EmailerDashboard(props) {
   const { backendUrl, user } = props
@@ -15,6 +10,7 @@ export default function EmailerDashboard(props) {
   const [errorMessage, setErrorMessage] = useState('')
   const [scheduledEmails, setScheduledEmails] = useState([])
   const [selectedMarket, setSelectedMarket] = useState(0)
+  const [loadingState, setLoadingState] = useState(false)
   const [successfulSubmition, setSuccessfulSubmition] = useState(0)
 
   useEffect(() => {
@@ -23,12 +19,21 @@ export default function EmailerDashboard(props) {
         .get(`${backendUrl}/api/emailers`)
         .then((r) => {
           setScheduledEmails(r.data)
+
+          setLoadingState(false)
+
+          if (!scheduledEmails.length) {
+            setSelectedMarket(-1)
+          } else {
+            setSelectedMarket(0)
+          }
         })
         .catch((e) => {
           setErrorMessage(e.response.data.message)
         })
     }
-    setSelectedMarket(0)
+
+    setLoadingState(true)
   }, [user, successfulSubmition])
 
   const scheduledEmailList = scheduledEmails.map((scheduledEmail, i) => {
@@ -43,11 +48,6 @@ export default function EmailerDashboard(props) {
         <h6>{scheduledEmail.search_param}</h6>
       </div>
     )
-  })
-
-  console.log({
-    scheduledEmails,
-    selectedMarket,
   })
 
   const emailerForm =
@@ -82,7 +82,7 @@ export default function EmailerDashboard(props) {
             </div>
             {scheduledEmailList}
           </div>
-          {emailerForm}
+          {loadingState ? <h4>Loading Data...</h4> : emailerForm}
         </div>
       </div>
       <p className="error">{errorMessage}</p>

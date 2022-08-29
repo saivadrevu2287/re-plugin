@@ -24,7 +24,11 @@ export default function Signup(props) {
         })
         .then(handleSignupResults(email))
         .catch((e) => {
-          setErrorMessage(e.response.data.message)
+          if (e.response.data) {
+            setErrorMessage(e.response.data.message)
+          } else {
+            setErrorMessage(e.message)
+          }
         })
     }
   }

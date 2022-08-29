@@ -44,7 +44,11 @@ export default function Confirm(props) {
         setErrorMessage(r.data.message)
       })
       .catch((e) => {
-        setErrorMessage(e.response.data.message)
+        if (e.response.data) {
+          setErrorMessage(e.response.data.message)
+        } else {
+          setErrorMessage(e.message)
+        }
       })
   }
 

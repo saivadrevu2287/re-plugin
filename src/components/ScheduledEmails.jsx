@@ -29,7 +29,11 @@ export default function ScheduledEmails(props) {
             })
             .catch((e) => {
               setSearchResults([])
-              setErrorMessage(e.response.data.message)
+              if (e.response.data) {
+                setErrorMessage(e.response.data.message)
+              } else {
+                setErrorMessage(e.message)
+              }
             })
         }}
       >

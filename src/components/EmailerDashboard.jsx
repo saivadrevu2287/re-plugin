@@ -29,7 +29,11 @@ export default function EmailerDashboard(props) {
           }
         })
         .catch((e) => {
-          setErrorMessage(e.response.data.message)
+          if (e.response.data) {
+            setErrorMessage(e.response.data.message)
+          } else {
+            setErrorMessage(e.message)
+          }
         })
     }
 

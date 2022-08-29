@@ -29,8 +29,11 @@ export default function Login(props) {
       })
       .then(handleLoginResults(email))
       .catch((e) => {
-        console.log(e)
-        setErrorMessage(e.response.data.message)
+        if (e.response.data) {
+          setErrorMessage(e.response.data.message)
+        } else {
+          setErrorMessage(e.message)
+        }
       })
   }
 

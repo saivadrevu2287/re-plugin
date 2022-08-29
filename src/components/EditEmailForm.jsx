@@ -144,7 +144,11 @@ export default function EditEmailForm(props) {
           setSuccessfulSubmition(Math.random())
         })
         .catch((e) => {
-          setErrorMessage(e.response.data.message)
+          if (e.response.data) {
+            setErrorMessage(e.response.data.message)
+          } else {
+            setErrorMessage(e.message)
+          }
         })
     } catch (error) {
       setErrorMessage(error.message)

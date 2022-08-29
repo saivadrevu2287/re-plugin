@@ -18,7 +18,11 @@ export default function ForgotPassword(props) {
       })
       .then(handleForgotPasswordResults(email))
       .catch((e) => {
-        setErrorMessage(e.response.data.message)
+        if (e.response.data) {
+          setErrorMessage(e.response.data.message)
+        } else {
+          setErrorMessage(e.message)
+        }
       })
   }
 

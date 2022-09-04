@@ -2,22 +2,6 @@ import { h, Fragment } from 'preact'
 import { useState, useEffect } from 'preact/hooks'
 import entry from '../build/entry'
 
-const badProperties = ['idToken', 'email', 'needsVerification', 'isLoggedIn']
-const includedProperties = [
-  //     insurance: { value: 60, type: 'dollars' },
-  // vacancy: { value: 0.05, type: 'percent' },
-  // property: { value: 0.04, type: 'percent' },
-  // capex: { value: 0.05, type: 'percent' },
-  // repairs: { value: 0.05, type: 'percent' },
-  // utilities: { value: 0, type: 'dollars' },
-  // 'down-payment': { value: 0.25, type: 'percent' },
-  // 'closing-cost': { value: 0.04, type: 'percent' },
-  // 'loan-interest': { value: 0.041, type: 'percent' },
-  // 'loan-months': { value: 240, type: 'months' },
-  // 'additional-monthly-expenses': { value: 0, type: 'dollars' },
-]
-const eliminateEvent = (callback) => (event) => callback(event.target.value)
-
 const handleNumberForField = (type, number) => {
   console.log({ type, number })
   const value = parseFloat(number)
@@ -25,7 +9,8 @@ const handleNumberForField = (type, number) => {
 }
 
 function Options(props) {
-  const [configurationFields, setConfigurationFields] = useState(null)
+    const [configurationFields, setConfigurationFields] = useState(null)
+const [errorMessage, setErrorMessage] = useState(null)
 
   const [insurance, setInsurance] = useState(60)
   const [vacancy, setVacancy] = useState(5)
@@ -39,6 +24,11 @@ function Options(props) {
   const [loanMonths, setLoanMonths] = useState(240)
   const [additionalMonthlyExpenses, setAdditionalMonthlyExpenses] = useState(0)
 
+const eliminateEvent = (callback) => (event) => {
+    setErrorMessage("")
+    callback(event.target.value)
+}
+    
   useEffect(() => {
     chrome.storage.sync.get('configurationFields', (data) => {
       console.log(data.configurationFields)
@@ -107,6 +97,8 @@ function Options(props) {
       configurationFields['additional-monthly-expenses'].type,
       additionalMonthlyExpenses
     )
+    
+    setErrorMessage("Saved parameters.")
 
     chrome.storage.sync.set({ configurationFields: configurationFields })
   }
@@ -301,6 +293,7 @@ function Options(props) {
                 <b>$</b>
               </div>
             </div>
+            <p>{errorMessage}</p>
             <button
               className="ostrich-button four-fifths personal-margin-top"
               type="submit"

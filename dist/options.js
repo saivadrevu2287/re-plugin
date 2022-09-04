@@ -169,25 +169,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var badProperties = ['idToken', 'email', 'needsVerification', 'isLoggedIn'];
-var includedProperties = [//     insurance: { value: 60, type: 'dollars' },
-  // vacancy: { value: 0.05, type: 'percent' },
-  // property: { value: 0.04, type: 'percent' },
-  // capex: { value: 0.05, type: 'percent' },
-  // repairs: { value: 0.05, type: 'percent' },
-  // utilities: { value: 0, type: 'dollars' },
-  // 'down-payment': { value: 0.25, type: 'percent' },
-  // 'closing-cost': { value: 0.04, type: 'percent' },
-  // 'loan-interest': { value: 0.041, type: 'percent' },
-  // 'loan-months': { value: 240, type: 'months' },
-  // 'additional-monthly-expenses': { value: 0, type: 'dollars' },
-];
-
-var eliminateEvent = function eliminateEvent(callback) {
-  return function (event) {
-    return callback(event.target.value);
-  };
-};
 
 var handleNumberForField = function handleNumberForField(type, number) {
   console.log({
@@ -204,60 +185,72 @@ function Options(props) {
       configurationFields = _useState2[0],
       setConfigurationFields = _useState2[1];
 
-  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(60),
+  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
       _useState4 = _slicedToArray(_useState3, 2),
-      insurance = _useState4[0],
-      setInsurance = _useState4[1];
+      errorMessage = _useState4[0],
+      setErrorMessage = _useState4[1];
 
-  var _useState5 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(5),
+  var _useState5 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(60),
       _useState6 = _slicedToArray(_useState5, 2),
-      vacancy = _useState6[0],
-      setVacancy = _useState6[1];
+      insurance = _useState6[0],
+      setInsurance = _useState6[1];
 
-  var _useState7 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(4),
+  var _useState7 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(5),
       _useState8 = _slicedToArray(_useState7, 2),
-      propertyManagement = _useState8[0],
-      setPropertyManagement = _useState8[1];
+      vacancy = _useState8[0],
+      setVacancy = _useState8[1];
 
-  var _useState9 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(5),
+  var _useState9 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(4),
       _useState10 = _slicedToArray(_useState9, 2),
-      capex = _useState10[0],
-      setCapex = _useState10[1];
+      propertyManagement = _useState10[0],
+      setPropertyManagement = _useState10[1];
 
   var _useState11 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(5),
       _useState12 = _slicedToArray(_useState11, 2),
-      repairs = _useState12[0],
-      setRepairs = _useState12[1];
+      capex = _useState12[0],
+      setCapex = _useState12[1];
 
-  var _useState13 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+  var _useState13 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(5),
       _useState14 = _slicedToArray(_useState13, 2),
-      utilities = _useState14[0],
-      setUtilities = _useState14[1];
+      repairs = _useState14[0],
+      setRepairs = _useState14[1];
 
-  var _useState15 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(25),
+  var _useState15 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
       _useState16 = _slicedToArray(_useState15, 2),
-      downPayment = _useState16[0],
-      setDownPayment = _useState16[1];
+      utilities = _useState16[0],
+      setUtilities = _useState16[1];
 
-  var _useState17 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(4),
+  var _useState17 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(25),
       _useState18 = _slicedToArray(_useState17, 2),
-      closingCosts = _useState18[0],
-      setClosingCosts = _useState18[1];
+      downPayment = _useState18[0],
+      setDownPayment = _useState18[1];
 
   var _useState19 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(4),
       _useState20 = _slicedToArray(_useState19, 2),
-      loanInterest = _useState20[0],
-      setLoanInterest = _useState20[1];
+      closingCosts = _useState20[0],
+      setClosingCosts = _useState20[1];
 
-  var _useState21 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(240),
+  var _useState21 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(4),
       _useState22 = _slicedToArray(_useState21, 2),
-      loanMonths = _useState22[0],
-      setLoanMonths = _useState22[1];
+      loanInterest = _useState22[0],
+      setLoanInterest = _useState22[1];
 
-  var _useState23 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+  var _useState23 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(240),
       _useState24 = _slicedToArray(_useState23, 2),
-      additionalMonthlyExpenses = _useState24[0],
-      setAdditionalMonthlyExpenses = _useState24[1];
+      loanMonths = _useState24[0],
+      setLoanMonths = _useState24[1];
+
+  var _useState25 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+      _useState26 = _slicedToArray(_useState25, 2),
+      additionalMonthlyExpenses = _useState26[0],
+      setAdditionalMonthlyExpenses = _useState26[1];
+
+  var eliminateEvent = function eliminateEvent(callback) {
+    return function (event) {
+      setErrorMessage("");
+      callback(event.target.value);
+    };
+  };
 
   (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     chrome.storage.sync.get('configurationFields', function (data) {
@@ -290,6 +283,7 @@ function Options(props) {
     configurationFields['loan-interest'].value = handleNumberForField(configurationFields['loan-interest'].type, loanInterest);
     configurationFields['loan-months'].value = handleNumberForField(configurationFields['loan-months'].type, loanMonths);
     configurationFields['additional-monthly-expenses'].value = handleNumberForField(configurationFields['additional-monthly-expenses'].type, additionalMonthlyExpenses);
+    setErrorMessage("Saved parameters.");
     chrome.storage.sync.set({
       configurationFields: configurationFields
     });
@@ -427,7 +421,7 @@ function Options(props) {
     "class": "fourth",
     value: additionalMonthlyExpenses,
     onInput: eliminateEvent(setAdditionalMonthlyExpenses)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "$"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "$"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "ostrich-button four-fifths personal-margin-top",
     type: "submit",
     onClick: handleSave

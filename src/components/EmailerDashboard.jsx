@@ -2,6 +2,7 @@ import { h, Fragment } from 'preact'
 import { useEffect, useState } from 'preact/hooks'
 import ScheduleEmailForm from './ScheduleEmailForm'
 import axios from 'axios'
+import EmailerDetails from './EmailerDetails'
 import EditEmailForm from './EditEmailForm'
 
 export default function EmailerDashboard(props) {
@@ -43,16 +44,34 @@ export default function EmailerDashboard(props) {
   const scheduledEmailList = scheduledEmails.map((scheduledEmail, i) => {
     return (
       <div
-        style="max-width: 200px;"
         onClick={() => setSelectedMarket(i)}
         key={i}
-        className="personal-margin-bottom padded gray"
+        className={`padded-double ${
+          i == selectedMarket ? 'gray' : 'hover-item'
+        } border-top border-right`}
       >
-        <h5>{scheduledEmail.notes}</h5>
-        <h6>{scheduledEmail.search_param}</h6>
+        <h6>{scheduledEmail.notes}</h6>
+        <p>{scheduledEmail.search_param}</p>
       </div>
     )
   })
+
+  const emailerDetails =
+    selectedMarket == -1 ? (
+      <div className="padded">
+        <h5>Schedule a New Email</h5>
+        <p>
+          Once you save your parameters below, you will get an email daily at
+          3:42 pm ET with the newest properties and their expected cash flow.
+        </p>
+      </div>
+    ) : (
+      <EmailerDetails
+        backendUrl={backendUrl}
+        setSuccessfulSubmition={setSuccessfulSubmition}
+        scheduledEmail={scheduledEmails[selectedMarket]}
+      />
+    )
 
   const emailerForm =
     selectedMarket == -1 ? (
@@ -70,23 +89,28 @@ export default function EmailerDashboard(props) {
 
   return (
     <Fragment>
-      <h2 className="border-bottom">Ostrich Dashboard</h2>
-      <div className="personal-space-top">
-        <h5>Your Target Markets</h5>
-        <div className="flex personal-space-top-double">
-          <div className="personal-space-right fourth">
-            <div
-              style="max-width: 200px;"
-              onClick={() => setSelectedMarket(-1)}
-              key="create"
-              className="personal-margin-bottom padded green"
-            >
-              <h5>Create New Market</h5>
-              <h6>Schedule notifications for a market</h6>
-            </div>
-            {scheduledEmailList}
+      <h4 className="padded">Your Targeted Markets</h4>
+      <div className="flex dashboard-container">
+        <div className="break-to-full fourth">
+          <div
+            onClick={() => setSelectedMarket(-1)}
+            key="create"
+            className={`padded-double border-right ${
+              selectedMarket == -1 ? 'gray' : ''
+            }`}
+          >
+            <h5>+</h5>
+            <p>Schedule notifications for a market</p>
           </div>
-          {loadingState ? <h4>Loading Data...</h4> : emailerForm}
+          {scheduledEmailList}
+        </div>
+        <div className="personal-space-top-double hide-on-small">
+          {loadingState ? <h4>Loading Data...</h4> : emailerDetails}
+        </div>
+      </div>
+      <div className="flex around">
+        <div className="half break-to-full personal-margin-top-double">
+          {emailerForm}
         </div>
       </div>
       <p className="error">{errorMessage}</p>

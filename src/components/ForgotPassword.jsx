@@ -27,26 +27,30 @@ export default function ForgotPassword(props) {
   }
 
   return (
-    <div className="align-center super-margin-top">
-      <h4>Forgot Password</h4>
-      <div className="thin-container ostrich-container personal-space-bottom">
-        <div>
-          <input
-            name="username"
-            className="three-fourths personal-margin-bottom"
-            value={email}
-            placeholder="Email"
-            onInput={eliminateEvent(setEmail)}
-          />
+    <div className="flex around">
+      <div className="align-center super-margin-top dashboard-container third break-to-full padded">
+        <h4 className="personal-margin-bottom personal-margin-top">
+          Forgot Password
+        </h4>
+        <div className="thin-container ostrich-container personal-space-bottom">
+          <div>
+            <input
+              name="username"
+              className="three-fourths personal-margin-bottom"
+              value={email}
+              placeholder="Email"
+              onInput={eliminateEvent(setEmail)}
+            />
+          </div>
+          <button
+            className="ostrich-button four-fifths"
+            type="submit"
+            onClick={forgotPassword}
+          >
+            Submit
+          </button>
+          <p class="error">{errorMessage}</p>
         </div>
-        <button
-          className="ostrich-button"
-          type="submit"
-          onClick={forgotPassword}
-        >
-          Submit
-        </button>
-        <p class="error">{errorMessage}</p>
       </div>
     </div>
   )

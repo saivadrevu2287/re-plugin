@@ -53,10 +53,12 @@ export default function Confirm(props) {
   }
 
   return (
-    <div className="align-center super-margin-top">
-      <h4>Confirm Password</h4>
-      <div className="thin-container ostrich-container personal-space-bottom">
-        <div>
+    <div className="flex around">
+      <div className="align-center super-margin-top dashboard-container third break-to-full padded">
+        <h4 className="personal-margin-bottom personal-margin-top">
+          Confirm Password
+        </h4>
+        <div className="thin-container ostrich-container personal-space-bottom">
           <input
             name="username"
             className="three-fourths personal-margin-bottom"
@@ -67,7 +69,7 @@ export default function Confirm(props) {
           <input
             name="password"
             type="password"
-            placeholder="Password"
+            placeholder="New Password"
             className="three-fourths personal-margin-bottom"
             value={password}
             onInput={eliminateEvent(setPassword)}
@@ -87,15 +89,15 @@ export default function Confirm(props) {
             placeholder="Code"
             onInput={eliminateEvent(setCode)}
           />
+          <button
+            className="ostrich-button four-fifths"
+            type="submit"
+            onClick={confirmForgotPassword}
+          >
+            Submit
+          </button>
+          <p class="error">{errorMessage}</p>
         </div>
-        <button
-          className="ostrich-button"
-          type="submit"
-          onClick={confirmForgotPassword}
-        >
-          Submit
-        </button>
-        <p class="error">{errorMessage}</p>
       </div>
     </div>
   )

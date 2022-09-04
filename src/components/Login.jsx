@@ -38,10 +38,10 @@ export default function Login(props) {
   }
 
   return (
-    <div className="align-center super-margin-top">
-      <h4>Login</h4>
-      <div className="thin-container ostrich-container personal-space-bottom align-center">
-        <div>
+    <div className="flex around">
+      <div className="align-center super-margin-top dashboard-container third break-to-full padded">
+        <h4 className="personal-margin-bottom personal-margin-top">Login</h4>
+        <div className="thin-container ostrich-container personal-space-bottom align-center">
           <input
             name="username"
             className="three-fourths personal-margin-bottom"
@@ -57,29 +57,29 @@ export default function Login(props) {
             value={password}
             onInput={eliminateEvent(setPassword)}
           />
-        </div>
-        <button className="ostrich-button" type="submit" onClick={login}>
-          Login
-        </button>
-        <p class="error">{errorMessage}</p>
-        <div>
           <button
-            className="plain-button personal-margin-bottom"
-            onClick={toForgotPassword}
+            className="ostrich-button four-fifths personal-margin-top"
+            type="submit"
+            onClick={login}
           >
-            Forgot Password
+            Login
+          </button>
+          <p class="error">{errorMessage}</p>
+          <div className="personal-margin-bottom">
+            <span onClick={toForgotPassword} className="blue-text">
+              Forgot Password
+            </span>
+          </div>
+          <button
+            className="plain-button four-fifths personal-margin-bottom"
+            onClick={proceedWithGoogle}
+          >
+            Continue With Google
+          </button>
+          <button className="plain-button four-fifths" onClick={toSignup}>
+            Sign Up
           </button>
         </div>
-        <button
-          className="plain-button personal-margin-bottom"
-          onClick={proceedWithGoogle}
-        >
-          Continue With Google
-        </button>
-        <h6>Not Signed Up?</h6>
-        <button className="plain-button" onClick={toSignup}>
-          Sign up here!
-        </button>
       </div>
     </div>
   )

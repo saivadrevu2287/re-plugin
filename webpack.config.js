@@ -5,7 +5,9 @@ const path = require('path')
 module.exports = {
   entry: {
     app: path.resolve(__dirname, 'src', 'containers', 'App.jsx'),
+    profile: path.resolve(__dirname, 'src', 'containers', 'Profile.jsx'),
     popup: path.resolve(__dirname, 'src', 'containers', 'Popup.jsx'),
+    options: path.resolve(__dirname, 'src', 'containers', 'Options.jsx'),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -18,6 +20,11 @@ module.exports = {
     new CopyWebpackPlugin(['./public/']),
     new HtmlWebpackPlugin({
       chunks: ['app'],
+      filename: 'email.html',
+      template: path.resolve(__dirname, 'src', 'build', 'index.html'),
+    }),
+    new HtmlWebpackPlugin({
+      chunks: ['profile'],
       filename: 'index.html',
       template: path.resolve(__dirname, 'src', 'build', 'index.html'),
     }),
@@ -25,6 +32,11 @@ module.exports = {
       chunks: ['popup'],
       filename: 'popup.html',
       template: path.resolve(__dirname, 'src', 'build', 'popup.html'),
+    }),
+    new HtmlWebpackPlugin({
+      chunks: ['options'],
+      filename: 'options.html',
+      template: path.resolve(__dirname, 'src', 'build', 'index.html'),
     }),
   ],
   module: {

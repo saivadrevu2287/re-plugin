@@ -1,6 +1,6 @@
 import { h, Fragment } from 'preact'
 import Splash from './Splash'
-import Profile from './Profile'
+import EmailerDashboard from './EmailerDashboard'
 
 export default function Home(props) {
   const { jwt, user, backendUrl } = props
@@ -8,7 +8,7 @@ export default function Home(props) {
   return (
     <Fragment>
       {!jwt && <Splash />}
-      {jwt && <Profile user={user} backendUrl={backendUrl} />}
+      {jwt && <EmailerDashboard user={user} backendUrl={backendUrl} />}
     </Fragment>
   )
 }

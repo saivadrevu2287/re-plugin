@@ -16,12 +16,13 @@ import ConfirmForgotPassword from '../components/ConfirmForgotPassword'
 import axios from 'axios'
 
 const loginWithGoogleUrl =
-  'https://ostrich.auth.us-east-2.amazoncognito.com/login?client_id=70apbavl1fsobed4jt7l7ml18h&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://ostr.ch'
+  'https://ostrich.auth.us-east-2.amazoncognito.com/login?client_id=70apbavl1fsobed4jt7l7ml18h&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://ostr.ch/email.html'
 const backendUrl = 'https://q0sku06vtg.execute-api.us-east-2.amazonaws.com/v1'
 
 function App(props) {
   const [jwt, setJwt] = useState(null)
   const [user, setUser] = useState(null)
+  const [errorMessage, setErrorMessage] = useState()
 
   useEffect(() => {
     if (jwt) {
@@ -41,12 +42,13 @@ function App(props) {
   useEffect(() => {
     if (window.location.hash) {
       setJwt(parseQueryParams(window.location.hash))
+      route('/email.html', true)
     }
   }, [])
 
   const handleLoginResults = (email) => (r) => {
     setJwt(r.data)
-    route('/', true)
+    route('/email.html', true)
   }
   const handleVerifyResults = (email) => (r) =>
     route(`/login?email=${email}`, true)
@@ -60,16 +62,14 @@ function App(props) {
   const toSignup = () => route('/signup')
   const toLogin = () => route('/login')
   const toEmailerDashboard = () => route('/dashboard')
-  const toHome = () => route('/')
+  const toHome = () => route('/email.html')
   const toForgotPassword = () => route('/forgot-password')
   const proceedWithGoogle = () => (window.location.href = loginWithGoogleUrl)
 
   const loginOrLogout = jwt ? (
     <Fragment>
       <a href="/">
-        <button className="plain-button personal-margin-right">
-          Profile
-        </button>
+        <button className="plain-button personal-margin-right">Profile</button>
       </a>
     </Fragment>
   ) : (
@@ -87,24 +87,23 @@ function App(props) {
   )
 
   return (
-    <div>
-      <nav className="ostrich-container">
-        <div className="flex centered-items">
-          <img
-            className="header-image link-button"
-            src="/ostrich.new.png"
-            alt="ostrich"
-            onClick={toHome}
-          />
-          <span className="header-title personal-space-left">
-            Ostrich Real Estate Tools
-          </span>
-        </div>
-        <div className="flex justify-end centered-items wrap">
-          {loginOrLogout}
+    <Fragment>
+      <nav>
+        <div className="content flex between">
+          <div className="flex centered-items">
+            <img
+              className="header-image link-button personal-space-left"
+              src="/OstrichPurple.png"
+              alt="ostrich"
+              onClick={toHome}
+            />
+          </div>
+          <div className="flex justify-end centered-items wrap">
+            {loginOrLogout}
+          </div>
         </div>
       </nav>
-      <main className="personal-space-top">
+      <main className="personal-space-top content">
         <Router>
           <Login
             path="/login"
@@ -146,7 +145,7 @@ function App(props) {
             }
           />
           <Home
-            path="/"
+            path="/email.html"
             backendUrl={backendUrl}
             jwt={jwt}
             user={user}
@@ -155,7 +154,7 @@ function App(props) {
         </Router>
       </main>
       <footer class="align-center">Ostrich Tools Ltd.</footer>
-    </div>
+    </Fragment>
   )
 }
 

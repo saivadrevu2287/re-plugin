@@ -45,48 +45,42 @@ export default function Confirm(props) {
   }
 
   return (
-    <div className="align-center super-margin-top">
-      <h4>Verify</h4>
-      <h6>
-        Please Enter the Verification Code
-        <br />
-        sent to your Email ({email}).
-      </h6>
-      <div className="thin-container ostrich-container personal-space-bottom">
-        <div class="flex between centered-items personal-space-bottom">
-          <label className="fourth align-right" htmlFor="username">
-            Email:
-          </label>
-          <div className="two-thirds align-left">
-            <input
-              name="username"
-              className="ninety"
-              value={email}
-              onInput={eliminateEvent(setEmail)}
-            />
-          </div>
+    <div className="flex around">
+      <div className="align-center super-margin-top dashboard-container third break-to-full padded">
+        <h4 className="personal-margin-bottom personal-margin-top">Verify</h4>
+        <h6>
+          Please Enter the Verification Code
+          <br />
+          sent to your Email ({email}).
+        </h6>
+        <div className="thin-container ostrich-container personal-space-bottom">
+          <input
+            name="username"
+            className="three-fourths personal-margin-bottom"
+            placeholder="Email"
+            value={email}
+            onInput={eliminateEvent(setEmail)}
+          />
+          <input
+            name="code"
+            className="three-fourths personal-margin-bottom"
+            placeholder="Code"
+            value={code}
+            onInput={eliminateEvent(setCode)}
+          />
+          <button
+            className="four-fifths ostrich-button"
+            type="submit"
+            onClick={verify}
+          >
+            Submit
+          </button>
+          <p class="error">{errorMessage}</p>
+          <button className="four-fifths ostrich-button" onClick={resendCode}>
+            Resend Code
+          </button>
         </div>
-        <div class="flex between centered-items personal-space-bottom">
-          <label className="fourth align-right" htmlFor="code">
-            Code:
-          </label>
-          <div className="two-thirds align-left">
-            <input
-              name="code"
-              className="ninety"
-              value={code}
-              onInput={eliminateEvent(setCode)}
-            />
-          </div>
-        </div>
-        <button className="ostrich-button" type="submit" onClick={verify}>
-          Submit
-        </button>
-        <p class="error">{errorMessage}</p>
       </div>
-      <button className="ostrich-button" onClick={resendCode}>
-        Resend Code
-      </button>
     </div>
   )
 }

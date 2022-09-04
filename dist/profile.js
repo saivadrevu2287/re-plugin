@@ -2495,267 +2495,6 @@ var entry = function entry(container) {
 
 /***/ }),
 
-/***/ "./src/components/Confirm.jsx":
-/*!************************************!*\
-  !*** ./src/components/Confirm.jsx ***!
-  \************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Confirm)
-/* harmony export */ });
-/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
-/* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _subroutines_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../subroutines/utils */ "./src/subroutines/utils.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-var eliminateEvent = function eliminateEvent(callback) {
-  return function (event) {
-    return callback(event.target.value);
-  };
-};
-
-function Confirm(props) {
-  var backendUrl = props.backendUrl,
-      handleVerifyResults = props.handleVerifyResults;
-  var handoverEmail = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_3__.parseQueryParams)(window.location.search).email || props.email;
-
-  var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
-      _useState2 = _slicedToArray(_useState, 2),
-      code = _useState2[0],
-      setCode = _useState2[1];
-
-  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(handoverEmail),
-      _useState4 = _slicedToArray(_useState3, 2),
-      email = _useState4[0],
-      setEmail = _useState4[1];
-
-  var _useState5 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
-      _useState6 = _slicedToArray(_useState5, 2),
-      errorMessage = _useState6[0],
-      setErrorMessage = _useState6[1];
-
-  var verify = function verify() {
-    setErrorMessage('');
-    axios__WEBPACK_IMPORTED_MODULE_2___default().post("".concat(backendUrl, "/auth/verify"), {
-      username: email,
-      code: code
-    }).then(handleVerifyResults(email))["catch"](function (e) {
-      if (e.response.data) {
-        setErrorMessage(e.response.data.message);
-      } else {
-        setErrorMessage(e.message);
-      }
-    });
-  };
-
-  var resendCode = function resendCode() {
-    axios__WEBPACK_IMPORTED_MODULE_2___default().post("".concat(backendUrl, "/auth/resend-code"), {
-      username: email
-    }).then(function (r) {
-      setErrorMessage(r.data.message);
-    })["catch"](function (e) {
-      setErrorMessage(e.response.data.message);
-    });
-  };
-
-  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex around"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "align-center super-margin-top dashboard-container third break-to-full padded"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", {
-    className: "personal-margin-bottom personal-margin-top"
-  }, "Verify"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "Please Enter the Verification Code", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), "sent to your Email (", email, ")."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "thin-container ostrich-container personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
-    name: "username",
-    className: "three-fourths personal-margin-bottom",
-    placeholder: "Email",
-    value: email,
-    onInput: eliminateEvent(setEmail)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
-    name: "code",
-    className: "three-fourths personal-margin-bottom",
-    placeholder: "Code",
-    value: code,
-    onInput: eliminateEvent(setCode)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "four-fifths ostrich-button",
-    type: "submit",
-    onClick: verify
-  }, "Submit"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
-    "class": "error"
-  }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "four-fifths ostrich-button",
-    onClick: resendCode
-  }, "Resend Code"))));
-}
-
-/***/ }),
-
-/***/ "./src/components/ConfirmForgotPassword.jsx":
-/*!**************************************************!*\
-  !*** ./src/components/ConfirmForgotPassword.jsx ***!
-  \**************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Confirm)
-/* harmony export */ });
-/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
-/* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _subroutines_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../subroutines/utils */ "./src/subroutines/utils.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-var eliminateEvent = function eliminateEvent(callback) {
-  return function (event) {
-    return callback(event.target.value);
-  };
-};
-
-function Confirm(props) {
-  var backendUrl = props.backendUrl,
-      handleConfirmForgotPasswordResults = props.handleConfirmForgotPasswordResults;
-  var handoverEmail = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_3__.parseQueryParams)(window.location.search).email || props.email;
-
-  var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
-      _useState2 = _slicedToArray(_useState, 2),
-      code = _useState2[0],
-      setCode = _useState2[1];
-
-  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(handoverEmail),
-      _useState4 = _slicedToArray(_useState3, 2),
-      email = _useState4[0],
-      setEmail = _useState4[1];
-
-  var _useState5 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
-      _useState6 = _slicedToArray(_useState5, 2),
-      password = _useState6[0],
-      setPassword = _useState6[1];
-
-  var _useState7 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
-      _useState8 = _slicedToArray(_useState7, 2),
-      confirmPassword = _useState8[0],
-      setConfirmPassword = _useState8[1];
-
-  var _useState9 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
-      _useState10 = _slicedToArray(_useState9, 2),
-      errorMessage = _useState10[0],
-      setErrorMessage = _useState10[1];
-
-  var confirmForgotPassword = function confirmForgotPassword() {
-    if (password != confirmPassword) {
-      setErrorMessage('Passwords do not match!');
-    } else {
-      setErrorMessage('');
-      axios__WEBPACK_IMPORTED_MODULE_2___default().post("".concat(backendUrl, "/auth/confirm-forgot-password"), {
-        username: email,
-        password: password,
-        code: code
-      }).then(handleConfirmForgotPasswordResults(email))["catch"](function (e) {
-        setErrorMessage(e.response.data.message);
-      });
-    }
-  };
-
-  var resendCode = function resendCode() {
-    setErrorMessage('');
-    axios__WEBPACK_IMPORTED_MODULE_2___default().post("".concat(backendUrl, "/auth/resend-code"), {
-      username: email
-    }).then(function (r) {
-      setErrorMessage(r.data.message);
-    })["catch"](function (e) {
-      if (e.response.data) {
-        setErrorMessage(e.response.data.message);
-      } else {
-        setErrorMessage(e.message);
-      }
-    });
-  };
-
-  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex around"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "align-center super-margin-top dashboard-container third break-to-full padded"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", {
-    className: "personal-margin-bottom personal-margin-top"
-  }, "Confirm Password"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "thin-container ostrich-container personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
-    name: "username",
-    className: "three-fourths personal-margin-bottom",
-    value: email,
-    placeholder: "Email",
-    onInput: eliminateEvent(setEmail)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
-    name: "password",
-    type: "password",
-    placeholder: "New Password",
-    className: "three-fourths personal-margin-bottom",
-    value: password,
-    onInput: eliminateEvent(setPassword)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
-    name: "confirm-password",
-    className: "three-fourths personal-margin-bottom",
-    type: "password",
-    placeholder: "Confirm Password",
-    value: confirmPassword,
-    onInput: eliminateEvent(setConfirmPassword)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
-    name: "code",
-    className: "three-fourths personal-margin-bottom",
-    value: code,
-    placeholder: "Code",
-    onInput: eliminateEvent(setCode)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "ostrich-button four-fifths",
-    type: "submit",
-    onClick: confirmForgotPassword
-  }, "Submit"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
-    "class": "error"
-  }, errorMessage))));
-}
-
-/***/ }),
-
 /***/ "./src/components/EditEmailForm.jsx":
 /*!******************************************!*\
   !*** ./src/components/EditEmailForm.jsx ***!
@@ -3471,268 +3210,35 @@ function EmailerDetails(props) {
 
 /***/ }),
 
-/***/ "./src/components/ForgotPassword.jsx":
-/*!*******************************************!*\
-  !*** ./src/components/ForgotPassword.jsx ***!
-  \*******************************************/
+/***/ "./src/components/Profile.jsx":
+/*!************************************!*\
+  !*** ./src/components/Profile.jsx ***!
+  \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ ForgotPassword)
+/* harmony export */   "default": () => (/* binding */ Profile)
 /* harmony export */ });
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
 /* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-var eliminateEvent = function eliminateEvent(callback) {
-  return function (event) {
-    return callback(event.target.value);
-  };
-};
-
-function ForgotPassword(props) {
-  var backendUrl = props.backendUrl,
-      handleForgotPasswordResults = props.handleForgotPasswordResults;
-
-  var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
-      _useState2 = _slicedToArray(_useState, 2),
-      email = _useState2[0],
-      setEmail = _useState2[1];
-
-  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
-      _useState4 = _slicedToArray(_useState3, 2),
-      errorMessage = _useState4[0],
-      setErrorMessage = _useState4[1];
-
-  var forgotPassword = function forgotPassword() {
-    setErrorMessage('');
-    axios__WEBPACK_IMPORTED_MODULE_2___default().post("".concat(backendUrl, "/auth/forgot-password"), {
-      username: email
-    }).then(handleForgotPasswordResults(email))["catch"](function (e) {
-      if (e.response.data) {
-        setErrorMessage(e.response.data.message);
-      } else {
-        setErrorMessage(e.message);
-      }
-    });
-  };
-
-  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex around"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "align-center super-margin-top dashboard-container third break-to-full padded"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", {
-    className: "personal-margin-bottom personal-margin-top"
-  }, "Forgot Password"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "thin-container ostrich-container personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
-    name: "username",
-    className: "three-fourths personal-margin-bottom",
-    value: email,
-    placeholder: "Email",
-    onInput: eliminateEvent(setEmail)
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "ostrich-button four-fifths",
-    type: "submit",
-    onClick: forgotPassword
-  }, "Submit"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
-    "class": "error"
-  }, errorMessage))));
-}
-
-/***/ }),
-
-/***/ "./src/components/Home.jsx":
-/*!*********************************!*\
-  !*** ./src/components/Home.jsx ***!
-  \*********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Home)
-/* harmony export */ });
-/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
-/* harmony import */ var _Splash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Splash */ "./src/components/Splash.jsx");
 /* harmony import */ var _EmailerDashboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./EmailerDashboard */ "./src/components/EmailerDashboard.jsx");
 
 
 
-function Home(props) {
-  var jwt = props.jwt,
-      user = props.user,
-      backendUrl = props.backendUrl;
-  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, !jwt && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_Splash__WEBPACK_IMPORTED_MODULE_1__["default"], null), jwt && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_EmailerDashboard__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    user: user,
-    backendUrl: backendUrl
-  }));
-}
+function Profile(props) {
+  var user = props.user;
 
-/***/ }),
+  if (!user) {
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null);
+  }
 
-/***/ "./src/components/Login.jsx":
-/*!**********************************!*\
-  !*** ./src/components/Login.jsx ***!
-  \**********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Login)
-/* harmony export */ });
-/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
-/* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _subroutines_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../subroutines/utils */ "./src/subroutines/utils.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-var eliminateEvent = function eliminateEvent(callback) {
-  return function (event) {
-    return callback(event.target.value);
-  };
-};
-
-function Login(props) {
-  var backendUrl = props.backendUrl,
-      handleLoginResults = props.handleLoginResults,
-      proceedWithGoogle = props.proceedWithGoogle,
-      toSignup = props.toSignup,
-      toForgotPassword = props.toForgotPassword;
-  var emailFromQp = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_3__.parseQueryParams)(window.location.search).email;
-
-  var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(emailFromQp),
-      _useState2 = _slicedToArray(_useState, 2),
-      email = _useState2[0],
-      setEmail = _useState2[1];
-
-  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
-      _useState4 = _slicedToArray(_useState3, 2),
-      password = _useState4[0],
-      setPassword = _useState4[1];
-
-  var _useState5 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
-      _useState6 = _slicedToArray(_useState5, 2),
-      errorMessage = _useState6[0],
-      setErrorMessage = _useState6[1];
-
-  var login = function login() {
-    setErrorMessage('');
-    axios__WEBPACK_IMPORTED_MODULE_2___default().post("".concat(backendUrl, "/auth/login"), {
-      username: email,
-      password: password
-    }).then(handleLoginResults(email))["catch"](function (e) {
-      if (e.response.data) {
-        setErrorMessage(e.response.data.message);
-      } else {
-        setErrorMessage(e.message);
-      }
-    });
-  };
-
-  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex around"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "align-center super-margin-top dashboard-container third break-to-full padded"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", {
-    className: "personal-margin-bottom personal-margin-top"
-  }, "Login"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "thin-container ostrich-container personal-space-bottom align-center"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
-    name: "username",
-    className: "three-fourths personal-margin-bottom",
-    placeholder: "Email",
-    value: email,
-    onInput: eliminateEvent(setEmail)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
-    name: "password",
-    type: "password",
-    className: "three-fourths personal-margin-bottom",
-    placeholder: "Password",
-    value: password,
-    onInput: eliminateEvent(setPassword)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "ostrich-button four-fifths personal-margin-top",
-    type: "submit",
-    onClick: login
-  }, "Login"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
-    "class": "error"
-  }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "personal-margin-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
-    onClick: toForgotPassword,
-    className: "blue-text"
-  }, "Forgot Password")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "plain-button four-fifths personal-margin-bottom",
-    onClick: proceedWithGoogle
-  }, "Continue With Google"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "plain-button four-fifths",
-    onClick: toSignup
-  }, "Sign Up"))));
-}
-
-/***/ }),
-
-/***/ "./src/components/Logout.jsx":
-/*!***********************************!*\
-  !*** ./src/components/Logout.jsx ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Logout)
-/* harmony export */ });
-/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
-/* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
-
-
-function Logout(props) {
-  var setJwt = props.setJwt;
-  (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    setJwt(null);
-  }, []);
-  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h2", null, "You are logged out!"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: "/login"
-  }, "Log Back In"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: "/"
-  }, "Return Home"));
+  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "personal-space-top-double"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "User Details"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", {
+    className: "personal-space-top"
+  }, "Signed in as: ", user.email)));
 }
 
 /***/ }),
@@ -4108,178 +3614,6 @@ function ScheduleEmailForm(props) {
 
 /***/ }),
 
-/***/ "./src/components/Signup.jsx":
-/*!***********************************!*\
-  !*** ./src/components/Signup.jsx ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Signup)
-/* harmony export */ });
-/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
-/* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
-/* harmony import */ var preact_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! preact-router */ "./node_modules/preact-router/dist/preact-router.mjs");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-var eliminateEvent = function eliminateEvent(callback) {
-  return function (event) {
-    return callback(event.target.value);
-  };
-};
-
-function Signup(props) {
-  var proceedWithGoogle = props.proceedWithGoogle,
-      backendUrl = props.backendUrl,
-      handleSignupResults = props.handleSignupResults,
-      toLogin = props.toLogin;
-
-  var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
-      _useState2 = _slicedToArray(_useState, 2),
-      email = _useState2[0],
-      setEmail = _useState2[1];
-
-  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
-      _useState4 = _slicedToArray(_useState3, 2),
-      password = _useState4[0],
-      setPassword = _useState4[1];
-
-  var _useState5 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
-      _useState6 = _slicedToArray(_useState5, 2),
-      confirmPassword = _useState6[0],
-      setConfirmPassword = _useState6[1];
-
-  var _useState7 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
-      _useState8 = _slicedToArray(_useState7, 2),
-      errorMessage = _useState8[0],
-      setErrorMessage = _useState8[1];
-
-  var signUp = function signUp() {
-    if (password != confirmPassword) {
-      setErrorMessage('Passwords do not match!');
-    } else {
-      setErrorMessage('');
-      axios__WEBPACK_IMPORTED_MODULE_3___default().post("".concat(backendUrl, "/auth/sign-up"), {
-        username: email,
-        password: password
-      }).then(handleSignupResults(email))["catch"](function (e) {
-        if (e.response.data) {
-          setErrorMessage(e.response.data.message);
-        } else {
-          setErrorMessage(e.message);
-        }
-      });
-    }
-  };
-
-  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex around"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "align-center super-margin-top dashboard-container third break-to-full padded"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", {
-    className: "personal-margin-bottom personal-margin-top"
-  }, "Sign Up"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "thin-container ostrich-container personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
-    name: "username",
-    className: "three-fourths personal-margin-bottom",
-    placeholder: "Email",
-    value: email,
-    onInput: eliminateEvent(setEmail)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
-    name: "password",
-    type: "password",
-    className: "three-fourths personal-margin-bottom",
-    placeholder: "Password",
-    value: password,
-    onInput: eliminateEvent(setPassword)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
-    name: "confirm-password",
-    className: "three-fourths personal-margin-bottom",
-    type: "password",
-    placeholder: "Confirm Password",
-    value: confirmPassword,
-    onInput: eliminateEvent(setConfirmPassword)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "four-fifths ostrich-button",
-    type: "submit",
-    onClick: signUp
-  }, "Sign Up"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
-    "class": "error"
-  }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "plain-button four-fifths personal-margin-bottom",
-    onClick: proceedWithGoogle
-  }, "Continue With Google"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "plain-button four-fifths",
-    onClick: toLogin
-  }, "Login"))));
-}
-
-/***/ }),
-
-/***/ "./src/components/Splash.jsx":
-/*!***********************************!*\
-  !*** ./src/components/Splash.jsx ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Splash)
-/* harmony export */ });
-/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
-
-function Splash(props) {
-  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex around wrap super-margin-top"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "half break-to-full"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h3", {
-    className: "special spacing-big"
-  }, "The fastest way ever to analyze rentals"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", {
-    className: "special spacing-small"
-  }, "A daily email that delivers the cash flow analysis of the newest properties in your market."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex personal-margin-top-double"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: "https://chrome.google.com/webstore/detail/ostrich/aicgkflmidjkbcenllnnlbnfnmicpmgo",
-    className: "link-button"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "ostrich-button"
-  }, "Try Ostrich for Free")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: "https://chrome.google.com/webstore/detail/ostrich/aicgkflmidjkbcenllnnlbnfnmicpmgo",
-    className: "link-button personal-margin-left"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "plain-button"
-  }, "How it Works")))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "two-fifths break-to-full"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
-    src: "/guy-with-charts.svg",
-    className: "full"
-  })));
-}
-
-/***/ }),
-
 /***/ "./src/subroutines/utils.js":
 /*!**********************************!*\
   !*** ./src/subroutines/utils.js ***!
@@ -4500,25 +3834,18 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
 "use strict";
-/*!********************************!*\
-  !*** ./src/containers/App.jsx ***!
-  \********************************/
+/*!************************************!*\
+  !*** ./src/containers/Profile.jsx ***!
+  \************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var preact_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact-router */ "./node_modules/preact-router/dist/preact-router.mjs");
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
 /* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
 /* harmony import */ var _build_entry__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../build/entry */ "./src/build/entry.js");
 /* harmony import */ var _subroutines_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../subroutines/utils */ "./src/subroutines/utils.js");
-/* harmony import */ var _components_Login__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Login */ "./src/components/Login.jsx");
-/* harmony import */ var _components_Signup__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Signup */ "./src/components/Signup.jsx");
-/* harmony import */ var _components_Confirm__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/Confirm */ "./src/components/Confirm.jsx");
-/* harmony import */ var _components_EmailerDashboard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/EmailerDashboard */ "./src/components/EmailerDashboard.jsx");
-/* harmony import */ var _components_Home__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/Home */ "./src/components/Home.jsx");
-/* harmony import */ var _components_Logout__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/Logout */ "./src/components/Logout.jsx");
-/* harmony import */ var _components_ForgotPassword__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/ForgotPassword */ "./src/components/ForgotPassword.jsx");
-/* harmony import */ var _components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../components/ConfirmForgotPassword */ "./src/components/ConfirmForgotPassword.jsx");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _components_Profile__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Profile */ "./src/components/Profile.jsx");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -4538,15 +3865,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
-
-
-
-
-
-
-
-var loginWithGoogleUrl = 'https://ostrich.auth.us-east-2.amazoncognito.com/login?client_id=70apbavl1fsobed4jt7l7ml18h&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://ostr.ch/email.html';
+var loginWithGoogleUrl = 'https://ostrich.auth.us-east-2.amazoncognito.com/login?client_id=70apbavl1fsobed4jt7l7ml18h&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://ostr.ch';
 var backendUrl = 'https://q0sku06vtg.execute-api.us-east-2.amazonaws.com/v1';
 
 function App(props) {
@@ -4566,147 +3885,37 @@ function App(props) {
       setErrorMessage = _useState6[1];
 
   (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
+    if (window.location.hash) {
+      setJwt((0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_4__.parseQueryParams)(window.location.hash));
+    }
+  }, []);
+  (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
     if (jwt) {
-      (axios__WEBPACK_IMPORTED_MODULE_13___default().defaults.headers.common.Authorization) = "Bearer ".concat(jwt.id_token);
-      axios__WEBPACK_IMPORTED_MODULE_13___default().get("".concat(backendUrl, "/api/users")).then(function (r) {
+      (axios__WEBPACK_IMPORTED_MODULE_6___default().defaults.headers.common.Authorization) = "Bearer ".concat(jwt.id_token);
+      axios__WEBPACK_IMPORTED_MODULE_6___default().get("".concat(backendUrl, "/api/users")).then(function (r) {
         setUser(r.data);
       })["catch"](function (e) {
         setErrorMessage(e.response.data.message);
       });
     }
   }, [jwt]);
-  (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
-    if (window.location.hash) {
-      setJwt((0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_4__.parseQueryParams)(window.location.hash));
-      (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/email.html', true);
-    }
-  }, []);
-
-  var handleLoginResults = function handleLoginResults(email) {
-    return function (r) {
-      setJwt(r.data);
-      (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/email.html', true);
-    };
-  };
-
-  var handleVerifyResults = function handleVerifyResults(email) {
-    return function (r) {
-      return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)("/login?email=".concat(email), true);
-    };
-  };
-
-  var handleSignupResults = function handleSignupResults(email) {
-    return function (r) {
-      return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)("/confirm?email=".concat(email), true);
-    };
-  };
-
-  var handleForgotPasswordResults = function handleForgotPasswordResults(email) {
-    return function (r) {
-      return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)("/confirm-forgot-password?email=".concat(email), true);
-    };
-  };
-
-  var handleConfirmForgotPasswordResults = function handleConfirmForgotPasswordResults(email) {
-    return function (r) {
-      return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)("/login?email=".concat(email), true);
-    };
-  };
-
-  var toSignup = function toSignup() {
-    return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/signup');
-  };
-
-  var toLogin = function toLogin() {
-    return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/login');
-  };
-
-  var toEmailerDashboard = function toEmailerDashboard() {
-    return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/dashboard');
-  };
-
-  var toHome = function toHome() {
-    return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/email.html');
-  };
-
-  var toForgotPassword = function toForgotPassword() {
-    return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/forgot-password');
-  };
-
-  var proceedWithGoogle = function proceedWithGoogle() {
-    return window.location.href = loginWithGoogleUrl;
-  };
-
-  var loginOrLogout = jwt ? (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("a", {
-    href: "/"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("button", {
-    className: "plain-button personal-margin-right"
-  }, "Profile"))) : (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("a", {
-    href: "/login",
-    className: "link-button"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("button", {
-    className: "plain-button personal-margin-right"
-  }, "Login")), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("a", {
-    href: "/signup",
-    className: "link-button"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("button", {
-    className: "ostrich-button personal-margin-right"
-  }, ' ', "Sign Up")));
-  return (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("nav", null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("div", {
+  return (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("nav", null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("div", {
     className: "content flex between"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("div", {
     className: "flex centered-items"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("img", {
     className: "header-image link-button personal-space-left",
     src: "/OstrichPurple.png",
-    alt: "ostrich",
-    onClick: toHome
+    alt: "ostrich"
   })), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("div", {
     className: "flex justify-end centered-items wrap"
-  }, loginOrLogout))), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("main", {
+  }))), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("main", {
     className: "personal-space-top content"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact_router__WEBPACK_IMPORTED_MODULE_0__["default"], null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Login__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    path: "/login",
-    backendUrl: backendUrl,
-    handleLoginResults: handleLoginResults,
-    toSignup: toSignup,
-    proceedWithGoogle: proceedWithGoogle,
-    toForgotPassword: toForgotPassword
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Signup__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    path: "/signup",
-    backendUrl: backendUrl,
-    handleSignupResults: handleSignupResults,
-    toLogin: toLogin,
-    proceedWithGoogle: proceedWithGoogle
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Confirm__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    path: "/confirm",
-    backendUrl: backendUrl,
-    handleVerifyResults: handleVerifyResults
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_EmailerDashboard__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    path: "/dashboard",
-    jwt: jwt,
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact_router__WEBPACK_IMPORTED_MODULE_0__["default"], null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Profile__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    path: "/",
     backendUrl: backendUrl,
     user: user
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Logout__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    path: "/logout",
-    backendUrl: backendUrl
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_ForgotPassword__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    path: "/forgot-password",
-    backendUrl: backendUrl,
-    handleForgotPasswordResults: handleForgotPasswordResults
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_12__["default"], {
-    path: "/confirm-forgot-password",
-    backendUrl: backendUrl,
-    handleConfirmForgotPasswordResults: handleConfirmForgotPasswordResults
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Home__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    path: "/email.html",
-    backendUrl: backendUrl,
-    jwt: jwt,
-    user: user,
-    toEmailerDashboard: toEmailerDashboard
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("footer", {
-    "class": "align-center"
-  }, "Ostrich Tools Ltd."));
+  }))));
 }
 
 (0,_build_entry__WEBPACK_IMPORTED_MODULE_3__["default"])((0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(App, null));
@@ -4714,4 +3923,4 @@ function App(props) {
 
 /******/ })()
 ;
-//# sourceMappingURL=app.js.map
+//# sourceMappingURL=profile.js.map

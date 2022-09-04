@@ -2560,7 +2560,11 @@ function Confirm(props) {
       username: email,
       code: code
     }).then(handleVerifyResults(email))["catch"](function (e) {
-      setErrorMessage(e.response.data.message);
+      if (e.response.data) {
+        setErrorMessage(e.response.data.message);
+      } else {
+        setErrorMessage(e.message);
+      }
     });
   };
 
@@ -2575,43 +2579,35 @@ function Confirm(props) {
   };
 
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "align-center super-margin-top"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Verify"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "Please Enter the Verification Code", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), "sent to your Email (", email, ")."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "thin-container ostrich-container personal-space-bottom"
+    className: "flex around"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "flex between centered-items personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
-    htmlFor: "username"
-  }, "Email:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "two-thirds align-left"
+    className: "align-center super-margin-top dashboard-container third break-to-full padded"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", {
+    className: "personal-margin-bottom personal-margin-top"
+  }, "Verify"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "Please Enter the Verification Code", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), "sent to your Email (", email, ")."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "thin-container ostrich-container personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     name: "username",
-    className: "ninety",
+    className: "three-fourths personal-margin-bottom",
+    placeholder: "Email",
     value: email,
     onInput: eliminateEvent(setEmail)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "flex between centered-items personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
-    htmlFor: "code"
-  }, "Code:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "two-thirds align-left"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     name: "code",
-    className: "ninety",
+    className: "three-fourths personal-margin-bottom",
+    placeholder: "Code",
     value: code,
     onInput: eliminateEvent(setCode)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "ostrich-button",
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+    className: "four-fifths ostrich-button",
     type: "submit",
     onClick: verify
   }, "Submit"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     "class": "error"
-  }, errorMessage)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "ostrich-button",
+  }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+    className: "four-fifths ostrich-button",
     onClick: resendCode
-  }, "Resend Code"));
+  }, "Resend Code"))));
 }
 
 /***/ }),
@@ -2707,15 +2703,23 @@ function Confirm(props) {
     }).then(function (r) {
       setErrorMessage(r.data.message);
     })["catch"](function (e) {
-      setErrorMessage(e.response.data.message);
+      if (e.response.data) {
+        setErrorMessage(e.response.data.message);
+      } else {
+        setErrorMessage(e.message);
+      }
     });
   };
 
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "align-center super-margin-top"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Confirm Password"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex around"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "align-center super-margin-top dashboard-container third break-to-full padded"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", {
+    className: "personal-margin-bottom personal-margin-top"
+  }, "Confirm Password"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "thin-container ostrich-container personal-space-bottom"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     name: "username",
     className: "three-fourths personal-margin-bottom",
     value: email,
@@ -2724,7 +2728,7 @@ function Confirm(props) {
   }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     name: "password",
     type: "password",
-    placeholder: "Password",
+    placeholder: "New Password",
     className: "three-fourths personal-margin-bottom",
     value: password,
     onInput: eliminateEvent(setPassword)
@@ -2741,13 +2745,13 @@ function Confirm(props) {
     value: code,
     placeholder: "Code",
     onInput: eliminateEvent(setCode)
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "ostrich-button",
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+    className: "ostrich-button four-fifths",
     type: "submit",
     onClick: confirmForgotPassword
   }, "Submit"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     "class": "error"
-  }, errorMessage)));
+  }, errorMessage))));
 }
 
 /***/ }),
@@ -2808,13 +2812,21 @@ function ForgotPassword(props) {
     axios__WEBPACK_IMPORTED_MODULE_2___default().post("".concat(backendUrl, "/auth/forgot-password"), {
       username: email
     }).then(handleForgotPasswordResults(email))["catch"](function (e) {
-      setErrorMessage(e.response.data.message);
+      if (e.response.data) {
+        setErrorMessage(e.response.data.message);
+      } else {
+        setErrorMessage(e.message);
+      }
     });
   };
 
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "align-center super-margin-top"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Forgot Password"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex around"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "align-center super-margin-top dashboard-container third break-to-full padded"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", {
+    className: "personal-margin-bottom personal-margin-top"
+  }, "Forgot Password"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "thin-container ostrich-container personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     name: "username",
@@ -2823,12 +2835,12 @@ function ForgotPassword(props) {
     placeholder: "Email",
     onInput: eliminateEvent(setEmail)
   })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "ostrich-button",
+    className: "ostrich-button four-fifths",
     type: "submit",
     onClick: forgotPassword
   }, "Submit"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     "class": "error"
-  }, errorMessage)));
+  }, errorMessage))));
 }
 
 /***/ }),
@@ -3165,16 +3177,23 @@ function Login(props) {
       username: email,
       password: password
     }).then(handleLoginResults(email))["catch"](function (e) {
-      console.log(e);
-      setErrorMessage(e.response.data.message);
+      if (e.response.data) {
+        setErrorMessage(e.response.data.message);
+      } else {
+        setErrorMessage(e.message);
+      }
     });
   };
 
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "align-center super-margin-top"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Login"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex around"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "align-center super-margin-top dashboard-container third break-to-full padded"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", {
+    className: "personal-margin-bottom personal-margin-top"
+  }, "Login"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "thin-container ostrich-container personal-space-bottom align-center"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     name: "username",
     className: "three-fourths personal-margin-bottom",
     placeholder: "Email",
@@ -3187,22 +3206,24 @@ function Login(props) {
     placeholder: "Password",
     value: password,
     onInput: eliminateEvent(setPassword)
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "ostrich-button",
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+    className: "ostrich-button four-fifths personal-margin-top",
     type: "submit",
     onClick: login
   }, "Login"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     "class": "error"
-  }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "plain-button personal-margin-bottom",
-    onClick: toForgotPassword
+  }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "personal-margin-bottom"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    onClick: toForgotPassword,
+    className: "blue-text"
   }, "Forgot Password")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "plain-button personal-margin-bottom",
+    className: "plain-button four-fifths personal-margin-bottom",
     onClick: proceedWithGoogle
-  }, "Continue With Google"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "Not Signed Up?"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "plain-button",
+  }, "Continue With Google"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+    className: "plain-button four-fifths",
     onClick: toSignup
-  }, "Sign up here!")));
+  }, "Sign Up"))));
 }
 
 /***/ }),
@@ -3281,14 +3302,22 @@ function Signup(props) {
         username: email,
         password: password
       }).then(handleSignupResults(email))["catch"](function (e) {
-        setErrorMessage(e.response.data.message);
+        if (e.response.data) {
+          setErrorMessage(e.response.data.message);
+        } else {
+          setErrorMessage(e.message);
+        }
       });
     }
   };
 
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "align-center super-margin-top"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Signup"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex around"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "align-center super-margin-top dashboard-container third break-to-full padded"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", {
+    className: "personal-margin-bottom personal-margin-top"
+  }, "Sign Up"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "thin-container ostrich-container personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     name: "username",
@@ -3311,18 +3340,18 @@ function Signup(props) {
     value: confirmPassword,
     onInput: eliminateEvent(setConfirmPassword)
   }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "ostrich-button",
+    className: "four-fifths ostrich-button",
     type: "submit",
     onClick: signUp
   }, "Sign Up"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     "class": "error"
   }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "plain-button personal-margin-bottom",
+    className: "plain-button four-fifths personal-margin-bottom",
     onClick: proceedWithGoogle
-  }, "Continue With Google"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "Already Signed Up?"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "plain-button",
+  }, "Continue With Google"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+    className: "plain-button four-fifths",
     onClick: toLogin
-  }, "Log in here!")));
+  }, "Login"))));
 }
 
 /***/ }),

@@ -34,46 +34,51 @@ export default function Signup(props) {
   }
 
   return (
-    <div className="align-center super-margin-top">
-      <h4>Signup</h4>
-      <div className="thin-container ostrich-container personal-space-bottom">
-        <input
-          name="username"
-          className="three-fourths personal-margin-bottom"
-          placeholder="Email"
-          value={email}
-          onInput={eliminateEvent(setEmail)}
-        />
-        <input
-          name="password"
-          type="password"
-          className="three-fourths personal-margin-bottom"
-          placeholder="Password"
-          value={password}
-          onInput={eliminateEvent(setPassword)}
-        />
-        <input
-          name="confirm-password"
-          className="three-fourths personal-margin-bottom"
-          type="password"
-          placeholder="Confirm Password"
-          value={confirmPassword}
-          onInput={eliminateEvent(setConfirmPassword)}
-        />
-        <button className="ostrich-button" type="submit" onClick={signUp}>
-          Sign Up
-        </button>
-        <p class="error">{errorMessage}</p>
-        <button
-          className="plain-button personal-margin-bottom"
-          onClick={proceedWithGoogle}
-        >
-          Continue With Google
-        </button>
-        <h6>Already Signed Up?</h6>
-        <button className="plain-button" onClick={toLogin}>
-          Log in here!
-        </button>
+    <div className="flex around">
+      <div className="align-center super-margin-top dashboard-container third break-to-full padded">
+        <h4 className="personal-margin-bottom personal-margin-top">Sign Up</h4>
+        <div className="thin-container ostrich-container personal-space-bottom">
+          <input
+            name="username"
+            className="three-fourths personal-margin-bottom"
+            placeholder="Email"
+            value={email}
+            onInput={eliminateEvent(setEmail)}
+          />
+          <input
+            name="password"
+            type="password"
+            className="three-fourths personal-margin-bottom"
+            placeholder="Password"
+            value={password}
+            onInput={eliminateEvent(setPassword)}
+          />
+          <input
+            name="confirm-password"
+            className="three-fourths personal-margin-bottom"
+            type="password"
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            onInput={eliminateEvent(setConfirmPassword)}
+          />
+          <button
+            className="four-fifths ostrich-button"
+            type="submit"
+            onClick={signUp}
+          >
+            Sign Up
+          </button>
+          <p class="error">{errorMessage}</p>
+          <button
+            className="plain-button four-fifths personal-margin-bottom"
+            onClick={proceedWithGoogle}
+          >
+            Continue With Google
+          </button>
+          <button className="plain-button four-fifths" onClick={toLogin}>
+            Login
+          </button>
+        </div>
       </div>
     </div>
   )

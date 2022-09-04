@@ -1,4 +1,4 @@
-import { h } from 'preact'
+import { h, Fragment } from 'preact'
 import { useState } from 'preact/hooks'
 import axios from 'axios'
 
@@ -243,105 +243,104 @@ export default function ScheduleEmailForm(props) {
   )
 
   return (
-    <div className="flex  wrap-reverse centered">
-      <div className="">
-        <div className="flex between centered-items personal-space-bottom">
-          <label className="fourth align-right" htmlFor="search-params-input">
-            Title:
-          </label>
-          <div>
-            <input
-              value={notes}
-              class="three-fourths"
-              onInput={eliminateEvent(setNotes)}
-            />
-          </div>
+    <Fragment>
+      <p>
+        Once you save your parameters below, you will get an email daily at 3:42
+        pm ET with the newest properties and their expected cash flow.
+      </p>
+      <div className="flex between centered-items personal-space-bottom">
+        <label className="fourth align-right" htmlFor="search-params-input">
+          Title:
+        </label>
+        <div>
+          <input
+            value={notes}
+            class="three-fourths"
+            onInput={eliminateEvent(setNotes)}
+          />
         </div>
-        <div className="flex between centered-items personal-space-bottom">
-          <label className="fourth align-right" htmlFor="search-params-input">
-            Location:
-          </label>
-          <div>
-            <input
-              value={searchParams}
-              class="three-fourths"
-              onInput={eliminateEvent(setSearchParams)}
-            />
-          </div>
+      </div>
+      <div className="flex between centered-items personal-space-bottom">
+        <label className="fourth align-right" htmlFor="search-params-input">
+          Location:
+        </label>
+        <div>
+          <input
+            value={searchParams}
+            class="three-fourths"
+            onInput={eliminateEvent(setSearchParams)}
+          />
         </div>
-        <div className="flex between centered-items personal-space-bottom">
-          <label className="fourth align-right" htmlFor="min-price-input">
-            Minimum Price:
-          </label>
-          <div>
-            <input
-              type="number"
-              class="three-fourths"
-              value={minPrice}
-              onInput={eliminateEvent(setMinPrice)}
-            />
-            <b>$</b>
-          </div>
+      </div>
+      <div className="flex between centered-items personal-space-bottom">
+        <label className="fourth align-right" htmlFor="min-price-input">
+          Minimum Price:
+        </label>
+        <div>
+          <input
+            type="number"
+            class="three-fourths"
+            value={minPrice}
+            onInput={eliminateEvent(setMinPrice)}
+          />
+          <b>$</b>
         </div>
-        <div className="flex between centered-items personal-space-bottom">
-          <label className="fourth align-right" htmlFor="max-price-input">
-            Maximum Price:
-          </label>
-          <div>
-            <input
-              type="number"
-              class="three-fourths"
-              value={maxPrice}
-              onInput={eliminateEvent(setMaxPrice)}
-            />
-            <b>$</b>
-          </div>
+      </div>
+      <div className="flex between centered-items personal-space-bottom">
+        <label className="fourth align-right" htmlFor="max-price-input">
+          Maximum Price:
+        </label>
+        <div>
+          <input
+            type="number"
+            class="three-fourths"
+            value={maxPrice}
+            onInput={eliminateEvent(setMaxPrice)}
+          />
+          <b>$</b>
         </div>
-        <div className="flex between centered-items personal-space-bottom">
-          <label className="fourth align-right" htmlFor="num-bedrooms-input">
-            Num. Bedrooms:
-          </label>
-          <div>
-            <input
-              type="number"
-              class="three-fourths"
-              value={numBedrooms}
-              onInput={eliminateEvent(setNumBedrooms)}
-            />
-          </div>
+      </div>
+      <div className="flex between centered-items personal-space-bottom">
+        <label className="fourth align-right" htmlFor="num-bedrooms-input">
+          Num. Bedrooms:
+        </label>
+        <div>
+          <input
+            type="number"
+            class="three-fourths"
+            value={numBedrooms}
+            onInput={eliminateEvent(setNumBedrooms)}
+          />
         </div>
-        <div className="flex between centered-items personal-space-bottom">
-          <label className="fourth align-right" htmlFor="num-bedrooms-input">
-            Num. Bathrooms:
-          </label>
-          <div>
-            <input
-              type="number"
-              class="three-fourths"
-              value={numBathrooms}
-              onInput={eliminateEvent(setNumBathrooms)}
-            />
-          </div>
+      </div>
+      <div className="flex between centered-items personal-space-bottom">
+        <label className="fourth align-right" htmlFor="num-bedrooms-input">
+          Num. Bathrooms:
+        </label>
+        <div>
+          <input
+            type="number"
+            class="three-fourths"
+            value={numBathrooms}
+            onInput={eliminateEvent(setNumBathrooms)}
+          />
         </div>
-        <button
-          onClick={flipHideCocCalculations}
-          className="plain-button personal-space-small-top"
-        >
-          {hideCocCalculations ? 'Show' : 'Hide'} Calculation Params
+      </div>
+      <button
+        onClick={flipHideCocCalculations}
+        className="plain-button personal-space-small-top"
+      >
+        {hideCocCalculations ? 'Show' : 'Hide'} Calculation Params
+      </button>
+      <div className="personal-space-top">
+        {!hideCocCalculations && cocCalculationParams}
+      </div>
+      <p className="error">{errorMessage}</p>
+      <div className="flex around">
+        <button className="ostrich-button" onClick={scheduleEmail}>
+          Submit
         </button>
-        <div className="personal-space-top">
-          {!hideCocCalculations && cocCalculationParams}
-        </div>
-        <p className="error">{errorMessage}</p>
-        <div className="flex around">
-          <button className="ostrich-button" onClick={scheduleEmail}>
-            Submit
-          </button>
-        </div>
       </div>
-      <div className="personal-space-left">
-        <h5>Schedule a New Email</h5>
-      </div>
-    </div>
+    </Fragment>
   )
 }

@@ -247,7 +247,7 @@ function Options(props) {
 
   var eliminateEvent = function eliminateEvent(callback) {
     return function (event) {
-      setErrorMessage("");
+      setErrorMessage('');
       callback(event.target.value);
     };
   };
@@ -283,7 +283,7 @@ function Options(props) {
     configurationFields['loan-interest'].value = handleNumberForField(configurationFields['loan-interest'].type, loanInterest);
     configurationFields['loan-months'].value = handleNumberForField(configurationFields['loan-months'].type, loanMonths);
     configurationFields['additional-monthly-expenses'].value = handleNumberForField(configurationFields['additional-monthly-expenses'].type, additionalMonthlyExpenses);
-    setErrorMessage("Saved parameters.");
+    setErrorMessage('Saved parameters.');
     chrome.storage.sync.set({
       configurationFields: configurationFields
     });

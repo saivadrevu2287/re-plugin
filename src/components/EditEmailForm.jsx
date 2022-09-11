@@ -5,11 +5,11 @@ import axios from 'axios'
 const eliminateEvent = (callback) => (event) => callback(event.target.value)
 
 export default function EditEmailForm(props) {
-  const { backendUrl, setSuccessfulSubmition, scheduledEmail } = props
+  const { backendUrl, setSuccessfulSubmition, scheduledEmail, selectedMarket } =
+    props
 
   const [errorMessage, setErrorMessage] = useState('')
-
-  const [hideCocCalculations, setHideCocCalculations] = useState(true)
+  const [successMessage, setSuccessMessage] = useState('')
 
   const [minPrice, setMinPrice] = useState(
     scheduledEmail ? scheduledEmail.min_price : null
@@ -62,6 +62,10 @@ export default function EditEmailForm(props) {
   const [additionalMonthlyExpenses, setAdditionalMonthlyExpenses] = useState(
     scheduledEmail ? scheduledEmail.additional_monthly_expenses : null
   )
+
+  useEffect(() => {
+    setSuccessMessage('')
+  }, [selectedMarket])
 
   useEffect(() => {
     setMinPrice(scheduledEmail ? scheduledEmail.min_price : null)
@@ -130,6 +134,7 @@ export default function EditEmailForm(props) {
         })
         .then((r) => {
           setSuccessfulSubmition(Math.random())
+          setSuccessMessage('Market updated.')
         })
         .catch((e) => {
           if (e.response.data) {
@@ -306,7 +311,7 @@ export default function EditEmailForm(props) {
   )
 
   return (
-    <Fragment>
+    <div className="">
       <div className="flex between centered-items personal-space-bottom">
         <label className="fourth align-right" htmlFor="search-params-input">
           Title:
@@ -342,7 +347,6 @@ export default function EditEmailForm(props) {
             value={minPrice}
             onInput={eliminateEvent(setMinPrice)}
           />
-          <b>$</b>
         </div>
       </div>
       <div className="flex between centered-items personal-space-bottom">
@@ -356,12 +360,11 @@ export default function EditEmailForm(props) {
             value={maxPrice}
             onInput={eliminateEvent(setMaxPrice)}
           />
-          <b>$</b>
         </div>
       </div>
       <div className="flex between centered-items personal-space-bottom">
         <label className="fourth align-right" htmlFor="num-bedrooms-input">
-          Num. Bedrooms:
+          Num. Bedrooms (minimum):
         </label>
         <div>
           <input
@@ -374,7 +377,7 @@ export default function EditEmailForm(props) {
       </div>
       <div className="flex between centered-items personal-space-bottom">
         <label className="fourth align-right" htmlFor="num-bedrooms-input">
-          Num. Bathrooms:
+          Num. Bathrooms (minimum):
         </label>
         <div>
           <input
@@ -385,21 +388,14 @@ export default function EditEmailForm(props) {
           />
         </div>
       </div>
-      <button
-        onClick={flipHideCocCalculations}
-        className="plain-button personal-space-small-top"
-      >
-        {hideCocCalculations ? 'Show' : 'Hide'} Calculation Params
-      </button>
-      <div className="personal-space-top">
-        {!hideCocCalculations && cocCalculationParams}
-      </div>
+      <div className="personal-space-top">{cocCalculationParams}</div>
       <p className="error">{errorMessage}</p>
+      <p className="success">{successMessage}</p>
       <div className="flex around">
         <button className="ostrich-button" onClick={scheduleEmail}>
           Update
         </button>
       </div>
-    </Fragment>
+    </div>
   )
 }

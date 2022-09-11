@@ -1,13 +1,14 @@
 import { h, Fragment } from 'preact'
-import { useState } from 'preact/hooks'
+import { useState, useEffect } from 'preact/hooks'
 import axios from 'axios'
 
 const eliminateEvent = (callback) => (event) => callback(event.target.value)
 
 export default function ScheduleEmailForm(props) {
-  const { backendUrl, setSuccessfulSubmition } = props
+  const { backendUrl, setSuccessfulSubmition, selectedMarket } = props
 
   const [errorMessage, setErrorMessage] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
 
   const [hideCocCalculations, setHideCocCalculations] = useState(true)
 
@@ -28,6 +29,10 @@ export default function ScheduleEmailForm(props) {
   const [loanInterest, setLoanInterest] = useState(4)
   const [loanMonths, setLoanMonths] = useState(240)
   const [additionalMonthlyExpenses, setAdditionalMonthlyExpenses] = useState(0)
+
+  useEffect(() => {
+    setSuccessMessage('')
+  }, [selectedMarket])
 
   const flipHideCocCalculations = () =>
     setHideCocCalculations(!hideCocCalculations)
@@ -67,6 +72,7 @@ export default function ScheduleEmailForm(props) {
         })
         .then((r) => {
           setSuccessfulSubmition(Math.random())
+          setSuccessMessage('Market Submitted. Expect a daily email at 3pm ET.')
         })
         .catch((e) => {
           if (e.response.data) {
@@ -81,7 +87,7 @@ export default function ScheduleEmailForm(props) {
   }
 
   const cocCalculationParams = (
-    <div>
+    <Fragment>
       <div className="flex between centered-items personal-space-bottom">
         <label className="fourth align-right" htmlFor="insurance-input">
           Insurance:
@@ -239,15 +245,11 @@ export default function ScheduleEmailForm(props) {
           <b>$</b>
         </div>
       </div>
-    </div>
+    </Fragment>
   )
 
   return (
-    <Fragment>
-      <p>
-        Once you save your parameters below, you will get an email daily at 3:42
-        pm ET with the newest properties and their expected cash flow.
-      </p>
+    <div className="">
       <div className="flex between centered-items personal-space-bottom">
         <label className="fourth align-right" htmlFor="search-params-input">
           Title:
@@ -283,7 +285,6 @@ export default function ScheduleEmailForm(props) {
             value={minPrice}
             onInput={eliminateEvent(setMinPrice)}
           />
-          <b>$</b>
         </div>
       </div>
       <div className="flex between centered-items personal-space-bottom">
@@ -297,12 +298,11 @@ export default function ScheduleEmailForm(props) {
             value={maxPrice}
             onInput={eliminateEvent(setMaxPrice)}
           />
-          <b>$</b>
         </div>
       </div>
       <div className="flex between centered-items personal-space-bottom">
         <label className="fourth align-right" htmlFor="num-bedrooms-input">
-          Num. Bedrooms:
+          Num. Bedrooms (minimum):
         </label>
         <div>
           <input
@@ -315,7 +315,7 @@ export default function ScheduleEmailForm(props) {
       </div>
       <div className="flex between centered-items personal-space-bottom">
         <label className="fourth align-right" htmlFor="num-bedrooms-input">
-          Num. Bathrooms:
+          Num. Bathrooms (minimum):
         </label>
         <div>
           <input
@@ -326,21 +326,14 @@ export default function ScheduleEmailForm(props) {
           />
         </div>
       </div>
-      <button
-        onClick={flipHideCocCalculations}
-        className="plain-button personal-space-small-top"
-      >
-        {hideCocCalculations ? 'Show' : 'Hide'} Calculation Params
-      </button>
-      <div className="personal-space-top">
-        {!hideCocCalculations && cocCalculationParams}
-      </div>
+      <div className="personal-space-top ">{cocCalculationParams}</div>
       <p className="error">{errorMessage}</p>
+      <p className="success">{successMessage}</p>
       <div className="flex around">
         <button className="ostrich-button" onClick={scheduleEmail}>
           Submit
         </button>
       </div>
-    </Fragment>
+    </div>
   )
 }

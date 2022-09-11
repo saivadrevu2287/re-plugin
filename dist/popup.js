@@ -3368,6 +3368,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "calculateCOC": () => (/* binding */ calculateCOC),
 /* harmony export */   "dollars": () => (/* binding */ dollars),
 /* harmony export */   "monthlyDollars": () => (/* binding */ monthlyDollars),
+/* harmony export */   "nFormatter": () => (/* binding */ nFormatter),
 /* harmony export */   "toInt": () => (/* binding */ toInt)
 /* harmony export */ });
 // turn anything with numbers into just a regular integer
@@ -3438,6 +3439,35 @@ var calculateCOC = function calculateCOC(configurationFields, purchasePrice, tax
     cashOnCash: cashOnCash,
     monthlyExpenses: monthlyExpenses
   };
+};
+var nFormatter = function nFormatter(num, digits) {
+  var lookup = [{
+    value: 1,
+    symbol: ''
+  }, {
+    value: 1e3,
+    symbol: 'k'
+  }, {
+    value: 1e6,
+    symbol: 'M'
+  }, {
+    value: 1e9,
+    symbol: 'G'
+  }, {
+    value: 1e12,
+    symbol: 'T'
+  }, {
+    value: 1e15,
+    symbol: 'P'
+  }, {
+    value: 1e18,
+    symbol: 'E'
+  }];
+  var rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
+  var item = lookup.slice().reverse().find(function (item) {
+    return num >= item.value;
+  });
+  return item ? (num / item.value).toFixed(digits).replace(rx, '$1') + item.symbol : '0';
 };
 
 /***/ }),

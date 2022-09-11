@@ -67,11 +67,7 @@ function App(props) {
   const proceedWithGoogle = () => (window.location.href = loginWithGoogleUrl)
 
   const loginOrLogout = jwt ? (
-    <Fragment>
-      <a href="/">
-        <button className="plain-button personal-margin-right">Profile</button>
-      </a>
-    </Fragment>
+    <Fragment></Fragment>
   ) : (
     <Fragment>
       <a href="/login" className="link-button">
@@ -153,7 +149,6 @@ function App(props) {
           />
         </Router>
       </main>
-      <footer class="align-center">Ostrich Tools Ltd.</footer>
     </Fragment>
   )
 }

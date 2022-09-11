@@ -9,8 +9,8 @@ const handleNumberForField = (type, number) => {
 }
 
 function Options(props) {
-    const [configurationFields, setConfigurationFields] = useState(null)
-const [errorMessage, setErrorMessage] = useState(null)
+  const [configurationFields, setConfigurationFields] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null)
 
   const [insurance, setInsurance] = useState(60)
   const [vacancy, setVacancy] = useState(5)
@@ -24,11 +24,11 @@ const [errorMessage, setErrorMessage] = useState(null)
   const [loanMonths, setLoanMonths] = useState(240)
   const [additionalMonthlyExpenses, setAdditionalMonthlyExpenses] = useState(0)
 
-const eliminateEvent = (callback) => (event) => {
-    setErrorMessage("")
+  const eliminateEvent = (callback) => (event) => {
+    setErrorMessage('')
     callback(event.target.value)
-}
-    
+  }
+
   useEffect(() => {
     chrome.storage.sync.get('configurationFields', (data) => {
       console.log(data.configurationFields)
@@ -93,12 +93,13 @@ const eliminateEvent = (callback) => (event) => {
       configurationFields['loan-months'].type,
       loanMonths
     )
-    configurationFields['additional-monthly-expenses'].value = handleNumberForField(
-      configurationFields['additional-monthly-expenses'].type,
-      additionalMonthlyExpenses
-    )
-    
-    setErrorMessage("Saved parameters.")
+    configurationFields['additional-monthly-expenses'].value =
+      handleNumberForField(
+        configurationFields['additional-monthly-expenses'].type,
+        additionalMonthlyExpenses
+      )
+
+    setErrorMessage('Saved parameters.')
 
     chrome.storage.sync.set({ configurationFields: configurationFields })
   }

@@ -2535,17 +2535,18 @@ var eliminateEvent = function eliminateEvent(callback) {
 function EditEmailForm(props) {
   var backendUrl = props.backendUrl,
       setSuccessfulSubmition = props.setSuccessfulSubmition,
-      scheduledEmail = props.scheduledEmail;
+      scheduledEmail = props.scheduledEmail,
+      selectedMarket = props.selectedMarket;
 
   var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
       errorMessage = _useState2[0],
       setErrorMessage = _useState2[1];
 
-  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(true),
+  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
-      hideCocCalculations = _useState4[0],
-      setHideCocCalculations = _useState4[1];
+      successMessage = _useState4[0],
+      setSuccessMessage = _useState4[1];
 
   var _useState5 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.min_price : null),
       _useState6 = _slicedToArray(_useState5, 2),
@@ -2633,6 +2634,9 @@ function EditEmailForm(props) {
       setAdditionalMonthlyExpenses = _useState38[1];
 
   (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    setSuccessMessage('');
+  }, [selectedMarket]);
+  (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     setMinPrice(scheduledEmail ? scheduledEmail.min_price : null);
     setMaxPrice(scheduledEmail ? scheduledEmail.max_price : null);
     setSearchParams(scheduledEmail ? scheduledEmail.search_param : null);
@@ -2694,6 +2698,7 @@ function EditEmailForm(props) {
         frequency: 'Daily'
       }).then(function (r) {
         setSuccessfulSubmition(Math.random());
+        setSuccessMessage('Market updated.');
       })["catch"](function (e) {
         if (e.response.data) {
           setErrorMessage(e.response.data.message);
@@ -2817,7 +2822,9 @@ function EditEmailForm(props) {
     value: additionalMonthlyExpenses,
     onInput: eliminateEvent(setAdditionalMonthlyExpenses)
   }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "$"))));
-  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: ""
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "fourth align-right",
@@ -2845,7 +2852,7 @@ function EditEmailForm(props) {
     "class": "three-fourths",
     value: minPrice,
     onInput: eliminateEvent(setMinPrice)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "$"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "fourth align-right",
@@ -2855,12 +2862,12 @@ function EditEmailForm(props) {
     "class": "three-fourths",
     value: maxPrice,
     onInput: eliminateEvent(setMaxPrice)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "$"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "fourth align-right",
     htmlFor: "num-bedrooms-input"
-  }, "Num. Bedrooms:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Num. Bedrooms (minimum):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     "class": "three-fourths",
     value: numBedrooms,
@@ -2870,19 +2877,18 @@ function EditEmailForm(props) {
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "fourth align-right",
     htmlFor: "num-bedrooms-input"
-  }, "Num. Bathrooms:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Num. Bathrooms (minimum):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     "class": "three-fourths",
     value: numBathrooms,
     onInput: eliminateEvent(setNumBathrooms)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    onClick: flipHideCocCalculations,
-    className: "plain-button personal-space-small-top"
-  }, hideCocCalculations ? 'Show' : 'Hide', " Calculation Params"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "personal-space-top"
-  }, !hideCocCalculations && cocCalculationParams), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+  }, cocCalculationParams), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     className: "error"
-  }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+    className: "success"
+  }, successMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex around"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "ostrich-button",
@@ -2910,6 +2916,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _EmailerDetails__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./EmailerDetails */ "./src/components/EmailerDetails.jsx");
 /* harmony import */ var _EditEmailForm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./EditEmailForm */ "./src/components/EditEmailForm.jsx");
+/* harmony import */ var _subroutines_math__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../subroutines/math */ "./src/subroutines/math.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2928,47 +2935,49 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function EmailerDashboard(props) {
   var backendUrl = props.backendUrl,
       user = props.user;
 
-  var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+  var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
-      errorMessage = _useState2[0],
-      setErrorMessage = _useState2[1];
+      showModal = _useState2[0],
+      setShowModal = _useState2[1];
 
-  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
-      scheduledEmails = _useState4[0],
-      setScheduledEmails = _useState4[1];
+      errorMessage = _useState4[0],
+      setErrorMessage = _useState4[1];
 
-  var _useState5 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+  var _useState5 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
       _useState6 = _slicedToArray(_useState5, 2),
-      selectedMarket = _useState6[0],
-      setSelectedMarket = _useState6[1];
+      scheduledEmails = _useState6[0],
+      setScheduledEmails = _useState6[1];
 
-  var _useState7 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+  var _useState7 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(-1),
       _useState8 = _slicedToArray(_useState7, 2),
-      loadingState = _useState8[0],
-      setLoadingState = _useState8[1];
+      selectedMarket = _useState8[0],
+      setSelectedMarket = _useState8[1];
 
-  var _useState9 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+  var _useState9 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
       _useState10 = _slicedToArray(_useState9, 2),
-      successfulSubmition = _useState10[0],
-      setSuccessfulSubmition = _useState10[1];
+      loadingState = _useState10[0],
+      setLoadingState = _useState10[1];
+
+  var _useState11 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+      _useState12 = _slicedToArray(_useState11, 2),
+      successfulSubmition = _useState12[0],
+      setSuccessfulSubmition = _useState12[1];
 
   (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     if (user) {
       axios__WEBPACK_IMPORTED_MODULE_3___default().get("".concat(backendUrl, "/api/emailers")).then(function (r) {
         setScheduledEmails(r.data);
+        setLoadingState(false); // setSelectedMarket(-1)
+      })["catch"](function (e) {
         setLoadingState(false);
 
-        if (!scheduledEmails.length) {
-          setSelectedMarket(-1);
-        } else {
-          setSelectedMarket(0);
-        }
-      })["catch"](function (e) {
         if (e.response.data) {
           setErrorMessage(e.response.data.message);
         } else {
@@ -2982,46 +2991,72 @@ function EmailerDashboard(props) {
   var scheduledEmailList = scheduledEmails.map(function (scheduledEmail, i) {
     return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
       onClick: function onClick() {
-        return setSelectedMarket(i);
+        setSelectedMarket(i);
+        setShowModal(true);
       },
       key: i,
-      className: "padded-double ".concat(i == selectedMarket ? 'gray' : 'hover-item', " border-top border-right")
-    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, scheduledEmail.notes), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, scheduledEmail.search_param));
+      className: "padded-double ".concat(i == selectedMarket ? 'gray' : 'hover-item', " border-bottom border-right")
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, scheduledEmail.notes), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, scheduledEmail.search_param), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "$", (0,_subroutines_math__WEBPACK_IMPORTED_MODULE_6__.nFormatter)(scheduledEmail.min_price), "-$", (0,_subroutines_math__WEBPACK_IMPORTED_MODULE_6__.nFormatter)(scheduledEmail.max_price)));
   });
   var emailerDetails = selectedMarket == -1 ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "padded"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "Schedule a New Email"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Once you save your parameters below, you will get an email daily at 3:42 pm ET with the newest properties and their expected cash flow.")) : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_EmailerDetails__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "Schedule a New Email"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Once you save your parameters below, you will get an email daily at around 3 pm ET with the newest properties and their expected cash flow.")) : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_EmailerDetails__WEBPACK_IMPORTED_MODULE_4__["default"], {
     backendUrl: backendUrl,
     setSuccessfulSubmition: setSuccessfulSubmition,
     scheduledEmail: scheduledEmails[selectedMarket]
   });
   var emailerForm = selectedMarket == -1 ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_ScheduleEmailForm__WEBPACK_IMPORTED_MODULE_2__["default"], {
     backendUrl: backendUrl,
+    selectedMarket: selectedMarket,
     setSuccessfulSubmition: setSuccessfulSubmition
   }) : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_EditEmailForm__WEBPACK_IMPORTED_MODULE_5__["default"], {
     backendUrl: backendUrl,
+    selectedMarket: selectedMarket,
     setSuccessfulSubmition: setSuccessfulSubmition,
     scheduledEmail: scheduledEmails[selectedMarket]
   });
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", {
     className: "padded"
-  }, "Your Targeted Markets"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex dashboard-container"
+  }, "Your Targeted Markets"), showModal && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "modal flex around wrap show-on-small full"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "break-to-full fourth"
+    className: "padded"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+    "class": "plain-button",
+    onClick: function onClick() {
+      return setShowModal(false);
+    }
+  }, "Close")), loadingState ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Loading Data...") : emailerDetails, emailerForm), !showModal && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "show-on-small"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     onClick: function onClick() {
-      return setSelectedMarket(-1);
+      setSelectedMarket(-1);
+      setShowModal(true);
     },
     key: "create",
-    className: "padded-double border-right ".concat(selectedMarket == -1 ? 'gray' : '')
+    className: "padded-double border-right border-bottom border-top ".concat(selectedMarket == -1 ? 'gray' : 'hover-item')
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "+"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Schedule notifications for a market")), scheduledEmailList), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "personal-space-top-double hide-on-small"
-  }, loadingState ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Loading Data...") : emailerDetails)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex around"
+    className: "hide-on-small"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "half break-to-full personal-margin-top-double"
-  }, emailerForm)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+    className: "flex dashboard-container"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "fourth"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    onClick: function onClick() {
+      setSelectedMarket(-1);
+      setShowModal(true);
+    },
+    key: "create",
+    className: "padded-double border-right border-bottom ".concat(selectedMarket == -1 ? 'gray' : 'hover-item')
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "+"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Schedule notifications for a market")), scheduledEmailList), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "personal-space-top-double full"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex around wrap"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "two-fifths"
+  }, loadingState ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Loading Data...") : emailerDetails), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "two-fifths"
+  }, emailerForm))))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     className: "error"
   }, errorMessage));
 }
@@ -3075,95 +3110,90 @@ function EmailerDetails(props) {
       errorMessage = _useState2[0],
       setErrorMessage = _useState2[1];
 
-  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(true),
+  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.min_price : null),
       _useState4 = _slicedToArray(_useState3, 2),
-      hideCocCalculations = _useState4[0],
-      setHideCocCalculations = _useState4[1];
+      minPrice = _useState4[0],
+      setMinPrice = _useState4[1];
 
-  var _useState5 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.min_price : null),
+  var _useState5 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.max_price : null),
       _useState6 = _slicedToArray(_useState5, 2),
-      minPrice = _useState6[0],
-      setMinPrice = _useState6[1];
+      maxPrice = _useState6[0],
+      setMaxPrice = _useState6[1];
 
-  var _useState7 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.max_price : null),
+  var _useState7 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.search_param : null),
       _useState8 = _slicedToArray(_useState7, 2),
-      maxPrice = _useState8[0],
-      setMaxPrice = _useState8[1];
+      searchParams = _useState8[0],
+      setSearchParams = _useState8[1];
 
-  var _useState9 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.search_param : null),
+  var _useState9 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.no_bedrooms : null),
       _useState10 = _slicedToArray(_useState9, 2),
-      searchParams = _useState10[0],
-      setSearchParams = _useState10[1];
+      numBedrooms = _useState10[0],
+      setNumBedrooms = _useState10[1];
 
-  var _useState11 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.no_bedrooms : null),
+  var _useState11 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.no_bathrooms : null),
       _useState12 = _slicedToArray(_useState11, 2),
-      numBedrooms = _useState12[0],
-      setNumBedrooms = _useState12[1];
+      numBathrooms = _useState12[0],
+      setNumBathrooms = _useState12[1];
 
-  var _useState13 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.no_bathrooms : null),
+  var _useState13 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.notes : null),
       _useState14 = _slicedToArray(_useState13, 2),
-      numBathrooms = _useState14[0],
-      setNumBathrooms = _useState14[1];
+      notes = _useState14[0],
+      setNotes = _useState14[1];
 
-  var _useState15 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.notes : null),
+  var _useState15 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.insurance : null),
       _useState16 = _slicedToArray(_useState15, 2),
-      notes = _useState16[0],
-      setNotes = _useState16[1];
+      insurance = _useState16[0],
+      setInsurance = _useState16[1];
 
-  var _useState17 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.insurance : null),
+  var _useState17 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.vacancy : null),
       _useState18 = _slicedToArray(_useState17, 2),
-      insurance = _useState18[0],
-      setInsurance = _useState18[1];
+      vacancy = _useState18[0],
+      setVacancy = _useState18[1];
 
-  var _useState19 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.vacancy : null),
+  var _useState19 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.property_management : null),
       _useState20 = _slicedToArray(_useState19, 2),
-      vacancy = _useState20[0],
-      setVacancy = _useState20[1];
+      propertyManagement = _useState20[0],
+      setPropertyManagement = _useState20[1];
 
-  var _useState21 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.property_management : null),
+  var _useState21 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.capex : null),
       _useState22 = _slicedToArray(_useState21, 2),
-      propertyManagement = _useState22[0],
-      setPropertyManagement = _useState22[1];
+      capex = _useState22[0],
+      setCapex = _useState22[1];
 
-  var _useState23 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.capex : null),
+  var _useState23 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.repairs : null),
       _useState24 = _slicedToArray(_useState23, 2),
-      capex = _useState24[0],
-      setCapex = _useState24[1];
+      repairs = _useState24[0],
+      setRepairs = _useState24[1];
 
-  var _useState25 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.repairs : null),
+  var _useState25 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.utilities : null),
       _useState26 = _slicedToArray(_useState25, 2),
-      repairs = _useState26[0],
-      setRepairs = _useState26[1];
+      utilities = _useState26[0],
+      setUtilities = _useState26[1];
 
-  var _useState27 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.utilities : null),
+  var _useState27 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.down_payment : null),
       _useState28 = _slicedToArray(_useState27, 2),
-      utilities = _useState28[0],
-      setUtilities = _useState28[1];
+      downPayment = _useState28[0],
+      setDownPayment = _useState28[1];
 
-  var _useState29 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.down_payment : null),
+  var _useState29 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.closing_cost : null),
       _useState30 = _slicedToArray(_useState29, 2),
-      downPayment = _useState30[0],
-      setDownPayment = _useState30[1];
+      closingCosts = _useState30[0],
+      setClosingCosts = _useState30[1];
 
-  var _useState31 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.closing_cost : null),
+  var _useState31 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.loan_interest : null),
       _useState32 = _slicedToArray(_useState31, 2),
-      closingCosts = _useState32[0],
-      setClosingCosts = _useState32[1];
+      loanInterest = _useState32[0],
+      setLoanInterest = _useState32[1];
 
-  var _useState33 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.loan_interest : null),
+  var _useState33 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.loan_months : null),
       _useState34 = _slicedToArray(_useState33, 2),
-      loanInterest = _useState34[0],
-      setLoanInterest = _useState34[1];
+      loanMonths = _useState34[0],
+      setLoanMonths = _useState34[1];
 
-  var _useState35 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.loan_months : null),
+  var _useState35 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.additional_monthly_expenses : null),
       _useState36 = _slicedToArray(_useState35, 2),
-      loanMonths = _useState36[0],
-      setLoanMonths = _useState36[1];
-
-  var _useState37 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.additional_monthly_expenses : null),
-      _useState38 = _slicedToArray(_useState37, 2),
-      additionalMonthlyExpenses = _useState38[0],
-      setAdditionalMonthlyExpenses = _useState38[1];
+      additionalMonthlyExpenses = _useState36[0],
+      setAdditionalMonthlyExpenses = _useState36[1];
 
   (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     setMinPrice(scheduledEmail ? scheduledEmail.min_price : null);
@@ -3199,13 +3229,11 @@ function EmailerDetails(props) {
   };
 
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex wrap-reverse"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "personal-space-left"
+    className: "padded"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, scheduledEmail.notes), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "$", scheduledEmail.min_price, " - $", scheduledEmail.max_price), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, scheduledEmail.search_param), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     onClick: deleteEmail,
     className: "personal-margin-top"
-  }, "Delete")));
+  }, "Delete"));
 }
 
 /***/ }),
@@ -3282,102 +3310,112 @@ var eliminateEvent = function eliminateEvent(callback) {
 
 function ScheduleEmailForm(props) {
   var backendUrl = props.backendUrl,
-      setSuccessfulSubmition = props.setSuccessfulSubmition;
+      setSuccessfulSubmition = props.setSuccessfulSubmition,
+      selectedMarket = props.selectedMarket;
 
   var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
       errorMessage = _useState2[0],
       setErrorMessage = _useState2[1];
 
-  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(true),
+  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
-      hideCocCalculations = _useState4[0],
-      setHideCocCalculations = _useState4[1];
+      successMessage = _useState4[0],
+      setSuccessMessage = _useState4[1];
 
-  var _useState5 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
+  var _useState5 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(true),
       _useState6 = _slicedToArray(_useState5, 2),
-      minPrice = _useState6[0],
-      setMinPrice = _useState6[1];
+      hideCocCalculations = _useState6[0],
+      setHideCocCalculations = _useState6[1];
 
   var _useState7 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
       _useState8 = _slicedToArray(_useState7, 2),
-      maxPrice = _useState8[0],
-      setMaxPrice = _useState8[1];
+      minPrice = _useState8[0],
+      setMinPrice = _useState8[1];
 
   var _useState9 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
       _useState10 = _slicedToArray(_useState9, 2),
-      searchParams = _useState10[0],
-      setSearchParams = _useState10[1];
+      maxPrice = _useState10[0],
+      setMaxPrice = _useState10[1];
 
   var _useState11 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
       _useState12 = _slicedToArray(_useState11, 2),
-      numBedrooms = _useState12[0],
-      setNumBedrooms = _useState12[1];
+      searchParams = _useState12[0],
+      setSearchParams = _useState12[1];
 
   var _useState13 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
       _useState14 = _slicedToArray(_useState13, 2),
-      numBathrooms = _useState14[0],
-      setNumBathrooms = _useState14[1];
+      numBedrooms = _useState14[0],
+      setNumBedrooms = _useState14[1];
 
-  var _useState15 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+  var _useState15 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
       _useState16 = _slicedToArray(_useState15, 2),
-      notes = _useState16[0],
-      setNotes = _useState16[1];
+      numBathrooms = _useState16[0],
+      setNumBathrooms = _useState16[1];
 
-  var _useState17 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(60),
+  var _useState17 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
       _useState18 = _slicedToArray(_useState17, 2),
-      insurance = _useState18[0],
-      setInsurance = _useState18[1];
+      notes = _useState18[0],
+      setNotes = _useState18[1];
 
-  var _useState19 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(5),
+  var _useState19 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(60),
       _useState20 = _slicedToArray(_useState19, 2),
-      vacancy = _useState20[0],
-      setVacancy = _useState20[1];
+      insurance = _useState20[0],
+      setInsurance = _useState20[1];
 
-  var _useState21 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(4),
+  var _useState21 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(5),
       _useState22 = _slicedToArray(_useState21, 2),
-      propertyManagement = _useState22[0],
-      setPropertyManagement = _useState22[1];
+      vacancy = _useState22[0],
+      setVacancy = _useState22[1];
 
-  var _useState23 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(5),
+  var _useState23 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(4),
       _useState24 = _slicedToArray(_useState23, 2),
-      capex = _useState24[0],
-      setCapex = _useState24[1];
+      propertyManagement = _useState24[0],
+      setPropertyManagement = _useState24[1];
 
   var _useState25 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(5),
       _useState26 = _slicedToArray(_useState25, 2),
-      repairs = _useState26[0],
-      setRepairs = _useState26[1];
+      capex = _useState26[0],
+      setCapex = _useState26[1];
 
-  var _useState27 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+  var _useState27 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(5),
       _useState28 = _slicedToArray(_useState27, 2),
-      utilities = _useState28[0],
-      setUtilities = _useState28[1];
+      repairs = _useState28[0],
+      setRepairs = _useState28[1];
 
-  var _useState29 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(25),
+  var _useState29 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
       _useState30 = _slicedToArray(_useState29, 2),
-      downPayment = _useState30[0],
-      setDownPayment = _useState30[1];
+      utilities = _useState30[0],
+      setUtilities = _useState30[1];
 
-  var _useState31 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(4),
+  var _useState31 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(25),
       _useState32 = _slicedToArray(_useState31, 2),
-      closingCosts = _useState32[0],
-      setClosingCosts = _useState32[1];
+      downPayment = _useState32[0],
+      setDownPayment = _useState32[1];
 
   var _useState33 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(4),
       _useState34 = _slicedToArray(_useState33, 2),
-      loanInterest = _useState34[0],
-      setLoanInterest = _useState34[1];
+      closingCosts = _useState34[0],
+      setClosingCosts = _useState34[1];
 
-  var _useState35 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(240),
+  var _useState35 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(4),
       _useState36 = _slicedToArray(_useState35, 2),
-      loanMonths = _useState36[0],
-      setLoanMonths = _useState36[1];
+      loanInterest = _useState36[0],
+      setLoanInterest = _useState36[1];
 
-  var _useState37 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+  var _useState37 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(240),
       _useState38 = _slicedToArray(_useState37, 2),
-      additionalMonthlyExpenses = _useState38[0],
-      setAdditionalMonthlyExpenses = _useState38[1];
+      loanMonths = _useState38[0],
+      setLoanMonths = _useState38[1];
+
+  var _useState39 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+      _useState40 = _slicedToArray(_useState39, 2),
+      additionalMonthlyExpenses = _useState40[0],
+      setAdditionalMonthlyExpenses = _useState40[1];
+
+  (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    setSuccessMessage('');
+  }, [selectedMarket]);
 
   var flipHideCocCalculations = function flipHideCocCalculations() {
     return setHideCocCalculations(!hideCocCalculations);
@@ -3416,6 +3454,7 @@ function ScheduleEmailForm(props) {
         frequency: 'Daily'
       }).then(function (r) {
         setSuccessfulSubmition(Math.random());
+        setSuccessMessage('Market Submitted. Expect a daily email at 3pm ET.');
       })["catch"](function (e) {
         if (e.response.data) {
           setErrorMessage(e.response.data.message);
@@ -3428,7 +3467,7 @@ function ScheduleEmailForm(props) {
     }
   };
 
-  var cocCalculationParams = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  var cocCalculationParams = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "fourth align-right",
@@ -3539,7 +3578,9 @@ function ScheduleEmailForm(props) {
     value: additionalMonthlyExpenses,
     onInput: eliminateEvent(setAdditionalMonthlyExpenses)
   }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "$"))));
-  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Once you save your parameters below, you will get an email daily at 3:42 pm ET with the newest properties and their expected cash flow."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: ""
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "fourth align-right",
@@ -3567,7 +3608,7 @@ function ScheduleEmailForm(props) {
     "class": "three-fourths",
     value: minPrice,
     onInput: eliminateEvent(setMinPrice)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "$"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "fourth align-right",
@@ -3577,12 +3618,12 @@ function ScheduleEmailForm(props) {
     "class": "three-fourths",
     value: maxPrice,
     onInput: eliminateEvent(setMaxPrice)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "$"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "fourth align-right",
     htmlFor: "num-bedrooms-input"
-  }, "Num. Bedrooms:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Num. Bedrooms (minimum):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     "class": "three-fourths",
     value: numBedrooms,
@@ -3592,25 +3633,140 @@ function ScheduleEmailForm(props) {
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "fourth align-right",
     htmlFor: "num-bedrooms-input"
-  }, "Num. Bathrooms:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Num. Bathrooms (minimum):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     "class": "three-fourths",
     value: numBathrooms,
     onInput: eliminateEvent(setNumBathrooms)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    onClick: flipHideCocCalculations,
-    className: "plain-button personal-space-small-top"
-  }, hideCocCalculations ? 'Show' : 'Hide', " Calculation Params"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "personal-space-top"
-  }, !hideCocCalculations && cocCalculationParams), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "personal-space-top "
+  }, cocCalculationParams), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     className: "error"
-  }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+    className: "success"
+  }, successMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex around"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "ostrich-button",
     onClick: scheduleEmail
   }, "Submit")));
 }
+
+/***/ }),
+
+/***/ "./src/subroutines/math.js":
+/*!*********************************!*\
+  !*** ./src/subroutines/math.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "calculateCOC": () => (/* binding */ calculateCOC),
+/* harmony export */   "dollars": () => (/* binding */ dollars),
+/* harmony export */   "monthlyDollars": () => (/* binding */ monthlyDollars),
+/* harmony export */   "nFormatter": () => (/* binding */ nFormatter),
+/* harmony export */   "toInt": () => (/* binding */ toInt)
+/* harmony export */ });
+// turn anything with numbers into just a regular integer
+var toInt = function toInt(n) {
+  return parseInt(n.split('').filter(function (a) {
+    return a.match(/[0-9.]/g);
+  }).join(''));
+};
+var monthlyDollars = function monthlyDollars(n) {
+  return isNaN(n) ? 'N/A' : "$".concat(n.toLocaleString(), "/mo");
+};
+var dollars = function dollars(n) {
+  return isNaN(n) ? 'N/A' : "$".concat(n.toLocaleString());
+}; // COC = [(Monthly Cash flow (MCF) x 12) / Initial Total Investment (ITI)] x 100
+
+var CashOnCash = function CashOnCash(monthlyCashFlow, initialTotalInvestment) {
+  return monthlyCashFlow * 12 / initialTotalInvestment * 100;
+}; // ITI = 29% of Purchase Price(PP)(Which comes from Zillow)
+
+
+var InitialTotalInvestment = function InitialTotalInvestment(configurationFields, purchasePrice) {
+  return (configurationFields['down-payment'].value + configurationFields['closing-cost'].value) * purchasePrice;
+}; // MCF = Monthly Gross Income(MGI)(comes from Zillow) - Monthly Expenses - Monthly Debt Service
+
+
+var MonthlyCashFlow = function MonthlyCashFlow(configurationFields, monthlyGrossIncome, monthlyExpenses, monthlyDebtService) {
+  return monthlyGrossIncome - monthlyGrossIncome * configurationFields.vacancy.value - monthlyExpenses - monthlyDebtService;
+}; // Monthly Expenses = Taxes(comes from Zillow) + Insurance($60) + Vacancy(5% of MGI) + Property Management(4% of MGI)+ Capex(5% of MGI) + Repairs(5% of MGI) + Utilities($0)
+
+
+var MonthlyExpenses = function MonthlyExpenses(configurationFields, taxes, monthlyGrossIncome) {
+  var income = monthlyGrossIncome - configurationFields.vacancy.value * monthlyGrossIncome;
+  var insurance = configurationFields.insurance.value;
+  var propertyManagement = configurationFields.property.value * income;
+  var capex = configurationFields.capex.value * income;
+  var repairs = configurationFields.repairs.value * income;
+  var utilities = configurationFields.utilities.value;
+  return taxes + insurance + propertyManagement + capex + repairs + utilities;
+}; // Monthly Debt Service = .61 % of Loan
+
+
+var MonthlyDebtService = function MonthlyDebtService(configurationFields, loan) {
+  // i
+  var monthlyInterest = configurationFields['loan-interest'].value / 12; // n
+
+  var months = configurationFields['loan-months'].value; // (1 + i)^-n
+
+  var exponent = Math.pow(1 + monthlyInterest, -months); // 1 - (1 + i)^-n
+
+  var denominator = 1 - exponent; // p * (i / (1 - (1 + i)^-n))
+
+  return loan * (monthlyInterest / denominator);
+}; // Loan = 75% of Purchase Price(comes from Zillow)
+
+
+var Loan = function Loan(configurationFields, purchasePrice) {
+  return (1 - configurationFields['down-payment'].value) * purchasePrice;
+};
+
+var calculateCOC = function calculateCOC(configurationFields, purchasePrice, taxes, monthlyGrossIncome) {
+  var loan = Loan(configurationFields, purchasePrice);
+  var monthlyDebtService = MonthlyDebtService(configurationFields, loan);
+  var monthlyExpenses = MonthlyExpenses(configurationFields, taxes, monthlyGrossIncome) + configurationFields['additional-monthly-expenses'].value;
+  var initialTotalInvestment = InitialTotalInvestment(configurationFields, purchasePrice);
+  var monthlyCashFlow = MonthlyCashFlow(configurationFields, monthlyGrossIncome, monthlyExpenses, monthlyDebtService);
+  var cashOnCash = CashOnCash(monthlyCashFlow, initialTotalInvestment);
+  return {
+    cashOnCash: cashOnCash,
+    monthlyExpenses: monthlyExpenses
+  };
+};
+var nFormatter = function nFormatter(num, digits) {
+  var lookup = [{
+    value: 1,
+    symbol: ''
+  }, {
+    value: 1e3,
+    symbol: 'k'
+  }, {
+    value: 1e6,
+    symbol: 'M'
+  }, {
+    value: 1e9,
+    symbol: 'G'
+  }, {
+    value: 1e12,
+    symbol: 'T'
+  }, {
+    value: 1e15,
+    symbol: 'P'
+  }, {
+    value: 1e18,
+    symbol: 'E'
+  }];
+  var rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
+  var item = lookup.slice().reverse().find(function (item) {
+    return num >= item.value;
+  });
+  return item ? (num / item.value).toFixed(digits).replace(rx, '$1') + item.symbol : '0';
+};
 
 /***/ }),
 

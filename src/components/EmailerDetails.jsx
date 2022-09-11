@@ -9,8 +9,6 @@ export default function EmailerDetails(props) {
 
   const [errorMessage, setErrorMessage] = useState('')
 
-  const [hideCocCalculations, setHideCocCalculations] = useState(true)
-
   const [minPrice, setMinPrice] = useState(
     scheduledEmail ? scheduledEmail.min_price : null
   )
@@ -104,17 +102,15 @@ export default function EmailerDetails(props) {
   }
 
   return (
-    <div className="flex wrap-reverse">
-      <div className="personal-space-left">
-        <h5>{scheduledEmail.notes}</h5>
-        <p>
-          ${scheduledEmail.min_price} - ${scheduledEmail.max_price}
-        </p>
-        <p>{scheduledEmail.search_param}</p>
-        <button onClick={deleteEmail} className="personal-margin-top">
-          Delete
-        </button>
-      </div>
+    <div className="padded">
+      <h5>{scheduledEmail.notes}</h5>
+      <p>
+        ${scheduledEmail.min_price} - ${scheduledEmail.max_price}
+      </p>
+      <p>{scheduledEmail.search_param}</p>
+      <button onClick={deleteEmail} className="personal-margin-top">
+        Delete
+      </button>
     </div>
   )
 }

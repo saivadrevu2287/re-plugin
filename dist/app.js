@@ -4301,13 +4301,14 @@ function Splash(props) {
   }, "A daily email that delivers the cash flow analysis of the newest properties in your market."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex personal-margin-top-double"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: "https://chrome.google.com/webstore/detail/ostrich/aicgkflmidjkbcenllnnlbnfnmicpmgo",
+    href: "/login",
     className: "link-button"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "ostrich-button"
   }, "Try Ostrich for Free")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: "https://chrome.google.com/webstore/detail/ostrich/aicgkflmidjkbcenllnnlbnfnmicpmgo",
-    className: "link-button personal-margin-left"
+    href: "https://ostrch.notion.site/Ostrich-Emailer-08759238028f4964805e86eb8dca5cbd",
+    className: "link-button personal-margin-left",
+    target: "_blank"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "plain-button"
   }, "How it Works")))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {

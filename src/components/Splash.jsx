@@ -14,14 +14,15 @@ export default function Splash(props) {
         </h6>
         <div className="flex personal-margin-top-double">
           <a
-            href="https://chrome.google.com/webstore/detail/ostrich/aicgkflmidjkbcenllnnlbnfnmicpmgo"
+            href="/login"
             className="link-button"
           >
             <button className="ostrich-button">Try Ostrich for Free</button>
           </a>
           <a
-            href="https://chrome.google.com/webstore/detail/ostrich/aicgkflmidjkbcenllnnlbnfnmicpmgo"
+            href="https://ostrch.notion.site/Ostrich-Emailer-08759238028f4964805e86eb8dca5cbd"
             className="link-button personal-margin-left"
+            target="_blank"
           >
             <button className="plain-button">How it Works</button>
           </a>

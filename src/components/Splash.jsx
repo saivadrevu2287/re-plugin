@@ -14,7 +14,7 @@ export default function Splash(props) {
         </h6>
         <div className="flex personal-margin-top-double">
           <a
-            href="/login"
+            href="/signup"
             className="link-button"
           >
             <button className="ostrich-button">Try Ostrich for Free</button>

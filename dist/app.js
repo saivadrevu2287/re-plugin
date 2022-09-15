@@ -4301,7 +4301,7 @@ function Splash(props) {
   }, "A daily email that delivers the cash flow analysis of the newest properties in your market."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex personal-margin-top-double"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: "/login",
+    href: "/signup",
     className: "link-button"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "ostrich-button"

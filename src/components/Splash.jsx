@@ -13,10 +13,7 @@ export default function Splash(props) {
           properties in your market.
         </h6>
         <div className="flex personal-margin-top-double">
-          <a
-            href="/signup"
-            className="link-button"
-          >
+          <a href="/signup" className="link-button">
             <button className="ostrich-button">Try Ostrich for Free</button>
           </a>
           <a

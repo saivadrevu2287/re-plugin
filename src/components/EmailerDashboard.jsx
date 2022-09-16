@@ -23,7 +23,9 @@ export default function EmailerDashboard(props) {
         .then((r) => {
           setScheduledEmails(r.data)
           setLoadingState(false)
-          // setSelectedMarket(-1)
+          if (r.data.length >= 2) {
+            setSelectedMarket(0)
+          }
         })
         .catch((e) => {
           setLoadingState(false)
@@ -110,38 +112,42 @@ export default function EmailerDashboard(props) {
       )}
       {!showModal && (
         <div className="show-on-small">
-          <div
-            onClick={() => {
-              setSelectedMarket(-1)
-              setShowModal(true)
-            }}
-            key="create"
-            className={`padded-double border-right border-bottom border-top ${
-              selectedMarket == -1 ? 'gray' : 'hover-item'
-            }`}
-          >
-            <h5>+</h5>
-            <p>Schedule notifications for a market</p>
-          </div>
-          {scheduledEmailList}
-        </div>
-      )}
-      <div className="hide-on-small">
-        <div className="flex dashboard-container">
-          <div className="fourth">
+          {scheduledEmails.length < 2 && (
             <div
               onClick={() => {
                 setSelectedMarket(-1)
                 setShowModal(true)
               }}
               key="create"
-              className={`padded-double border-right border-bottom ${
+              className={`padded-double border-right border-bottom border-top ${
                 selectedMarket == -1 ? 'gray' : 'hover-item'
               }`}
             >
               <h5>+</h5>
               <p>Schedule notifications for a market</p>
             </div>
+          )}
+          {scheduledEmailList}
+        </div>
+      )}
+      <div className="hide-on-small">
+        <div className="flex dashboard-container">
+          <div className="fourth">
+            {scheduledEmails.length < 2 && (
+              <div
+                onClick={() => {
+                  setSelectedMarket(-1)
+                  setShowModal(true)
+                }}
+                key="create"
+                className={`padded-double border-right border-bottom ${
+                  selectedMarket == -1 ? 'gray' : 'hover-item'
+                }`}
+              >
+                <h5>+</h5>
+                <p>Schedule notifications for a market</p>
+              </div>
+            )}
             {scheduledEmailList}
           </div>
           <div className="personal-space-top-double full">

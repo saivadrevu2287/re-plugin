@@ -2974,7 +2974,11 @@ function EmailerDashboard(props) {
     if (user) {
       axios__WEBPACK_IMPORTED_MODULE_3___default().get("".concat(backendUrl, "/api/emailers")).then(function (r) {
         setScheduledEmails(r.data);
-        setLoadingState(false); // setSelectedMarket(-1)
+        setLoadingState(false);
+
+        if (r.data.length >= 2) {
+          setSelectedMarket(0);
+        }
       })["catch"](function (e) {
         setLoadingState(false);
 
@@ -3028,7 +3032,7 @@ function EmailerDashboard(props) {
     }
   }, "Close")), loadingState ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Loading Data...") : emailerDetails, emailerForm), !showModal && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "show-on-small"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }, scheduledEmails.length < 2 && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     onClick: function onClick() {
       setSelectedMarket(-1);
       setShowModal(true);
@@ -3041,7 +3045,7 @@ function EmailerDashboard(props) {
     className: "flex dashboard-container"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "fourth"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }, scheduledEmails.length < 2 && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     onClick: function onClick() {
       setSelectedMarket(-1);
       setShowModal(true);

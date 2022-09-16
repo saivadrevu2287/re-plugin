@@ -8,7 +8,7 @@ export default function Splash(props) {
           The fastest way ever to analyze rentals
         </h3>
         <br />
-        <h6 className="special spacing-small">
+        <h6 className="spacing-small">
           A daily email that delivers the cash flow analysis of the newest
           properties in your market.
         </h6>

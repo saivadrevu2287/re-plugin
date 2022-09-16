@@ -150,12 +150,10 @@ export default function EmailerDashboard(props) {
             )}
             {scheduledEmailList}
           </div>
-          <div className="personal-space-top-double full">
-            <div className="flex around wrap">
-              <div className="two-fifths">
-                {loadingState ? <h4>Loading Data...</h4> : emailerDetails}
-              </div>
-              <div className="two-fifths">{emailerForm}</div>
+          <div className="personal-space-top-double full flex around">
+            <div className="three-fourths">
+              {loadingState ? <h4>Loading Data...</h4> : emailerDetails}
+              <div className="four-fifths">{emailerForm}</div>
             </div>
           </div>
         </div>

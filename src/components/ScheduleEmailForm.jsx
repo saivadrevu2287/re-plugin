@@ -89,242 +89,193 @@ export default function ScheduleEmailForm(props) {
   const cocCalculationParams = (
     <Fragment>
       <div className="flex between centered-items personal-space-bottom">
-        <label className="fourth align-right" htmlFor="insurance-input">
-          Insurance:
+        <label className="third align-left" htmlFor="insurance-input">
+          Insurance ($):
         </label>
-        <div>
-          <input
-            type="number"
-            class="three-fourths"
-            value={insurance}
-            onInput={eliminateEvent(setInsurance)}
-          />
-          <b>$</b>
-        </div>
+        <input
+          type="number"
+          class="half"
+          value={insurance}
+          onInput={eliminateEvent(setInsurance)}
+        />
       </div>
       <div className="flex between centered-items personal-space-bottom">
-        <label className="fourth align-right" htmlFor="vacancy-input">
-          Vacancy:
+        <label className="third align-left" htmlFor="vacancy-input">
+          Vacancy (%):
         </label>
-        <div>
-          <input
-            type="number"
-            class="three-fourths"
-            value={vacancy}
-            onInput={eliminateEvent(setVacancy)}
-          />
-          <b>%</b>
-        </div>
+        <input
+          type="number"
+          class="half"
+          value={vacancy}
+          onInput={eliminateEvent(setVacancy)}
+        />
       </div>
       <div className="flex between centered-items personal-space-bottom">
-        <label className="fourth align-right" htmlFor="property-input">
-          Property Management:
+        <label className="third align-left" htmlFor="property-input">
+          Property Management (%):
         </label>
-        <div>
-          <input
-            type="number"
-            class="three-fourths"
-            value={propertyManagement}
-            onInput={eliminateEvent(setPropertyManagement)}
-          />
-          <b>%</b>
-        </div>
+        <input
+          type="number"
+          class="half"
+          value={propertyManagement}
+          onInput={eliminateEvent(setPropertyManagement)}
+        />
       </div>
       <div className="flex between centered-items personal-space-bottom">
-        <label className="fourth align-right" htmlFor="capex-input">
-          Capex:
+        <label className="third align-left" htmlFor="capex-input">
+          Capex (%):
         </label>
-        <div>
-          <input
-            type="number"
-            class="three-fourths"
-            value={capex}
-            onInput={eliminateEvent(setCapex)}
-          />
-          <b>%</b>
-        </div>
+        <input
+          type="number"
+          class="half"
+          value={capex}
+          onInput={eliminateEvent(setCapex)}
+        />
       </div>
       <div className="flex between centered-items personal-space-bottom">
-        <label className="fourth align-right" htmlFor="repairs-input">
-          Repairs:
+        <label className="third align-left" htmlFor="repairs-input">
+          Repairs (%):
         </label>
-        <div>
-          <input
-            type="number"
-            class="three-fourths"
-            value={repairs}
-            onInput={eliminateEvent(setRepairs)}
-          />
-          <b>%</b>
-        </div>
+        <input
+          type="number"
+          class="half"
+          value={repairs}
+          onInput={eliminateEvent(setRepairs)}
+        />
       </div>
       <div className="flex between centered-items personal-space-bottom">
-        <label className="fourth align-right" htmlFor="utilities-input">
-          Utilities:
+        <label className="third align-left" htmlFor="utilities-input">
+          Utilities ($):
         </label>
-        <div>
-          <input
-            type="number"
-            class="three-fourths"
-            value={utilities}
-            onInput={eliminateEvent(setUtilities)}
-          />
-          <b>$</b>
-        </div>
+        <input
+          type="number"
+          class="half"
+          value={utilities}
+          onInput={eliminateEvent(setUtilities)}
+        />
       </div>
       <div className="flex between centered-items personal-space-bottom">
-        <label className="fourth align-right" htmlFor="down-payment-input">
-          Down Payment:
+        <label className="third align-left" htmlFor="down-payment-input">
+          Down Payment (%):
         </label>
-        <div>
-          <input
-            type="number"
-            class="three-fourths"
-            value={downPayment}
-            onInput={eliminateEvent(setDownPayment)}
-          />
-          <b>%</b>
-        </div>
+        <input
+          type="number"
+          class="half"
+          value={downPayment}
+          onInput={eliminateEvent(setDownPayment)}
+        />
       </div>
       <div className="flex between centered-items personal-space-bottom">
-        <label className="fourth align-right" htmlFor="closing-cost-input">
-          Closing Cost:
+        <label className="third align-left" htmlFor="closing-cost-input">
+          Closing Cost (%):
         </label>
-        <div>
-          <input
-            type="number"
-            class="three-fourths"
-            value={closingCosts}
-            onInput={eliminateEvent(setClosingCosts)}
-          />
-          <b>%</b>
-        </div>
+        <input
+          type="number"
+          class="half"
+          value={closingCosts}
+          onInput={eliminateEvent(setClosingCosts)}
+        />
       </div>
       <div className="flex between centered-items personal-space-bottom">
-        <label className="fourth align-right" htmlFor="loan-interest-input">
-          Loan Interest:
+        <label className="third align-left" htmlFor="loan-interest-input">
+          Loan Interest (%):
         </label>
-        <div>
-          <input
-            type="number"
-            class="three-fourths"
-            value={loanInterest}
-            onInput={eliminateEvent(setLoanInterest)}
-          />
-          <b>%</b>
-        </div>
+        <input
+          type="number"
+          class="half"
+          value={loanInterest}
+          onInput={eliminateEvent(setLoanInterest)}
+        />
       </div>
       <div className="flex between centered-items personal-space-bottom">
-        <label className="fourth align-right" htmlFor="loan-months-input">
+        <label className="third align-left" htmlFor="loan-months-input">
           Loan Months:
         </label>
-        <div>
-          <input
-            type="number"
-            class="three-fourths"
-            value={loanMonths}
-            onInput={eliminateEvent(setLoanMonths)}
-          />
-          <b>mos</b>
-        </div>
+        <input
+          type="number"
+          class="half"
+          value={loanMonths}
+          onInput={eliminateEvent(setLoanMonths)}
+        />
       </div>
       <div className="flex between centered-items personal-space-bottom">
         <label
-          className="fourth align-right"
+          className="third align-left"
           htmlFor="additional-monthly-expenses-input"
         >
-          Additional Monthly Expenses:
+          Additional Monthly Expenses ($):
         </label>
-        <div>
-          <input
-            type="number"
-            class="three-fourths"
-            value={additionalMonthlyExpenses}
-            onInput={eliminateEvent(setAdditionalMonthlyExpenses)}
-          />
-          <b>$</b>
-        </div>
+        <input
+          type="number"
+          class="half"
+          value={additionalMonthlyExpenses}
+          onInput={eliminateEvent(setAdditionalMonthlyExpenses)}
+        />
       </div>
     </Fragment>
   )
 
   return (
-    <div className="">
+    <div className="padded">
       <div className="flex between centered-items personal-space-bottom">
-        <label className="fourth align-right" htmlFor="search-params-input">
+        <label className="third align-left" htmlFor="search-params-input">
           Title:
         </label>
-        <div>
-          <input
-            value={notes}
-            class="three-fourths"
-            onInput={eliminateEvent(setNotes)}
-          />
-        </div>
+        <input value={notes} class="half" onInput={eliminateEvent(setNotes)} />
       </div>
       <div className="flex between centered-items personal-space-bottom">
-        <label className="fourth align-right" htmlFor="search-params-input">
+        <label className="third align-left" htmlFor="search-params-input">
           Location:
         </label>
-        <div>
-          <input
-            value={searchParams}
-            class="three-fourths"
-            onInput={eliminateEvent(setSearchParams)}
-          />
-        </div>
+        <input
+          value={searchParams}
+          class="half"
+          onInput={eliminateEvent(setSearchParams)}
+        />
       </div>
       <div className="flex between centered-items personal-space-bottom">
-        <label className="fourth align-right" htmlFor="min-price-input">
+        <label className="third align-left" htmlFor="min-price-input">
           Minimum Price:
         </label>
-        <div>
-          <input
-            type="number"
-            class="three-fourths"
-            value={minPrice}
-            onInput={eliminateEvent(setMinPrice)}
-          />
-        </div>
+        <input
+          type="number"
+          class="half"
+          value={minPrice}
+          onInput={eliminateEvent(setMinPrice)}
+        />
       </div>
       <div className="flex between centered-items personal-space-bottom">
-        <label className="fourth align-right" htmlFor="max-price-input">
+        <label className="third align-left" htmlFor="max-price-input">
           Maximum Price:
         </label>
-        <div>
-          <input
-            type="number"
-            class="three-fourths"
-            value={maxPrice}
-            onInput={eliminateEvent(setMaxPrice)}
-          />
-        </div>
+        <input
+          type="number"
+          class="half"
+          value={maxPrice}
+          onInput={eliminateEvent(setMaxPrice)}
+        />
       </div>
       <div className="flex between centered-items personal-space-bottom">
-        <label className="fourth align-right" htmlFor="num-bedrooms-input">
+        <label className="third align-left" htmlFor="num-bedrooms-input">
           Num. Bedrooms (minimum):
         </label>
-        <div>
-          <input
-            type="number"
-            class="three-fourths"
-            value={numBedrooms}
-            onInput={eliminateEvent(setNumBedrooms)}
-          />
-        </div>
+        <input
+          type="number"
+          class="half"
+          value={numBedrooms}
+          onInput={eliminateEvent(setNumBedrooms)}
+        />
       </div>
       <div className="flex between centered-items personal-space-bottom">
-        <label className="fourth align-right" htmlFor="num-bedrooms-input">
+        <label className="third align-left" htmlFor="num-bedrooms-input">
           Num. Bathrooms (minimum):
         </label>
-        <div>
-          <input
-            type="number"
-            class="three-fourths"
-            value={numBathrooms}
-            onInput={eliminateEvent(setNumBathrooms)}
-          />
-        </div>
+        <input
+          type="number"
+          class="half"
+          value={numBathrooms}
+          onInput={eliminateEvent(setNumBathrooms)}
+        />
       </div>
       <div className="personal-space-top ">{cocCalculationParams}</div>
       <p className="error">{errorMessage}</p>

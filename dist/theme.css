@@ -45,6 +45,7 @@ button {
   font-size: 1rem;
   font-weight: bold;
   height: min-content;
+  font-family: 'Work Sans', sans-serif;
 }
 
 .padded {

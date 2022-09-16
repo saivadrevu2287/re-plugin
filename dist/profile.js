@@ -2711,179 +2711,179 @@ function EditEmailForm(props) {
     }
   };
 
-  var cocCalculationParams = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+  var cocCalculationParams = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "insurance-input"
-  }, "Insurance:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Insurance ($):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    className: "half",
     value: insurance,
     onInput: eliminateEvent(setInsurance)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "$"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "vacancy-input"
-  }, "Vacancy:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Vacancy (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    className: "half",
     value: vacancy,
     onInput: eliminateEvent(setVacancy)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "property-input"
-  }, "Property Management:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Property Management (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    className: "half",
     value: propertyManagement,
     onInput: eliminateEvent(setPropertyManagement)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "capex-input"
-  }, "Capex:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Capex (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    className: "half",
     value: capex,
     onInput: eliminateEvent(setCapex)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "repairs-input"
-  }, "Repairs:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Repairs (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    className: "half",
     value: repairs,
     onInput: eliminateEvent(setRepairs)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "utilities-input"
-  }, "Utilities:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Utilities ($):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    className: "half",
     value: utilities,
     onInput: eliminateEvent(setUtilities)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "$"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "down-payment-input"
-  }, "Down Payment:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Down Payment (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    className: "half",
     value: downPayment,
     onInput: eliminateEvent(setDownPayment)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "closing-cost-input"
-  }, "Closing Cost:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Closing Cost (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    className: "half",
     value: closingCosts,
     onInput: eliminateEvent(setClosingCosts)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "loan-interest-input"
-  }, "Loan Interest:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Loan Interest (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    className: "half",
     value: loanInterest,
     onInput: eliminateEvent(setLoanInterest)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "loan-months-input"
-  }, "Loan Months:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Loan Months:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    className: "half",
     value: loanMonths,
     onInput: eliminateEvent(setLoanMonths)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "mos"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "additional-monthly-expenses-input"
-  }, "Additional Monthly Expenses:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Additional Monthly Expenses ($):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    className: "half",
     value: additionalMonthlyExpenses,
     onInput: eliminateEvent(setAdditionalMonthlyExpenses)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "$"))));
+  })));
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: ""
+    className: "padded"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "search-params-input"
-  }, "Title:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Title:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     value: notes,
-    "class": "three-fourths",
+    className: "half",
     onInput: eliminateEvent(setNotes)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "search-params-input"
-  }, "Location:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Location:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     value: searchParams,
-    "class": "three-fourths",
+    className: "half",
     onInput: eliminateEvent(setSearchParams)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "min-price-input"
-  }, "Minimum Price:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Minimum Price:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    className: "half",
     value: minPrice,
     onInput: eliminateEvent(setMinPrice)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "max-price-input"
-  }, "Maximum Price:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Maximum Price:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    className: "half",
     value: maxPrice,
     onInput: eliminateEvent(setMaxPrice)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "num-bedrooms-input"
-  }, "Num. Bedrooms (minimum):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Num. Bedrooms (minimum):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    className: "half",
     value: numBedrooms,
     onInput: eliminateEvent(setNumBedrooms)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "num-bedrooms-input"
-  }, "Num. Bathrooms (minimum):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Num. Bathrooms (minimum):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    className: "half",
     value: numBathrooms,
     onInput: eliminateEvent(setNumBathrooms)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "personal-space-top"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: ""
   }, cocCalculationParams), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     className: "error"
   }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
@@ -3053,13 +3053,11 @@ function EmailerDashboard(props) {
     key: "create",
     className: "padded-double border-right border-bottom ".concat(selectedMarket == -1 ? 'gray' : 'hover-item')
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "+"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Schedule notifications for a market")), scheduledEmailList), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "personal-space-top-double full"
+    className: "personal-space-top-double full flex around"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex around wrap"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "two-fifths"
-  }, loadingState ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Loading Data...") : emailerDetails), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "two-fifths"
+    className: "three-fourths"
+  }, loadingState ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Loading Data...") : emailerDetails, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "four-fifths"
   }, emailerForm))))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     className: "error"
   }, errorMessage));
@@ -3107,7 +3105,8 @@ var eliminateEvent = function eliminateEvent(callback) {
 function EmailerDetails(props) {
   var backendUrl = props.backendUrl,
       setSuccessfulSubmition = props.setSuccessfulSubmition,
-      scheduledEmail = props.scheduledEmail;
+      scheduledEmail = props.scheduledEmail,
+      small = props.small;
 
   var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
@@ -3234,7 +3233,9 @@ function EmailerDetails(props) {
 
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "padded"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, scheduledEmail.notes), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "$", scheduledEmail.min_price, " - $", scheduledEmail.max_price), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, scheduledEmail.search_param), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, scheduledEmail.notes), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "show-on-small"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "$", scheduledEmail.min_price, " - $", scheduledEmail.max_price), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, scheduledEmail.search_param)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     onClick: deleteEmail,
     className: "personal-margin-top"
   }, "Delete"));
@@ -3474,175 +3475,175 @@ function ScheduleEmailForm(props) {
   var cocCalculationParams = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "insurance-input"
-  }, "Insurance:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Insurance ($):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    "class": "half",
     value: insurance,
     onInput: eliminateEvent(setInsurance)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "$"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "vacancy-input"
-  }, "Vacancy:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Vacancy (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    "class": "half",
     value: vacancy,
     onInput: eliminateEvent(setVacancy)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "property-input"
-  }, "Property Management:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Property Management (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    "class": "half",
     value: propertyManagement,
     onInput: eliminateEvent(setPropertyManagement)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "capex-input"
-  }, "Capex:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Capex (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    "class": "half",
     value: capex,
     onInput: eliminateEvent(setCapex)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "repairs-input"
-  }, "Repairs:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Repairs (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    "class": "half",
     value: repairs,
     onInput: eliminateEvent(setRepairs)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "utilities-input"
-  }, "Utilities:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Utilities ($):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    "class": "half",
     value: utilities,
     onInput: eliminateEvent(setUtilities)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "$"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "down-payment-input"
-  }, "Down Payment:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Down Payment (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    "class": "half",
     value: downPayment,
     onInput: eliminateEvent(setDownPayment)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "closing-cost-input"
-  }, "Closing Cost:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Closing Cost (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    "class": "half",
     value: closingCosts,
     onInput: eliminateEvent(setClosingCosts)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "loan-interest-input"
-  }, "Loan Interest:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Loan Interest (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    "class": "half",
     value: loanInterest,
     onInput: eliminateEvent(setLoanInterest)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "loan-months-input"
-  }, "Loan Months:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Loan Months:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    "class": "half",
     value: loanMonths,
     onInput: eliminateEvent(setLoanMonths)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "mos"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "additional-monthly-expenses-input"
-  }, "Additional Monthly Expenses:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Additional Monthly Expenses ($):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    "class": "half",
     value: additionalMonthlyExpenses,
     onInput: eliminateEvent(setAdditionalMonthlyExpenses)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "$"))));
+  })));
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: ""
+    className: "padded"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "search-params-input"
-  }, "Title:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Title:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     value: notes,
-    "class": "three-fourths",
+    "class": "half",
     onInput: eliminateEvent(setNotes)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "search-params-input"
-  }, "Location:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Location:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     value: searchParams,
-    "class": "three-fourths",
+    "class": "half",
     onInput: eliminateEvent(setSearchParams)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "min-price-input"
-  }, "Minimum Price:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Minimum Price:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    "class": "half",
     value: minPrice,
     onInput: eliminateEvent(setMinPrice)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "max-price-input"
-  }, "Maximum Price:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Maximum Price:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    "class": "half",
     value: maxPrice,
     onInput: eliminateEvent(setMaxPrice)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "num-bedrooms-input"
-  }, "Num. Bedrooms (minimum):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Num. Bedrooms (minimum):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    "class": "half",
     value: numBedrooms,
     onInput: eliminateEvent(setNumBedrooms)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    className: "fourth align-right",
+    className: "third align-left",
     htmlFor: "num-bedrooms-input"
-  }, "Num. Bathrooms (minimum):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Num. Bathrooms (minimum):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    "class": "three-fourths",
+    "class": "half",
     value: numBathrooms,
     onInput: eliminateEvent(setNumBathrooms)
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "personal-space-top "
   }, cocCalculationParams), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     className: "error"

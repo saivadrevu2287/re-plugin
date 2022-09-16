@@ -1,11 +1,11 @@
-import { h } from 'preact'
+import { h, Fragment } from 'preact'
 import { useState, useEffect } from 'preact/hooks'
 import axios from 'axios'
 
 const eliminateEvent = (callback) => (event) => callback(event.target.value)
 
 export default function EmailerDetails(props) {
-  const { backendUrl, setSuccessfulSubmition, scheduledEmail } = props
+  const { backendUrl, setSuccessfulSubmition, scheduledEmail, small } = props
 
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -104,10 +104,12 @@ export default function EmailerDetails(props) {
   return (
     <div className="padded">
       <h5>{scheduledEmail.notes}</h5>
-      <p>
-        ${scheduledEmail.min_price} - ${scheduledEmail.max_price}
-      </p>
-      <p>{scheduledEmail.search_param}</p>
+      <div className="show-on-small">
+        <p>
+          ${scheduledEmail.min_price} - ${scheduledEmail.max_price}
+        </p>
+        <p>{scheduledEmail.search_param}</p>
+      </div>
       <button onClick={deleteEmail} className="personal-margin-top">
         Delete
       </button>

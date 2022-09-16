@@ -42,10 +42,6 @@ nav {
   height: 96px;
 }
 
-button {
-  font-family: 'Work Sans', sans-serif;
-}
-
 .link-button {
   text-decoration: none;
 }
@@ -118,7 +114,11 @@ button {
 }
 
 input {
-  padding: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 5px;
+  border: 1px solid #f0f0f4;
+  background-color: #fafafc;
+  min-width: 175px;
 }
 
 @media screen and (max-width: 560px) {

@@ -221,7 +221,7 @@ export default function ScheduleEmailForm(props) {
         <label className="third align-left" htmlFor="search-params-input">
           Title:
         </label>
-        <input value={notes} class="half" onInput={eliminateEvent(setNotes)} />
+        <input value={notes} class="half" onInput={eliminateEvent(setNotes)} placeholder="Name your market"/>
       </div>
       <div className="flex between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="search-params-input">
@@ -230,6 +230,7 @@ export default function ScheduleEmailForm(props) {
         <input
           value={searchParams}
           class="half"
+          placeholder='Type in location exactly like Zillow'
           onInput={eliminateEvent(setSearchParams)}
         />
       </div>
@@ -241,6 +242,7 @@ export default function ScheduleEmailForm(props) {
           type="number"
           class="half"
           value={minPrice}
+          placeholder='e.g. 100000'
           onInput={eliminateEvent(setMinPrice)}
         />
       </div>
@@ -252,6 +254,7 @@ export default function ScheduleEmailForm(props) {
           type="number"
           class="half"
           value={maxPrice}
+          placeholder='e.g. 300000'
           onInput={eliminateEvent(setMaxPrice)}
         />
       </div>
@@ -263,6 +266,7 @@ export default function ScheduleEmailForm(props) {
           type="number"
           class="half"
           value={numBedrooms}
+          placeholder='e.g. 3'
           onInput={eliminateEvent(setNumBedrooms)}
         />
       </div>
@@ -274,10 +278,11 @@ export default function ScheduleEmailForm(props) {
           type="number"
           class="half"
           value={numBathrooms}
+          placeholder='e.g. 2'
           onInput={eliminateEvent(setNumBathrooms)}
         />
       </div>
-      <div className="personal-space-top ">{cocCalculationParams}</div>
+      {cocCalculationParams}
       <p className="error">{errorMessage}</p>
       <p className="success">{successMessage}</p>
       <div className="flex around">

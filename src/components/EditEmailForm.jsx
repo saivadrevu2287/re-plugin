@@ -286,6 +286,7 @@ export default function EditEmailForm(props) {
         <input
           value={notes}
           className="half"
+          placeholder='Name your market'
           onInput={eliminateEvent(setNotes)}
         />
       </div>
@@ -296,6 +297,7 @@ export default function EditEmailForm(props) {
         <input
           value={searchParams}
           className="half"
+          placeholder='Type in location exactly like Zillow'
           onInput={eliminateEvent(setSearchParams)}
         />
       </div>
@@ -307,6 +309,7 @@ export default function EditEmailForm(props) {
           type="number"
           className="half"
           value={minPrice}
+          placeholder="e.g. 100000"
           onInput={eliminateEvent(setMinPrice)}
         />
       </div>
@@ -318,6 +321,7 @@ export default function EditEmailForm(props) {
           type="number"
           className="half"
           value={maxPrice}
+          placeholder="e.g. 300000"
           onInput={eliminateEvent(setMaxPrice)}
         />
       </div>
@@ -329,6 +333,7 @@ export default function EditEmailForm(props) {
           type="number"
           className="half"
           value={numBedrooms}
+          placeholder='e.g. 3'
           onInput={eliminateEvent(setNumBedrooms)}
         />
       </div>
@@ -340,10 +345,11 @@ export default function EditEmailForm(props) {
           type="number"
           className="half"
           value={numBathrooms}
+          placeholder='e.g. 2'
           onInput={eliminateEvent(setNumBathrooms)}
         />
       </div>
-      <div className="">{cocCalculationParams}</div>
+      {cocCalculationParams}
       <p className="error">{errorMessage}</p>
       <p className="success">{successMessage}</p>
       <div className="flex around">

@@ -153,7 +153,7 @@ export default function EmailerDashboard(props) {
           <div className="personal-space-top-double full flex around">
             <div className="three-fourths">
               {loadingState ? <h4>Loading Data...</h4> : emailerDetails}
-              <div className="four-fifths">{emailerForm}</div>
+              {emailerForm}
             </div>
           </div>
         </div>

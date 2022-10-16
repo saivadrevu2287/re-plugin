@@ -6,6 +6,8 @@ import EmailerDetails from './EmailerDetails'
 import EditEmailForm from './EditEmailForm'
 import { nFormatter } from '../subroutines/math'
 
+const maxSize = 3
+
 export default function EmailerDashboard(props) {
   const { backendUrl, user } = props
 
@@ -23,8 +25,8 @@ export default function EmailerDashboard(props) {
         .then((r) => {
           setScheduledEmails(r.data)
           setLoadingState(false)
-          if (r.data.length >= 2) {
-            setSelectedMarket(0)
+          if (selectedMarket >= r.data.length) {
+            setSelectedMarket(-1)
           }
         })
         .catch((e) => {
@@ -77,6 +79,7 @@ export default function EmailerDashboard(props) {
         backendUrl={backendUrl}
         setSuccessfulSubmition={setSuccessfulSubmition}
         scheduledEmail={scheduledEmails[selectedMarket]}
+        isAllowedToDuplicate={scheduledEmails.length <= maxSize}
       />
     )
 
@@ -112,7 +115,7 @@ export default function EmailerDashboard(props) {
       )}
       {!showModal && (
         <div className="show-on-small">
-          {scheduledEmails.length < 2 && (
+          {scheduledEmails.length < maxSize && (
             <div
               onClick={() => {
                 setSelectedMarket(-1)
@@ -133,7 +136,7 @@ export default function EmailerDashboard(props) {
       <div className="hide-on-small">
         <div className="flex dashboard-container">
           <div className="fourth">
-            {scheduledEmails.length < 2 && (
+            {scheduledEmails.length < maxSize && (
               <div
                 onClick={() => {
                   setSelectedMarket(-1)

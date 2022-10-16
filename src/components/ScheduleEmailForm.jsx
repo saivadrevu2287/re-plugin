@@ -18,17 +18,17 @@ export default function ScheduleEmailForm(props) {
   const [numBedrooms, setNumBedrooms] = useState()
   const [numBathrooms, setNumBathrooms] = useState()
   const [notes, setNotes] = useState('')
-  const [insurance, setInsurance] = useState(60)
-  const [vacancy, setVacancy] = useState(5)
-  const [propertyManagement, setPropertyManagement] = useState(4)
-  const [capex, setCapex] = useState(5)
-  const [repairs, setRepairs] = useState(5)
-  const [utilities, setUtilities] = useState(0)
-  const [downPayment, setDownPayment] = useState(25)
-  const [closingCosts, setClosingCosts] = useState(4)
-  const [loanInterest, setLoanInterest] = useState(4)
-  const [loanMonths, setLoanMonths] = useState(240)
-  const [additionalMonthlyExpenses, setAdditionalMonthlyExpenses] = useState(0)
+  const [insurance, setInsurance] = useState()
+  const [vacancy, setVacancy] = useState()
+  const [propertyManagement, setPropertyManagement] = useState()
+  const [capex, setCapex] = useState()
+  const [repairs, setRepairs] = useState()
+  const [utilities, setUtilities] = useState()
+  const [downPayment, setDownPayment] = useState()
+  const [closingCosts, setClosingCosts] = useState()
+  const [loanInterest, setLoanInterest] = useState()
+  const [loanMonths, setLoanMonths] = useState()
+  const [additionalMonthlyExpenses, setAdditionalMonthlyExpenses] = useState()
 
   useEffect(() => {
     setSuccessMessage('')
@@ -45,6 +45,61 @@ export default function ScheduleEmailForm(props) {
 
     if (!searchParams) {
       setErrorMessage('Missing Location!')
+      return
+    }
+
+    if (null == insurance) {
+      setErrorMessage('Missing insurance!')
+      return
+    }
+
+    if (null == vacancy) {
+      setErrorMessage('Missing vacancy!')
+      return
+    }
+
+    if (null == propertyManagement) {
+      setErrorMessage('Missing propertyManagement!')
+      return
+    }
+
+    if (null == repairs) {
+      setErrorMessage('Missing repairs!')
+      return
+    }
+
+    if (null == capex) {
+      setErrorMessage('Missing capex!')
+      return
+    }
+
+    if (null == utilities) {
+      setErrorMessage('Missing utilities!')
+      return
+    }
+
+    if (null == downPayment) {
+      setErrorMessage('Missing downPayment!')
+      return
+    }
+
+    if (null == closingCosts) {
+      setErrorMessage('Missing closingCosts!')
+      return
+    }
+
+    if (null == loanInterest) {
+      setErrorMessage('Missing loanInterest!')
+      return
+    }
+
+    if (null == loanMonths) {
+      setErrorMessage('Missing loanMonths!')
+      return
+    }
+
+    if (null == additionalMonthlyExpenses) {
+      setErrorMessage('Missing additionalMonthlyExpenses!')
       return
     }
 
@@ -221,7 +276,12 @@ export default function ScheduleEmailForm(props) {
         <label className="third align-left" htmlFor="search-params-input">
           Title:
         </label>
-        <input value={notes} class="half" onInput={eliminateEvent(setNotes)} placeholder="Name your market"/>
+        <input
+          value={notes}
+          class="half"
+          onInput={eliminateEvent(setNotes)}
+          placeholder="Name your market"
+        />
       </div>
       <div className="flex between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="search-params-input">
@@ -230,7 +290,7 @@ export default function ScheduleEmailForm(props) {
         <input
           value={searchParams}
           class="half"
-          placeholder='Type in location exactly like Zillow'
+          placeholder="Type in location exactly like Zillow"
           onInput={eliminateEvent(setSearchParams)}
         />
       </div>
@@ -242,7 +302,7 @@ export default function ScheduleEmailForm(props) {
           type="number"
           class="half"
           value={minPrice}
-          placeholder='e.g. 100000'
+          placeholder="e.g. 100000"
           onInput={eliminateEvent(setMinPrice)}
         />
       </div>
@@ -254,7 +314,7 @@ export default function ScheduleEmailForm(props) {
           type="number"
           class="half"
           value={maxPrice}
-          placeholder='e.g. 300000'
+          placeholder="e.g. 300000"
           onInput={eliminateEvent(setMaxPrice)}
         />
       </div>
@@ -266,7 +326,7 @@ export default function ScheduleEmailForm(props) {
           type="number"
           class="half"
           value={numBedrooms}
-          placeholder='e.g. 3'
+          placeholder="e.g. 3"
           onInput={eliminateEvent(setNumBedrooms)}
         />
       </div>
@@ -278,7 +338,7 @@ export default function ScheduleEmailForm(props) {
           type="number"
           class="half"
           value={numBathrooms}
-          placeholder='e.g. 2'
+          placeholder="e.g. 2"
           onInput={eliminateEvent(setNumBathrooms)}
         />
       </div>

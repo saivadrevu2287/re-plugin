@@ -3,7 +3,7 @@ import { h, Fragment } from 'preact'
 import { useState, useEffect } from 'preact/hooks'
 import { route } from 'preact-router'
 import entry from '../build/entry'
-import { parseQueryParams } from '../subroutines/utils'
+import { parseQueryParams, parseCookies } from '../subroutines/utils'
 
 import Login from '../components/Login'
 import Signup from '../components/Signup'
@@ -13,6 +13,7 @@ import Home from '../components/Home'
 import Logout from '../components/Logout'
 import ForgotPassword from '../components/ForgotPassword'
 import ConfirmForgotPassword from '../components/ConfirmForgotPassword'
+import Payments from '../components/Payments'
 import axios from 'axios'
 
 const loginWithGoogleUrl =
@@ -41,13 +42,22 @@ function App(props) {
 
   useEffect(() => {
     if (window.location.hash) {
-      setJwt(parseQueryParams(window.location.hash))
-      route('/email.html', true)
+      const token = parseQueryParams(window.location.hash)
+      document.cookie = `token=${JSON.stringify(token)}`
+      setJwt(token)
+    } else if (document.cookie) {
+      const cookies = parseCookies(document.cookie)
+
+      if (cookies.token) {
+        const token = JSON.parse(cookies.token)
+        setJwt(token)
+      }
     }
   }, [])
 
   const handleLoginResults = (email) => (r) => {
     setJwt(r.data)
+    document.cookie = `token=${JSON.stringify(r.data)}`
     route('/email.html', true)
   }
   const handleVerifyResults = (email) => (r) =>
@@ -65,9 +75,17 @@ function App(props) {
   const toHome = () => route('/email.html')
   const toForgotPassword = () => route('/forgot-password')
   const proceedWithGoogle = () => (window.location.href = loginWithGoogleUrl)
+  const logout = () => {
+    document.cookie = `token=`
+    setJwt(null)
+  }
 
   const loginOrLogout = jwt ? (
-    <Fragment></Fragment>
+    <Fragment>
+      <button className="plain-button personal-margin-right" onClick={logout}>
+        Logout
+      </button>
+    </Fragment>
   ) : (
     <Fragment>
       <a href="/login" className="link-button">

@@ -5,7 +5,13 @@ import axios from 'axios'
 const eliminateEvent = (callback) => (event) => callback(event.target.value)
 
 export default function EmailerDetails(props) {
-  const { backendUrl, setSuccessfulSubmition, scheduledEmail, small } = props
+  const {
+    backendUrl,
+    setSuccessfulSubmition,
+    scheduledEmail,
+    small,
+    isAllowedToDuplicate,
+  } = props
 
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -101,6 +107,41 @@ export default function EmailerDetails(props) {
       })
   }
 
+  const duplicateEmail = () => {
+    axios
+      .post(`${backendUrl}/api/emailers`, {
+        insurance: parseInt(insurance),
+        vacancy: parseInt(vacancy),
+        property_management: parseInt(propertyManagement),
+        capex: parseInt(capex),
+        repairs: parseInt(repairs),
+        utilities: parseInt(utilities),
+        down_payment: parseInt(downPayment),
+        closing_cost: parseInt(closingCosts),
+        loan_interest: parseInt(loanInterest),
+        loan_months: parseInt(loanMonths),
+        additional_monthly_expenses: parseInt(additionalMonthlyExpenses),
+        min_price: parseInt(minPrice),
+        max_price: parseInt(maxPrice),
+        search_param: searchParams,
+        no_bedrooms: parseInt(numBedrooms),
+        no_bathrooms: parseInt(numBathrooms),
+        notes: `${notes} Clone`,
+        frequency: 'Daily',
+      })
+      .then((r) => {
+        setSuccessfulSubmition(Math.random())
+        setSuccessMessage('Market Duplicated.')
+      })
+      .catch((e) => {
+        if (e.response.data) {
+          setErrorMessage(e.response.data.message)
+        } else {
+          setErrorMessage(e.message)
+        }
+      })
+  }
+
   return (
     <div className="padded">
       <h5>{scheduledEmail.notes}</h5>
@@ -113,6 +154,14 @@ export default function EmailerDetails(props) {
       <button onClick={deleteEmail} className="personal-margin-top">
         Delete
       </button>
+      {isAllowedToDuplicate && (
+        <button
+          onClick={duplicateEmail}
+          className="personal-margin-top personal-margin-left"
+        >
+          Duplicate
+        </button>
+      )}
     </div>
   )
 }

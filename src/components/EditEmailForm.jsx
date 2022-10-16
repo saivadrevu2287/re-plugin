@@ -286,7 +286,7 @@ export default function EditEmailForm(props) {
         <input
           value={notes}
           className="half"
-          placeholder='Name your market'
+          placeholder="Name your market"
           onInput={eliminateEvent(setNotes)}
         />
       </div>
@@ -297,7 +297,7 @@ export default function EditEmailForm(props) {
         <input
           value={searchParams}
           className="half"
-          placeholder='Type in location exactly like Zillow'
+          placeholder="Type in location exactly like Zillow"
           onInput={eliminateEvent(setSearchParams)}
         />
       </div>
@@ -333,7 +333,7 @@ export default function EditEmailForm(props) {
           type="number"
           className="half"
           value={numBedrooms}
-          placeholder='e.g. 3'
+          placeholder="e.g. 3"
           onInput={eliminateEvent(setNumBedrooms)}
         />
       </div>
@@ -345,7 +345,7 @@ export default function EditEmailForm(props) {
           type="number"
           className="half"
           value={numBathrooms}
-          placeholder='e.g. 2'
+          placeholder="e.g. 2"
           onInput={eliminateEvent(setNumBathrooms)}
         />
       </div>

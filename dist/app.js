@@ -2936,6 +2936,67 @@ function EditEmailForm(props) {
       return;
     }
 
+    if (!searchParams.match(/\w County, [A-Z]{2}/)) {
+      setErrorMessage('Location must exactly match "___ County, [State Code]"!');
+      return;
+    }
+
+    if (!insurance) {
+      setErrorMessage('Missing insurance!');
+      return;
+    }
+
+    if ((null == vacancy || '' == vacancy) && 0 != vacancy) {
+      setErrorMessage('Missing vacancy!');
+      return;
+    }
+
+    if ((null == propertyManagement || '' == propertyManagement) && 0 != propertyManagement) {
+      setErrorMessage('Missing propertyManagement!');
+      return;
+    }
+
+    if ((null == repairs || '' == repairs) && 0 != repairs) {
+      setErrorMessage('Missing repairs!');
+      return;
+    }
+
+    if ((null == capex || '' == capex) && 0 != capex) {
+      setErrorMessage('Missing capex!');
+      return;
+    }
+
+    if ((null == utilities || '' == utilities) && 0 != utilities) {
+      console.log(utilities);
+      setErrorMessage('Missing utilities!');
+      return;
+    }
+
+    if ((null == downPayment || '' == downPayment) && 0 != downPayment) {
+      setErrorMessage('Missing downPayment!');
+      return;
+    }
+
+    if ((null == closingCosts || '' == closingCosts) && 0 != closingCosts) {
+      setErrorMessage('Missing closingCosts!');
+      return;
+    }
+
+    if ((null == loanInterest || '' == loanInterest) && 0 != loanInterest) {
+      setErrorMessage('Missing loanInterest!');
+      return;
+    }
+
+    if ((null == loanMonths || '' == loanMonths) && 0 != loanMonths) {
+      setErrorMessage('Missing loanMonths!');
+      return;
+    }
+
+    if ((null == additionalMonthlyExpenses || '' == additionalMonthlyExpenses) && 0 != additionalMonthlyExpenses) {
+      setErrorMessage('Missing additionalMonthlyExpenses!');
+      return;
+    }
+
     try {
       axios__WEBPACK_IMPORTED_MODULE_2___default().put("".concat(backendUrl, "/api/emailers"), {
         id: scheduledEmail.id,
@@ -3093,6 +3154,7 @@ function EditEmailForm(props) {
   }, "Title:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     value: notes,
     className: "half",
+    placeholder: "e.g. High Cash Market",
     onInput: eliminateEvent(setNotes)
   })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex wrap between centered-items personal-space-bottom"
@@ -3102,6 +3164,7 @@ function EditEmailForm(props) {
   }, "Location:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     value: searchParams,
     className: "half",
+    placeholder: "e.g. Essex County, NJ",
     onInput: eliminateEvent(setSearchParams)
   })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex wrap between centered-items personal-space-bottom"
@@ -3112,6 +3175,7 @@ function EditEmailForm(props) {
     type: "number",
     className: "half",
     value: minPrice,
+    placeholder: "e.g. 100000",
     onInput: eliminateEvent(setMinPrice)
   })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex wrap between centered-items personal-space-bottom"
@@ -3122,6 +3186,7 @@ function EditEmailForm(props) {
     type: "number",
     className: "half",
     value: maxPrice,
+    placeholder: "e.g. 300000",
     onInput: eliminateEvent(setMaxPrice)
   })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex wrap between centered-items personal-space-bottom"
@@ -3132,6 +3197,7 @@ function EditEmailForm(props) {
     type: "number",
     className: "half",
     value: numBedrooms,
+    placeholder: "e.g. 3",
     onInput: eliminateEvent(setNumBedrooms)
   })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex wrap between centered-items personal-space-bottom"
@@ -3142,10 +3208,9 @@ function EditEmailForm(props) {
     type: "number",
     className: "half",
     value: numBathrooms,
+    placeholder: "e.g. 2",
     onInput: eliminateEvent(setNumBathrooms)
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: ""
-  }, cocCalculationParams), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+  })), cocCalculationParams, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     className: "error"
   }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     className: "success"
@@ -3197,9 +3262,15 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+var allowedMarkets = function allowedMarkets(billing_id) {
+  return billing_id == 'Tier 1' ? 1 : billing_id == 'Tier 2' ? 3 : billing_id == 'Tier 3' ? 5 : 0;
+};
+
 function EmailerDashboard(props) {
   var backendUrl = props.backendUrl,
-      user = props.user;
+      user = props.user,
+      toPayments = props.toPayments;
 
   var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -3231,13 +3302,24 @@ function EmailerDashboard(props) {
       successfulSubmition = _useState12[0],
       setSuccessfulSubmition = _useState12[1];
 
+  var _useState13 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+      _useState14 = _slicedToArray(_useState13, 2),
+      maxSize = _useState14[0],
+      setMaxSize = _useState14[1];
+
   (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     if (user) {
+      var newMaxSize = allowedMarkets(user.billing_id);
+      setMaxSize(newMaxSize);
       axios__WEBPACK_IMPORTED_MODULE_3___default().get("".concat(backendUrl, "/api/emailers")).then(function (r) {
         setScheduledEmails(r.data);
         setLoadingState(false);
 
-        if (r.data.length >= 2) {
+        if (selectedMarket >= r.data.length) {
+          setSelectedMarket(-1);
+        }
+
+        if (r.data.length >= maxSize) {
           setSelectedMarket(0);
         }
       })["catch"](function (e) {
@@ -3252,7 +3334,10 @@ function EmailerDashboard(props) {
     }
 
     setLoadingState(true);
-  }, [user, successfulSubmition]);
+  }, [user, successfulSubmition]); // if (loadingState) {
+  //   return <h4>Loading Data...</h4>
+  // }
+
   var scheduledEmailList = scheduledEmails.map(function (scheduledEmail, i) {
     return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
       onClick: function onClick() {
@@ -3260,15 +3345,16 @@ function EmailerDashboard(props) {
         setShowModal(true);
       },
       key: i,
-      className: "padded-double ".concat(i == selectedMarket ? 'gray' : 'hover-item', " border-bottom border-right")
-    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, scheduledEmail.notes), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, scheduledEmail.search_param), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "$", (0,_subroutines_math__WEBPACK_IMPORTED_MODULE_6__.nFormatter)(scheduledEmail.min_price), "-$", (0,_subroutines_math__WEBPACK_IMPORTED_MODULE_6__.nFormatter)(scheduledEmail.max_price)));
+      className: "padded-double ".concat(i == selectedMarket ? 'gray' : 'hover-item', " border-bottom border-right\n        ").concat(i + 1 > maxSize ? 'error' : '')
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, scheduledEmail.notes), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, scheduledEmail.search_param), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "$", (0,_subroutines_math__WEBPACK_IMPORTED_MODULE_6__.nFormatter)(scheduledEmail.min_price), "-$", (0,_subroutines_math__WEBPACK_IMPORTED_MODULE_6__.nFormatter)(scheduledEmail.max_price)), i + 1 > maxSize && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Exceeded Max count per plan; Market Disabled."));
   });
   var emailerDetails = selectedMarket == -1 ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "padded"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "Schedule a New Email"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Once you save your parameters below, you will get an email daily at around 3 pm ET with the newest properties and their expected cash flow.")) : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_EmailerDetails__WEBPACK_IMPORTED_MODULE_4__["default"], {
     backendUrl: backendUrl,
     setSuccessfulSubmition: setSuccessfulSubmition,
-    scheduledEmail: scheduledEmails[selectedMarket]
+    scheduledEmail: scheduledEmails[selectedMarket],
+    isAllowedToDuplicate: scheduledEmails.length < maxSize
   });
   var emailerForm = selectedMarket == -1 ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_ScheduleEmailForm__WEBPACK_IMPORTED_MODULE_2__["default"], {
     backendUrl: backendUrl,
@@ -3280,9 +3366,14 @@ function EmailerDashboard(props) {
     setSuccessfulSubmition: setSuccessfulSubmition,
     scheduledEmail: scheduledEmails[selectedMarket]
   });
+  var tierMessage = user && user.billing_id ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "You are subscribed to ", user.billing_id, ": On this plan ", maxSize, " markets are allowed. View plans ", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    href: "payments.html"
+  }, "here"), ".") : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "You are not subscribed! View plans ", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    href: "payments.html"
+  }, "here"), ".");
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", {
     className: "padded"
-  }, "Your Targeted Markets"), showModal && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }, "Your Targeted Markets"), tierMessage, showModal && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "modal flex around wrap show-on-small full"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "padded"
@@ -3291,9 +3382,9 @@ function EmailerDashboard(props) {
     onClick: function onClick() {
       return setShowModal(false);
     }
-  }, "Close")), loadingState ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Loading Data...") : emailerDetails, emailerForm), !showModal && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }, "Close")), emailerDetails, emailerForm), !showModal && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "show-on-small"
-  }, scheduledEmails.length < 2 && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }, scheduledEmails.length < maxSize && !loadingState && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     onClick: function onClick() {
       setSelectedMarket(-1);
       setShowModal(true);
@@ -3306,20 +3397,18 @@ function EmailerDashboard(props) {
     className: "flex dashboard-container"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "fourth"
-  }, scheduledEmails.length < 2 && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }, scheduledEmails.length < maxSize && !loadingState && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     onClick: function onClick() {
       setSelectedMarket(-1);
       setShowModal(true);
     },
     key: "create",
     className: "padded-double border-right border-bottom ".concat(selectedMarket == -1 ? 'gray' : 'hover-item')
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "+"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Schedule notifications for a market")), scheduledEmailList), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "+"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Schedule notifications for a market")), scheduledEmailList), !loadingState && maxSize != 0 && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "personal-space-top-double full flex around"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "three-fourths"
-  }, loadingState ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Loading Data...") : emailerDetails, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "four-fifths"
-  }, emailerForm))))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+  }, emailerDetails, emailerForm)))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     className: "error"
   }, errorMessage));
 }
@@ -3367,7 +3456,8 @@ function EmailerDetails(props) {
   var backendUrl = props.backendUrl,
       setSuccessfulSubmition = props.setSuccessfulSubmition,
       scheduledEmail = props.scheduledEmail,
-      small = props.small;
+      small = props.small,
+      isAllowedToDuplicate = props.isAllowedToDuplicate;
 
   var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
@@ -3492,6 +3582,38 @@ function EmailerDetails(props) {
     });
   };
 
+  var duplicateEmail = function duplicateEmail() {
+    axios__WEBPACK_IMPORTED_MODULE_2___default().post("".concat(backendUrl, "/api/emailers"), {
+      insurance: parseInt(insurance),
+      vacancy: parseInt(vacancy),
+      property_management: parseInt(propertyManagement),
+      capex: parseInt(capex),
+      repairs: parseInt(repairs),
+      utilities: parseInt(utilities),
+      down_payment: parseInt(downPayment),
+      closing_cost: parseInt(closingCosts),
+      loan_interest: parseInt(loanInterest),
+      loan_months: parseInt(loanMonths),
+      additional_monthly_expenses: parseInt(additionalMonthlyExpenses),
+      min_price: parseInt(minPrice),
+      max_price: parseInt(maxPrice),
+      search_param: searchParams,
+      no_bedrooms: parseInt(numBedrooms),
+      no_bathrooms: parseInt(numBathrooms),
+      notes: "".concat(notes, " Clone"),
+      frequency: 'Daily'
+    }).then(function (r) {
+      setSuccessfulSubmition(Math.random());
+      setSuccessMessage('Market Duplicated.');
+    })["catch"](function (e) {
+      if (e.response.data) {
+        setErrorMessage(e.response.data.message);
+      } else {
+        setErrorMessage(e.message);
+      }
+    });
+  };
+
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "padded"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, scheduledEmail.notes), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
@@ -3499,7 +3621,10 @@ function EmailerDetails(props) {
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "$", scheduledEmail.min_price, " - $", scheduledEmail.max_price), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, scheduledEmail.search_param)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     onClick: deleteEmail,
     className: "personal-margin-top"
-  }, "Delete"));
+  }, "Delete"), isAllowedToDuplicate && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+    onClick: duplicateEmail,
+    className: "personal-margin-top personal-margin-left"
+  }, "Duplicate"));
 }
 
 /***/ }),
@@ -3770,6 +3895,41 @@ function Logout(props) {
 
 /***/ }),
 
+/***/ "./src/components/Payments.jsx":
+/*!*************************************!*\
+  !*** ./src/components/Payments.jsx ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Payments)
+/* harmony export */ });
+/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
+
+function Payments(props) {
+  var user = props.user,
+      toHome = props.toHome;
+
+  if (!user.billing_id) {
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("stripe-pricing-table", {
+      "pricing-table-id": "prctbl_1LsMgdIDd9tdb2o1PjxLTPTI",
+      "publishable-key": "pk_test_51LphqXIDd9tdb2o1WL2DLd67yiEEvXhzsF07hhqaSt54zAPmzJvtX5HiwC8yialHn58n8i8q2YsIMTZESKGlRMNB00H6i2uXpi"
+    }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+      href: "/email.html"
+    }, "Back to Markets!"));
+  } else {
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h3", null, "You're subscribed to ", user.billing_id), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+      href: "https://billing.stripe.com/p/login/test_eVa17v7v95kM0Vi8ww"
+    }, "Manage Your Subscriptions"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+      href: "/email.html"
+    }, "Back to Markets!"));
+  }
+}
+
+/***/ }),
+
 /***/ "./src/components/ScheduleEmailForm.jsx":
 /*!**********************************************!*\
   !*** ./src/components/ScheduleEmailForm.jsx ***!
@@ -3857,57 +4017,57 @@ function ScheduleEmailForm(props) {
       notes = _useState18[0],
       setNotes = _useState18[1];
 
-  var _useState19 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(60),
+  var _useState19 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
       _useState20 = _slicedToArray(_useState19, 2),
       insurance = _useState20[0],
       setInsurance = _useState20[1];
 
-  var _useState21 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(5),
+  var _useState21 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
       _useState22 = _slicedToArray(_useState21, 2),
       vacancy = _useState22[0],
       setVacancy = _useState22[1];
 
-  var _useState23 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(4),
+  var _useState23 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
       _useState24 = _slicedToArray(_useState23, 2),
       propertyManagement = _useState24[0],
       setPropertyManagement = _useState24[1];
 
-  var _useState25 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(5),
+  var _useState25 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
       _useState26 = _slicedToArray(_useState25, 2),
       capex = _useState26[0],
       setCapex = _useState26[1];
 
-  var _useState27 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(5),
+  var _useState27 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
       _useState28 = _slicedToArray(_useState27, 2),
       repairs = _useState28[0],
       setRepairs = _useState28[1];
 
-  var _useState29 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+  var _useState29 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
       _useState30 = _slicedToArray(_useState29, 2),
       utilities = _useState30[0],
       setUtilities = _useState30[1];
 
-  var _useState31 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(25),
+  var _useState31 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
       _useState32 = _slicedToArray(_useState31, 2),
       downPayment = _useState32[0],
       setDownPayment = _useState32[1];
 
-  var _useState33 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(4),
+  var _useState33 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
       _useState34 = _slicedToArray(_useState33, 2),
       closingCosts = _useState34[0],
       setClosingCosts = _useState34[1];
 
-  var _useState35 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(4),
+  var _useState35 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
       _useState36 = _slicedToArray(_useState35, 2),
       loanInterest = _useState36[0],
       setLoanInterest = _useState36[1];
 
-  var _useState37 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(240),
+  var _useState37 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
       _useState38 = _slicedToArray(_useState37, 2),
       loanMonths = _useState38[0],
       setLoanMonths = _useState38[1];
 
-  var _useState39 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+  var _useState39 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
       _useState40 = _slicedToArray(_useState39, 2),
       additionalMonthlyExpenses = _useState40[0],
       setAdditionalMonthlyExpenses = _useState40[1];
@@ -3928,6 +4088,67 @@ function ScheduleEmailForm(props) {
 
     if (!searchParams) {
       setErrorMessage('Missing Location!');
+      return;
+    }
+
+    if (!searchParams.match(/\w County, [A-Z]{2}/)) {
+      setErrorMessage('Location must exactly match "___ County, [State Code]"!');
+      return;
+    }
+
+    if (!insurance) {
+      setErrorMessage('Missing insurance!');
+      return;
+    }
+
+    if ((null == vacancy || '' == vacancy) && 0 != vacancy) {
+      setErrorMessage('Missing vacancy!');
+      return;
+    }
+
+    if ((null == propertyManagement || '' == propertyManagement) && 0 != propertyManagement) {
+      setErrorMessage('Missing propertyManagement!');
+      return;
+    }
+
+    if ((null == repairs || '' == repairs) && 0 != repairs) {
+      setErrorMessage('Missing repairs!');
+      return;
+    }
+
+    if ((null == capex || '' == capex) && 0 != capex) {
+      setErrorMessage('Missing capex!');
+      return;
+    }
+
+    if ((null == utilities || '' == utilities) && 0 != utilities) {
+      console.log(utilities);
+      setErrorMessage('Missing utilities!');
+      return;
+    }
+
+    if ((null == downPayment || '' == downPayment) && 0 != downPayment) {
+      setErrorMessage('Missing downPayment!');
+      return;
+    }
+
+    if ((null == closingCosts || '' == closingCosts) && 0 != closingCosts) {
+      setErrorMessage('Missing closingCosts!');
+      return;
+    }
+
+    if ((null == loanInterest || '' == loanInterest) && 0 != loanInterest) {
+      setErrorMessage('Missing loanInterest!');
+      return;
+    }
+
+    if ((null == loanMonths || '' == loanMonths) && 0 != loanMonths) {
+      setErrorMessage('Missing loanMonths!');
+      return;
+    }
+
+    if ((null == additionalMonthlyExpenses || '' == additionalMonthlyExpenses) && 0 != additionalMonthlyExpenses) {
+      setErrorMessage('Missing additionalMonthlyExpenses!');
       return;
     }
 
@@ -3953,7 +4174,7 @@ function ScheduleEmailForm(props) {
         frequency: 'Daily'
       }).then(function (r) {
         setSuccessfulSubmition(Math.random());
-        setSuccessMessage('Market Submitted. Expect a daily email at 3pm ET.');
+        setSuccessMessage('Market Submitted. Expect a daily email at 10AM ET.');
       })["catch"](function (e) {
         if (e.response.data) {
           setErrorMessage(e.response.data.message);
@@ -4087,7 +4308,8 @@ function ScheduleEmailForm(props) {
   }, "Title:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     value: notes,
     "class": "half",
-    onInput: eliminateEvent(setNotes)
+    onInput: eliminateEvent(setNotes),
+    placeholder: "e.g. High Cash Market"
   })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
@@ -4096,6 +4318,7 @@ function ScheduleEmailForm(props) {
   }, "Location:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     value: searchParams,
     "class": "half",
+    placeholder: "e.g. Essex County, NJ",
     onInput: eliminateEvent(setSearchParams)
   })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
@@ -4106,6 +4329,7 @@ function ScheduleEmailForm(props) {
     type: "number",
     "class": "half",
     value: minPrice,
+    placeholder: "e.g. 100000",
     onInput: eliminateEvent(setMinPrice)
   })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
@@ -4116,6 +4340,7 @@ function ScheduleEmailForm(props) {
     type: "number",
     "class": "half",
     value: maxPrice,
+    placeholder: "e.g. 300000",
     onInput: eliminateEvent(setMaxPrice)
   })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
@@ -4126,6 +4351,7 @@ function ScheduleEmailForm(props) {
     type: "number",
     "class": "half",
     value: numBedrooms,
+    placeholder: "e.g. 3",
     onInput: eliminateEvent(setNumBedrooms)
   })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
@@ -4136,10 +4362,9 @@ function ScheduleEmailForm(props) {
     type: "number",
     "class": "half",
     value: numBathrooms,
+    placeholder: "e.g. 2",
     onInput: eliminateEvent(setNumBathrooms)
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "personal-space-top "
-  }, cocCalculationParams), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+  })), cocCalculationParams, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     className: "error"
   }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     className: "success"
@@ -4454,6 +4679,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "dollars": () => (/* binding */ dollars),
 /* harmony export */   "handleCopy": () => (/* binding */ handleCopy),
 /* harmony export */   "monthlyDollars": () => (/* binding */ monthlyDollars),
+/* harmony export */   "parseCookies": () => (/* binding */ parseCookies),
 /* harmony export */   "parseJwt": () => (/* binding */ parseJwt),
 /* harmony export */   "parseQueryParams": () => (/* binding */ parseQueryParams)
 /* harmony export */ });
@@ -4499,6 +4725,14 @@ var parseJwt = function parseJwt(token) {
 };
 var parseQueryParams = function parseQueryParams(search) {
   return search.slice(1).split('&').map(function (e) {
+    return e.split('=');
+  }).reduce(function (acc, pair) {
+    acc[pair[0]] = pair[1];
+    return acc;
+  }, {});
+};
+var parseCookies = function parseCookies(cookies) {
+  return cookies.split('; ').map(function (e) {
     return e.split('=');
   }).reduce(function (acc, pair) {
     acc[pair[0]] = pair[1];
@@ -4679,8 +4913,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Logout__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/Logout */ "./src/components/Logout.jsx");
 /* harmony import */ var _components_ForgotPassword__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/ForgotPassword */ "./src/components/ForgotPassword.jsx");
 /* harmony import */ var _components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../components/ConfirmForgotPassword */ "./src/components/ConfirmForgotPassword.jsx");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _components_Payments__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../components/Payments */ "./src/components/Payments.jsx");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_14__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -4692,6 +4927,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -4729,8 +4965,8 @@ function App(props) {
 
   (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
     if (jwt) {
-      (axios__WEBPACK_IMPORTED_MODULE_13___default().defaults.headers.common.Authorization) = "Bearer ".concat(jwt.id_token);
-      axios__WEBPACK_IMPORTED_MODULE_13___default().get("".concat(backendUrl, "/api/users")).then(function (r) {
+      (axios__WEBPACK_IMPORTED_MODULE_14___default().defaults.headers.common.Authorization) = "Bearer ".concat(jwt.id_token);
+      axios__WEBPACK_IMPORTED_MODULE_14___default().get("".concat(backendUrl, "/api/users")).then(function (r) {
         setUser(r.data);
       })["catch"](function (e) {
         setErrorMessage(e.response.data.message);
@@ -4739,14 +4975,30 @@ function App(props) {
   }, [jwt]);
   (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
     if (window.location.hash) {
-      setJwt((0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_4__.parseQueryParams)(window.location.hash));
-      (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/email.html', true);
+      var token = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_4__.parseQueryParams)(window.location.hash);
+      var today = new Date();
+      var tomorrow = new Date(today);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      document.cookie = "token=".concat(JSON.stringify(token), ";expires=").concat(tomorrow.toUTCString());
+      setJwt(token);
+    } else if (document.cookie) {
+      var cookies = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_4__.parseCookies)(document.cookie);
+
+      if (cookies.token) {
+        var _token = JSON.parse(cookies.token);
+
+        setJwt(_token);
+      }
     }
   }, []);
 
   var handleLoginResults = function handleLoginResults(email) {
     return function (r) {
       setJwt(r.data);
+      var today = new Date();
+      var tomorrow = new Date(today);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      document.cookie = "token=".concat(JSON.stringify(r.data), ";expires=").concat(tomorrow.toUTCString());
       (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/email.html', true);
     };
   };
@@ -4799,7 +5051,15 @@ function App(props) {
     return window.location.href = loginWithGoogleUrl;
   };
 
-  var loginOrLogout = jwt ? (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact__WEBPACK_IMPORTED_MODULE_1__.Fragment, null) : (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("a", {
+  var logout = function logout() {
+    document.cookie = "token=";
+    setJwt(null);
+  };
+
+  var loginOrLogout = jwt ? (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("button", {
+    className: "plain-button personal-margin-right",
+    onClick: logout
+  }, "Logout")) : (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("a", {
     href: "/login",
     className: "link-button"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("button", {

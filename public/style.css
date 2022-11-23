@@ -149,6 +149,14 @@ input {
     width: 64%;
   }
 
+  input {
+    padding: 0.25rem;
+    border-radius: 5px;
+    border: 1px solid #f0f0f4;
+    background-color: #fafafc;
+    min-width: 100px;
+  }
+
   .input-container {
     width: 145px;
   }

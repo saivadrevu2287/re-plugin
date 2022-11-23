@@ -109,6 +109,67 @@ export default function EditEmailForm(props) {
       return
     }
 
+    if (!searchParams.match(/\w County, [A-Z]{2}/)) {
+      setErrorMessage('Location must exactly match "___ County, [State Code]"!')
+      return
+    }
+
+    if (!insurance) {
+      setErrorMessage('Missing insurance!')
+      return
+    }
+
+    if ((null == vacancy || '' == vacancy) && 0 != vacancy) {
+      setErrorMessage('Missing vacancy!')
+      return
+    }
+
+    if ((null == propertyManagement || '' == propertyManagement) && 0 != propertyManagement) {
+      setErrorMessage('Missing propertyManagement!')
+      return
+    }
+
+    if ((null == repairs || '' == repairs) && 0 != repairs) {
+      setErrorMessage('Missing repairs!')
+      return
+    }
+
+    if ((null == capex || '' == capex) && 0 != capex) {
+      setErrorMessage('Missing capex!')
+      return
+    }
+
+    if ((null == utilities || '' == utilities) && 0 != utilities) {
+      console.log(utilities)
+      setErrorMessage('Missing utilities!')
+      return
+    }
+
+    if ((null == downPayment || '' == downPayment) && 0 != downPayment) {
+      setErrorMessage('Missing downPayment!')
+      return
+    }
+
+    if ((null == closingCosts || '' == closingCosts) && 0 != closingCosts) {
+      setErrorMessage('Missing closingCosts!')
+      return
+    }
+
+    if ((null == loanInterest || '' == loanInterest) && 0 != loanInterest) {
+      setErrorMessage('Missing loanInterest!')
+      return
+    }
+
+    if ((null == loanMonths || '' == loanMonths) && 0 != loanMonths) {
+      setErrorMessage('Missing loanMonths!')
+      return
+    }
+
+    if ((null == additionalMonthlyExpenses || '' == additionalMonthlyExpenses) && 0 != additionalMonthlyExpenses) {
+      setErrorMessage('Missing additionalMonthlyExpenses!')
+      return
+    }
+
     try {
       axios
         .put(`${backendUrl}/api/emailers`, {
@@ -286,7 +347,7 @@ export default function EditEmailForm(props) {
         <input
           value={notes}
           className="half"
-          placeholder="Name your market"
+          placeholder="e.g. High Cash Market"
           onInput={eliminateEvent(setNotes)}
         />
       </div>
@@ -297,7 +358,7 @@ export default function EditEmailForm(props) {
         <input
           value={searchParams}
           className="half"
-          placeholder="Type in location exactly like Zillow"
+          placeholder="e.g. Essex County, NJ"
           onInput={eliminateEvent(setSearchParams)}
         />
       </div>

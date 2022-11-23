@@ -43,7 +43,12 @@ function App(props) {
   useEffect(() => {
     if (window.location.hash) {
       const token = parseQueryParams(window.location.hash)
-      document.cookie = `token=${JSON.stringify(token)}`
+      const today = new Date()
+      const tomorrow = new Date(today)
+      tomorrow.setDate(tomorrow.getDate() + 1)
+      document.cookie = `token=${JSON.stringify(
+        token
+      )};expires=${tomorrow.toUTCString()}`
       setJwt(token)
     } else if (document.cookie) {
       const cookies = parseCookies(document.cookie)
@@ -57,7 +62,12 @@ function App(props) {
 
   const handleLoginResults = (email) => (r) => {
     setJwt(r.data)
-    document.cookie = `token=${JSON.stringify(r.data)}`
+    const today = new Date()
+    const tomorrow = new Date(today)
+    tomorrow.setDate(tomorrow.getDate() + 1)
+    document.cookie = `token=${JSON.stringify(
+      r.data
+    )};expires=${tomorrow.toUTCString()}`
     route('/email.html', true)
   }
   const handleVerifyResults = (email) => (r) =>

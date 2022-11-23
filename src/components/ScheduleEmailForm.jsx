@@ -48,57 +48,63 @@ export default function ScheduleEmailForm(props) {
       return
     }
 
-    if (null == insurance) {
+    if (!searchParams.match(/\w County, [A-Z]{2}/)) {
+      setErrorMessage('Location must exactly match "___ County, [State Code]"!')
+      return
+    }
+
+    if (!insurance) {
       setErrorMessage('Missing insurance!')
       return
     }
 
-    if (null == vacancy) {
+    if ((null == vacancy || '' == vacancy) && 0 != vacancy) {
       setErrorMessage('Missing vacancy!')
       return
     }
 
-    if (null == propertyManagement) {
+    if ((null == propertyManagement || '' == propertyManagement) && 0 != propertyManagement) {
       setErrorMessage('Missing propertyManagement!')
       return
     }
 
-    if (null == repairs) {
+    if ((null == repairs || '' == repairs) && 0 != repairs) {
       setErrorMessage('Missing repairs!')
       return
     }
 
-    if (null == capex) {
+    if ((null == capex || '' == capex) && 0 != capex) {
       setErrorMessage('Missing capex!')
       return
     }
 
-    if (null == utilities) {
+    if ((null == utilities || '' == utilities) && 0 != utilities) {
+      console.log(utilities)
       setErrorMessage('Missing utilities!')
       return
     }
 
-    if (null == downPayment) {
+    if ((null == downPayment || '' == downPayment) && 0 != downPayment) {
       setErrorMessage('Missing downPayment!')
       return
     }
 
-    if (null == closingCosts) {
+    if ((null == closingCosts || '' == closingCosts) && 0 != closingCosts) {
       setErrorMessage('Missing closingCosts!')
       return
     }
 
-    if (null == loanInterest) {
+    if ((null == loanInterest || '' == loanInterest) && 0 != loanInterest) {
       setErrorMessage('Missing loanInterest!')
       return
     }
 
-    if (null == loanMonths) {
+    if ((null == loanMonths || '' == loanMonths) && 0 != loanMonths) {
       setErrorMessage('Missing loanMonths!')
       return
     }
 
-    if (null == additionalMonthlyExpenses) {
+    if ((null == additionalMonthlyExpenses || '' == additionalMonthlyExpenses) && 0 != additionalMonthlyExpenses) {
       setErrorMessage('Missing additionalMonthlyExpenses!')
       return
     }
@@ -127,7 +133,7 @@ export default function ScheduleEmailForm(props) {
         })
         .then((r) => {
           setSuccessfulSubmition(Math.random())
-          setSuccessMessage('Market Submitted. Expect a daily email at 3pm ET.')
+          setSuccessMessage('Market Submitted. Expect a daily email at 10AM ET.')
         })
         .catch((e) => {
           if (e.response.data) {
@@ -280,7 +286,7 @@ export default function ScheduleEmailForm(props) {
           value={notes}
           class="half"
           onInput={eliminateEvent(setNotes)}
-          placeholder="Name your market"
+          placeholder="e.g. High Cash Market"
         />
       </div>
       <div className="flex between centered-items personal-space-bottom">
@@ -290,7 +296,7 @@ export default function ScheduleEmailForm(props) {
         <input
           value={searchParams}
           class="half"
-          placeholder="Type in location exactly like Zillow"
+          placeholder="e.g. Essex County, NJ"
           onInput={eliminateEvent(setSearchParams)}
         />
       </div>

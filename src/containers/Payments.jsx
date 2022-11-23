@@ -18,7 +18,6 @@ function App(props) {
   useEffect(() => {
     if (window.location.hash) {
       const token = parseQueryParams(window.location.hash)
-      document.cookie = `token=${JSON.stringify(token)}`
       setJwt(token)
     } else if (document.cookie) {
       const cookies = parseCookies(document.cookie)

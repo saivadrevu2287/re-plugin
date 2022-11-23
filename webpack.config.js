@@ -6,6 +6,7 @@ module.exports = {
   entry: {
     app: path.resolve(__dirname, 'src', 'containers', 'App.jsx'),
     profile: path.resolve(__dirname, 'src', 'containers', 'Profile.jsx'),
+    payments: path.resolve(__dirname, 'src', 'containers', 'Payments.jsx'),
     popup: path.resolve(__dirname, 'src', 'containers', 'Popup.jsx'),
     options: path.resolve(__dirname, 'src', 'containers', 'Options.jsx'),
   },
@@ -27,6 +28,11 @@ module.exports = {
       chunks: ['profile'],
       filename: 'index.html',
       template: path.resolve(__dirname, 'src', 'build', 'index.html'),
+    }),
+    new HtmlWebpackPlugin({
+      chunks: ['payments'],
+      filename: 'payments.html',
+      template: path.resolve(__dirname, 'src', 'build', 'payments.html'),
     }),
     new HtmlWebpackPlugin({
       chunks: ['popup'],

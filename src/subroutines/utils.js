@@ -49,3 +49,12 @@ export const parseQueryParams = (search) =>
       acc[pair[0]] = pair[1]
       return acc
     }, {})
+
+export const parseCookies = (cookies) =>
+  cookies
+    .split('; ')
+    .map((e) => e.split('='))
+    .reduce((acc, pair) => {
+      acc[pair[0]] = pair[1]
+      return acc
+    }, {})

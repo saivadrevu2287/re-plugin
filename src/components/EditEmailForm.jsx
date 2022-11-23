@@ -124,7 +124,10 @@ export default function EditEmailForm(props) {
       return
     }
 
-    if ((null == propertyManagement || '' == propertyManagement) && 0 != propertyManagement) {
+    if (
+      (null == propertyManagement || '' == propertyManagement) &&
+      0 != propertyManagement
+    ) {
       setErrorMessage('Missing propertyManagement!')
       return
     }
@@ -165,7 +168,10 @@ export default function EditEmailForm(props) {
       return
     }
 
-    if ((null == additionalMonthlyExpenses || '' == additionalMonthlyExpenses) && 0 != additionalMonthlyExpenses) {
+    if (
+      (null == additionalMonthlyExpenses || '' == additionalMonthlyExpenses) &&
+      0 != additionalMonthlyExpenses
+    ) {
       setErrorMessage('Missing additionalMonthlyExpenses!')
       return
     }

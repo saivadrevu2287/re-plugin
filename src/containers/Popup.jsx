@@ -1,5 +1,6 @@
 import { h } from 'preact'
 import { useEffect, useState } from 'preact/hooks'
+import axios from 'axios'
 import entry from '../build/entry'
 
 import ListingData from '../components/ListingData'
@@ -20,11 +21,27 @@ export default function Popup(props) {
   const [showForgotPassword, setShowForgotPassword] = useState(false)
   const [showForgotPasswordCode, setShowForgotPasswordCode] = useState(false)
   const [changingPage, setChangingPage] = useState(0)
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
     chrome.storage.sync.get('configurationFields', (data) => {
       console.log(data.configurationFields)
       setConfigurationFields(data.configurationFields)
+
+      if (data.configurationFields.jwt) {
+        axios.defaults.headers.common[
+          'Authorization'
+        ] = `Bearer ${data.configurationFields.jwt.id_token}`
+        axios
+          .get(`${backendUrl}/api/users`)
+          .then((r) => {
+            console.log(r.data)
+            setUser(r.data)
+          })
+          .catch((e) => {
+            setErrorMessage(e.response.data.message)
+          })
+      }
     })
   }, [changingPage])
 
@@ -35,16 +52,17 @@ export default function Popup(props) {
     setShowLogin(true)
     newConfigurationFields.isLoggedIn = false
     newConfigurationFields.email = ''
+    newConfigurationFields.jwt = null
     setConfigurationFields(newConfigurationFields)
     chrome.storage.sync.set({ configurationFields: newConfigurationFields })
   }
 
   const handleLoginResults = (email) => (r) => {
-    console.log(r.data.message)
     const newConfigurationFields = JSON.parse(
       JSON.stringify(configurationFields)
     )
     newConfigurationFields.isLoggedIn = true
+    newConfigurationFields.jwt = r.data
     newConfigurationFields.email = email
     setConfigurationFields(newConfigurationFields)
     chrome.storage.sync.set({ configurationFields: newConfigurationFields })
@@ -128,6 +146,8 @@ export default function Popup(props) {
     return (
       <ListingData
         configurationFields={configurationFields}
+        backendUrl={backendUrl}
+        user={user}
         handleSignout={handleSignout}
       />
     )

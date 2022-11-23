@@ -1,4 +1,4 @@
-import { h } from 'preact'
+import { Fragment, h } from 'preact'
 import { useEffect, useState } from 'preact/hooks'
 import { runScraper } from '../subroutines/scraper'
 import { toInt, calculateCOC } from '../subroutines/math'
@@ -8,7 +8,7 @@ const eliminateEvent = (e) => e.target.value
 const tabSeparator = '\t'
 
 export default function ListingData(props) {
-  const { configurationFields, handleSignout } = props
+  const { configurationFields, handleSignout, backendUrl, user } = props
 
   const [price, setPrice] = useState()
   const [priceEstimate, setPriceEstimate] = useState()
@@ -19,8 +19,6 @@ export default function ListingData(props) {
   const [specs, setSpecs] = useState()
   const [href, setHref] = useState()
   const [hasBeenCopied, setHasBeenCopied] = useState(false)
-
-  const logout = () => {}
 
   useEffect(() => {
     console.log('Running scraper!')
@@ -99,9 +97,29 @@ export default function ListingData(props) {
   const feedbackLink =
     'https://docs.google.com/forms/d/1E6h7AbJZxitYnMuT1J6eK-x9AA5CpYHE2Dd3qYghZUA/edit'
 
-  return (
-    <div className="align-center personal-space-top">
-      <h6>COC Calculator</h6>
+  const jwtHash = Object.keys(configurationFields.jwt).map(key => `${key}=${configurationFields.jwt[key]}`).join("&")
+
+  const tierMessage =
+    user && user.billing_id ? (
+      <p>
+        You are subscribed to {user.billing_id}. View plans{' '}
+        <a target="_blank" href={`https://ostr.ch/payments.html#${jwtHash}`}>
+          here
+        </a>
+        .
+      </p>
+    ) : (
+      <p>
+        You are not subscribed! View plans{' '}
+        <a target="_blank" href={`https://ostr.ch/payments.html#${jwtHash}`}>
+          here
+        </a>
+        .
+      </p>
+    )
+
+  const details = (
+    <Fragment>
       <div className="thin-container ostrich-container">
         <div class="flex between centered-items personal-space-small-bottom">
           <label className="label align-right">Price:</label>
@@ -184,12 +202,20 @@ export default function ListingData(props) {
             <button className="plain-button">To Realtor</button>
           </a>
         </div>
-        <div className="flex between full">
-          <a className="value-large" target="_blank" href={feedbackLink}>
-            Provide Feedback!
-          </a>
-          <span onClick={handleSignout}>Logout</span>
-        </div>
+      </div>
+    </Fragment>
+  )
+
+  return (
+    <div className="align-center personal-space-top">
+      <h6>COC Calculator</h6>
+      {tierMessage}
+      {user && user.billing_id && details}
+      <div className="flex between full">
+        <a className="value-large" target="_blank" href={feedbackLink}>
+          Provide Feedback!
+        </a>
+        <span onClick={handleSignout}>Logout</span>
       </div>
     </div>
   )

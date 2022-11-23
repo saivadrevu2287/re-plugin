@@ -63,7 +63,10 @@ export default function ScheduleEmailForm(props) {
       return
     }
 
-    if ((null == propertyManagement || '' == propertyManagement) && 0 != propertyManagement) {
+    if (
+      (null == propertyManagement || '' == propertyManagement) &&
+      0 != propertyManagement
+    ) {
       setErrorMessage('Missing propertyManagement!')
       return
     }
@@ -104,7 +107,10 @@ export default function ScheduleEmailForm(props) {
       return
     }
 
-    if ((null == additionalMonthlyExpenses || '' == additionalMonthlyExpenses) && 0 != additionalMonthlyExpenses) {
+    if (
+      (null == additionalMonthlyExpenses || '' == additionalMonthlyExpenses) &&
+      0 != additionalMonthlyExpenses
+    ) {
       setErrorMessage('Missing additionalMonthlyExpenses!')
       return
     }
@@ -133,7 +139,9 @@ export default function ScheduleEmailForm(props) {
         })
         .then((r) => {
           setSuccessfulSubmition(Math.random())
-          setSuccessMessage('Market Submitted. Expect a daily email at 10AM ET.')
+          setSuccessMessage(
+            'Market Submitted. Expect a daily email at 10AM ET.'
+          )
         })
         .catch((e) => {
           if (e.response.data) {

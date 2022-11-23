@@ -2886,7 +2886,9 @@ var eliminateEvent = function eliminateEvent(e) {
 var tabSeparator = '\t';
 function ListingData(props) {
   var configurationFields = props.configurationFields,
-      handleSignout = props.handleSignout;
+      handleSignout = props.handleSignout,
+      backendUrl = props.backendUrl,
+      user = props.user;
 
   var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
       _useState2 = _slicedToArray(_useState, 2),
@@ -2932,8 +2934,6 @@ function ListingData(props) {
       _useState18 = _slicedToArray(_useState17, 2),
       hasBeenCopied = _useState18[0],
       setHasBeenCopied = _useState18[1];
-
-  var logout = function logout() {};
 
   (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     console.log('Running scraper!');
@@ -3004,9 +3004,17 @@ function ListingData(props) {
   var cashOnCashString = cashOnCashValue.toLocaleString() + '%';
   var infoLink = 'https://rehacks.io/blog-new/a-chrome-extension-to-analyze-roi-of-a-rental-property-in-5-sec';
   var feedbackLink = 'https://docs.google.com/forms/d/1E6h7AbJZxitYnMuT1J6eK-x9AA5CpYHE2Dd3qYghZUA/edit';
-  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "align-center personal-space-top"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "COC Calculator"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  var jwtHash = Object.keys(configurationFields.jwt).map(function (key) {
+    return "".concat(key, "=").concat(configurationFields.jwt[key]);
+  }).join("&");
+  var tierMessage = user && user.billing_id ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are subscribed to ", user.billing_id, ". View plans", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    target: "_blank",
+    href: "https://ostr.ch/payments.html#".concat(jwtHash)
+  }, "here"), ".") : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are not subscribed! View plans", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    target: "_blank",
+    href: "https://ostr.ch/payments.html#".concat(jwtHash)
+  }, "here"), ".");
+  var details = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "thin-container ostrich-container"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     "class": "flex between centered-items personal-space-small-bottom"
@@ -3096,15 +3104,18 @@ function ListingData(props) {
     href: realtorLink
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "plain-button"
-  }, "To Realtor"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between full personal-space"
+  }, "To Realtor")))));
+  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "align-center personal-space-top"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "COC Calculator"), tierMessage, user && user.billing_id && details, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex between full"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
     className: "value-large",
     target: "_blank",
     href: feedbackLink
   }, "Provide Feedback!"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
     onClick: handleSignout
-  }, "Logout"))));
+  }, "Logout")));
 }
 
 /***/ }),
@@ -3812,13 +3823,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
 /* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
-/* harmony import */ var _build_entry__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../build/entry */ "./src/build/entry.js");
-/* harmony import */ var _components_ListingData__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/ListingData */ "./src/components/ListingData.jsx");
-/* harmony import */ var _components_Signup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Signup */ "./src/components/Signup.jsx");
-/* harmony import */ var _components_Login__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Login */ "./src/components/Login.jsx");
-/* harmony import */ var _components_Confirm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Confirm */ "./src/components/Confirm.jsx");
-/* harmony import */ var _components_ForgotPassword__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/ForgotPassword */ "./src/components/ForgotPassword.jsx");
-/* harmony import */ var _components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/ConfirmForgotPassword */ "./src/components/ConfirmForgotPassword.jsx");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _build_entry__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../build/entry */ "./src/build/entry.js");
+/* harmony import */ var _components_ListingData__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/ListingData */ "./src/components/ListingData.jsx");
+/* harmony import */ var _components_Signup__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Signup */ "./src/components/Signup.jsx");
+/* harmony import */ var _components_Login__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Login */ "./src/components/Login.jsx");
+/* harmony import */ var _components_Confirm__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/Confirm */ "./src/components/Confirm.jsx");
+/* harmony import */ var _components_ForgotPassword__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/ForgotPassword */ "./src/components/ForgotPassword.jsx");
+/* harmony import */ var _components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/ConfirmForgotPassword */ "./src/components/ConfirmForgotPassword.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3830,6 +3843,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -3870,10 +3884,25 @@ function Popup(props) {
       changingPage = _useState10[0],
       setChangingPage = _useState10[1];
 
+  var _useState11 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
+      _useState12 = _slicedToArray(_useState11, 2),
+      user = _useState12[0],
+      setUser = _useState12[1];
+
   (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     chrome.storage.sync.get('configurationFields', function (data) {
       console.log(data.configurationFields);
       setConfigurationFields(data.configurationFields);
+
+      if (data.configurationFields.jwt) {
+        (axios__WEBPACK_IMPORTED_MODULE_2___default().defaults.headers.common.Authorization) = "Bearer ".concat(data.configurationFields.jwt.id_token);
+        axios__WEBPACK_IMPORTED_MODULE_2___default().get("".concat(backendUrl, "/api/users")).then(function (r) {
+          console.log(r.data);
+          setUser(r.data);
+        })["catch"](function (e) {
+          setErrorMessage(e.response.data.message);
+        });
+      }
     });
   }, [changingPage]);
 
@@ -3882,6 +3911,7 @@ function Popup(props) {
     setShowLogin(true);
     newConfigurationFields.isLoggedIn = false;
     newConfigurationFields.email = '';
+    newConfigurationFields.jwt = null;
     setConfigurationFields(newConfigurationFields);
     chrome.storage.sync.set({
       configurationFields: newConfigurationFields
@@ -3890,9 +3920,9 @@ function Popup(props) {
 
   var handleLoginResults = function handleLoginResults(email) {
     return function (r) {
-      console.log(r.data.message);
       var newConfigurationFields = JSON.parse(JSON.stringify(configurationFields));
       newConfigurationFields.isLoggedIn = true;
+      newConfigurationFields.jwt = r.data;
       newConfigurationFields.email = email;
       setConfigurationFields(newConfigurationFields);
       chrome.storage.sync.set({
@@ -3974,14 +4004,14 @@ function Popup(props) {
   }
 
   if (showForgotPassword) {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_ForgotPassword__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_ForgotPassword__WEBPACK_IMPORTED_MODULE_8__["default"], {
       backendUrl: backendUrl,
       handleForgotPasswordResults: handleForgotPasswordResults
     });
   }
 
   if (showForgotPasswordCode) {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_9__["default"], {
       email: configurationFields.email,
       backendUrl: backendUrl,
       handleConfirmForgotPasswordResults: handleConfirmForgotPasswordResults
@@ -3989,14 +4019,16 @@ function Popup(props) {
   }
 
   if (configurationFields.isLoggedIn) {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_ListingData__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_ListingData__WEBPACK_IMPORTED_MODULE_4__["default"], {
       configurationFields: configurationFields,
+      backendUrl: backendUrl,
+      user: user,
       handleSignout: handleSignout
     });
   }
 
   if (configurationFields.needsVerification) {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Confirm__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Confirm__WEBPACK_IMPORTED_MODULE_7__["default"], {
       handleVerifyResults: handleVerifyResults,
       backendUrl: backendUrl,
       email: configurationFields.email
@@ -4004,7 +4036,7 @@ function Popup(props) {
   }
 
   if (showLogin) {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Login__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Login__WEBPACK_IMPORTED_MODULE_6__["default"], {
       handleLoginResults: handleLoginResults,
       toSignup: function toSignup() {
         return setShowLogin(false);
@@ -4016,7 +4048,7 @@ function Popup(props) {
       backendUrl: backendUrl
     });
   } else {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Signup__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Signup__WEBPACK_IMPORTED_MODULE_5__["default"], {
       handleSignupResults: handleSignupResults,
       toLogin: function toLogin() {
         return setShowLogin(true);
@@ -4026,7 +4058,7 @@ function Popup(props) {
     });
   }
 }
-(0,_build_entry__WEBPACK_IMPORTED_MODULE_2__["default"])((0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(Popup, null));
+(0,_build_entry__WEBPACK_IMPORTED_MODULE_3__["default"])((0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(Popup, null));
 })();
 
 /******/ })()

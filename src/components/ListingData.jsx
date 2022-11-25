@@ -8,7 +8,7 @@ const eliminateEvent = (e) => e.target.value
 const tabSeparator = '\t'
 
 export default function ListingData(props) {
-  const { configurationFields, handleSignout, backendUrl, user } = props
+  const { configurationFields, handleSignout, user } = props
 
   const [price, setPrice] = useState()
   const [priceEstimate, setPriceEstimate] = useState()
@@ -37,7 +37,11 @@ export default function ListingData(props) {
     })
   }, [])
 
-  console.log({ price, taxes, rentEstimate })
+  if (!configurationFields) {
+    return <p>Loading data</p>
+  }
+
+  console.log({ price, taxes, rentEstimate, m: 'Listing Data' })
 
   const { cashOnCash } = calculateCOC(
     configurationFields,
@@ -97,7 +101,11 @@ export default function ListingData(props) {
   const feedbackLink =
     'https://docs.google.com/forms/d/1E6h7AbJZxitYnMuT1J6eK-x9AA5CpYHE2Dd3qYghZUA/edit'
 
-  const jwtHash = Object.keys(configurationFields.jwt).map(key => `${key}=${configurationFields.jwt[key]}`).join("&")
+  const jwtHash = configurationFields.jwt
+    ? Object.keys(configurationFields.jwt)
+        .map((key) => `${key}=${configurationFields.jwt[key]}`)
+        .join('&')
+    : ''
 
   const tierMessage =
     user && user.billing_id ? (

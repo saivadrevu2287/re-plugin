@@ -1,7 +1,9 @@
 import { h } from 'preact'
 import { useState } from 'preact/hooks'
 import axios from 'axios'
+
 import { parseQueryParams } from '../subroutines/utils'
+import { login } from '../api/auth'
 
 const eliminateEvent = (callback) => (event) => callback(event.target.value)
 
@@ -20,21 +22,17 @@ export default function Login(props) {
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
 
-  const login = () => {
+  const loginAction = () => {
     setErrorMessage('')
-    axios
-      .post(`${backendUrl}/auth/login`, {
+    login(
+      backendUrl,
+      {
         username: email,
         password: password,
-      })
-      .then(handleLoginResults(email))
-      .catch((e) => {
-        if (e.response.data) {
-          setErrorMessage(e.response.data.message)
-        } else {
-          setErrorMessage(e.message)
-        }
-      })
+      },
+      handleLoginResults(email),
+      setErrorMessage
+    )
   }
 
   return (
@@ -60,7 +58,7 @@ export default function Login(props) {
           <button
             className="ostrich-button four-fifths personal-margin-top"
             type="submit"
-            onClick={login}
+            onClick={loginAction}
           >
             Login
           </button>

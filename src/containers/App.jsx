@@ -3,7 +3,9 @@ import { h, Fragment } from 'preact'
 import { useState, useEffect } from 'preact/hooks'
 import { route } from 'preact-router'
 import entry from '../build/entry'
+
 import { parseQueryParams, parseCookies } from '../subroutines/utils'
+import { getUserData } from '../api/user'
 
 import Login from '../components/Login'
 import Signup from '../components/Signup'
@@ -14,7 +16,6 @@ import Logout from '../components/Logout'
 import ForgotPassword from '../components/ForgotPassword'
 import ConfirmForgotPassword from '../components/ConfirmForgotPassword'
 import Payments from '../components/Payments'
-import axios from 'axios'
 
 const loginWithGoogleUrl =
   'https://ostrich.auth.us-east-2.amazoncognito.com/login?client_id=70apbavl1fsobed4jt7l7ml18h&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://ostr.ch/email.html'
@@ -28,15 +29,16 @@ function App(props) {
   useEffect(() => {
     if (jwt) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${jwt.id_token}`
-
-      axios
-        .get(`${backendUrl}/api/users`)
-        .then((r) => {
-          setUser(r.data)
-        })
-        .catch((e) => {
+      getUserData(
+        backendUrl,
+        (data) => {
+          console.log(data)
+          setUser(data)
+        },
+        (e) => {
           setErrorMessage(e.response.data.message)
-        })
+        }
+      )
     }
   }, [jwt])
 
@@ -46,9 +48,12 @@ function App(props) {
       const today = new Date()
       const tomorrow = new Date(today)
       tomorrow.setDate(tomorrow.getDate() + 1)
-      document.cookie = `token=${JSON.stringify(
-        token
-      )};expires=${tomorrow.toUTCString()}`
+
+      const strigifiedToken = JSON.stringify(token)
+      const expireDate = tomorrow.toUTCString()
+
+      document.cookie = `token=${strigifiedToken};expires=${expireDate}`
+
       setJwt(token)
     } else if (document.cookie) {
       const cookies = parseCookies(document.cookie)
@@ -61,15 +66,16 @@ function App(props) {
   }, [])
 
   const handleLoginResults = (email) => (r) => {
-    setJwt(r.data)
+    setJwt(r)
     const today = new Date()
     const tomorrow = new Date(today)
     tomorrow.setDate(tomorrow.getDate() + 1)
     document.cookie = `token=${JSON.stringify(
-      r.data
+      r
     )};expires=${tomorrow.toUTCString()}`
     route('/email.html', true)
   }
+
   const handleVerifyResults = (email) => (r) =>
     route(`/login?email=${email}`, true)
   const handleSignupResults = (email) => (r) =>

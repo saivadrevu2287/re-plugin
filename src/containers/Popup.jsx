@@ -3,6 +3,9 @@ import { useEffect, useState } from 'preact/hooks'
 import axios from 'axios'
 import entry from '../build/entry'
 
+import { getUserData } from '../api/user'
+import { refreshToken } from '../api/auth'
+
 import ListingData from '../components/ListingData'
 import Signup from '../components/Signup'
 import Login from '../components/Login'
@@ -16,6 +19,7 @@ const backendUrl = 'https://q0sku06vtg.execute-api.us-east-2.amazonaws.com/v1'
 
 export default function Popup(props) {
   console.log('Rendering Popup')
+
   const [configurationFields, setConfigurationFields] = useState(null)
   const [showLogin, setShowLogin] = useState(false)
   const [showForgotPassword, setShowForgotPassword] = useState(false)
@@ -32,15 +36,46 @@ export default function Popup(props) {
         axios.defaults.headers.common[
           'Authorization'
         ] = `Bearer ${data.configurationFields.jwt.id_token}`
-        axios
-          .get(`${backendUrl}/api/users`)
-          .then((r) => {
-            console.log(r.data)
-            setUser(r.data)
-          })
-          .catch((e) => {
-            setErrorMessage(e.response.data.message)
-          })
+
+        getUserData(
+          backendUrl,
+          (r) => {
+            setUser(r)
+          },
+          (e) => {
+            console.log({m: "refreshing", username: data.configurationFields.email,
+            refresh_token: data.configurationFields.jwt.refresh_token,})
+            refreshToken(
+              backendUrl,
+              {
+                username: data.configurationFields.email,
+                refresh_token: data.configurationFields.jwt.refresh_token,
+              },
+              (r) => {
+                console.log({r, m: "refreshing"})
+                axios.defaults.headers.common[
+                  'Authorization'
+                ] = `Bearer ${r.id_token}`
+                getUserData(
+                  backendUrl,
+                  (r) => {
+                    setUser(r)
+                  },
+                  e => console.log(e)
+                )
+
+                const newConfigurationFields = JSON.parse(
+                  JSON.stringify(configurationFields)
+                )
+                setShowLogin(true)
+                newConfigurationFields.jwt.id_token = r.id_token
+                setConfigurationFields(newConfigurationFields)
+                chrome.storage.sync.set({ configurationFields: newConfigurationFields })
+              },
+              (e) => console.log(e)
+            )
+          }
+        )
       }
     })
   }, [changingPage])
@@ -57,12 +92,12 @@ export default function Popup(props) {
     chrome.storage.sync.set({ configurationFields: newConfigurationFields })
   }
 
-  const handleLoginResults = (email) => (r) => {
+  const handleLoginResults = (email) => (jwt) => {
     const newConfigurationFields = JSON.parse(
       JSON.stringify(configurationFields)
     )
     newConfigurationFields.isLoggedIn = true
-    newConfigurationFields.jwt = r.data
+    newConfigurationFields.jwt = jwt
     newConfigurationFields.email = email
     setConfigurationFields(newConfigurationFields)
     chrome.storage.sync.set({ configurationFields: newConfigurationFields })

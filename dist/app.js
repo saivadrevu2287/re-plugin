@@ -2462,6 +2462,75 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./src/api/auth.js":
+/*!*************************!*\
+  !*** ./src/api/auth.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "login": () => (/* binding */ login),
+/* harmony export */   "refreshToken": () => (/* binding */ refreshToken)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+var login = function login(backendUrl, loginPayload, successCallback, errorCallback) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().post("".concat(backendUrl, "/auth/login"), loginPayload).then(function (response) {
+    return successCallback(response.data);
+  })["catch"](function (err) {
+    console.log(err);
+
+    if (err.response) {
+      errorCallback(err.response.data.message);
+    } else {
+      errorCallback(err.message);
+    }
+  });
+};
+var refreshToken = function refreshToken(backendUrl, refreshObject, successCallback, errorCallback) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().post("".concat(backendUrl, "/auth/refresh"), refreshObject).then(function (response) {
+    return successCallback(response.data);
+  })["catch"](function (err) {
+    console.log(err);
+
+    if (err.response) {
+      errorCallback(err.response.data.message);
+    } else {
+      errorCallback(err.message);
+    }
+  });
+};
+
+/***/ }),
+
+/***/ "./src/api/user.js":
+/*!*************************!*\
+  !*** ./src/api/user.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getUserData": () => (/* binding */ getUserData)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+var getUserData = function getUserData(backendUrl, successCallback, errorCallback) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(backendUrl, "/api/users")).then(function (response) {
+    return successCallback(response.data);
+  })["catch"](function (err) {
+    console.log(err);
+    errorCallback(err.message);
+  });
+};
+
+/***/ }),
+
 /***/ "./src/build/entry.js":
 /*!****************************!*\
   !*** ./src/build/entry.js ***!
@@ -3763,6 +3832,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _subroutines_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../subroutines/utils */ "./src/subroutines/utils.js");
+/* harmony import */ var _api_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../api/auth */ "./src/api/auth.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3774,6 +3844,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -3809,18 +3880,12 @@ function Login(props) {
       errorMessage = _useState6[0],
       setErrorMessage = _useState6[1];
 
-  var login = function login() {
+  var loginAction = function loginAction() {
     setErrorMessage('');
-    axios__WEBPACK_IMPORTED_MODULE_2___default().post("".concat(backendUrl, "/auth/login"), {
+    (0,_api_auth__WEBPACK_IMPORTED_MODULE_4__.login)(backendUrl, {
       username: email,
       password: password
-    }).then(handleLoginResults(email))["catch"](function (e) {
-      if (e.response.data) {
-        setErrorMessage(e.response.data.message);
-      } else {
-        setErrorMessage(e.message);
-      }
-    });
+    }, handleLoginResults(email), setErrorMessage);
   };
 
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
@@ -3847,7 +3912,7 @@ function Login(props) {
   }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "ostrich-button four-fifths personal-margin-top",
     type: "submit",
-    onClick: login
+    onClick: loginAction
   }, "Login"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     "class": "error"
   }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
@@ -4905,17 +4970,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
 /* harmony import */ var _build_entry__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../build/entry */ "./src/build/entry.js");
 /* harmony import */ var _subroutines_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../subroutines/utils */ "./src/subroutines/utils.js");
-/* harmony import */ var _components_Login__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Login */ "./src/components/Login.jsx");
-/* harmony import */ var _components_Signup__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Signup */ "./src/components/Signup.jsx");
-/* harmony import */ var _components_Confirm__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/Confirm */ "./src/components/Confirm.jsx");
-/* harmony import */ var _components_EmailerDashboard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/EmailerDashboard */ "./src/components/EmailerDashboard.jsx");
-/* harmony import */ var _components_Home__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/Home */ "./src/components/Home.jsx");
-/* harmony import */ var _components_Logout__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/Logout */ "./src/components/Logout.jsx");
-/* harmony import */ var _components_ForgotPassword__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/ForgotPassword */ "./src/components/ForgotPassword.jsx");
-/* harmony import */ var _components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../components/ConfirmForgotPassword */ "./src/components/ConfirmForgotPassword.jsx");
-/* harmony import */ var _components_Payments__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../components/Payments */ "./src/components/Payments.jsx");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _api_user__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../api/user */ "./src/api/user.js");
+/* harmony import */ var _components_Login__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Login */ "./src/components/Login.jsx");
+/* harmony import */ var _components_Signup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/Signup */ "./src/components/Signup.jsx");
+/* harmony import */ var _components_Confirm__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/Confirm */ "./src/components/Confirm.jsx");
+/* harmony import */ var _components_EmailerDashboard__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/EmailerDashboard */ "./src/components/EmailerDashboard.jsx");
+/* harmony import */ var _components_Home__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/Home */ "./src/components/Home.jsx");
+/* harmony import */ var _components_Logout__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/Logout */ "./src/components/Logout.jsx");
+/* harmony import */ var _components_ForgotPassword__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../components/ForgotPassword */ "./src/components/ForgotPassword.jsx");
+/* harmony import */ var _components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../components/ConfirmForgotPassword */ "./src/components/ConfirmForgotPassword.jsx");
+/* harmony import */ var _components_Payments__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../components/Payments */ "./src/components/Payments.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -4965,10 +5029,11 @@ function App(props) {
 
   (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
     if (jwt) {
-      (axios__WEBPACK_IMPORTED_MODULE_14___default().defaults.headers.common.Authorization) = "Bearer ".concat(jwt.id_token);
-      axios__WEBPACK_IMPORTED_MODULE_14___default().get("".concat(backendUrl, "/api/users")).then(function (r) {
-        setUser(r.data);
-      })["catch"](function (e) {
+      axios.defaults.headers.common['Authorization'] = "Bearer ".concat(jwt.id_token);
+      (0,_api_user__WEBPACK_IMPORTED_MODULE_5__.getUserData)(backendUrl, function (data) {
+        console.log(data);
+        setUser(data);
+      }, function (e) {
         setErrorMessage(e.response.data.message);
       });
     }
@@ -4979,7 +5044,9 @@ function App(props) {
       var today = new Date();
       var tomorrow = new Date(today);
       tomorrow.setDate(tomorrow.getDate() + 1);
-      document.cookie = "token=".concat(JSON.stringify(token), ";expires=").concat(tomorrow.toUTCString());
+      var strigifiedToken = JSON.stringify(token);
+      var expireDate = tomorrow.toUTCString();
+      document.cookie = "token=".concat(strigifiedToken, ";expires=").concat(expireDate);
       setJwt(token);
     } else if (document.cookie) {
       var cookies = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_4__.parseCookies)(document.cookie);
@@ -4994,11 +5061,11 @@ function App(props) {
 
   var handleLoginResults = function handleLoginResults(email) {
     return function (r) {
-      setJwt(r.data);
+      setJwt(r);
       var today = new Date();
       var tomorrow = new Date(today);
       tomorrow.setDate(tomorrow.getDate() + 1);
-      document.cookie = "token=".concat(JSON.stringify(r.data), ";expires=").concat(tomorrow.toUTCString());
+      document.cookie = "token=".concat(JSON.stringify(r), ";expires=").concat(tomorrow.toUTCString());
       (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/email.html', true);
     };
   };
@@ -5083,40 +5150,40 @@ function App(props) {
     className: "flex justify-end centered-items wrap"
   }, loginOrLogout))), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("main", {
     className: "personal-space-top content"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact_router__WEBPACK_IMPORTED_MODULE_0__["default"], null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Login__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact_router__WEBPACK_IMPORTED_MODULE_0__["default"], null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Login__WEBPACK_IMPORTED_MODULE_6__["default"], {
     path: "/login",
     backendUrl: backendUrl,
     handleLoginResults: handleLoginResults,
     toSignup: toSignup,
     proceedWithGoogle: proceedWithGoogle,
     toForgotPassword: toForgotPassword
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Signup__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Signup__WEBPACK_IMPORTED_MODULE_7__["default"], {
     path: "/signup",
     backendUrl: backendUrl,
     handleSignupResults: handleSignupResults,
     toLogin: toLogin,
     proceedWithGoogle: proceedWithGoogle
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Confirm__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Confirm__WEBPACK_IMPORTED_MODULE_8__["default"], {
     path: "/confirm",
     backendUrl: backendUrl,
     handleVerifyResults: handleVerifyResults
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_EmailerDashboard__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_EmailerDashboard__WEBPACK_IMPORTED_MODULE_9__["default"], {
     path: "/dashboard",
     jwt: jwt,
     backendUrl: backendUrl,
     user: user
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Logout__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Logout__WEBPACK_IMPORTED_MODULE_11__["default"], {
     path: "/logout",
     backendUrl: backendUrl
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_ForgotPassword__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_ForgotPassword__WEBPACK_IMPORTED_MODULE_12__["default"], {
     path: "/forgot-password",
     backendUrl: backendUrl,
     handleForgotPasswordResults: handleForgotPasswordResults
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_13__["default"], {
     path: "/confirm-forgot-password",
     backendUrl: backendUrl,
     handleConfirmForgotPasswordResults: handleConfirmForgotPasswordResults
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Home__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Home__WEBPACK_IMPORTED_MODULE_10__["default"], {
     path: "/email.html",
     backendUrl: backendUrl,
     jwt: jwt,

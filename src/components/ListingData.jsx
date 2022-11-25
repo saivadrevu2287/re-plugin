@@ -107,24 +107,25 @@ export default function ListingData(props) {
         .join('&')
     : ''
 
-  const tierMessage =
-    user && user.billing_id ? (
-      <p>
-        You are subscribed to {user.billing_id}. View plans{' '}
-        <a target="_blank" href={`https://ostr.ch/payments.html#${jwtHash}`}>
-          here
-        </a>
-        .
-      </p>
-    ) : (
-      <p>
-        You are not subscribed! View plans{' '}
-        <a target="_blank" href={`https://ostr.ch/payments.html#${jwtHash}`}>
-          here
-        </a>
-        .
-      </p>
-    )
+  const tierMessage = !user ? (
+    <p>Need to re-sync. Please log out and back in again.</p>
+  ) : user.billing_id ? (
+    <p>
+      You are subscribed to {user.billing_id}. View plans{' '}
+      <a target="_blank" href={`https://ostr.ch/payments.html#${jwtHash}`}>
+        here
+      </a>
+      .
+    </p>
+  ) : (
+    <p>
+      You are not subscribed! View plans{' '}
+      <a target="_blank" href={`https://ostr.ch/payments.html#${jwtHash}`}>
+        here
+      </a>
+      .
+    </p>
+  )
 
   const details = (
     <Fragment>

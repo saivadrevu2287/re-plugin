@@ -4,7 +4,6 @@ import axios from 'axios'
 import entry from '../build/entry'
 
 import { getUserData } from '../api/user'
-import { refreshToken } from '../api/auth'
 
 import ListingData from '../components/ListingData'
 import Signup from '../components/Signup'
@@ -24,8 +23,25 @@ export default function Popup(props) {
   const [showLogin, setShowLogin] = useState(false)
   const [showForgotPassword, setShowForgotPassword] = useState(false)
   const [showForgotPasswordCode, setShowForgotPasswordCode] = useState(false)
-  const [changingPage, setChangingPage] = useState(0)
+  const [jwt, setJwt] = useState(null)
   const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    if (!jwt) {
+      return
+    }
+
+    axios.defaults.headers.common['Authorization'] = `Bearer ${jwt.id_token}`
+    getUserData(
+      backendUrl,
+      (data) => {
+        setUser(data)
+      },
+      (e) => {
+        setErrorMessage(e.response.data.message)
+      }
+    )
+  }, [jwt])
 
   useEffect(() => {
     chrome.storage.sync.get('configurationFields', (data) => {
@@ -33,52 +49,11 @@ export default function Popup(props) {
       setConfigurationFields(data.configurationFields)
 
       if (data.configurationFields.jwt) {
-        axios.defaults.headers.common[
-          'Authorization'
-        ] = `Bearer ${data.configurationFields.jwt.id_token}`
-
-        getUserData(
-          backendUrl,
-          (r) => {
-            setUser(r)
-          },
-          (e) => {
-            console.log({m: "refreshing", username: data.configurationFields.email,
-            refresh_token: data.configurationFields.jwt.refresh_token,})
-            refreshToken(
-              backendUrl,
-              {
-                username: data.configurationFields.email,
-                refresh_token: data.configurationFields.jwt.refresh_token,
-              },
-              (r) => {
-                console.log({r, m: "refreshing"})
-                axios.defaults.headers.common[
-                  'Authorization'
-                ] = `Bearer ${r.id_token}`
-                getUserData(
-                  backendUrl,
-                  (r) => {
-                    setUser(r)
-                  },
-                  e => console.log(e)
-                )
-
-                const newConfigurationFields = JSON.parse(
-                  JSON.stringify(configurationFields)
-                )
-                setShowLogin(true)
-                newConfigurationFields.jwt.id_token = r.id_token
-                setConfigurationFields(newConfigurationFields)
-                chrome.storage.sync.set({ configurationFields: newConfigurationFields })
-              },
-              (e) => console.log(e)
-            )
-          }
-        )
+        setJwt(data.configurationFields.jwt)
+      } else {
       }
     })
-  }, [changingPage])
+  }, [])
 
   const handleSignout = () => {
     const newConfigurationFields = JSON.parse(
@@ -100,8 +75,8 @@ export default function Popup(props) {
     newConfigurationFields.jwt = jwt
     newConfigurationFields.email = email
     setConfigurationFields(newConfigurationFields)
+    setJwt(jwt)
     chrome.storage.sync.set({ configurationFields: newConfigurationFields })
-    setChangingPage((x) => x + 1)
   }
 
   const handleSignupResults = (email) => (r) => {
@@ -113,7 +88,6 @@ export default function Popup(props) {
     newConfigurationFields.needsVerification = true
     setConfigurationFields(newConfigurationFields)
     chrome.storage.sync.set({ configurationFields: newConfigurationFields })
-    setChangingPage((x) => x + 1)
   }
 
   const handleVerifyResults = (email) => (r) => {
@@ -125,7 +99,6 @@ export default function Popup(props) {
     newConfigurationFields.needsVerification = false
     setConfigurationFields(newConfigurationFields)
     chrome.storage.sync.set({ configurationFields: newConfigurationFields })
-    setChangingPage((x) => x + 1)
   }
 
   const handleForgotPasswordResults = (email) => (r) => {
@@ -155,7 +128,11 @@ export default function Popup(props) {
     chrome.tabs.create({ url: loginWithGoogleUrl })
 
   if (!configurationFields) {
-    return <h5>Loading...</h5>
+    return (
+      <div className="align-center personal-space-top">
+        <h6>Loading...</h6>
+      </div>
+    )
   }
 
   if (showForgotPassword) {

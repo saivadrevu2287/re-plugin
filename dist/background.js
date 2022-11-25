@@ -51,20 +51,25 @@ chrome.webNavigation.onCompleted.addListener(
 
 const autoSignin = (details) => () => {
   chrome.storage.sync.get('configurationFields', (data) => {
-    console.log('Watching for the autosignin', details)
+    console.log('Watching for the autosignin')
     let url = details.url
     if (url.match(/ostr.ch/)) {
       console.log('Url matches!')
-      const idToken = url
+      const jwt = url
         .split('#')[1]
         .split('&')
-        .find((e) => e.match(/id_token/))
-        .split('=')[1]
-      if (idToken) {
-        const parsedId = parseJwt(idToken)
+        .map((e) => e.split('='))
+        .reduce((acc, pair) => {
+          acc[pair[0]] = pair[1]
+          return acc
+        }, {})
+
+      if (jwt) {
+        const parsedId = parseJwt(jwt.id_token)
         configurationFields.needsVerification = false
         configurationFields.email = parsedId.email
         configurationFields.isLoggedIn = true
+        configurationFields.jwt = jwt
         chrome.storage.sync.set({ configurationFields })
       } else {
         console.log('The id token was not there to work with?')

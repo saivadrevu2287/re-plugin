@@ -58,3 +58,14 @@ export const parseCookies = (cookies) =>
       acc[pair[0]] = pair[1]
       return acc
     }, {})
+
+export const setCookie = (token) => {
+  const today = new Date()
+  const tomorrow = new Date(today)
+  tomorrow.setDate(tomorrow.getDate() + 1)
+
+  const strigifiedToken = JSON.stringify(token)
+  const expireDate = tomorrow.toUTCString()
+
+  document.cookie = `token=${strigifiedToken};expires=${expireDate}`
+}

@@ -3960,41 +3960,6 @@ function Logout(props) {
 
 /***/ }),
 
-/***/ "./src/components/Payments.jsx":
-/*!*************************************!*\
-  !*** ./src/components/Payments.jsx ***!
-  \*************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Payments)
-/* harmony export */ });
-/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
-
-function Payments(props) {
-  var user = props.user,
-      toHome = props.toHome;
-
-  if (!user.billing_id) {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("stripe-pricing-table", {
-      "pricing-table-id": "prctbl_1LsMgdIDd9tdb2o1PjxLTPTI",
-      "publishable-key": "pk_test_51LphqXIDd9tdb2o1WL2DLd67yiEEvXhzsF07hhqaSt54zAPmzJvtX5HiwC8yialHn58n8i8q2YsIMTZESKGlRMNB00H6i2uXpi"
-    }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-      href: "/email.html"
-    }, "Back to Markets!"));
-  } else {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h3", null, "You're subscribed to ", user.billing_id), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-      href: "https://billing.stripe.com/p/login/test_eVa17v7v95kM0Vi8ww"
-    }, "Manage Your Subscriptions"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-      href: "/email.html"
-    }, "Back to Markets!"));
-  }
-}
-
-/***/ }),
-
 /***/ "./src/components/ScheduleEmailForm.jsx":
 /*!**********************************************!*\
   !*** ./src/components/ScheduleEmailForm.jsx ***!
@@ -4746,7 +4711,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "monthlyDollars": () => (/* binding */ monthlyDollars),
 /* harmony export */   "parseCookies": () => (/* binding */ parseCookies),
 /* harmony export */   "parseJwt": () => (/* binding */ parseJwt),
-/* harmony export */   "parseQueryParams": () => (/* binding */ parseQueryParams)
+/* harmony export */   "parseQueryParams": () => (/* binding */ parseQueryParams),
+/* harmony export */   "setCookie": () => (/* binding */ setCookie)
 /* harmony export */ });
 var handleCopy = function handleCopy(calculations, csvSeparator) {
   var toCsv = function toCsv(obj) {
@@ -4803,6 +4769,14 @@ var parseCookies = function parseCookies(cookies) {
     acc[pair[0]] = pair[1];
     return acc;
   }, {});
+};
+var setCookie = function setCookie(token) {
+  var today = new Date();
+  var tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  var strigifiedToken = JSON.stringify(token);
+  var expireDate = tomorrow.toUTCString();
+  document.cookie = "token=".concat(strigifiedToken, ";expires=").concat(expireDate);
 };
 
 /***/ }),
@@ -4969,17 +4943,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
 /* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
 /* harmony import */ var _build_entry__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../build/entry */ "./src/build/entry.js");
-/* harmony import */ var _subroutines_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../subroutines/utils */ "./src/subroutines/utils.js");
-/* harmony import */ var _api_user__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../api/user */ "./src/api/user.js");
-/* harmony import */ var _components_Login__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Login */ "./src/components/Login.jsx");
-/* harmony import */ var _components_Signup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/Signup */ "./src/components/Signup.jsx");
-/* harmony import */ var _components_Confirm__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/Confirm */ "./src/components/Confirm.jsx");
-/* harmony import */ var _components_EmailerDashboard__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/EmailerDashboard */ "./src/components/EmailerDashboard.jsx");
-/* harmony import */ var _components_Home__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/Home */ "./src/components/Home.jsx");
-/* harmony import */ var _components_Logout__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/Logout */ "./src/components/Logout.jsx");
-/* harmony import */ var _components_ForgotPassword__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../components/ForgotPassword */ "./src/components/ForgotPassword.jsx");
-/* harmony import */ var _components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../components/ConfirmForgotPassword */ "./src/components/ConfirmForgotPassword.jsx");
-/* harmony import */ var _components_Payments__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../components/Payments */ "./src/components/Payments.jsx");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _subroutines_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../subroutines/utils */ "./src/subroutines/utils.js");
+/* harmony import */ var _api_user__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../api/user */ "./src/api/user.js");
+/* harmony import */ var _components_Login__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/Login */ "./src/components/Login.jsx");
+/* harmony import */ var _components_Signup__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/Signup */ "./src/components/Signup.jsx");
+/* harmony import */ var _components_Confirm__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/Confirm */ "./src/components/Confirm.jsx");
+/* harmony import */ var _components_EmailerDashboard__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/EmailerDashboard */ "./src/components/EmailerDashboard.jsx");
+/* harmony import */ var _components_Home__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/Home */ "./src/components/Home.jsx");
+/* harmony import */ var _components_Logout__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../components/Logout */ "./src/components/Logout.jsx");
+/* harmony import */ var _components_ForgotPassword__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../components/ForgotPassword */ "./src/components/ForgotPassword.jsx");
+/* harmony import */ var _components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../components/ConfirmForgotPassword */ "./src/components/ConfirmForgotPassword.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -5028,28 +5003,25 @@ function App(props) {
       setErrorMessage = _useState6[1];
 
   (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
-    if (jwt) {
-      axios.defaults.headers.common['Authorization'] = "Bearer ".concat(jwt.id_token);
-      (0,_api_user__WEBPACK_IMPORTED_MODULE_5__.getUserData)(backendUrl, function (data) {
-        console.log(data);
-        setUser(data);
-      }, function (e) {
-        setErrorMessage(e.response.data.message);
-      });
+    if (!jwt) {
+      return;
     }
+
+    (axios__WEBPACK_IMPORTED_MODULE_4___default().defaults.headers.common.Authorization) = "Bearer ".concat(jwt.id_token);
+    (0,_api_user__WEBPACK_IMPORTED_MODULE_6__.getUserData)(backendUrl, function (data) {
+      setUser(data);
+    }, function (e) {
+      setErrorMessage(e.response.data.message);
+    });
   }, [jwt]);
   (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
+    // login when there is login with google
     if (window.location.hash) {
-      var token = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_4__.parseQueryParams)(window.location.hash);
-      var today = new Date();
-      var tomorrow = new Date(today);
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      var strigifiedToken = JSON.stringify(token);
-      var expireDate = tomorrow.toUTCString();
-      document.cookie = "token=".concat(strigifiedToken, ";expires=").concat(expireDate);
+      var token = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_5__.parseQueryParams)(window.location.hash);
       setJwt(token);
-    } else if (document.cookie) {
-      var cookies = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_4__.parseCookies)(document.cookie);
+    } // login when there is a cookie
+    else if (document.cookie) {
+      var cookies = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_5__.parseCookies)(document.cookie);
 
       if (cookies.token) {
         var _token = JSON.parse(cookies.token);
@@ -5059,13 +5031,10 @@ function App(props) {
     }
   }, []);
 
-  var handleLoginResults = function handleLoginResults(email) {
+  var handleLoginResults = function handleLoginResults(_) {
     return function (r) {
       setJwt(r);
-      var today = new Date();
-      var tomorrow = new Date(today);
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      document.cookie = "token=".concat(JSON.stringify(r), ";expires=").concat(tomorrow.toUTCString());
+      (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_5__.setCookie)(r);
       (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/email.html', true);
     };
   };
@@ -5150,40 +5119,40 @@ function App(props) {
     className: "flex justify-end centered-items wrap"
   }, loginOrLogout))), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("main", {
     className: "personal-space-top content"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact_router__WEBPACK_IMPORTED_MODULE_0__["default"], null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Login__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact_router__WEBPACK_IMPORTED_MODULE_0__["default"], null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Login__WEBPACK_IMPORTED_MODULE_7__["default"], {
     path: "/login",
     backendUrl: backendUrl,
     handleLoginResults: handleLoginResults,
     toSignup: toSignup,
     proceedWithGoogle: proceedWithGoogle,
     toForgotPassword: toForgotPassword
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Signup__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Signup__WEBPACK_IMPORTED_MODULE_8__["default"], {
     path: "/signup",
     backendUrl: backendUrl,
     handleSignupResults: handleSignupResults,
     toLogin: toLogin,
     proceedWithGoogle: proceedWithGoogle
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Confirm__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Confirm__WEBPACK_IMPORTED_MODULE_9__["default"], {
     path: "/confirm",
     backendUrl: backendUrl,
     handleVerifyResults: handleVerifyResults
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_EmailerDashboard__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_EmailerDashboard__WEBPACK_IMPORTED_MODULE_10__["default"], {
     path: "/dashboard",
     jwt: jwt,
     backendUrl: backendUrl,
     user: user
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Logout__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Logout__WEBPACK_IMPORTED_MODULE_12__["default"], {
     path: "/logout",
     backendUrl: backendUrl
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_ForgotPassword__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_ForgotPassword__WEBPACK_IMPORTED_MODULE_13__["default"], {
     path: "/forgot-password",
     backendUrl: backendUrl,
     handleForgotPasswordResults: handleForgotPasswordResults
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_14__["default"], {
     path: "/confirm-forgot-password",
     backendUrl: backendUrl,
     handleConfirmForgotPasswordResults: handleConfirmForgotPasswordResults
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Home__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Home__WEBPACK_IMPORTED_MODULE_11__["default"], {
     path: "/email.html",
     backendUrl: backendUrl,
     jwt: jwt,

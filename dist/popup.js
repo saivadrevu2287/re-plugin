@@ -3081,7 +3081,7 @@ function ListingData(props) {
   var jwtHash = configurationFields.jwt ? Object.keys(configurationFields.jwt).map(function (key) {
     return "".concat(key, "=").concat(configurationFields.jwt[key]);
   }).join('&') : '';
-  var tierMessage = user && user.billing_id ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are subscribed to ", user.billing_id, ". View plans", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+  var tierMessage = !user ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Need to re-sync. Please log out and back in again.") : user.billing_id ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are subscribed to ", user.billing_id, ". View plans", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
     target: "_blank",
     href: "https://ostr.ch/payments.html#".concat(jwtHash)
   }, "here"), ".") : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are not subscribed! View plans", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
@@ -3669,7 +3669,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "monthlyDollars": () => (/* binding */ monthlyDollars),
 /* harmony export */   "parseCookies": () => (/* binding */ parseCookies),
 /* harmony export */   "parseJwt": () => (/* binding */ parseJwt),
-/* harmony export */   "parseQueryParams": () => (/* binding */ parseQueryParams)
+/* harmony export */   "parseQueryParams": () => (/* binding */ parseQueryParams),
+/* harmony export */   "setCookie": () => (/* binding */ setCookie)
 /* harmony export */ });
 var handleCopy = function handleCopy(calculations, csvSeparator) {
   var toCsv = function toCsv(obj) {
@@ -3726,6 +3727,14 @@ var parseCookies = function parseCookies(cookies) {
     acc[pair[0]] = pair[1];
     return acc;
   }, {});
+};
+var setCookie = function setCookie(token) {
+  var today = new Date();
+  var tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  var strigifiedToken = JSON.stringify(token);
+  var expireDate = tomorrow.toUTCString();
+  document.cookie = "token=".concat(strigifiedToken, ";expires=").concat(expireDate);
 };
 
 /***/ }),
@@ -3897,13 +3906,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _build_entry__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../build/entry */ "./src/build/entry.js");
 /* harmony import */ var _api_user__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../api/user */ "./src/api/user.js");
-/* harmony import */ var _api_auth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../api/auth */ "./src/api/auth.js");
-/* harmony import */ var _components_ListingData__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/ListingData */ "./src/components/ListingData.jsx");
-/* harmony import */ var _components_Signup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/Signup */ "./src/components/Signup.jsx");
-/* harmony import */ var _components_Login__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/Login */ "./src/components/Login.jsx");
-/* harmony import */ var _components_Confirm__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/Confirm */ "./src/components/Confirm.jsx");
-/* harmony import */ var _components_ForgotPassword__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/ForgotPassword */ "./src/components/ForgotPassword.jsx");
-/* harmony import */ var _components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/ConfirmForgotPassword */ "./src/components/ConfirmForgotPassword.jsx");
+/* harmony import */ var _components_ListingData__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/ListingData */ "./src/components/ListingData.jsx");
+/* harmony import */ var _components_Signup__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Signup */ "./src/components/Signup.jsx");
+/* harmony import */ var _components_Login__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/Login */ "./src/components/Login.jsx");
+/* harmony import */ var _components_Confirm__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/Confirm */ "./src/components/Confirm.jsx");
+/* harmony import */ var _components_ForgotPassword__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/ForgotPassword */ "./src/components/ForgotPassword.jsx");
+/* harmony import */ var _components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/ConfirmForgotPassword */ "./src/components/ConfirmForgotPassword.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3915,7 +3923,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -3953,10 +3960,10 @@ function Popup(props) {
       showForgotPasswordCode = _useState8[0],
       setShowForgotPasswordCode = _useState8[1];
 
-  var _useState9 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+  var _useState9 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
       _useState10 = _slicedToArray(_useState9, 2),
-      changingPage = _useState10[0],
-      setChangingPage = _useState10[1];
+      jwt = _useState10[0],
+      setJwt = _useState10[1];
 
   var _useState11 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
       _useState12 = _slicedToArray(_useState11, 2),
@@ -3964,48 +3971,27 @@ function Popup(props) {
       setUser = _useState12[1];
 
   (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    if (!jwt) {
+      return;
+    }
+
+    (axios__WEBPACK_IMPORTED_MODULE_2___default().defaults.headers.common.Authorization) = "Bearer ".concat(jwt.id_token);
+    (0,_api_user__WEBPACK_IMPORTED_MODULE_4__.getUserData)(backendUrl, function (data) {
+      setUser(data);
+    }, function (e) {
+      setErrorMessage(e.response.data.message);
+    });
+  }, [jwt]);
+  (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     chrome.storage.sync.get('configurationFields', function (data) {
       console.log(data.configurationFields);
       setConfigurationFields(data.configurationFields);
 
       if (data.configurationFields.jwt) {
-        (axios__WEBPACK_IMPORTED_MODULE_2___default().defaults.headers.common.Authorization) = "Bearer ".concat(data.configurationFields.jwt.id_token);
-        (0,_api_user__WEBPACK_IMPORTED_MODULE_4__.getUserData)(backendUrl, function (r) {
-          setUser(r);
-        }, function (e) {
-          console.log({
-            m: "refreshing",
-            username: data.configurationFields.email,
-            refresh_token: data.configurationFields.jwt.refresh_token
-          });
-          (0,_api_auth__WEBPACK_IMPORTED_MODULE_5__.refreshToken)(backendUrl, {
-            username: data.configurationFields.email,
-            refresh_token: data.configurationFields.jwt.refresh_token
-          }, function (r) {
-            console.log({
-              r: r,
-              m: "refreshing"
-            });
-            (axios__WEBPACK_IMPORTED_MODULE_2___default().defaults.headers.common.Authorization) = "Bearer ".concat(r.id_token);
-            (0,_api_user__WEBPACK_IMPORTED_MODULE_4__.getUserData)(backendUrl, function (r) {
-              setUser(r);
-            }, function (e) {
-              return console.log(e);
-            });
-            var newConfigurationFields = JSON.parse(JSON.stringify(configurationFields));
-            setShowLogin(true);
-            newConfigurationFields.jwt.id_token = r.id_token;
-            setConfigurationFields(newConfigurationFields);
-            chrome.storage.sync.set({
-              configurationFields: newConfigurationFields
-            });
-          }, function (e) {
-            return console.log(e);
-          });
-        });
-      }
+        setJwt(data.configurationFields.jwt);
+      } else {}
     });
-  }, [changingPage]);
+  }, []);
 
   var handleSignout = function handleSignout() {
     var newConfigurationFields = JSON.parse(JSON.stringify(configurationFields));
@@ -4026,11 +4012,9 @@ function Popup(props) {
       newConfigurationFields.jwt = jwt;
       newConfigurationFields.email = email;
       setConfigurationFields(newConfigurationFields);
+      setJwt(jwt);
       chrome.storage.sync.set({
         configurationFields: newConfigurationFields
-      });
-      setChangingPage(function (x) {
-        return x + 1;
       });
     };
   };
@@ -4045,9 +4029,6 @@ function Popup(props) {
       chrome.storage.sync.set({
         configurationFields: newConfigurationFields
       });
-      setChangingPage(function (x) {
-        return x + 1;
-      });
     };
   };
 
@@ -4060,9 +4041,6 @@ function Popup(props) {
       setConfigurationFields(newConfigurationFields);
       chrome.storage.sync.set({
         configurationFields: newConfigurationFields
-      });
-      setChangingPage(function (x) {
-        return x + 1;
       });
     };
   };
@@ -4101,18 +4079,20 @@ function Popup(props) {
   };
 
   if (!configurationFields) {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "Loading...");
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "align-center personal-space-top"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "Loading..."));
   }
 
   if (showForgotPassword) {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_ForgotPassword__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_ForgotPassword__WEBPACK_IMPORTED_MODULE_9__["default"], {
       backendUrl: backendUrl,
       handleForgotPasswordResults: handleForgotPasswordResults
     });
   }
 
   if (showForgotPasswordCode) {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_10__["default"], {
       email: configurationFields.email,
       backendUrl: backendUrl,
       handleConfirmForgotPasswordResults: handleConfirmForgotPasswordResults
@@ -4120,7 +4100,7 @@ function Popup(props) {
   }
 
   if (configurationFields.isLoggedIn) {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_ListingData__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_ListingData__WEBPACK_IMPORTED_MODULE_5__["default"], {
       configurationFields: configurationFields,
       backendUrl: backendUrl,
       user: user,
@@ -4129,7 +4109,7 @@ function Popup(props) {
   }
 
   if (configurationFields.needsVerification) {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Confirm__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Confirm__WEBPACK_IMPORTED_MODULE_8__["default"], {
       handleVerifyResults: handleVerifyResults,
       backendUrl: backendUrl,
       email: configurationFields.email
@@ -4137,7 +4117,7 @@ function Popup(props) {
   }
 
   if (showLogin) {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Login__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Login__WEBPACK_IMPORTED_MODULE_7__["default"], {
       handleLoginResults: handleLoginResults,
       toSignup: function toSignup() {
         return setShowLogin(false);
@@ -4149,7 +4129,7 @@ function Popup(props) {
       backendUrl: backendUrl
     });
   } else {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Signup__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Signup__WEBPACK_IMPORTED_MODULE_6__["default"], {
       handleSignupResults: handleSignupResults,
       toLogin: function toLogin() {
         return setShowLogin(true);

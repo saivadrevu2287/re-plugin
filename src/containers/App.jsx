@@ -3,8 +3,9 @@ import { h, Fragment } from 'preact'
 import { useState, useEffect } from 'preact/hooks'
 import { route } from 'preact-router'
 import entry from '../build/entry'
+import axios from 'axios'
 
-import { parseQueryParams, parseCookies } from '../subroutines/utils'
+import { parseQueryParams, parseCookies, setCookie } from '../subroutines/utils'
 import { getUserData } from '../api/user'
 
 import Login from '../components/Login'
@@ -15,7 +16,6 @@ import Home from '../components/Home'
 import Logout from '../components/Logout'
 import ForgotPassword from '../components/ForgotPassword'
 import ConfirmForgotPassword from '../components/ConfirmForgotPassword'
-import Payments from '../components/Payments'
 
 const loginWithGoogleUrl =
   'https://ostrich.auth.us-east-2.amazoncognito.com/login?client_id=70apbavl1fsobed4jt7l7ml18h&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://ostr.ch/email.html'
@@ -27,37 +27,31 @@ function App(props) {
   const [errorMessage, setErrorMessage] = useState()
 
   useEffect(() => {
-    if (jwt) {
-      axios.defaults.headers.common['Authorization'] = `Bearer ${jwt.id_token}`
-      getUserData(
-        backendUrl,
-        (data) => {
-          console.log(data)
-          setUser(data)
-        },
-        (e) => {
-          setErrorMessage(e.response.data.message)
-        }
-      )
+    if (!jwt) {
+      return
     }
+
+    axios.defaults.headers.common['Authorization'] = `Bearer ${jwt.id_token}`
+    getUserData(
+      backendUrl,
+      (data) => {
+        setUser(data)
+      },
+      (e) => {
+        setErrorMessage(e.response.data.message)
+      }
+    )
   }, [jwt])
 
   useEffect(() => {
+    // login when there is login with google
     if (window.location.hash) {
       const token = parseQueryParams(window.location.hash)
-      const today = new Date()
-      const tomorrow = new Date(today)
-      tomorrow.setDate(tomorrow.getDate() + 1)
-
-      const strigifiedToken = JSON.stringify(token)
-      const expireDate = tomorrow.toUTCString()
-
-      document.cookie = `token=${strigifiedToken};expires=${expireDate}`
-
       setJwt(token)
-    } else if (document.cookie) {
+    }
+    // login when there is a cookie
+    else if (document.cookie) {
       const cookies = parseCookies(document.cookie)
-
       if (cookies.token) {
         const token = JSON.parse(cookies.token)
         setJwt(token)
@@ -65,14 +59,9 @@ function App(props) {
     }
   }, [])
 
-  const handleLoginResults = (email) => (r) => {
+  const handleLoginResults = (_) => (r) => {
     setJwt(r)
-    const today = new Date()
-    const tomorrow = new Date(today)
-    tomorrow.setDate(tomorrow.getDate() + 1)
-    document.cookie = `token=${JSON.stringify(
-      r
-    )};expires=${tomorrow.toUTCString()}`
+    setCookie(r)
     route('/email.html', true)
   }
 

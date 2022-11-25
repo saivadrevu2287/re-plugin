@@ -3979,7 +3979,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "monthlyDollars": () => (/* binding */ monthlyDollars),
 /* harmony export */   "parseCookies": () => (/* binding */ parseCookies),
 /* harmony export */   "parseJwt": () => (/* binding */ parseJwt),
-/* harmony export */   "parseQueryParams": () => (/* binding */ parseQueryParams)
+/* harmony export */   "parseQueryParams": () => (/* binding */ parseQueryParams),
+/* harmony export */   "setCookie": () => (/* binding */ setCookie)
 /* harmony export */ });
 var handleCopy = function handleCopy(calculations, csvSeparator) {
   var toCsv = function toCsv(obj) {
@@ -4036,6 +4037,14 @@ var parseCookies = function parseCookies(cookies) {
     acc[pair[0]] = pair[1];
     return acc;
   }, {});
+};
+var setCookie = function setCookie(token) {
+  var today = new Date();
+  var tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  var strigifiedToken = JSON.stringify(token);
+  var expireDate = tomorrow.toUTCString();
+  document.cookie = "token=".concat(strigifiedToken, ";expires=").concat(expireDate);
 };
 
 /***/ }),

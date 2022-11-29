@@ -5,7 +5,6 @@ const path = require('path')
 module.exports = {
   entry: {
     app: path.resolve(__dirname, 'src', 'containers', 'App.jsx'),
-    profile: path.resolve(__dirname, 'src', 'containers', 'Profile.jsx'),
     payments: path.resolve(__dirname, 'src', 'containers', 'Payments.jsx'),
     popup: path.resolve(__dirname, 'src', 'containers', 'Popup.jsx'),
     options: path.resolve(__dirname, 'src', 'containers', 'Options.jsx'),
@@ -21,11 +20,6 @@ module.exports = {
     new CopyWebpackPlugin(['./public/']),
     new HtmlWebpackPlugin({
       chunks: ['app'],
-      filename: 'email.html',
-      template: path.resolve(__dirname, 'src', 'build', 'index.html'),
-    }),
-    new HtmlWebpackPlugin({
-      chunks: ['profile'],
       filename: 'index.html',
       template: path.resolve(__dirname, 'src', 'build', 'index.html'),
     }),

@@ -16,7 +16,6 @@
   "icons": {
     "128": "Ostrich128.png"
   },
-  "host_permissions": ["https://ostr.ch/payments.html"],
   "web_accessible_resources": [
     {
       "resources": ["ga.js"],

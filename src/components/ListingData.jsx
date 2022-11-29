@@ -6,6 +6,7 @@ import { handleCopy, dollars, monthlyDollars } from '../subroutines/utils'
 
 const eliminateEvent = (e) => e.target.value
 const tabSeparator = '\t'
+const freeUses = 20
 
 export default function ListingData(props) {
   const { configurationFields, handleSignout, user } = props
@@ -19,10 +20,16 @@ export default function ListingData(props) {
   const [specs, setSpecs] = useState()
   const [href, setHref] = useState()
   const [hasBeenCopied, setHasBeenCopied] = useState(false)
+  const [errorMessage, setErrorMessage] = useState()
 
   useEffect(() => {
     console.log('Running scraper!')
     runScraper((res) => {
+      if (!res) {
+        setErrorMessage('Cannot pull rental details from site.')
+        return
+      }
+
       const results = res[0].result
       console.log(results)
       // destructure the results
@@ -34,6 +41,19 @@ export default function ListingData(props) {
       setPrice(toInt(results.purchasePrice))
       setTaxes(toInt(results.monthlyTaxes))
       setRentEstimate(toInt(results.monthlyRent))
+
+      if ( !toInt(results.purchasePrice) && !toInt(results.monthlyTaxes) && !toInt(results.monthlyRent) ) {
+        console.log({price, taxes, rentEstimate})
+        return
+      }
+
+      const usedAlready = configurationFields.uses.filter(
+        (d) => d == results.href
+      ).length
+      if (!usedAlready) {
+        configurationFields.uses.push(results.href)
+        chrome.storage.sync.set({ configurationFields: configurationFields })
+      }
     })
   }, [])
 
@@ -41,7 +61,7 @@ export default function ListingData(props) {
     return <p>Loading data</p>
   }
 
-  console.log({ price, taxes, rentEstimate, m: 'Listing Data' })
+  const remainingUses = freeUses - configurationFields.uses.length
 
   const { cashOnCash } = calculateCOC(
     configurationFields,
@@ -49,6 +69,7 @@ export default function ListingData(props) {
     taxes,
     rentEstimate
   )
+  console.log({ cashOnCash, price, taxes, rentEstimate, m: 'Calculating CoC' })
 
   const getDataFields = () => ({
     purchasePrice: dollars(price),
@@ -100,32 +121,6 @@ export default function ListingData(props) {
     'https://rehacks.io/blog-new/a-chrome-extension-to-analyze-roi-of-a-rental-property-in-5-sec'
   const feedbackLink =
     'https://docs.google.com/forms/d/1E6h7AbJZxitYnMuT1J6eK-x9AA5CpYHE2Dd3qYghZUA/edit'
-
-  const jwtHash = configurationFields.jwt
-    ? Object.keys(configurationFields.jwt)
-        .map((key) => `${key}=${configurationFields.jwt[key]}`)
-        .join('&')
-    : ''
-
-  const tierMessage = !user ? (
-    <p>Need to re-sync. Please log out and back in again.</p>
-  ) : user.billing_id ? (
-    <p>
-      You are subscribed to {user.billing_id}. View plans{' '}
-      <a target="_blank" href={`https://ostr.ch/payments.html#${jwtHash}`}>
-        here
-      </a>
-      .
-    </p>
-  ) : (
-    <p>
-      You are not subscribed! View plans{' '}
-      <a target="_blank" href={`https://ostr.ch/payments.html#${jwtHash}`}>
-        here
-      </a>
-      .
-    </p>
-  )
 
   const details = (
     <Fragment>
@@ -215,15 +210,56 @@ export default function ListingData(props) {
     </Fragment>
   )
 
+  const jwtHash = configurationFields.jwt
+    ? Object.keys(configurationFields.jwt)
+        .map((key) => `${key}=${configurationFields.jwt[key]}`)
+        .join('&')
+    : ''
+
+  let content
+
+  if (!user) {
+    content = <p>Need to re-sync. Please log out and back in again.</p>
+  } else if (user.billing_id) {
+    content = (
+      <Fragment>
+        {!errorMessage && details}
+        {errorMessage}
+      </Fragment>
+    )
+  } else if (remainingUses >= 0) {
+    content = (
+      <Fragment>
+        <p>{remainingUses} free uses left.
+        <a target="_blank" href={`https://ostr.ch/payments.html#${jwtHash}`}>
+          Upgrade
+        </a></p>
+        {!errorMessage && details}
+        {errorMessage}
+      </Fragment>
+    )
+  } else {
+    content = (
+      <p>
+        You are out of free uses!
+      </p>
+    )
+  }
+
   return (
     <div className="align-center personal-space-top">
       <h6>COC Calculator</h6>
-      {tierMessage}
-      {user && user.billing_id && details}
+      {content}
       <div className="flex between full">
         <a className="value-large" target="_blank" href={feedbackLink}>
-          Provide Feedback!
+          <img alt="feeback" src="/feedback-8.png" style="width:20px" />
         </a>
+        <span>
+        View plans{' '}
+        <a target="_blank" href={`https://ostr.ch/payments.html#${jwtHash}`}>
+          here
+        </a>
+        .</span>
         <span onClick={handleSignout}>Logout</span>
       </div>
     </div>

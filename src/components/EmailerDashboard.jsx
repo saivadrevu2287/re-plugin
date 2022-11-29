@@ -93,7 +93,7 @@ export default function EmailerDashboard(props) {
         <h5>Schedule a New Email</h5>
         <p>
           Once you save your parameters below, you will get an email daily at
-          around 3 pm ET with the newest properties and their expected cash
+          around 10 am ET with the newest properties and their expected cash
           flow.
         </p>
       </div>

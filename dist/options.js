@@ -306,7 +306,7 @@ function Options(props) {
   }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("main", {
     className: "personal-space-top flex around"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "align-center third break-to-full padded"
+    className: "align-center half break-to-full padded"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", {
     className: "personal-margin-bottom personal-margin-top"
   }, "Edit your parameters!"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {

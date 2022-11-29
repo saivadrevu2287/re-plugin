@@ -77,7 +77,7 @@ function App(props) {
   const toSignup = () => route('/signup')
   const toLogin = () => route('/login')
   const toEmailerDashboard = () => route('/dashboard')
-  const toHome = () => route('/email.html')
+  const toHome = () => route('/')
   const toForgotPassword = () => route('/forgot-password')
   const proceedWithGoogle = () => (window.location.href = loginWithGoogleUrl)
   const logout = () => {
@@ -164,7 +164,7 @@ function App(props) {
             }
           />
           <Home
-            path="/email.html"
+            path="/"
             backendUrl={backendUrl}
             jwt={jwt}
             user={user}

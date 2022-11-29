@@ -3419,7 +3419,7 @@ function EmailerDashboard(props) {
   });
   var emailerDetails = selectedMarket == -1 ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "padded"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "Schedule a New Email"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Once you save your parameters below, you will get an email daily at around 3 pm ET with the newest properties and their expected cash flow.")) : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_EmailerDetails__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "Schedule a New Email"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Once you save your parameters below, you will get an email daily at around 10 am ET with the newest properties and their expected cash flow.")) : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_EmailerDetails__WEBPACK_IMPORTED_MODULE_4__["default"], {
     backendUrl: backendUrl,
     setSuccessfulSubmition: setSuccessfulSubmition,
     scheduledEmail: scheduledEmails[selectedMarket],
@@ -5076,7 +5076,7 @@ function App(props) {
   };
 
   var toHome = function toHome() {
-    return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/email.html');
+    return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/');
   };
 
   var toForgotPassword = function toForgotPassword() {
@@ -5153,7 +5153,7 @@ function App(props) {
     backendUrl: backendUrl,
     handleConfirmForgotPasswordResults: handleConfirmForgotPasswordResults
   }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Home__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    path: "/email.html",
+    path: "/",
     backendUrl: backendUrl,
     jwt: jwt,
     user: user,

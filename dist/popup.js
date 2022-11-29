@@ -2953,6 +2953,7 @@ var eliminateEvent = function eliminateEvent(e) {
 };
 
 var tabSeparator = '\t';
+var freeUses = 20;
 function ListingData(props) {
   var configurationFields = props.configurationFields,
       handleSignout = props.handleSignout,
@@ -3003,9 +3004,19 @@ function ListingData(props) {
       hasBeenCopied = _useState18[0],
       setHasBeenCopied = _useState18[1];
 
+  var _useState19 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
+      _useState20 = _slicedToArray(_useState19, 2),
+      errorMessage = _useState20[0],
+      setErrorMessage = _useState20[1];
+
   (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     console.log('Running scraper!');
     (0,_subroutines_scraper__WEBPACK_IMPORTED_MODULE_2__.runScraper)(function (res) {
+      if (!res) {
+        setErrorMessage('Cannot pull rental details from site.');
+        return;
+      }
+
       var results = res[0].result;
       console.log(results); // destructure the results
 
@@ -3017,6 +3028,26 @@ function ListingData(props) {
       setPrice((0,_subroutines_math__WEBPACK_IMPORTED_MODULE_3__.toInt)(results.purchasePrice));
       setTaxes((0,_subroutines_math__WEBPACK_IMPORTED_MODULE_3__.toInt)(results.monthlyTaxes));
       setRentEstimate((0,_subroutines_math__WEBPACK_IMPORTED_MODULE_3__.toInt)(results.monthlyRent));
+
+      if (!(0,_subroutines_math__WEBPACK_IMPORTED_MODULE_3__.toInt)(results.purchasePrice) && !(0,_subroutines_math__WEBPACK_IMPORTED_MODULE_3__.toInt)(results.monthlyTaxes) && !(0,_subroutines_math__WEBPACK_IMPORTED_MODULE_3__.toInt)(results.monthlyRent)) {
+        console.log({
+          price: price,
+          taxes: taxes,
+          rentEstimate: rentEstimate
+        });
+        return;
+      }
+
+      var usedAlready = configurationFields.uses.filter(function (d) {
+        return d == results.href;
+      }).length;
+
+      if (!usedAlready) {
+        configurationFields.uses.push(results.href);
+        chrome.storage.sync.set({
+          configurationFields: configurationFields
+        });
+      }
     });
   }, []);
 
@@ -3024,15 +3055,18 @@ function ListingData(props) {
     return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Loading data");
   }
 
-  console.log({
-    price: price,
-    taxes: taxes,
-    rentEstimate: rentEstimate,
-    m: 'Listing Data'
-  });
+  var remainingUses = freeUses - configurationFields.uses.length;
 
   var _calculateCOC = (0,_subroutines_math__WEBPACK_IMPORTED_MODULE_3__.calculateCOC)(configurationFields, price, taxes, rentEstimate),
       cashOnCash = _calculateCOC.cashOnCash;
+
+  console.log({
+    cashOnCash: cashOnCash,
+    price: price,
+    taxes: taxes,
+    rentEstimate: rentEstimate,
+    m: 'Calculating CoC'
+  });
 
   var getDataFields = function getDataFields() {
     return {
@@ -3078,16 +3112,6 @@ function ListingData(props) {
   var cashOnCashString = cashOnCashValue.toLocaleString() + '%';
   var infoLink = 'https://rehacks.io/blog-new/a-chrome-extension-to-analyze-roi-of-a-rental-property-in-5-sec';
   var feedbackLink = 'https://docs.google.com/forms/d/1E6h7AbJZxitYnMuT1J6eK-x9AA5CpYHE2Dd3qYghZUA/edit';
-  var jwtHash = configurationFields.jwt ? Object.keys(configurationFields.jwt).map(function (key) {
-    return "".concat(key, "=").concat(configurationFields.jwt[key]);
-  }).join('&') : '';
-  var tierMessage = !user ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Need to re-sync. Please log out and back in again.") : user.billing_id ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are subscribed to ", user.billing_id, ". View plans", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    target: "_blank",
-    href: "https://ostr.ch/payments.html#".concat(jwtHash)
-  }, "here"), ".") : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are not subscribed! View plans", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    target: "_blank",
-    href: "https://ostr.ch/payments.html#".concat(jwtHash)
-  }, "here"), ".");
   var details = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "thin-container ostrich-container"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
@@ -3179,15 +3203,40 @@ function ListingData(props) {
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "plain-button"
   }, "To Realtor")))));
+  var jwtHash = configurationFields.jwt ? Object.keys(configurationFields.jwt).map(function (key) {
+    return "".concat(key, "=").concat(configurationFields.jwt[key]);
+  }).join('&') : '';
+  var content;
+
+  if (!user) {
+    content = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Need to re-sync. Please log out and back in again.");
+  } else if (user.billing_id) {
+    content = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, !errorMessage && details, errorMessage);
+  } else if (remainingUses >= 0) {
+    content = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, remainingUses, " free uses left.", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+      target: "_blank",
+      href: "https://ostr.ch/payments.html#".concat(jwtHash)
+    }, "Upgrade")), !errorMessage && details, errorMessage);
+  } else {
+    content = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are out of free uses!");
+  }
+
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "align-center personal-space-top"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "COC Calculator"), tierMessage, user && user.billing_id && details, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "COC Calculator"), content, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between full"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
     className: "value-large",
     target: "_blank",
     href: feedbackLink
-  }, "Provide Feedback!"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+    alt: "feeback",
+    src: "/feedback-8.png",
+    style: "width:20px"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", null, "View plans", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    target: "_blank",
+    href: "https://ostr.ch/payments.html#".concat(jwtHash)
+  }, "here"), "."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
     onClick: handleSignout
   }, "Logout")));
 }
@@ -3969,6 +4018,11 @@ function Popup(props) {
       _useState12 = _slicedToArray(_useState11, 2),
       user = _useState12[0],
       setUser = _useState12[1];
+
+  var _useState13 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
+      _useState14 = _slicedToArray(_useState13, 2),
+      errorMessage = _useState14[0],
+      setErrorMessage = _useState14[1];
 
   (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     if (!jwt) {

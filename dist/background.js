@@ -11,6 +11,7 @@ const configurationFields = {
   'loan-months': { value: 240, type: 'months' },
   'additional-monthly-expenses': { value: 0, type: 'dollars' },
   isLoggedIn: false,
+  uses: [],
   email: null,
   needsVerification: false,
 }

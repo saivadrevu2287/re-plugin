@@ -25,6 +25,7 @@ export default function Popup(props) {
   const [showForgotPasswordCode, setShowForgotPasswordCode] = useState(false)
   const [jwt, setJwt] = useState(null)
   const [user, setUser] = useState(null)
+  const [errorMessage, setErrorMessage] = useState()
 
   useEffect(() => {
     if (!jwt) {

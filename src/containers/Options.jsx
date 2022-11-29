@@ -123,7 +123,7 @@ function Options(props) {
         </div>
       </nav>
       <main className="personal-space-top flex around">
-        <div className="align-center third break-to-full padded">
+        <div className="align-center half break-to-full padded">
           <h4 className="personal-margin-bottom personal-margin-top">
             Edit your parameters!
           </h4>

@@ -48,6 +48,7 @@ function App(props) {
     if (window.location.hash) {
       const token = parseQueryParams(window.location.hash)
       setJwt(token)
+      setCookie(token)
     }
     // login when there is a cookie
     else if (document.cookie) {
@@ -164,7 +165,7 @@ function App(props) {
             }
           />
           <Home
-            path="/"
+            path="/email.html"
             backendUrl={backendUrl}
             jwt={jwt}
             user={user}

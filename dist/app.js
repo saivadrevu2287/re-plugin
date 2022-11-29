@@ -5019,6 +5019,7 @@ function App(props) {
     if (window.location.hash) {
       var token = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_5__.parseQueryParams)(window.location.hash);
       setJwt(token);
+      (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_5__.setCookie)(token);
     } // login when there is a cookie
     else if (document.cookie) {
       var cookies = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_5__.parseCookies)(document.cookie);
@@ -5153,7 +5154,7 @@ function App(props) {
     backendUrl: backendUrl,
     handleConfirmForgotPasswordResults: handleConfirmForgotPasswordResults
   }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Home__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    path: "/",
+    path: "/email.html",
     backendUrl: backendUrl,
     jwt: jwt,
     user: user,

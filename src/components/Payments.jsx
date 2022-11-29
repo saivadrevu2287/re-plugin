@@ -21,7 +21,6 @@ export default function Payments(props) {
           Manage Your Subscriptions
         </a>
         <br />
-        <a href="/email.html">Back to Markets!</a>
       </Fragment>
     )
   }

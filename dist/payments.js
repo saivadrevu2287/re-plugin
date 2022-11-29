@@ -2522,9 +2522,7 @@ function Payments(props) {
   } else {
     return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h3", null, "You're subscribed to ", user.billing_id), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
       href: "https://billing.stripe.com/p/login/test_eVa17v7v95kM0Vi8ww"
-    }, "Manage Your Subscriptions"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-      href: "/email.html"
-    }, "Back to Markets!"));
+    }, "Manage Your Subscriptions"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null));
   }
 }
 
@@ -2794,6 +2792,7 @@ function App(props) {
     if (window.location.hash) {
       var token = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_3__.parseQueryParams)(window.location.hash);
       setJwt(token);
+      (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_3__.setCookie)(token);
     } else if (document.cookie) {
       var cookies = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_3__.parseCookies)(document.cookie);
 

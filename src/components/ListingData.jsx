@@ -42,8 +42,12 @@ export default function ListingData(props) {
       setTaxes(toInt(results.monthlyTaxes))
       setRentEstimate(toInt(results.monthlyRent))
 
-      if ( !toInt(results.purchasePrice) && !toInt(results.monthlyTaxes) && !toInt(results.monthlyRent) ) {
-        console.log({price, taxes, rentEstimate})
+      if (
+        !toInt(results.purchasePrice) &&
+        !toInt(results.monthlyTaxes) &&
+        !toInt(results.monthlyRent)
+      ) {
+        console.log({ price, taxes, rentEstimate })
         return
       }
 
@@ -225,25 +229,29 @@ export default function ListingData(props) {
       <Fragment>
         {!errorMessage && details}
         {errorMessage}
+        <p>
+          {user.billing_id} Subscribed.{' '}
+          <a target="_blank" href={`https://ostr.ch/payments.html#${jwtHash}`}>
+            Change
+          </a>
+        </p>
       </Fragment>
     )
   } else if (remainingUses >= 0) {
     content = (
       <Fragment>
-        <p>{remainingUses} free uses left.
-        <a target="_blank" href={`https://ostr.ch/payments.html#${jwtHash}`}>
-          Upgrade
-        </a></p>
+        <p>
+          {remainingUses} free uses left.
+          <a target="_blank" href={`https://ostr.ch/payments.html#${jwtHash}`}>
+            Upgrade
+          </a>
+        </p>
         {!errorMessage && details}
         {errorMessage}
       </Fragment>
     )
   } else {
-    content = (
-      <p>
-        You are out of free uses!
-      </p>
-    )
+    content = <p>You are out of free uses!</p>
   }
 
   return (
@@ -254,12 +262,7 @@ export default function ListingData(props) {
         <a className="value-large" target="_blank" href={feedbackLink}>
           <img alt="feeback" src="/feedback-8.png" style="width:20px" />
         </a>
-        <span>
-        View plans{' '}
-        <a target="_blank" href={`https://ostr.ch/payments.html#${jwtHash}`}>
-          here
-        </a>
-        .</span>
+
         <span onClick={handleSignout}>Logout</span>
       </div>
     </div>

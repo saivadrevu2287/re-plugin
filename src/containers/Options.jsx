@@ -130,7 +130,11 @@ function Options(props) {
           <div className="thin-container ostrich-container personal-space-bottom align-center">
             <div className="flex between centered-items personal-space-bottom">
               <label className="fourth align-right" htmlFor="insurance-input">
-                Insurance:
+                Insurance{' '}
+                <span title="Enter the per month number you will pay for insurance. Usually this is $60-$80 per month for a single family.">
+                  (i)
+                </span>
+                :
               </label>
               <div>
                 <input
@@ -139,12 +143,16 @@ function Options(props) {
                   value={insurance}
                   onInput={eliminateEvent(setInsurance)}
                 />
-                <b>$</b>
+                <b>$/mo</b>
               </div>
             </div>
             <div className="flex between centered-items personal-space-bottom">
               <label className="fourth align-right" htmlFor="vacancy-input">
-                Vacancy:
+                Vacancy{' '}
+                <span title="This is a monthly expense. Enter as a percent of monthly gross income. Usually this is 6-8%">
+                  (i)
+                </span>
+                :
               </label>
               <div>
                 <input
@@ -153,12 +161,16 @@ function Options(props) {
                   value={vacancy}
                   onInput={eliminateEvent(setVacancy)}
                 />
-                <b>%</b>
+                <b>%/mo</b>
               </div>
             </div>
             <div className="flex between centered-items personal-space-bottom">
               <label className="fourth align-right" htmlFor="property-input">
-                Property Management:
+                Property Management{' '}
+                <span title="This is a monthly expense. Enter as a percent of monthly gross income. Usually this is 8-12%">
+                  (i)
+                </span>
+                :
               </label>
               <div>
                 <input
@@ -167,12 +179,16 @@ function Options(props) {
                   value={propertyManagement}
                   onInput={eliminateEvent(setPropertyManagement)}
                 />
-                <b>%</b>
+                <b>%/mo</b>
               </div>
             </div>
             <div className="flex between centered-items personal-space-bottom">
               <label className="fourth align-right" htmlFor="capex-input">
-                Capex:
+                Capex{' '}
+                <span title="This is a monthly expense. Enter as a percent of monthly gross income. Usually this is 5-15% depending on the condition of the property">
+                  (i)
+                </span>
+                :
               </label>
               <div>
                 <input
@@ -181,12 +197,16 @@ function Options(props) {
                   value={capex}
                   onInput={eliminateEvent(setCapex)}
                 />
-                <b>%</b>
+                <b>%/mo</b>
               </div>
             </div>
             <div className="flex between centered-items personal-space-bottom">
               <label className="fourth align-right" htmlFor="repairs-input">
-                Repairs:
+                Repairs{' '}
+                <span title="This is a monthly expense. Enter as a percent of monthly gross income. Usually this is 5-10% depending on the condition of the property">
+                  (i)
+                </span>
+                :
               </label>
               <div>
                 <input
@@ -195,12 +215,16 @@ function Options(props) {
                   value={repairs}
                   onInput={eliminateEvent(setRepairs)}
                 />
-                <b>%</b>
+                <b>%/mo</b>
               </div>
             </div>
             <div className="flex between centered-items personal-space-bottom">
               <label className="fourth align-right" htmlFor="utilities-input">
-                Utilities:
+                Utilities{' '}
+                <span title="This is a monthly expense. For a single-family rental, the tenants pay for utilities usually, so put 0. Double check with your broker once">
+                  (i)
+                </span>
+                :
               </label>
               <div>
                 <input
@@ -209,7 +233,7 @@ function Options(props) {
                   value={utilities}
                   onInput={eliminateEvent(setUtilities)}
                 />
-                <b>$</b>
+                <b>$/mo</b>
               </div>
             </div>
             <div className="flex between centered-items personal-space-bottom">
@@ -217,7 +241,11 @@ function Options(props) {
                 className="fourth align-right"
                 htmlFor="down-payment-input"
               >
-                Down Payment:
+                Down Payment{' '}
+                <span title="This is the downpayment % for the loan as required by your bank. Usually this is 20% but check with your lender once">
+                  (i)
+                </span>
+                :
               </label>
               <div>
                 <input
@@ -234,7 +262,11 @@ function Options(props) {
                 className="fourth align-right"
                 htmlFor="closing-cost-input"
               >
-                Closing Cost:
+                Closing Cost{' '}
+                <span title="This is the one time cost to close the loan on the property. It includes any bank fees, lawyer fees, appraisal fees etc. Usually it is 3-5% and calculated on the offer price">
+                  (i)
+                </span>
+                :
               </label>
               <div>
                 <input
@@ -251,7 +283,11 @@ function Options(props) {
                 className="fourth align-right"
                 htmlFor="loan-interest-input"
               >
-                Loan Interest:
+                Loan Interest{' '}
+                <span title="Enter the interest rate charged by your bank">
+                  (i)
+                </span>
+                :
               </label>
               <div>
                 <input
@@ -265,7 +301,11 @@ function Options(props) {
             </div>
             <div className="flex between centered-items personal-space-bottom">
               <label className="fourth align-right" htmlFor="loan-months-input">
-                Loan Months:
+                Loan Months{' '}
+                <span title="Enter the number of months the loan is for. For example - if the loan is for 30 years, enter 360 months">
+                  (i)
+                </span>
+                :
               </label>
               <div>
                 <input
@@ -282,7 +322,9 @@ function Options(props) {
                 className="fourth align-right"
                 htmlFor="additional-monthly-expenses-input"
               >
-                Additional Monthly Expenses:
+                Additional Monthly Expenses{' '}
+                <span title="Enter any additional expenses per month">(i)</span>
+                :
               </label>
               <div>
                 <input
@@ -291,7 +333,7 @@ function Options(props) {
                   value={additionalMonthlyExpenses}
                   onInput={eliminateEvent(setAdditionalMonthlyExpenses)}
                 />
-                <b>$</b>
+                <b>$/mo</b>
               </div>
             </div>
             <p>{errorMessage}</p>

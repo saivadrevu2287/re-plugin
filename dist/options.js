@@ -316,67 +316,81 @@ function Options(props) {
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "fourth align-right",
     htmlFor: "insurance-input"
-  }, "Insurance:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Insurance", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "Enter the per month number you will pay for insurance. Usually this is $60-$80 per month for a single family."
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     "class": "fourth",
     value: insurance,
     onInput: eliminateEvent(setInsurance)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "$"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "$/mo"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "fourth align-right",
     htmlFor: "vacancy-input"
-  }, "Vacancy:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Vacancy", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "This is a monthly expense. Enter as a percent of monthly gross income. Usually this is 6-8%"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     "class": "fourth",
     value: vacancy,
     onInput: eliminateEvent(setVacancy)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%/mo"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "fourth align-right",
     htmlFor: "property-input"
-  }, "Property Management:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Property Management", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "This is a monthly expense. Enter as a percent of monthly gross income. Usually this is 8-12%"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     "class": "fourth",
     value: propertyManagement,
     onInput: eliminateEvent(setPropertyManagement)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%/mo"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "fourth align-right",
     htmlFor: "capex-input"
-  }, "Capex:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Capex", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "This is a monthly expense. Enter as a percent of monthly gross income. Usually this is 5-15% depending on the condition of the property"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     "class": "fourth",
     value: capex,
     onInput: eliminateEvent(setCapex)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%/mo"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "fourth align-right",
     htmlFor: "repairs-input"
-  }, "Repairs:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Repairs", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "This is a monthly expense. Enter as a percent of monthly gross income. Usually this is 5-10% depending on the condition of the property"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     "class": "fourth",
     value: repairs,
     onInput: eliminateEvent(setRepairs)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%/mo"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "fourth align-right",
     htmlFor: "utilities-input"
-  }, "Utilities:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Utilities", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "This is a monthly expense. For a single-family rental, the tenants pay for utilities usually, so put 0. Double check with your broker once"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     "class": "fourth",
     value: utilities,
     onInput: eliminateEvent(setUtilities)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "$"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "$/mo"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "fourth align-right",
     htmlFor: "down-payment-input"
-  }, "Down Payment:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Down Payment", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "This is the downpayment % for the loan as required by your bank. Usually this is 20% but check with your lender once"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     "class": "fourth",
     value: downPayment,
@@ -386,7 +400,9 @@ function Options(props) {
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "fourth align-right",
     htmlFor: "closing-cost-input"
-  }, "Closing Cost:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Closing Cost", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "This is the one time cost to close the loan on the property. It includes any bank fees, lawyer fees, appraisal fees etc. Usually it is 3-5% and calculated on the offer price"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     "class": "fourth",
     value: closingCosts,
@@ -396,7 +412,9 @@ function Options(props) {
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "fourth align-right",
     htmlFor: "loan-interest-input"
-  }, "Loan Interest:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Loan Interest", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "Enter the interest rate charged by your bank"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     "class": "fourth",
     value: loanInterest,
@@ -406,7 +424,9 @@ function Options(props) {
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "fourth align-right",
     htmlFor: "loan-months-input"
-  }, "Loan Months:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Loan Months", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "Enter the number of months the loan is for. For example - if the loan is for 30 years, enter 360 months"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     "class": "fourth",
     value: loanMonths,
@@ -416,12 +436,14 @@ function Options(props) {
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "fourth align-right",
     htmlFor: "additional-monthly-expenses-input"
-  }, "Additional Monthly Expenses:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Additional Monthly Expenses", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "Enter any additional expenses per month"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     "class": "fourth",
     value: additionalMonthlyExpenses,
     onInput: eliminateEvent(setAdditionalMonthlyExpenses)
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "$"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "$/mo"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "ostrich-button four-fifths personal-margin-top",
     type: "submit",
     onClick: handleSave

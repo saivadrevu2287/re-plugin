@@ -1,9 +1,9 @@
+import Router from 'preact-router'
 import { h } from 'preact'
 import { useState, useEffect } from 'preact/hooks'
 import entry from '../build/entry'
-import { parseQueryParams, parseCookies, setCookie } from '../subroutines/utils'
+import { parseQueryParams } from '../subroutines/utils'
 
-import Payments from '../components/Payments'
 import axios from 'axios'
 
 const loginWithGoogleUrl =
@@ -59,10 +59,8 @@ function App(props) {
           <div className="flex justify-end centered-items wrap"></div>
         </div>
       </nav>
-      <div className="personal-space-top content">
-        <h4 className="padded">Payments</h4>
-        {!user ? 'Loading!' : <Payments user={user} />}
-      </div>
+      <main className="personal-space-top content">
+      </main>
     </div>
   )
 }

@@ -272,6 +272,27 @@ function Options(props) {
 
   var handleSave = function handleSave() {
     if (!configurationFields) return;
+
+    if (!downPayment) {
+      setErrorMessage("Down Payment cannot be 0");
+      return;
+    }
+
+    if (!closingCosts) {
+      setErrorMessage("Closing Cost cannot be 0");
+      return;
+    }
+
+    if (!loanInterest) {
+      setErrorMessage("Loan Interest cannot be 0. If you are buying all cash, enter .001");
+      return;
+    }
+
+    if (!loanMonths) {
+      setErrorMessage("Loan Months cannot be 0");
+      return;
+    }
+
     configurationFields.insurance.value = handleNumberForField(configurationFields.insurance.type, insurance);
     configurationFields.vacancy.value = handleNumberForField(configurationFields.vacancy.type, vacancy);
     configurationFields.property.value = handleNumberForField(configurationFields.property.type, propertyManagement);

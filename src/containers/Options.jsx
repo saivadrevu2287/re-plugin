@@ -53,22 +53,22 @@ function Options(props) {
   const handleSave = () => {
     if (!configurationFields) return
 
-    if ( !downPayment ) {
+    if ( !parseFloat(downPayment) ) {
       setErrorMessage("Down Payment cannot be 0")
       return
     }
 
-    if ( !closingCosts ) {
+    if ( !parseFloat(closingCosts) ) {
       setErrorMessage("Closing Cost cannot be 0")
       return
     }
 
-    if ( !loanInterest ) {
+    if ( !parseFloat(loanInterest) ) {
       setErrorMessage("Loan Interest cannot be 0. If you are buying all cash, enter .001")
       return
     }
 
-    if ( !loanMonths ) {
+    if ( !parseFloat(loanMonths) ) {
       setErrorMessage("Loan Months cannot be 0")
       return
     }
@@ -147,6 +147,7 @@ function Options(props) {
           <h4 className="personal-margin-bottom personal-margin-top">
             Edit your parameters!
           </h4>
+          <h6>Hint: Hover on the (i) to see field details.</h6>
           <div className="thin-container ostrich-container personal-space-bottom align-center">
             <div className="flex between centered-items personal-space-bottom">
               <label className="fourth align-right" htmlFor="insurance-input">

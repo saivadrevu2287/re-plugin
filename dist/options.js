@@ -273,22 +273,22 @@ function Options(props) {
   var handleSave = function handleSave() {
     if (!configurationFields) return;
 
-    if (!downPayment) {
+    if (!parseFloat(downPayment)) {
       setErrorMessage("Down Payment cannot be 0");
       return;
     }
 
-    if (!closingCosts) {
+    if (!parseFloat(closingCosts)) {
       setErrorMessage("Closing Cost cannot be 0");
       return;
     }
 
-    if (!loanInterest) {
+    if (!parseFloat(loanInterest)) {
       setErrorMessage("Loan Interest cannot be 0. If you are buying all cash, enter .001");
       return;
     }
 
-    if (!loanMonths) {
+    if (!parseFloat(loanMonths)) {
       setErrorMessage("Loan Months cannot be 0");
       return;
     }
@@ -330,7 +330,7 @@ function Options(props) {
     className: "align-center half break-to-full padded"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", {
     className: "personal-margin-bottom personal-margin-top"
-  }, "Edit your parameters!"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }, "Edit your parameters!"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "Hint: Hover on the (i) to see field details."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "thin-container ostrich-container personal-space-bottom align-center"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex between centered-items personal-space-bottom"

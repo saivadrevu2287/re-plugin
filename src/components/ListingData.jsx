@@ -26,7 +26,7 @@ export default function ListingData(props) {
     console.log('Running scraper!')
     runScraper((res) => {
       if (!res) {
-        setErrorMessage('Cannot pull rental details from site.')
+        setErrorMessage('Cannot pull rental details from site. Use zillow.com for the extension to work.')
         return
       }
 

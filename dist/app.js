@@ -5230,7 +5230,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var loginWithGoogleUrl = 'https://ostrich.auth.us-east-2.amazoncognito.com/login?client_id=70apbavl1fsobed4jt7l7ml18h&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://ostr.ch/email.html';
+var loginWithGoogleUrl = 'https://ostrich.auth.us-east-2.amazoncognito.com/login?client_id=70apbavl1fsobed4jt7l7ml18h&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://ostr.ch/';
 var backendUrl = 'https://q0sku06vtg.execute-api.us-east-2.amazonaws.com/v1';
 var emailerLink = 'https://ostrch.notion.site/Ostrich-Emailer-08759238028f4964805e86eb8dca5cbd';
 

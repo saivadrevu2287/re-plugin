@@ -10,7 +10,6 @@ module.exports = {
     payments: path.resolve(__dirname, 'src', 'containers', 'Payments.jsx'),
     popup: path.resolve(__dirname, 'src', 'containers', 'Popup.jsx'),
     options: path.resolve(__dirname, 'src', 'containers', 'Options.jsx'),
-    profile: path.resolve(__dirname, 'src', 'containers', 'Profile.jsx'),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

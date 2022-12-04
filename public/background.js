@@ -10,10 +10,8 @@ const configurationFields = {
   'loan-interest': { value: 0.041, type: 'percent' },
   'loan-months': { value: 240, type: 'months' },
   'additional-monthly-expenses': { value: 0, type: 'dollars' },
-  isLoggedIn: false,
+  jwt: null,
   uses: [],
-  email: null,
-  needsVerification: false,
 }
 
 chrome.runtime.onInstalled.addListener(() => {
@@ -56,40 +54,29 @@ const autoSignin = (details) => () => {
     let url = details.url
     if (url.match(/ostr.ch/)) {
       console.log('Url matches!')
-      const jwt = url
-        .split('#')[1]
-        .split('&')
-        .map((e) => e.split('='))
-        .reduce((acc, pair) => {
-          acc[pair[0]] = pair[1]
-          return acc
-        }, {})
 
-      if (jwt) {
-        const parsedId = parseJwt(jwt.id_token)
-        configurationFields.needsVerification = false
-        configurationFields.email = parsedId.email
-        configurationFields.isLoggedIn = true
-        configurationFields.jwt = jwt
+      if (url.split('#').length > 1) {
+        const jwt = url
+          .split('#')[1]
+          .split('&')
+          .map((e) => e.split('='))
+          .reduce((acc, pair) => {
+            acc[pair[0]] = pair[1]
+            return acc
+          }, {})
+
+        if (jwt.id_token) {
+          configurationFields.jwt = jwt
+          console.log('loggingIn')
+          chrome.storage.sync.set({ configurationFields })
+        }
+      }
+
+      if (url.match(/\/logout.html/)) {
+        configurationFields.jwt = null
+        console.log('loggingOut')
         chrome.storage.sync.set({ configurationFields })
-      } else {
-        console.log('The id token was not there to work with?')
       }
     }
   })
-}
-
-function parseJwt(token) {
-  var base64Url = token.split('.')[1]
-  var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
-  var jsonPayload = decodeURIComponent(
-    atob(base64)
-      .split('')
-      .map(function (c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-      })
-      .join('')
-  )
-
-  return JSON.parse(jsonPayload)
 }

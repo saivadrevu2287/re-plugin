@@ -6,7 +6,8 @@
   "scripts": {
     "test": "test",
     "build": "webpack --node-env production",
-    "serve": "webpack-dev-server"
+    "serve": "webpack-dev-server",
+    "format": "prettier --write ."
   },
   "repository": {
     "type": "git",

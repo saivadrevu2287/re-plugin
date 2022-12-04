@@ -2956,7 +2956,6 @@ var tabSeparator = '\t';
 var freeUses = 20;
 function ListingData(props) {
   var configurationFields = props.configurationFields,
-      handleSignout = props.handleSignout,
       user = props.user;
 
   var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
@@ -3236,9 +3235,7 @@ function ListingData(props) {
     alt: "feeback",
     src: "/feedback-8.png",
     style: "width:20px"
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
-    onClick: handleSignout
-  }, "Logout")));
+  }))));
 }
 
 /***/ }),
@@ -3984,45 +3981,27 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var loginWithGoogleUrl = 'https://ostrich.auth.us-east-2.amazoncognito.com/login?client_id=70apbavl1fsobed4jt7l7ml18h&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://ostr.ch';
 var backendUrl = 'https://q0sku06vtg.execute-api.us-east-2.amazonaws.com/v1';
 function Popup(props) {
-  console.log('Rendering Popup');
-
   var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
       _useState2 = _slicedToArray(_useState, 2),
       configurationFields = _useState2[0],
       setConfigurationFields = _useState2[1];
 
-  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
       _useState4 = _slicedToArray(_useState3, 2),
-      showLogin = _useState4[0],
-      setShowLogin = _useState4[1];
+      jwt = _useState4[0],
+      setJwt = _useState4[1];
 
-  var _useState5 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+  var _useState5 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
       _useState6 = _slicedToArray(_useState5, 2),
-      showForgotPassword = _useState6[0],
-      setShowForgotPassword = _useState6[1];
+      user = _useState6[0],
+      setUser = _useState6[1];
 
-  var _useState7 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+  var _useState7 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
       _useState8 = _slicedToArray(_useState7, 2),
-      showForgotPasswordCode = _useState8[0],
-      setShowForgotPasswordCode = _useState8[1];
-
-  var _useState9 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
-      _useState10 = _slicedToArray(_useState9, 2),
-      jwt = _useState10[0],
-      setJwt = _useState10[1];
-
-  var _useState11 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
-      _useState12 = _slicedToArray(_useState11, 2),
-      user = _useState12[0],
-      setUser = _useState12[1];
-
-  var _useState13 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
-      _useState14 = _slicedToArray(_useState13, 2),
-      errorMessage = _useState14[0],
-      setErrorMessage = _useState14[1];
+      errorMessage = _useState8[0],
+      setErrorMessage = _useState8[1];
 
   (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     if (!jwt) {
@@ -4047,150 +4026,20 @@ function Popup(props) {
     });
   }, []);
 
-  var handleSignout = function handleSignout() {
-    var newConfigurationFields = JSON.parse(JSON.stringify(configurationFields));
-    setShowLogin(true);
-    newConfigurationFields.isLoggedIn = false;
-    newConfigurationFields.email = '';
-    newConfigurationFields.jwt = null;
-    setConfigurationFields(newConfigurationFields);
-    chrome.storage.sync.set({
-      configurationFields: newConfigurationFields
-    });
-  };
-
-  var handleLoginResults = function handleLoginResults(email) {
-    return function (jwt) {
-      var newConfigurationFields = JSON.parse(JSON.stringify(configurationFields));
-      newConfigurationFields.isLoggedIn = true;
-      newConfigurationFields.jwt = jwt;
-      newConfigurationFields.email = email;
-      setConfigurationFields(newConfigurationFields);
-      setJwt(jwt);
-      chrome.storage.sync.set({
-        configurationFields: newConfigurationFields
-      });
-    };
-  };
-
-  var handleSignupResults = function handleSignupResults(email) {
-    return function (r) {
-      console.log(r.data.message);
-      var newConfigurationFields = JSON.parse(JSON.stringify(configurationFields));
-      newConfigurationFields.email = email;
-      newConfigurationFields.needsVerification = true;
-      setConfigurationFields(newConfigurationFields);
-      chrome.storage.sync.set({
-        configurationFields: newConfigurationFields
-      });
-    };
-  };
-
-  var handleVerifyResults = function handleVerifyResults(email) {
-    return function (r) {
-      console.log(r.data.message);
-      var newConfigurationFields = JSON.parse(JSON.stringify(configurationFields));
-      newConfigurationFields.isLoggedIn = true;
-      newConfigurationFields.needsVerification = false;
-      setConfigurationFields(newConfigurationFields);
-      chrome.storage.sync.set({
-        configurationFields: newConfigurationFields
-      });
-    };
-  };
-
-  var handleForgotPasswordResults = function handleForgotPasswordResults(email) {
-    return function (r) {
-      setShowLogin(false);
-      setShowForgotPassword(false);
-      setShowForgotPasswordCode(true);
-      var newConfigurationFields = JSON.parse(JSON.stringify(configurationFields));
-      newConfigurationFields.email = email;
-      setConfigurationFields(newConfigurationFields);
-      chrome.storage.sync.set({
-        configurationFields: newConfigurationFields
-      });
-    };
-  };
-
-  var handleConfirmForgotPasswordResults = function handleConfirmForgotPasswordResults(email) {
-    return function (r) {
-      setShowLogin(true);
-      setShowForgotPasswordCode(false);
-      var newConfigurationFields = JSON.parse(JSON.stringify(configurationFields));
-      newConfigurationFields.email = email;
-      setConfigurationFields(newConfigurationFields);
-      chrome.storage.sync.set({
-        configurationFields: newConfigurationFields
-      });
-    };
-  };
-
-  var proceedWithGoogle = function proceedWithGoogle() {
-    return chrome.tabs.create({
-      url: loginWithGoogleUrl
-    });
-  };
-
   if (!configurationFields) {
     return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
       className: "align-center personal-space-top"
     }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "Loading..."));
   }
 
-  if (showForgotPassword) {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_ForgotPassword__WEBPACK_IMPORTED_MODULE_9__["default"], {
-      backendUrl: backendUrl,
-      handleForgotPasswordResults: handleForgotPasswordResults
-    });
-  }
-
-  if (showForgotPasswordCode) {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_10__["default"], {
-      email: configurationFields.email,
-      backendUrl: backendUrl,
-      handleConfirmForgotPasswordResults: handleConfirmForgotPasswordResults
-    });
-  }
-
-  if (configurationFields.isLoggedIn) {
+  if (configurationFields.jwt) {
     return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_ListingData__WEBPACK_IMPORTED_MODULE_5__["default"], {
       configurationFields: configurationFields,
       backendUrl: backendUrl,
-      user: user,
-      handleSignout: handleSignout
-    });
-  }
-
-  if (configurationFields.needsVerification) {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Confirm__WEBPACK_IMPORTED_MODULE_8__["default"], {
-      handleVerifyResults: handleVerifyResults,
-      backendUrl: backendUrl,
-      email: configurationFields.email
-    });
-  }
-
-  if (showLogin) {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Login__WEBPACK_IMPORTED_MODULE_7__["default"], {
-      handleLoginResults: handleLoginResults,
-      toSignup: function toSignup() {
-        return setShowLogin(false);
-      },
-      toForgotPassword: function toForgotPassword() {
-        return setShowForgotPassword(true);
-      },
-      proceedWithGoogle: proceedWithGoogle,
-      backendUrl: backendUrl
+      user: user
     });
   } else {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Signup__WEBPACK_IMPORTED_MODULE_6__["default"], {
-      handleSignupResults: handleSignupResults,
-      toLogin: function toLogin() {
-        return setShowLogin(true);
-      },
-      proceedWithGoogle: proceedWithGoogle,
-      backendUrl: backendUrl
-    });
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h1", null, "Login here!"));
   }
 }
 (0,_build_entry__WEBPACK_IMPORTED_MODULE_3__["default"])((0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(Popup, null));

@@ -59,8 +59,7 @@ function App(props) {
           <div className="flex justify-end centered-items wrap"></div>
         </div>
       </nav>
-      <main className="personal-space-top content">
-      </main>
+      <main className="personal-space-top content"></main>
     </div>
   )
 }

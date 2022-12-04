@@ -1,12 +1,11 @@
 import Router from 'preact-router'
 import { h, Fragment } from 'preact'
-import { useState, useEffect } from 'preact/hooks'
+import { useState } from 'preact/hooks'
 import { route } from 'preact-router'
 import entry from '../build/entry'
-import axios from 'axios'
 
-import { parseQueryParams, parseCookies, setCookie } from '../subroutines/utils'
-import { getUserData } from '../api/user'
+import { setCookie } from '../subroutines/utils'
+import useLogin from '../hooks/useLogin'
 
 import Login from '../components/Login'
 import Signup from '../components/Signup'
@@ -16,55 +15,36 @@ import Home from '../components/Home'
 import Logout from '../components/Logout'
 import ForgotPassword from '../components/ForgotPassword'
 import ConfirmForgotPassword from '../components/ConfirmForgotPassword'
+import Header from '../components/Header'
 
 const loginWithGoogleUrl =
   'https://ostrich.auth.us-east-2.amazoncognito.com/login?client_id=70apbavl1fsobed4jt7l7ml18h&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://ostr.ch/email.html'
 const backendUrl = 'https://q0sku06vtg.execute-api.us-east-2.amazonaws.com/v1'
-
+const emailerLink =
+  'https://ostrch.notion.site/Ostrich-Emailer-08759238028f4964805e86eb8dca5cbd'
 function App(props) {
-  const [jwt, setJwt] = useState(null)
-  const [user, setUser] = useState(null)
   const [errorMessage, setErrorMessage] = useState()
-
-  useEffect(() => {
-    if (!jwt) {
-      return
-    }
-
-    axios.defaults.headers.common['Authorization'] = `Bearer ${jwt.id_token}`
-    getUserData(
-      backendUrl,
-      (data) => {
-        setUser(data)
-      },
-      (e) => {
-        setErrorMessage(e.response.data.message)
-      }
-    )
-  }, [jwt])
-
-  useEffect(() => {
-    // login when there is login with google
-    if (window.location.hash) {
-      const token = parseQueryParams(window.location.hash)
-      setJwt(token)
-      setCookie(token)
-    }
-    // login when there is a cookie
-    else if (document.cookie) {
-      const cookies = parseCookies(document.cookie)
-      if (cookies.token) {
-        const token = JSON.parse(cookies.token)
-        setJwt(token)
-      }
-    }
-  }, [])
+  const { user, jwt, setJwt } = useLogin(backendUrl, setErrorMessage, () => {})
 
   const handleLoginResults = (_) => (r) => {
     setJwt(r)
     setCookie(r)
-    route('/email.html', true)
+    const jwtHash = r
+      ? Object.keys(r)
+          .map((key) => `${key}=${r[key]}`)
+          .join('&')
+      : ''
+
+    window.location.replace(`/#${jwtHash}`)
   }
+
+  const toSignup = () => route('/signup')
+  const toLogin = () => route('/login')
+  const toEmailerDashboard = () => route('/dashboard')
+  const toHome = () => route('/')
+  const toForgotPassword = () => route('/forgot-password')
+  const proceedWithGoogle = () => (window.location.href = loginWithGoogleUrl)
+  const logout = '/logout.html'
 
   const handleVerifyResults = (email) => (r) =>
     route(`/login?email=${email}`, true)
@@ -75,22 +55,11 @@ function App(props) {
   const handleConfirmForgotPasswordResults = (email) => (r) =>
     route(`/login?email=${email}`, true)
 
-  const toSignup = () => route('/signup')
-  const toLogin = () => route('/login')
-  const toEmailerDashboard = () => route('/dashboard')
-  const toHome = () => route('/')
-  const toForgotPassword = () => route('/forgot-password')
-  const proceedWithGoogle = () => (window.location.href = loginWithGoogleUrl)
-  const logout = () => {
-    document.cookie = `token=`
-    setJwt(null)
-  }
-
   const loginOrLogout = jwt ? (
     <Fragment>
-      <button className="plain-button personal-margin-right" onClick={logout}>
-        Logout
-      </button>
+      <a href={logout} className="link-button">
+        <button className="ostrich-button personal-margin-right">Logout</button>
+      </a>
     </Fragment>
   ) : (
     <Fragment>
@@ -108,21 +77,7 @@ function App(props) {
 
   return (
     <Fragment>
-      <nav>
-        <div className="content flex between">
-          <div className="flex centered-items">
-            <img
-              className="header-image link-button personal-space-left"
-              src="/OstrichPurple.png"
-              alt="ostrich"
-              onClick={toHome}
-            />
-          </div>
-          <div className="flex justify-end centered-items wrap">
-            {loginOrLogout}
-          </div>
-        </div>
-      </nav>
+      <Header children={loginOrLogout} toHome={toHome} />
       <main className="personal-space-top content">
         <Router>
           <Login
@@ -165,7 +120,7 @@ function App(props) {
             }
           />
           <Home
-            path="/email.html"
+            path="/"
             backendUrl={backendUrl}
             jwt={jwt}
             user={user}

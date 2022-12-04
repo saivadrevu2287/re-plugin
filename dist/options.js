@@ -274,22 +274,22 @@ function Options(props) {
     if (!configurationFields) return;
 
     if (!parseFloat(downPayment)) {
-      setErrorMessage("Down Payment cannot be 0");
+      setErrorMessage('Down Payment cannot be 0');
       return;
     }
 
     if (!parseFloat(closingCosts)) {
-      setErrorMessage("Closing Cost cannot be 0");
+      setErrorMessage('Closing Cost cannot be 0');
       return;
     }
 
     if (!parseFloat(loanInterest)) {
-      setErrorMessage("Loan Interest cannot be 0. If you are buying all cash, enter .001");
+      setErrorMessage('Loan Interest cannot be 0. If you are buying all cash, enter .001');
       return;
     }
 
     if (!parseFloat(loanMonths)) {
-      setErrorMessage("Loan Months cannot be 0");
+      setErrorMessage('Loan Months cannot be 0');
       return;
     }
 

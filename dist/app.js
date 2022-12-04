@@ -3787,6 +3787,44 @@ function ForgotPassword(props) {
 
 /***/ }),
 
+/***/ "./src/components/Header.jsx":
+/*!***********************************!*\
+  !*** ./src/components/Header.jsx ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Header)
+/* harmony export */ });
+/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
+
+function Header(props) {
+  var toHome = props.toHome,
+      children = props.children;
+  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "navbar"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "nav-inner"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    onClick: toHome,
+    "class": "brand-link w-inline-block"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+    src: "/logo.png",
+    loading: "lazy",
+    srcset: "/logo-p-500.png 500w, /logo-p-800.png 800w, /logo-p-1080.png 1080w, /logo-p-1600.png 1600w, /logo-p-2000.png 2000w, /logo-p-2600.png 2600w, /logo.png 2825w",
+    sizes: "70px",
+    alt: "",
+    "class": "nav-logo"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-df2c582d-9a89-1fcc-9fe7-0e0f1f59e3a2-f8b0799e",
+    "class": "navbar-btn-container"
+  }, children))));
+}
+
+/***/ }),
+
 /***/ "./src/components/Home.jsx":
 /*!*********************************!*\
   !*** ./src/components/Home.jsx ***!
@@ -4550,34 +4588,244 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
 
 function Splash(props) {
-  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex around wrap super-margin-top"
+  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("header", {
+    "class": "section_header1"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "half break-to-full"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h3", {
-    className: "special spacing-big"
-  }, "The fastest way ever to analyze rentals"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", {
-    className: "spacing-small"
-  }, "A daily email that delivers the cash flow analysis of the newest properties in your market."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex personal-margin-top-double"
+    "class": "padding-global"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "container-large"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "padding-section-large"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "w-layout-grid header1_component"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-_609eae99-230f-41f2-7495-de347fdf3a66-f8b0799e",
+    "class": "header1_content"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h1", null, "The fastest way ever to analyze rentals"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+    "class": "text-size-medium"
+  }, "A daily email that delivers the cash flow analysis of the newest properties in your market", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "button-group"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: "/signup",
-    className: "link-button"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "ostrich-button"
-  }, "Try Ostrich for Free")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: "https://ostrch.notion.site/Ostrich-Emailer-08759238028f4964805e86eb8dca5cbd",
-    className: "link-button personal-margin-left",
-    target: "_blank"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "plain-button"
-  }, "How it Works")))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "two-fifths break-to-full"
+    href: "#",
+    "class": "button w-button"
+  }, "Try Ostrich for Free"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    href: "#",
+    "class": "button secondary w-button"
+  }, "How it works"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "header1_image-wrapper"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
     src: "/guy-with-charts.svg",
-    className: "full"
-  })));
+    loading: "lazy",
+    alt: ""
+  }))))))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("section", {
+    "class": "section_plugin"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "padding-global"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "container-large"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "padding-section-large"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "w-layout-grid layout1_component"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-_6ea6296a-cb90-e88d-339b-0fc6f268787d-f8b0799e",
+    "class": "layout1_content"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h2", null, "Ostrich Chrome Plugin"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+    "class": "text-size-medium"
+  }, "Speed up your workflow!", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), "Get the cash flow analysis of a single family property while you are checking out a Zillow listing"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "plugin_steps"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "plugin_step-wrapper"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+    src: "/gis_step.png",
+    loading: "lazy",
+    alt: "",
+    "class": "step_icon"
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "After the extension is downloaded. Pin it to your Chrome Toolbar so it's visible at all times.")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "plugin_step-wrapper"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+    src: "/gis_step.png",
+    loading: "lazy",
+    alt: "",
+    "class": "step_icon"
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Sign up using Email or Gmail")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "plugin_step-wrapper"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+    src: "/gis_step.png",
+    loading: "lazy",
+    alt: "",
+    "class": "step_icon"
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "After logging in, right-click on the extension Icon, select options and enter your expense assumptions and Save")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "plugin_step-wrapper"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+    src: "/gis_step.png",
+    loading: "lazy",
+    alt: "",
+    "class": "step_icon"
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Head to Zillow and find a listing for sale you like")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "plugin_step-wrapper"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+    src: "/gis_step.png",
+    loading: "lazy",
+    alt: "",
+    "class": "step_icon"
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Click on the extension icon to get the cash flow projection for year 1"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    href: "#",
+    "class": "button secondary w-button"
+  }, "Get Plugin")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "layout1_image-wrapper"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+    src: "/plugin_ss.jpg",
+    loading: "lazy",
+    srcset: "/plugin_ss-p-500.jpg 500w, /plugin_ss-p-800.jpg 800w, /plugin_ss-p-1080.jpg 1080w, /plugin_ss.jpg 1131w",
+    sizes: "100vw",
+    alt: ""
+  }))))))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("section", {
+    "class": "section_emailer"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "padding-global"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "container-large"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "padding-section-large"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "process-container-2"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "process-title-wrap-2"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h2", null, "Premium Ostrich Emailer"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+    "class": "text-size-medium"
+  }, "Emailer is a premium feature of Ostrich, which sends deals(only single family) in your market per your search criteria. Just enter your location and financial assumptions and the emailer will send you properties that showed up in your market in the last 24 hours")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "w-layout-grid process-grid-2"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "process-card-primary-2"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "feature-icon-square-2"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "1")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h3", null, "Create Your Account"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+    "class": "emailer_text"
+  }, "Sign up for an account on our platform and get started"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+    src: "https://uploads-ssl.webflow.com/6110b06f10260e518f5d3077/6110b1396056a5e6b0bd01f9_Dot%20Wave.svg",
+    loading: "lazy",
+    alt: "",
+    "class": "process-arrow-01"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "process-card-primary-2"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "feature-icon-square-2 feature-icon"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "text-block"
+  }, "2")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h3", null, "Save Your Alert"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+    "class": "emailer_text"
+  }, "Enter your market and the financial assumptions (Loan, expenses etc) and save the alert"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+    src: "https://uploads-ssl.webflow.com/6110b06f10260e518f5d3077/6110b1396056a5e6b0bd01f9_Dot%20Wave.svg",
+    loading: "lazy",
+    alt: "",
+    "class": "process-arrow-01"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "process-card-primary-2"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "feature-icon-square-2"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "3")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h3", null, "Get Daily Emails"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+    "class": "emailer_text"
+  }, "Now you will get emails everyday around 3:30 pm ET with any listings and their cash flow return analysis"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    href: "#",
+    "class": "button w-button"
+  }, "Buy Emailer")))))));
 }
+
+/***/ }),
+
+/***/ "./src/hooks/useLogin.js":
+/*!*******************************!*\
+  !*** ./src/hooks/useLogin.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _subroutines_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../subroutines/utils */ "./src/subroutines/utils.js");
+/* harmony import */ var _api_user__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../api/user */ "./src/api/user.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+var useLogin = function useLogin(backendUrl, setErrorMessage, toLogin) {
+  var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+      _useState2 = _slicedToArray(_useState, 2),
+      jwt = _useState2[0],
+      setJwt = _useState2[1];
+
+  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+      _useState4 = _slicedToArray(_useState3, 2),
+      user = _useState4[0],
+      setUser = _useState4[1]; // when we get a jwt, get your user information
+
+
+  (0,preact_hooks__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    console.log(jwt);
+
+    if (!jwt) {
+      return;
+    }
+
+    (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.headers.common.Authorization) = "Bearer ".concat(jwt.id_token);
+    (0,_api_user__WEBPACK_IMPORTED_MODULE_3__.getUserData)(backendUrl, function (data) {
+      return setUser(data);
+    }, function (e) {
+      return setErrorMessage(e.response.data.message);
+    });
+  }, [jwt]);
+  (0,preact_hooks__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // login when there is login with google
+    if (window.location.hash) {
+      console.log('hash');
+      var token = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_2__.parseQueryParams)(window.location.hash);
+      console.log(token);
+
+      if (token.id_token) {
+        setJwt(token);
+        (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_2__.setCookie)(token);
+      }
+    } // login when there is a cookie
+    else if (document.cookie) {
+      console.log('cookie');
+      var cookies = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_2__.parseCookies)(document.cookie);
+
+      if (cookies.token) {
+        var _token = JSON.parse(cookies.token);
+
+        setJwt(_token);
+      } else {
+        toLogin();
+      }
+    }
+  }, []);
+  return {
+    user: user,
+    jwt: jwt,
+    setJwt: setJwt
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useLogin);
 
 /***/ }),
 
@@ -4943,18 +5191,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
 /* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
 /* harmony import */ var _build_entry__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../build/entry */ "./src/build/entry.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _subroutines_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../subroutines/utils */ "./src/subroutines/utils.js");
-/* harmony import */ var _api_user__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../api/user */ "./src/api/user.js");
-/* harmony import */ var _components_Login__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/Login */ "./src/components/Login.jsx");
-/* harmony import */ var _components_Signup__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/Signup */ "./src/components/Signup.jsx");
-/* harmony import */ var _components_Confirm__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/Confirm */ "./src/components/Confirm.jsx");
-/* harmony import */ var _components_EmailerDashboard__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/EmailerDashboard */ "./src/components/EmailerDashboard.jsx");
-/* harmony import */ var _components_Home__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/Home */ "./src/components/Home.jsx");
-/* harmony import */ var _components_Logout__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../components/Logout */ "./src/components/Logout.jsx");
-/* harmony import */ var _components_ForgotPassword__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../components/ForgotPassword */ "./src/components/ForgotPassword.jsx");
-/* harmony import */ var _components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../components/ConfirmForgotPassword */ "./src/components/ConfirmForgotPassword.jsx");
+/* harmony import */ var _subroutines_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../subroutines/utils */ "./src/subroutines/utils.js");
+/* harmony import */ var _hooks_useLogin__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../hooks/useLogin */ "./src/hooks/useLogin.js");
+/* harmony import */ var _components_Login__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Login */ "./src/components/Login.jsx");
+/* harmony import */ var _components_Signup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/Signup */ "./src/components/Signup.jsx");
+/* harmony import */ var _components_Confirm__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/Confirm */ "./src/components/Confirm.jsx");
+/* harmony import */ var _components_EmailerDashboard__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/EmailerDashboard */ "./src/components/EmailerDashboard.jsx");
+/* harmony import */ var _components_Home__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/Home */ "./src/components/Home.jsx");
+/* harmony import */ var _components_Logout__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/Logout */ "./src/components/Logout.jsx");
+/* harmony import */ var _components_ForgotPassword__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../components/ForgotPassword */ "./src/components/ForgotPassword.jsx");
+/* harmony import */ var _components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../components/ConfirmForgotPassword */ "./src/components/ConfirmForgotPassword.jsx");
+/* harmony import */ var _components_Header__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../components/Header */ "./src/components/Header.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -4985,82 +5232,27 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var loginWithGoogleUrl = 'https://ostrich.auth.us-east-2.amazoncognito.com/login?client_id=70apbavl1fsobed4jt7l7ml18h&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://ostr.ch/email.html';
 var backendUrl = 'https://q0sku06vtg.execute-api.us-east-2.amazonaws.com/v1';
+var emailerLink = 'https://ostrch.notion.site/Ostrich-Emailer-08759238028f4964805e86eb8dca5cbd';
 
 function App(props) {
-  var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useState)(null),
+  var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useState)(),
       _useState2 = _slicedToArray(_useState, 2),
-      jwt = _useState2[0],
-      setJwt = _useState2[1];
+      errorMessage = _useState2[0],
+      setErrorMessage = _useState2[1];
 
-  var _useState3 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useState)(null),
-      _useState4 = _slicedToArray(_useState3, 2),
-      user = _useState4[0],
-      setUser = _useState4[1];
-
-  var _useState5 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useState)(),
-      _useState6 = _slicedToArray(_useState5, 2),
-      errorMessage = _useState6[0],
-      setErrorMessage = _useState6[1];
-
-  (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
-    if (!jwt) {
-      return;
-    }
-
-    (axios__WEBPACK_IMPORTED_MODULE_4___default().defaults.headers.common.Authorization) = "Bearer ".concat(jwt.id_token);
-    (0,_api_user__WEBPACK_IMPORTED_MODULE_6__.getUserData)(backendUrl, function (data) {
-      setUser(data);
-    }, function (e) {
-      setErrorMessage(e.response.data.message);
-    });
-  }, [jwt]);
-  (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
-    // login when there is login with google
-    if (window.location.hash) {
-      var token = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_5__.parseQueryParams)(window.location.hash);
-      setJwt(token);
-      (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_5__.setCookie)(token);
-    } // login when there is a cookie
-    else if (document.cookie) {
-      var cookies = (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_5__.parseCookies)(document.cookie);
-
-      if (cookies.token) {
-        var _token = JSON.parse(cookies.token);
-
-        setJwt(_token);
-      }
-    }
-  }, []);
+  var _useLogin = (0,_hooks_useLogin__WEBPACK_IMPORTED_MODULE_5__["default"])(backendUrl, setErrorMessage, function () {}),
+      user = _useLogin.user,
+      jwt = _useLogin.jwt,
+      setJwt = _useLogin.setJwt;
 
   var handleLoginResults = function handleLoginResults(_) {
     return function (r) {
       setJwt(r);
-      (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_5__.setCookie)(r);
-      (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/email.html', true);
-    };
-  };
-
-  var handleVerifyResults = function handleVerifyResults(email) {
-    return function (r) {
-      return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)("/login?email=".concat(email), true);
-    };
-  };
-
-  var handleSignupResults = function handleSignupResults(email) {
-    return function (r) {
-      return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)("/confirm?email=".concat(email), true);
-    };
-  };
-
-  var handleForgotPasswordResults = function handleForgotPasswordResults(email) {
-    return function (r) {
-      return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)("/confirm-forgot-password?email=".concat(email), true);
-    };
-  };
-
-  var handleConfirmForgotPasswordResults = function handleConfirmForgotPasswordResults(email) {
-    return function (r) {
-      return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)("/login?email=".concat(email), true);
+      (0,_subroutines_utils__WEBPACK_IMPORTED_MODULE_4__.setCookie)(r);
+      var jwtHash = r ? Object.keys(r).map(function (key) {
+        return "".concat(key, "=").concat(r[key]);
+      }).join('&') : '';
+      window.location.replace("/#".concat(jwtHash));
     };
   };
 
@@ -5088,15 +5280,38 @@ function App(props) {
     return window.location.href = loginWithGoogleUrl;
   };
 
-  var logout = function logout() {
-    document.cookie = "token=";
-    setJwt(null);
+  var logout = '/logout.html';
+
+  var handleVerifyResults = function handleVerifyResults(email) {
+    return function (r) {
+      return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)("/login?email=".concat(email), true);
+    };
   };
 
-  var loginOrLogout = jwt ? (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("button", {
-    className: "plain-button personal-margin-right",
-    onClick: logout
-  }, "Logout")) : (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("a", {
+  var handleSignupResults = function handleSignupResults(email) {
+    return function (r) {
+      return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)("/confirm?email=".concat(email), true);
+    };
+  };
+
+  var handleForgotPasswordResults = function handleForgotPasswordResults(email) {
+    return function (r) {
+      return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)("/confirm-forgot-password?email=".concat(email), true);
+    };
+  };
+
+  var handleConfirmForgotPasswordResults = function handleConfirmForgotPasswordResults(email) {
+    return function (r) {
+      return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)("/login?email=".concat(email), true);
+    };
+  };
+
+  var loginOrLogout = jwt ? (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("a", {
+    href: logout,
+    className: "link-button"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("button", {
+    className: "ostrich-button personal-margin-right"
+  }, "Logout"))) : (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("a", {
     href: "/login",
     className: "link-button"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("button", {
@@ -5107,54 +5322,46 @@ function App(props) {
   }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("button", {
     className: "ostrich-button personal-margin-right"
   }, ' ', "Sign Up")));
-  return (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("nav", null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("div", {
-    className: "content flex between"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("div", {
-    className: "flex centered-items"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("img", {
-    className: "header-image link-button personal-space-left",
-    src: "/OstrichPurple.png",
-    alt: "ostrich",
-    onClick: toHome
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("div", {
-    className: "flex justify-end centered-items wrap"
-  }, loginOrLogout))), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("main", {
+  return (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Header__WEBPACK_IMPORTED_MODULE_14__["default"], {
+    children: loginOrLogout,
+    toHome: toHome
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("main", {
     className: "personal-space-top content"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact_router__WEBPACK_IMPORTED_MODULE_0__["default"], null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Login__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact_router__WEBPACK_IMPORTED_MODULE_0__["default"], null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Login__WEBPACK_IMPORTED_MODULE_6__["default"], {
     path: "/login",
     backendUrl: backendUrl,
     handleLoginResults: handleLoginResults,
     toSignup: toSignup,
     proceedWithGoogle: proceedWithGoogle,
     toForgotPassword: toForgotPassword
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Signup__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Signup__WEBPACK_IMPORTED_MODULE_7__["default"], {
     path: "/signup",
     backendUrl: backendUrl,
     handleSignupResults: handleSignupResults,
     toLogin: toLogin,
     proceedWithGoogle: proceedWithGoogle
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Confirm__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Confirm__WEBPACK_IMPORTED_MODULE_8__["default"], {
     path: "/confirm",
     backendUrl: backendUrl,
     handleVerifyResults: handleVerifyResults
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_EmailerDashboard__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_EmailerDashboard__WEBPACK_IMPORTED_MODULE_9__["default"], {
     path: "/dashboard",
     jwt: jwt,
     backendUrl: backendUrl,
     user: user
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Logout__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Logout__WEBPACK_IMPORTED_MODULE_11__["default"], {
     path: "/logout",
     backendUrl: backendUrl
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_ForgotPassword__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_ForgotPassword__WEBPACK_IMPORTED_MODULE_12__["default"], {
     path: "/forgot-password",
     backendUrl: backendUrl,
     handleForgotPasswordResults: handleForgotPasswordResults
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_14__["default"], {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_13__["default"], {
     path: "/confirm-forgot-password",
     backendUrl: backendUrl,
     handleConfirmForgotPasswordResults: handleConfirmForgotPasswordResults
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Home__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    path: "/email.html",
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Home__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    path: "/",
     backendUrl: backendUrl,
     jwt: jwt,
     user: user,

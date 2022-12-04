@@ -53,23 +53,25 @@ function Options(props) {
   const handleSave = () => {
     if (!configurationFields) return
 
-    if ( !parseFloat(downPayment) ) {
-      setErrorMessage("Down Payment cannot be 0")
+    if (!parseFloat(downPayment)) {
+      setErrorMessage('Down Payment cannot be 0')
       return
     }
 
-    if ( !parseFloat(closingCosts) ) {
-      setErrorMessage("Closing Cost cannot be 0")
+    if (!parseFloat(closingCosts)) {
+      setErrorMessage('Closing Cost cannot be 0')
       return
     }
 
-    if ( !parseFloat(loanInterest) ) {
-      setErrorMessage("Loan Interest cannot be 0. If you are buying all cash, enter .001")
+    if (!parseFloat(loanInterest)) {
+      setErrorMessage(
+        'Loan Interest cannot be 0. If you are buying all cash, enter .001'
+      )
       return
     }
 
-    if ( !parseFloat(loanMonths) ) {
-      setErrorMessage("Loan Months cannot be 0")
+    if (!parseFloat(loanMonths)) {
+      setErrorMessage('Loan Months cannot be 0')
       return
     }
 

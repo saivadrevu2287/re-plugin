@@ -9,7 +9,7 @@ const tabSeparator = '\t'
 const freeUses = 20
 
 export default function ListingData(props) {
-  const { configurationFields, handleSignout, user } = props
+  const { configurationFields, user } = props
 
   const [price, setPrice] = useState()
   const [priceEstimate, setPriceEstimate] = useState()
@@ -26,7 +26,9 @@ export default function ListingData(props) {
     console.log('Running scraper!')
     runScraper((res) => {
       if (!res) {
-        setErrorMessage('Cannot pull rental details from site. Use zillow.com for the extension to work.')
+        setErrorMessage(
+          'Cannot pull rental details from site. Use zillow.com for the extension to work.'
+        )
         return
       }
 
@@ -262,8 +264,6 @@ export default function ListingData(props) {
         <a className="value-large" target="_blank" href={feedbackLink}>
           <img alt="feeback" src="/feedback-8.png" style="width:20px" />
         </a>
-
-        <span onClick={handleSignout}>Logout</span>
       </div>
     </div>
   )

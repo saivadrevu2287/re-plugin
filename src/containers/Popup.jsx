@@ -11,9 +11,10 @@ import Login from '../components/Login'
 import Confirm from '../components/Confirm'
 import ForgotPassword from '../components/ForgotPassword'
 import ConfirmForgotPassword from '../components/ConfirmForgotPassword'
+import PluginLoginButton from '../components/PluginLoginButton'
 
 const backendUrl = 'https://q0sku06vtg.execute-api.us-east-2.amazonaws.com/v1'
-
+const webappUrl = 'https://ostr.ch/login.html'
 export default function Popup(props) {
   const [configurationFields, setConfigurationFields] = useState(null)
   const [jwt, setJwt] = useState(null)
@@ -66,11 +67,7 @@ export default function Popup(props) {
       />
     )
   } else {
-    return (
-      <Fragment>
-        <h1>Login here!</h1>
-      </Fragment>
-    )
+    return <PluginLoginButton webappUrl={webappUrl} />
   }
 }
 

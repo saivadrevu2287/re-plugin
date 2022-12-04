@@ -3355,6 +3355,36 @@ function Login(props) {
 
 /***/ }),
 
+/***/ "./src/components/PluginLoginButton.jsx":
+/*!**********************************************!*\
+  !*** ./src/components/PluginLoginButton.jsx ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ PluginLoginButton)
+/* harmony export */ });
+/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
+
+function PluginLoginButton(props) {
+  var webappUrl = props.webappUrl;
+  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "personal-space"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "To use the plugin, you must log in or create a new account."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex around"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    href: webappUrl,
+    target: "_blank",
+    className: "link-button"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+    className: "ostrich-button"
+  }, "Log in"))));
+}
+
+/***/ }),
+
 /***/ "./src/components/Signup.jsx":
 /*!***********************************!*\
   !*** ./src/components/Signup.jsx ***!
@@ -3958,6 +3988,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Confirm__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/Confirm */ "./src/components/Confirm.jsx");
 /* harmony import */ var _components_ForgotPassword__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/ForgotPassword */ "./src/components/ForgotPassword.jsx");
 /* harmony import */ var _components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/ConfirmForgotPassword */ "./src/components/ConfirmForgotPassword.jsx");
+/* harmony import */ var _components_PluginLoginButton__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/PluginLoginButton */ "./src/components/PluginLoginButton.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3981,7 +4012,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var backendUrl = 'https://q0sku06vtg.execute-api.us-east-2.amazonaws.com/v1';
+var webappUrl = 'https://ostr.ch/login.html';
 function Popup(props) {
   var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
       _useState2 = _slicedToArray(_useState, 2),
@@ -4039,7 +4072,9 @@ function Popup(props) {
       user: user
     });
   } else {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h1", null, "Login here!"));
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_PluginLoginButton__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      webappUrl: webappUrl
+    });
   }
 }
 (0,_build_entry__WEBPACK_IMPORTED_MODULE_3__["default"])((0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(Popup, null));

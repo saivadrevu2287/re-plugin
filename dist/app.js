@@ -3838,7 +3838,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
 /* harmony import */ var _Splash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Splash */ "./src/components/Splash.jsx");
-/* harmony import */ var _EmailerDashboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./EmailerDashboard */ "./src/components/EmailerDashboard.jsx");
+/* harmony import */ var _Profile__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Profile */ "./src/components/Profile.jsx");
 
 
 
@@ -3846,7 +3846,7 @@ function Home(props) {
   var jwt = props.jwt,
       user = props.user,
       backendUrl = props.backendUrl;
-  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, !jwt && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_Splash__WEBPACK_IMPORTED_MODULE_1__["default"], null), jwt && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_EmailerDashboard__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, !jwt && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_Splash__WEBPACK_IMPORTED_MODULE_1__["default"], null), jwt && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_Profile__WEBPACK_IMPORTED_MODULE_2__["default"], {
     user: user,
     backendUrl: backendUrl
   }));
@@ -3994,6 +3994,101 @@ function Logout(props) {
   }, "Log Back In"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
     href: "/"
   }, "Return Home"));
+}
+
+/***/ }),
+
+/***/ "./src/components/Profile.jsx":
+/*!************************************!*\
+  !*** ./src/components/Profile.jsx ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Profile)
+/* harmony export */ });
+/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
+
+function Profile(props) {
+  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("header", {
+    "class": "section_header1 bg-purple"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "padding-global"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "container-large"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "padding-section-small"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "w-layout-grid header1_component-copy"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-ceee6e35-be19-e9cc-f01f-a590743015ff-34c18b3d",
+    "class": "header1_content-copy"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h1", null, "You are successfully Logged in!"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "heading-style-h6 text-color-black"
+  }, "Your Current Tier"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "current-text"
+  }, "Free Tier")))))))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("section", {
+    "class": "section_pricing"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "padding-global"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "container-large"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "padding-section-large"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "w-layout-grid current-plan_component"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "pricing18_plan-_current"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "pricing18_content"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "pricing18_content-top"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "text-align-center"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "heading-style-h6"
+  }, "Free Tier"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "heading-style-h1"
+  }, "$0", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    "class": "heading-style-h4"
+  }, "/mo"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "pricing18_feature-list"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-c6127a99-2c7d-7493-6196-05c1a292bcf7-34c18b3d",
+    "class": "pricing_feature-heading"
+  }, "Plugin"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-c6127a99-2c7d-7493-6196-05c1a292bcf9-34c18b3d",
+    "class": "pricing18_feature"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "pricing18_icon-wrapper"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+    src: "https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316232dc4aee70_icon_check.svg",
+    loading: "lazy",
+    alt: "",
+    "class": "icon-1x1-xsmall"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "10 Searches/month")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-c6127a99-2c7d-7493-6196-05c1a292bcfe-34c18b3d",
+    "class": "pricing_feature-heading"
+  }, "Emailer"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-c6127a99-2c7d-7493-6196-05c1a292bd00-34c18b3d",
+    "class": "pricing18_feature"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "This plan does not includes Emailer"))))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "current_tier"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "current_tier-text"
+  }, "Your Tier"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-_6abca0f8-2ab1-4eba-cf07-0e4bb4136682-34c18b3d",
+    "class": "upgrade-plan_container"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "current_tier-header"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h2", null, "Upgrade Tier to Get More"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "text-size-medium"
+  }, "Get unlimited searches on our plugin and much more...")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    href: "#",
+    "class": "button_upgrade w-button"
+  }, "Upgrade Tier"))))))));
 }
 
 /***/ }),

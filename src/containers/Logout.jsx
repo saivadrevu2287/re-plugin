@@ -7,13 +7,15 @@ import Header from '../components/Header'
 function Logout(props) {
   useEffect(() => {
     document.cookie = `token=`
-    window.location.href = '/'
   }, [])
 
   return (
     <Fragment>
       <Header />
-      <h2>Loading!</h2>
+      <div className='padding'>
+        <h2>You are logged out!</h2>
+        <a href='/'>Click here to go back home.</a>
+      </div>
     </Fragment>
   )
 }

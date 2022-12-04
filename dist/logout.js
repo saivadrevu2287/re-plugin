@@ -200,9 +200,12 @@ __webpack_require__.r(__webpack_exports__);
 function Logout(props) {
   (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     document.cookie = "token=";
-    window.location.href = '/';
   }, []);
-  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Header__WEBPACK_IMPORTED_MODULE_3__["default"], null), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h2", null, "Loading!"));
+  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Header__WEBPACK_IMPORTED_MODULE_3__["default"], null), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "padding"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h2", null, "You are logged out!"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    href: "/"
+  }, "Click here to go back home.")));
 }
 
 (0,_build_entry__WEBPACK_IMPORTED_MODULE_2__["default"])((0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(Logout, null));

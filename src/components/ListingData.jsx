@@ -243,7 +243,7 @@ export default function ListingData(props) {
     content = (
       <Fragment>
         <p>
-          {remainingUses} free uses left.
+          {remainingUses} of {freeUses} free uses remaining.
           <a target="_blank" href={`https://ostr.ch/payments.html#${jwtHash}`}>
             Upgrade
           </a>

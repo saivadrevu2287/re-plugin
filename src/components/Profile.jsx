@@ -1,6 +1,41 @@
 import { Fragment, h } from 'preact';
 
 export default function Profile(props) {
+    const { user } = props
+
+    if (!user) {
+      return <Fragment>
+        <h3>Loading...</h3>
+      </Fragment>
+    }
+
+    console.log(user)
+
+    const price = !user.billing_id 
+      ? 0 
+      : user.billing_id == 'Tier 1'
+      ? 8.99
+      : user.billing_id == 'Tier 2'
+      ? 14.99
+      : user.billing_id == 'Tier 3'
+      ? 19.99
+      : 0
+
+    const pluginInfo = !user.billing_id 
+    ? '10 Initial Searches'
+    : 'Unlimited Searches'
+
+    const emailerInfo = !user.billing_id 
+    ? ''
+    : user.billing_id == 'Tier 1'
+    ? '1 Location, 8 listings everyday'
+    : user.billing_id == 'Tier 2'
+    ? '1 Locations, 20 listings  per location per day max'
+    : user.billing_id == 'Tier 3'
+    ? '3 locations, 20 listings  per location per day max'
+    : ''
+    
+    const billingTier = user.billing_id ? user.billing_id : 'Free Tier'
     return <Fragment>
         <header class="section_header1 bg-purple">
       <div class="padding-global">
@@ -16,7 +51,7 @@ export default function Profile(props) {
                   <div class="heading-style-h6 text-color-black">
                     Your Current Tier
                   </div>
-                  <div class="current-text">Free Tier</div>
+                  <div class="current-text">{billingTier}</div>
                 </div>
               </div>
             </div>
@@ -33,9 +68,9 @@ export default function Profile(props) {
                 <div class="pricing18_content">
                   <div class="pricing18_content-top">
                     <div class="text-align-center">
-                      <div class="heading-style-h6">Free Tier</div>
+                      <div class="heading-style-h6">{billingTier}</div>
                       <div class="heading-style-h1">
-                        $0<span class="heading-style-h4">/mo</span>
+                        ${price}<span class="heading-style-h4">/mo</span>
                       </div>
                     </div>
                     <div class="pricing18_feature-list">
@@ -57,7 +92,7 @@ export default function Profile(props) {
                             class="icon-1x1-xsmall"
                           />
                         </div>
-                        <div>10 Searches/month</div>
+                        <div>{pluginInfo}</div>
                       </div>
                       <div
                         id="w-node-c6127a99-2c7d-7493-6196-05c1a292bcfe-34c18b3d"
@@ -69,7 +104,7 @@ export default function Profile(props) {
                         id="w-node-c6127a99-2c7d-7493-6196-05c1a292bd00-34c18b3d"
                         class="pricing18_feature"
                       >
-                        <div>This plan does not includes Emailer</div>
+                        <div>{emailerInfo}</div>
                       </div>
                     </div>
                   </div>
@@ -88,7 +123,7 @@ export default function Profile(props) {
                     Get unlimited searches on our plugin and much more...
                   </div>
                 </div>
-                <a href="#" class="button_upgrade w-button">Upgrade Tier</a>
+                <a href="/payments.html" class="button_upgrade w-button">Upgrade Tier</a>
               </div>
             </div>
           </div>

@@ -3221,7 +3221,7 @@ function ListingData(props) {
       href: webappUrl
     }, "Upgrade")), !errorMessage && details, errorMessage);
   } else {
-    content = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are out of free uses!"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    content = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are out of free uses. The free plan only allows for ", freeUses, " free uses a month"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
       target: "_blank",
       href: webappUrl
     }, "Upgrade"));

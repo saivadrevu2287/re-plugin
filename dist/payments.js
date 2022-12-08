@@ -2575,18 +2575,14 @@ function Payments(props) {
   var user = props.user;
 
   if (!user.billing_id) {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("stripe-pricing-table", {
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h3", null, "You're subscribed to Tier 0"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are currently subscribed to Tier 0. Meaning you have 20 free uses per month of the Chrome plugin. Please upgrade below for unlimited plugin use and access to the emailer feature."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Make sure you are using the same email on the upgrade screen that you signed up with."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("stripe-pricing-table", {
       "pricing-table-id": "prctbl_1MCR6NIDd9tdb2o18q1QOupw",
       "publishable-key": "pk_live_51LphqXIDd9tdb2o1bC0M6mYJVzh3dh4MIbiJQXJkvCKJglH39a4bZLzeIMFXoS5p0IYBLqaT75fnkkxls5Ly8d1W006sYTCuzP"
-    }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-      href: "/"
-    }, "Back to Markets!"));
+    }));
   } else {
     return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h3", null, "You're subscribed to ", user.billing_id), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
       href: "https://billing.stripe.com/p/login/bIY8wx24h5mC1aM144"
-    }, "Manage Your Subscriptions"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-      href: "/"
-    }, "Back to Markets!"));
+    }, "Manage Your Subscriptions"));
   }
 }
 

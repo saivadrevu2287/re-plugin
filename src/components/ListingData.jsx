@@ -254,7 +254,7 @@ export default function ListingData(props) {
     )
   } else {
     content = <Fragment>
-      <p>You are out of free uses!</p><a target="_blank" href={webappUrl}>
+      <p>You are out of free uses. The free plan only allows for {freeUses} free uses a month</p><a target="_blank" href={webappUrl}>
             Upgrade
           </a>
       </Fragment>

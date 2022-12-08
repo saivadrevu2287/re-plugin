@@ -21,14 +21,16 @@ function App(props) {
     setJwt(null)
   }
 
-  const toHome = () => window.location.href = '/'
+  const toHome = () => (window.location.href = '/')
 
   return (
     <div>
       <Header
         children={
           <a href={logout} className="link-button">
-            <button className="ostrich-button personal-margin-right">Logout</button>
+            <button className="ostrich-button personal-margin-right">
+              Logout
+            </button>
           </a>
         }
         toHome={toHome}

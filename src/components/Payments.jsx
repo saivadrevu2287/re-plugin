@@ -6,9 +6,10 @@ export default function Payments(props) {
   if (!user.billing_id) {
     return (
       <Fragment>
-        <stripe-pricing-table pricing-table-id="prctbl_1MCR6NIDd9tdb2o18q1QOupw"
-publishable-key="pk_live_51LphqXIDd9tdb2o1bC0M6mYJVzh3dh4MIbiJQXJkvCKJglH39a4bZLzeIMFXoS5p0IYBLqaT75fnkkxls5Ly8d1W006sYTCuzP">
-</stripe-pricing-table>
+        <stripe-pricing-table
+          pricing-table-id="prctbl_1MCR6NIDd9tdb2o18q1QOupw"
+          publishable-key="pk_live_51LphqXIDd9tdb2o1bC0M6mYJVzh3dh4MIbiJQXJkvCKJglH39a4bZLzeIMFXoS5p0IYBLqaT75fnkkxls5Ly8d1W006sYTCuzP"
+        ></stripe-pricing-table>
         <a href="/">Back to Markets!</a>
       </Fragment>
     )

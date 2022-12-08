@@ -3923,85 +3923,7 @@ function Login(props) {
     }, handleLoginResults(email), setErrorMessage);
   };
 
-  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("header", {
-    "class": "section_login-form"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "padding-global"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "container-large"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "padding-section-large"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "form_component"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "form-main-wrapper"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h2", null, "Login"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "login_form-block"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("form", {
-    id: "wf-form-Login-form",
-    name: "wf-form-Login-form",
-    "data-name": "Login form",
-    method: "get",
-    "class": "login_form"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "form_field-wrapper"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    "for": "login-email",
-    "class": "form_field-text"
-  }, "Email"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
-    type: "email",
-    "class": "form_field w-input",
-    maxlength: "256",
-    name: "login-email",
-    "data-name": "login-email",
-    placeholder: "",
-    required: ""
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "form_field-wrapper"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
-    "for": "login-password",
-    "class": "form_field-text"
-  }, "Password"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
-    type: "password",
-    "class": "form_field w-input",
-    maxlength: "256",
-    name: "login-password",
-    "data-name": "login-password",
-    placeholder: "",
-    required: ""
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "form_forgot-wrapper"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "text-size-small"
-  }, "Forgot password?"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: "#",
-    "class": "form_reset-link"
-  }, "Reset")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
-    type: "submit",
-    "data-wait": "Please wait...",
-    value: "Submit",
-    "class": "button w-button"
-  }))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "form_divider-wrapper"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "form_divider"
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "OR"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "form_divider"
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: "#",
-    "class": "button-form w-inline-block"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
-    src: "images/google.svg",
-    loading: "lazy",
-    alt: ""
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Continue with Google")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "form_link-wrapper"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "a-paragraph-small"
-  }, "Dont have an account yet?"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: "#",
-    "class": "form_link"
-  }, "Sign up now")))))))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex around"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "align-center super-margin-top dashboard-container third break-to-full padded"
@@ -4039,7 +3961,7 @@ function Login(props) {
   }, "Continue With Google"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "plain-button four-fifths",
     onClick: toSignup
-  }, "Sign Up")))));
+  }, "Sign Up"))));
 }
 
 /***/ }),
@@ -4102,7 +4024,7 @@ function Profile(props) {
   var price = !user.billing_id ? 0 : user.billing_id == 'Tier 1' ? 8.99 : user.billing_id == 'Tier 2' ? 14.99 : user.billing_id == 'Tier 3' ? 19.99 : 0;
   var pluginInfo = !user.billing_id ? '10 Initial Searches' : 'Unlimited Searches';
   var emailerInfo = !user.billing_id ? '' : user.billing_id == 'Tier 1' ? '1 Location, 8 listings everyday' : user.billing_id == 'Tier 2' ? '1 Locations, 20 listings  per location per day max' : user.billing_id == 'Tier 3' ? '3 locations, 20 listings  per location per day max' : '';
-  var paymentLink = !user.billing_id ? 'payments.html' : "https://billing.stripe.com/p/login/bIY8wx24h5mC1aM144";
+  var paymentLink = !user.billing_id ? 'payments.html' : 'https://billing.stripe.com/p/login/bIY8wx24h5mC1aM144';
   var billingTier = user.billing_id ? user.billing_id : 'Free Tier';
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("header", {
     "class": "section_header1 bg-purple"
@@ -4747,11 +4669,11 @@ function Signup(props) {
   }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
     "class": "text-size-small w-form-label",
     "for": "checkbox"
-  }, "By registering, you agree to the ", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+  }, "By registering, you agree to the", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
     href: "https://www.notion.so/ostrch/Terms-of-Use-035e32f803d542459ad3429e6b42eeee",
     target: "_blank",
     "class": "form_text-bold"
-  }, "Terms"), " and ", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+  }, "Terms"), ' ', "and", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
     href: "https://www.notion.so/ostrch/Privacy-Policy-acd58fee6ce447d885f0551edf014158",
     target: "_blank",
     "class": "form_text-bold"

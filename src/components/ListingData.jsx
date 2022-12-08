@@ -9,7 +9,7 @@ const tabSeparator = '\t'
 const freeUses = 20
 
 export default function ListingData(props) {
-  const { configurationFields, user } = props
+  const { configurationFields, user, webappUrl } = props
 
   const [price, setPrice] = useState()
   const [priceEstimate, setPriceEstimate] = useState()
@@ -244,7 +244,7 @@ export default function ListingData(props) {
       <Fragment>
         <p>
           {remainingUses} of {freeUses} free uses remaining.
-          <a target="_blank" href={`https://ostr.ch/payments.html#${jwtHash}`}>
+          <a target="_blank" href={webappUrl}>
             Upgrade
           </a>
         </p>
@@ -253,7 +253,11 @@ export default function ListingData(props) {
       </Fragment>
     )
   } else {
-    content = <p>You are out of free uses!</p>
+    content = <Fragment>
+      <p>You are out of free uses!</p><a target="_blank" href={webappUrl}>
+            Upgrade
+          </a>
+      </Fragment>
   }
 
   return (

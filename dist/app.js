@@ -3804,23 +3804,28 @@ function Header(props) {
   var toHome = props.toHome,
       children = props.children;
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "navbar"
+    className: "navbar"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "nav-inner"
+    className: "nav-inner"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
     onClick: toHome,
-    "class": "brand-link w-inline-block"
+    className: "brand-link w-inline-block"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
     src: "/logo.png",
     loading: "lazy",
     srcset: "/logo-p-500.png 500w, /logo-p-800.png 800w, /logo-p-1080.png 1080w, /logo-p-1600.png 1600w, /logo-p-2000.png 2000w, /logo-p-2600.png 2600w, /logo.png 2825w",
     sizes: "70px",
     alt: "",
-    "class": "nav-logo"
+    className: "nav-logo"
   })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     id: "w-node-df2c582d-9a89-1fcc-9fe7-0e0f1f59e3a2-f8b0799e",
-    "class": "navbar-btn-container"
-  }, children))));
+    className: "navbar-btn-container"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex centered-items"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    href: "mailto:v@ostrich.so",
+    className: "personal-space-right"
+  }, "Need Help?"), children)))));
 }
 
 /***/ }),
@@ -4022,87 +4027,92 @@ function Profile(props) {
   }
 
   var price = !user.billing_id ? 0 : user.billing_id == 'Tier 1' ? 8.99 : user.billing_id == 'Tier 2' ? 14.99 : user.billing_id == 'Tier 3' ? 19.99 : 0;
-  var pluginInfo = !user.billing_id ? '10 Initial Searches' : 'Unlimited Searches';
-  var emailerInfo = !user.billing_id ? '' : user.billing_id == 'Tier 1' ? '1 Location, 8 listings everyday' : user.billing_id == 'Tier 2' ? '1 Locations, 20 listings  per location per day max' : user.billing_id == 'Tier 3' ? '3 locations, 20 listings  per location per day max' : '';
+  var emailerInfo = !user.billing_id ? 'No Access on Free Tier' : user.billing_id == 'Tier 1' ? '1 Location, 8 listings everyday' : user.billing_id == 'Tier 2' ? '1 Locations, 20 listings  per location per day max' : user.billing_id == 'Tier 3' ? '3 locations, 20 listings  per location per day max' : '';
+  var pluginInfo = !user.billing_id ? '20 free uses' : 'Unlimited Searches';
+  var upgradeOrChange = !user.billing_id ? 'Upgrade' : 'Change';
+  var emailerButton = !user.billing_id ? '' : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    href: "/dashboard",
+    className: "button_upgrade w-button"
+  }, "Add a Market");
+  var detailsMessage = !user.billing_id ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are currently subscribed to Tier 0. Meaning you have 20 free uses per month of the Chrome plugin. Please upgrade below for unlimited plugin use and access to the emailer feature."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Make sure you are using the same email on the upgrade screen that you signed up with.")) : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "In this Tier, you get unlimited usage of the Chrome Extension and also the emailer feature. Click here to add the location."));
   var paymentLink = !user.billing_id ? 'payments.html' : 'https://billing.stripe.com/p/login/bIY8wx24h5mC1aM144';
   var billingTier = user.billing_id ? user.billing_id : 'Free Tier';
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("header", {
-    "class": "section_header1 bg-purple"
+    className: "section_header1 bg-purple"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "padding-global"
+    className: "padding-global"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "container-large"
+    className: "container-large"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "padding-section-small"
+    className: "padding-section-small"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "w-layout-grid header1_component-copy"
+    className: "w-layout-grid header1_component-copy"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     id: "w-node-ceee6e35-be19-e9cc-f01f-a590743015ff-34c18b3d",
-    "class": "header1_content-copy"
+    className: "header1_content-copy"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h1", null, "You are successfully Logged in!"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "heading-style-h6 text-color-black"
+    className: "heading-style-h6 text-color-black"
   }, "Your Current Tier"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "current-text"
+    className: "current-text"
   }, billingTier)))))))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("section", {
-    "class": "section_pricing"
+    className: "section_pricing"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "padding-global"
+    className: "padding-global"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "container-large"
+    className: "container-large"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "padding-section-large"
+    className: "padding-section-large"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "w-layout-grid current-plan_component"
+    className: "w-layout-grid current-plan_component"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "pricing18_plan-_current"
+    className: "pricing18_plan-_current"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "pricing18_content"
+    className: "pricing18_content"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "pricing18_content-top"
+    className: "pricing18_content-top"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "text-align-center"
+    className: "text-align-center"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "heading-style-h6"
+    className: "heading-style-h6"
   }, billingTier), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "heading-style-h1"
+    className: "heading-style-h1"
   }, "$", price, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
-    "class": "heading-style-h4"
+    className: "heading-style-h4"
   }, "/mo"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "pricing18_feature-list"
+    className: "pricing18_feature-list"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     id: "w-node-c6127a99-2c7d-7493-6196-05c1a292bcf7-34c18b3d",
-    "class": "pricing_feature-heading"
+    className: "pricing_feature-heading"
   }, "Plugin"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     id: "w-node-c6127a99-2c7d-7493-6196-05c1a292bcf9-34c18b3d",
-    "class": "pricing18_feature"
+    className: "pricing18_feature"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "pricing18_icon-wrapper"
+    className: "pricing18_icon-wrapper"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
     src: "https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316232dc4aee70_icon_check.svg",
     loading: "lazy",
     alt: "",
-    "class": "icon-1x1-xsmall"
+    className: "icon-1x1-xsmall"
   })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, pluginInfo)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     id: "w-node-c6127a99-2c7d-7493-6196-05c1a292bcfe-34c18b3d",
-    "class": "pricing_feature-heading"
+    className: "pricing_feature-heading"
   }, "Emailer"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     id: "w-node-c6127a99-2c7d-7493-6196-05c1a292bd00-34c18b3d",
-    "class": "pricing18_feature"
+    className: "pricing18_feature"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, emailerInfo))))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "current_tier"
+    className: "current_tier"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "current_tier-text"
+    className: "current_tier-text"
   }, "Your Tier"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     id: "w-node-_6abca0f8-2ab1-4eba-cf07-0e4bb4136682-34c18b3d",
-    "class": "upgrade-plan_container"
+    className: "upgrade-plan_container"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "current_tier-header"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h2", null, "Upgrade Tier to Get More"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "text-size-medium"
-  }, "Get unlimited searches on our plugin and much more...")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: paymentLink,
-    "class": "button_upgrade w-button"
-  }, "Upgrade Tier"))))))));
+    className: "current_tier-header"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h2", null, upgradeOrChange, " Tier to Get More"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "text-size-medium"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are logged in as ", user.email), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), detailsMessage)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    href: paymentLink
+  }, upgradeOrChange, " Plan"), emailerButton)))))));
 }
 
 /***/ }),

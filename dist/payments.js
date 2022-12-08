@@ -2537,23 +2537,28 @@ function Header(props) {
   var toHome = props.toHome,
       children = props.children;
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "navbar"
+    className: "navbar"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    "class": "nav-inner"
+    className: "nav-inner"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
     onClick: toHome,
-    "class": "brand-link w-inline-block"
+    className: "brand-link w-inline-block"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
     src: "/logo.png",
     loading: "lazy",
     srcset: "/logo-p-500.png 500w, /logo-p-800.png 800w, /logo-p-1080.png 1080w, /logo-p-1600.png 1600w, /logo-p-2000.png 2000w, /logo-p-2600.png 2600w, /logo.png 2825w",
     sizes: "70px",
     alt: "",
-    "class": "nav-logo"
+    className: "nav-logo"
   })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     id: "w-node-df2c582d-9a89-1fcc-9fe7-0e0f1f59e3a2-f8b0799e",
-    "class": "navbar-btn-container"
-  }, children))));
+    className: "navbar-btn-container"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex centered-items"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    href: "mailto:v@ostrich.so",
+    className: "personal-space-right"
+  }, "Need Help?"), children)))));
 }
 
 /***/ }),

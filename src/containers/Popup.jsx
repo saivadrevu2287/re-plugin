@@ -14,7 +14,7 @@ import ConfirmForgotPassword from '../components/ConfirmForgotPassword'
 import PluginLoginButton from '../components/PluginLoginButton'
 
 const backendUrl = 'https://q0sku06vtg.execute-api.us-east-2.amazonaws.com/v1'
-const webappUrl = 'https://ostr.ch/login.html'
+const webappUrl = 'https://ostrich.so/login.html'
 export default function Popup(props) {
   const [configurationFields, setConfigurationFields] = useState(null)
   const [jwt, setJwt] = useState(null)

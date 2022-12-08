@@ -4100,7 +4100,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var backendUrl = 'https://q0sku06vtg.execute-api.us-east-2.amazonaws.com/v1';
-var webappUrl = 'https://ostr.ch/login.html';
+var webappUrl = 'https://ostrich.so/login.html';
 function Popup(props) {
   var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
       _useState2 = _slicedToArray(_useState, 2),

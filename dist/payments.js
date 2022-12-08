@@ -2572,20 +2572,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
 
 function Payments(props) {
-  var user = props.user,
-      toHome = props.toHome;
+  var user = props.user;
 
   if (!user.billing_id) {
     return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("stripe-pricing-table", {
-      "pricing-table-id": "prctbl_1LsMgdIDd9tdb2o1PjxLTPTI",
-      "publishable-key": "pk_test_51LphqXIDd9tdb2o1WL2DLd67yiEEvXhzsF07hhqaSt54zAPmzJvtX5HiwC8yialHn58n8i8q2YsIMTZESKGlRMNB00H6i2uXpi"
+      "pricing-table-id": "prctbl_1MCR6NIDd9tdb2o18q1QOupw",
+      "publishable-key": "pk_live_51LphqXIDd9tdb2o1bC0M6mYJVzh3dh4MIbiJQXJkvCKJglH39a4bZLzeIMFXoS5p0IYBLqaT75fnkkxls5Ly8d1W006sYTCuzP"
     }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-      href: "/email.html"
+      href: "/"
     }, "Back to Markets!"));
   } else {
     return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h3", null, "You're subscribed to ", user.billing_id), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-      href: "https://billing.stripe.com/p/login/test_eVa17v7v95kM0Vi8ww"
-    }, "Manage Your Subscriptions"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null));
+      href: "https://billing.stripe.com/p/login/bIY8wx24h5mC1aM144"
+    }, "Manage Your Subscriptions"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+      href: "/"
+    }, "Back to Markets!"));
   }
 }
 
@@ -2928,6 +2929,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var loginWithGoogleUrl = 'https://ostrich.auth.us-east-2.amazoncognito.com/login?client_id=70apbavl1fsobed4jt7l7ml18h&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://ostr.ch';
 var backendUrl = 'https://q0sku06vtg.execute-api.us-east-2.amazonaws.com/v1';
+var logout = '/logout.html';
 
 var toLogin = function toLogin() {
   return window.location.replace('/');
@@ -2949,11 +2951,18 @@ function App(props) {
     setJwt(null);
   };
 
+  var toHome = function toHome() {
+    return window.location.href = '/';
+  };
+
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Header__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    children: (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-      className: "ostrich-button personal-margin-right",
-      onClick: logout
-    }, "Logout")
+    children: (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+      href: logout,
+      className: "link-button"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
+      className: "ostrich-button personal-margin-right"
+    }, "Logout")),
+    toHome: toHome
   }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "personal-space-top content"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", {

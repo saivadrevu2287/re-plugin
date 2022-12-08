@@ -9,8 +9,6 @@ export default function Profile(props) {
       </Fragment>
     }
 
-    console.log(user)
-
     const price = !user.billing_id 
       ? 0 
       : user.billing_id == 'Tier 1'
@@ -34,10 +32,14 @@ export default function Profile(props) {
     : user.billing_id == 'Tier 3'
     ? '3 locations, 20 listings  per location per day max'
     : ''
-    
+
+    const paymentLink = !user.billing_id 
+      ? 'payments.html'
+      : "https://billing.stripe.com/p/login/bIY8wx24h5mC1aM144"
+      
     const billingTier = user.billing_id ? user.billing_id : 'Free Tier'
     return <Fragment>
-        <header class="section_header1 bg-purple">
+     <header class="section_header1 bg-purple">
       <div class="padding-global">
         <div class="container-large">
           <div class="padding-section-small">
@@ -123,7 +125,7 @@ export default function Profile(props) {
                     Get unlimited searches on our plugin and much more...
                   </div>
                 </div>
-                <a href="/payments.html" class="button_upgrade w-button">Upgrade Tier</a>
+                <a href={paymentLink} class="button_upgrade w-button">Upgrade Tier</a>
               </div>
             </div>
           </div>

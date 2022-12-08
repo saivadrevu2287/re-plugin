@@ -1,26 +1,26 @@
 import { h, Fragment } from 'preact'
 
 export default function Payments(props) {
-  const { user, toHome } = props
+  const { user } = props
 
   if (!user.billing_id) {
     return (
       <Fragment>
-        <stripe-pricing-table
-          pricing-table-id="prctbl_1LsMgdIDd9tdb2o1PjxLTPTI"
-          publishable-key="pk_test_51LphqXIDd9tdb2o1WL2DLd67yiEEvXhzsF07hhqaSt54zAPmzJvtX5HiwC8yialHn58n8i8q2YsIMTZESKGlRMNB00H6i2uXpi"
-        ></stripe-pricing-table>
-        <a href="/email.html">Back to Markets!</a>
+        <stripe-pricing-table pricing-table-id="prctbl_1MCR6NIDd9tdb2o18q1QOupw"
+publishable-key="pk_live_51LphqXIDd9tdb2o1bC0M6mYJVzh3dh4MIbiJQXJkvCKJglH39a4bZLzeIMFXoS5p0IYBLqaT75fnkkxls5Ly8d1W006sYTCuzP">
+</stripe-pricing-table>
+        <a href="/">Back to Markets!</a>
       </Fragment>
     )
   } else {
     return (
       <Fragment>
         <h3>You're subscribed to {user.billing_id}</h3>
-        <a href="https://billing.stripe.com/p/login/test_eVa17v7v95kM0Vi8ww">
+        <a href="https://billing.stripe.com/p/login/bIY8wx24h5mC1aM144">
           Manage Your Subscriptions
         </a>
         <br />
+        <a href="/">Back to Markets!</a>
       </Fragment>
     )
   }

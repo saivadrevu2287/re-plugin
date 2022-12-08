@@ -61,6 +61,11 @@ export default function Signup(props) {
             value={confirmPassword}
             onInput={eliminateEvent(setConfirmPassword)}
           />
+          <span class="text-size-small w-form-label" for="checkbox">By registering, you agree to the <a
+                        href="https://www.notion.so/ostrch/Terms-of-Use-035e32f803d542459ad3429e6b42eeee"
+                        target="_blank" class="form_text-bold">Terms</a> and <a
+                        href="https://www.notion.so/ostrch/Privacy-Policy-acd58fee6ce447d885f0551edf014158"
+                        target="_blank" class="form_text-bold">Privacy Policy</a></span>
           <button
             className="four-fifths ostrich-button"
             type="submit"

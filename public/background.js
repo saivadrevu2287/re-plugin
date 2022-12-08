@@ -42,7 +42,7 @@ chrome.webNavigation.onCompleted.addListener(
     url: [
       {
         // Runs on example.com, example.net, but also example.foo.com
-        hostContains: 'ostr.ch',
+        hostContains: 'ostrich.so',
       },
     ],
   }
@@ -52,7 +52,7 @@ const autoSignin = (details) => () => {
   chrome.storage.sync.get('configurationFields', (data) => {
     console.log('Watching for the autosignin')
     let url = details.url
-    if (url.match(/ostr.ch/)) {
+    if (url.match(/ostrich.so/)) {
       console.log('Url matches!')
 
       if (url.split('#').length > 1) {

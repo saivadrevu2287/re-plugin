@@ -1,16 +1,26 @@
 import { h } from 'preact'
-import { useEffect } from 'preact/hooks'
 
 export default function Logout(props) {
-  const { setJwt } = props
-  useEffect(() => {
-    setJwt(null)
-  }, [])
   return (
-    <div>
-      <h2>You are logged out!</h2>
-      <a href="/login">Log Back In</a>
-      <a href="/">Return Home</a>
+    <header className="section_header1 bg-purple">
+    <div className="padding-global">
+      <div className="container-large">
+        <div className="padding-section-small">
+          <div className="w-layout-grid header1_component-copy">
+            <div
+              id="w-node-ceee6e35-be19-e9cc-f01f-a590743015ff-34c18b3d"
+              className="header1_content-copy"
+            >
+              <h1>You are successfully Logged out!</h1>
+              <div>
+              <div>
+              <a href="/" className="button_upgrade w-button">Return Home</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </header>
   )
 }

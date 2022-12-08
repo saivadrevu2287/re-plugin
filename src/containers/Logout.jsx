@@ -3,6 +3,7 @@ import { useEffect } from 'preact/hooks'
 import entry from '../build/entry'
 
 import Header from '../components/Header'
+import LogoutComp from '../components/Logout'
 
 function Logout(props) {
   useEffect(() => {
@@ -12,10 +13,7 @@ function Logout(props) {
   return (
     <Fragment>
       <Header />
-      <div className='padding'>
-        <h2>You are logged out!</h2>
-        <a href='/'>Click here to go back home.</a>
-      </div>
+      <LogoutComp />
     </Fragment>
   )
 }

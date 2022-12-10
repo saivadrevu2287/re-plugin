@@ -10,10 +10,12 @@ const allowedMarkets = (billing_id) =>
   billing_id == 'Tier 1'
     ? 1
     : billing_id == 'Tier 2'
-    ? 3
+    ? 1
     : billing_id == 'Tier 3'
-    ? 5
+    ? 3
     : 0
+
+const scheduleNewMarketKey = 'new'
 
 export default function EmailerDashboard(props) {
   const { backendUrl, user, toPayments } = props
@@ -21,7 +23,7 @@ export default function EmailerDashboard(props) {
   const [showModal, setShowModal] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const [scheduledEmails, setScheduledEmails] = useState([])
-  const [selectedMarket, setSelectedMarket] = useState(-1)
+  const [selectedMarket, setSelectedMarket] = useState(scheduleNewMarketKey)
   const [loadingState, setLoadingState] = useState(false)
   const [successfulSubmition, setSuccessfulSubmition] = useState(0)
   const [maxSize, setMaxSize] = useState(0)
@@ -29,19 +31,20 @@ export default function EmailerDashboard(props) {
   useEffect(() => {
     if (user) {
       const newMaxSize = allowedMarkets(user.billing_id)
-
       setMaxSize(newMaxSize)
+
       axios
         .get(`${backendUrl}/api/emailers`)
         .then((r) => {
           setScheduledEmails(r.data)
           setLoadingState(false)
-          if (selectedMarket >= r.data.length) {
-            setSelectedMarket(-1)
+
+          if (r.data.length > 0 && r.data.length == newMaxSize) {
+            setSelectedMarket(r.data[0].notes)
           }
 
-          if (r.data.length >= maxSize) {
-            setSelectedMarket(0)
+          if (r.data.length == 0) {
+            setSelectedMarket(scheduleNewMarketKey)
           }
         })
         .catch((e) => {
@@ -57,15 +60,11 @@ export default function EmailerDashboard(props) {
     setLoadingState(true)
   }, [user, successfulSubmition])
 
-  // if (loadingState) {
-  //   return <h4>Loading Data...</h4>
-  // }
-
   const scheduledEmailList = scheduledEmails.map((scheduledEmail, i) => {
     return (
       <div
         onClick={() => {
-          setSelectedMarket(i)
+          setSelectedMarket(scheduledEmail.notes)
           setShowModal(true)
         }}
         key={i}
@@ -88,7 +87,7 @@ export default function EmailerDashboard(props) {
   })
 
   const emailerDetails =
-    selectedMarket == -1 ? (
+    selectedMarket == scheduleNewMarketKey ? (
       <div className="padded">
         <h5>Schedule a New Email</h5>
         <p>
@@ -101,13 +100,15 @@ export default function EmailerDashboard(props) {
       <EmailerDetails
         backendUrl={backendUrl}
         setSuccessfulSubmition={setSuccessfulSubmition}
-        scheduledEmail={scheduledEmails[selectedMarket]}
+        scheduledEmail={scheduledEmails.find(
+          (emailer) => emailer.notes == selectedMarket
+        )}
         isAllowedToDuplicate={scheduledEmails.length < maxSize}
       />
     )
 
   const emailerForm =
-    selectedMarket == -1 ? (
+    selectedMarket == scheduleNewMarketKey ? (
       <ScheduleEmailForm
         backendUrl={backendUrl}
         selectedMarket={selectedMarket}
@@ -118,19 +119,28 @@ export default function EmailerDashboard(props) {
         backendUrl={backendUrl}
         selectedMarket={selectedMarket}
         setSuccessfulSubmition={setSuccessfulSubmition}
-        scheduledEmail={scheduledEmails[selectedMarket]}
+        scheduledEmail={scheduledEmails.find(
+          (emailer) => emailer.notes == selectedMarket
+        )}
       />
     )
 
   const tierMessage =
     user && user.billing_id ? (
-      <h6>
-        You are subscribed to {user.billing_id}: On this plan {maxSize} markets
-        are allowed. View plans <a href="payments.html">here</a>.
-      </h6>
+      <Fragment>
+        <p>
+          You are subscribed to {user.billing_id}: On this plan{' '}
+          {maxSize == 1 ? '1 market is' : `${maxSize} markets are`} allowed.{' '}
+          <a href="/payments.html">Change plan here</a>.
+        </p>
+        <h6>
+          A market can mean anything like a zipcode, county, city, borough etc.
+          For simplicity we consider a county as a market{' '}
+        </h6>
+      </Fragment>
     ) : (
       <h6>
-        You are not subscribed! View plans <a href="payments.html">here</a>.
+        You are not subscribed! <a href="/payments.html">Change plan here</a>.
       </h6>
     )
 
@@ -154,12 +164,12 @@ export default function EmailerDashboard(props) {
           {scheduledEmails.length < maxSize && !loadingState && (
             <div
               onClick={() => {
-                setSelectedMarket(-1)
+                setSelectedMarket(scheduleNewMarketKey)
                 setShowModal(true)
               }}
               key="create"
               className={`padded-double border-right border-bottom border-top ${
-                selectedMarket == -1 ? 'gray' : 'hover-item'
+                selectedMarket == scheduleNewMarketKey ? 'gray' : 'hover-item'
               }`}
             >
               <h5>+</h5>
@@ -175,12 +185,12 @@ export default function EmailerDashboard(props) {
             {scheduledEmails.length < maxSize && !loadingState && (
               <div
                 onClick={() => {
-                  setSelectedMarket(-1)
+                  setSelectedMarket(scheduleNewMarketKey)
                   setShowModal(true)
                 }}
                 key="create"
                 className={`padded-double border-right border-bottom ${
-                  selectedMarket == -1 ? 'gray' : 'hover-item'
+                  selectedMarket == scheduleNewMarketKey ? 'gray' : 'hover-item'
                 }`}
               >
                 <h5>+</h5>

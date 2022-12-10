@@ -3209,11 +3209,13 @@ function ListingData(props) {
   var content;
 
   if (!user) {
-    content = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Need to re-sync. Please log out and back in again.");
+    content = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Need to re-sync. Please log in to", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+      href: "https://ostrich.so"
+    }, "Ostrich"), ".");
   } else if (user.billing_id) {
     content = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, !errorMessage && details, errorMessage, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, user.billing_id, " Subscribed.", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
       target: "_blank",
-      href: "https://ostr.ch/payments.html#".concat(jwtHash)
+      href: "https://ostrich.so/payments.html"
     }, "Change")));
   } else if (remainingUses >= 0) {
     content = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, remainingUses, " of ", freeUses, " free uses remaining.", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
@@ -3221,7 +3223,7 @@ function ListingData(props) {
       href: webappUrl
     }, "Upgrade")), !errorMessage && details, errorMessage);
   } else {
-    content = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are out of free uses. The free plan only allows for ", freeUses, " free uses a month"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    content = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are out of free uses. The free plan only allows for ", freeUses, ' ', "free uses a month"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
       target: "_blank",
       href: webappUrl
     }, "Upgrade"));
@@ -3341,17 +3343,17 @@ function Login(props) {
   }, "Login"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     "class": "error"
   }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "personal-margin-bottom"
+    className: "personal-margin-bottom personal-margin-top"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
     onClick: toForgotPassword,
     className: "blue-text"
   }, "Forgot Password")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "plain-button four-fifths personal-margin-bottom",
     onClick: proceedWithGoogle
-  }, "Continue With Google"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "plain-button four-fifths",
+  }, "Continue With Google"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    className: "four-fifths",
     onClick: toSignup
-  }, "Sign Up"))));
+  }, "Go to Signup")))));
 }
 
 /***/ }),
@@ -3475,7 +3477,7 @@ function Signup(props) {
     className: "align-center super-margin-top dashboard-container third break-to-full padded"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", {
     className: "personal-margin-bottom personal-margin-top"
-  }, "Sign Up"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }, "Signup"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "thin-container ostrich-container personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     name: "username",
@@ -3509,18 +3511,18 @@ function Signup(props) {
     target: "_blank",
     "class": "form_text-bold"
   }, "Privacy Policy")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "four-fifths ostrich-button",
+    className: "four-fifths ostrich-button personal-margin-top",
     type: "submit",
     onClick: signUp
-  }, "Sign Up"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+  }, "Signup"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     "class": "error"
   }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "plain-button four-fifths personal-margin-bottom",
+    className: "plain-button four-fifths personal-margin-bottom personal-margin-top",
     onClick: proceedWithGoogle
-  }, "Continue With Google"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "plain-button four-fifths",
+  }, "Continue With Google"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    className: "four-fifths",
     onClick: toLogin
-  }, "Login"))));
+  }, "Go to Login")))));
 }
 
 /***/ }),

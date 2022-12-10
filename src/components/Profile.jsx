@@ -21,7 +21,6 @@ export default function Profile(props) {
     ? 19.99
     : 0
 
-
   const emailerInfo = !user.billing_id
     ? 'No Access on Free Tier'
     : user.billing_id == 'Tier 1'
@@ -32,30 +31,43 @@ export default function Profile(props) {
     ? '3 locations, 20 listings  per location per day max'
     : ''
 
-  const pluginInfo = !user.billing_id
-  ? '20 free uses'
-  : 'Unlimited Searches'
+  const pluginInfo = !user.billing_id ? '20 free uses' : 'Unlimited Searches'
 
-  const upgradeOrChange = !user.billing_id
-  ? 'Upgrade'
-  : 'Change'
+  const upgradeOrChange = !user.billing_id ? 'Upgrade' : 'Change'
 
-  const emailerButton = !user.billing_id
-  ? ''
-  : <a href='/dashboard' className="button_upgrade w-button">
-  Add a Market
-</a>
-    
-  const detailsMessage = !user.billing_id ?
-  <Fragment><p>You are currently subscribed to Tier 0. Meaning you have 20 free uses per month of the Chrome plugin. Please upgrade below for unlimited plugin use and access to the emailer feature.</p>
-  <p>Make sure you are using the same email on the upgrade screen that you signed up with.</p></Fragment>
-  : <Fragment><p>In this Tier, you get unlimited usage of the Chrome Extension and also the emailer feature. Click here to add the location.</p></Fragment>
+  const emailerButton = !user.billing_id ? (
+    ''
+  ) : (
+    <a href="/dashboard" className="button_upgrade w-button">
+      Add a Market
+    </a>
+  )
 
-  const paymentLink = !user.billing_id
-    ? 'payments.html'
-    : 'https://billing.stripe.com/p/login/bIY8wx24h5mC1aM144'
+  const detailsMessage = !user.billing_id ? (
+    <Fragment>
+      <p>
+        You are currently subscribed to Tier 0. Meaning you have 20 free uses
+        per month of the Chrome plugin. Please upgrade below for unlimited
+        plugin use and access to the emailer feature.
+      </p>
+      <p>
+        Make sure you are using the same email on the upgrade screen that you
+        signed up with.
+      </p>
+    </Fragment>
+  ) : (
+    <Fragment>
+      <p>
+        In this Tier, you get unlimited usage of the Chrome Extension and also
+        the emailer feature. Add a market below.
+      </p>
+    </Fragment>
+  )
+
+  const paymentLink = '/payments.html'
 
   const billingTier = user.billing_id ? user.billing_id : 'Free Tier'
+
   return (
     <Fragment>
       <header className="section_header1 bg-purple">
@@ -142,14 +154,12 @@ export default function Profile(props) {
                   <div className="current_tier-header">
                     <h2>{upgradeOrChange} Tier to Get More</h2>
                     <div className="text-size-medium">
-                    <p>You are logged in as {user.email}</p>
-                    <br />
-                    {detailsMessage}
+                      <p>You are logged in as {user.email}</p>
+                      <br />
+                      {detailsMessage}
                     </div>
                   </div>
-                  <a href={paymentLink} >
-                    {upgradeOrChange} Plan
-                  </a>
+                  <a href={paymentLink}>{upgradeOrChange} Plan</a>
                   {emailerButton}
                 </div>
               </div>

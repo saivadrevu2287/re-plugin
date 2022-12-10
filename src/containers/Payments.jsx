@@ -16,10 +16,6 @@ const toLogin = () => window.location.replace('/')
 function App(props) {
   const [errorMessage, setErrorMessage] = useState()
   const { user, jwt, setJwt } = useLogin(backendUrl, setErrorMessage, toLogin)
-  const logout = () => {
-    document.cookie = `token=`
-    setJwt(null)
-  }
 
   const toHome = () => (window.location.href = '/')
 

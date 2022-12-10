@@ -36,7 +36,7 @@ export default function Signup(props) {
   return (
     <div className="flex around">
       <div className="align-center super-margin-top dashboard-container third break-to-full padded">
-        <h4 className="personal-margin-bottom personal-margin-top">Sign Up</h4>
+        <h4 className="personal-margin-bottom personal-margin-top">Signup</h4>
         <div className="thin-container ostrich-container personal-space-bottom">
           <input
             name="username"
@@ -80,22 +80,24 @@ export default function Signup(props) {
             </a>
           </span>
           <button
-            className="four-fifths ostrich-button"
+            className="four-fifths ostrich-button personal-margin-top"
             type="submit"
             onClick={signUp}
           >
-            Sign Up
+            Signup
           </button>
           <p class="error">{errorMessage}</p>
           <button
-            className="plain-button four-fifths personal-margin-bottom"
+            className="plain-button four-fifths personal-margin-bottom personal-margin-top"
             onClick={proceedWithGoogle}
           >
             Continue With Google
           </button>
-          <button className="plain-button four-fifths" onClick={toLogin}>
-            Login
-          </button>
+          <div>
+            <a className="four-fifths" onClick={toLogin}>
+              Go to Login
+            </a>
+          </div>
         </div>
       </div>
     </div>

@@ -53,64 +53,65 @@ export default function ScheduleEmailForm(props) {
       return
     }
 
-    if (!insurance) {
+    if (!insurance && 0 != insurance) {
       setErrorMessage('Missing insurance!')
       return
     }
 
-    if ((null == vacancy || '' == vacancy) && 0 != vacancy) {
+    if (!vacancy && 0 != vacancy) {
       setErrorMessage('Missing vacancy!')
       return
     }
 
-    if (
-      (null == propertyManagement || '' == propertyManagement) &&
-      0 != propertyManagement
-    ) {
+    if (!propertyManagement && 0 != propertyManagement) {
       setErrorMessage('Missing propertyManagement!')
       return
     }
 
-    if ((null == repairs || '' == repairs) && 0 != repairs) {
+    if (!repairs && 0 != repairs) {
       setErrorMessage('Missing repairs!')
       return
     }
 
-    if ((null == capex || '' == capex) && 0 != capex) {
+    if (!capex && 0 != capex) {
       setErrorMessage('Missing capex!')
       return
     }
 
-    if ((null == utilities || '' == utilities) && 0 != utilities) {
-      console.log(utilities)
+    if (!utilities && 0 != utilities) {
       setErrorMessage('Missing utilities!')
       return
     }
 
-    if ((null == downPayment || '' == downPayment) && 0 != downPayment) {
-      setErrorMessage('Missing downPayment!')
+    if (!parseFloat(downPayment)) {
+      setErrorMessage(
+        'Down Payment cannot be 0. Use a small number instead, like 0.0001'
+      )
       return
     }
 
-    if ((null == closingCosts || '' == closingCosts) && 0 != closingCosts) {
-      setErrorMessage('Missing closingCosts!')
+    if (!parseFloat(closingCosts)) {
+      setErrorMessage(
+        'Closing Cost cannot be 0. Use a small number instead, like 0.0001'
+      )
       return
     }
 
-    if ((null == loanInterest || '' == loanInterest) && 0 != loanInterest) {
-      setErrorMessage('Missing loanInterest!')
+    if (!parseFloat(loanInterest)) {
+      setErrorMessage(
+        'Loan Interest cannot be 0. If you are buying all cash, enter .001'
+      )
       return
     }
 
-    if ((null == loanMonths || '' == loanMonths) && 0 != loanMonths) {
-      setErrorMessage('Missing loanMonths!')
+    if (!parseFloat(loanMonths)) {
+      setErrorMessage(
+        'Loan Months cannot be 0. Use a small number instead, like 0.0001'
+      )
       return
     }
 
-    if (
-      (null == additionalMonthlyExpenses || '' == additionalMonthlyExpenses) &&
-      0 != additionalMonthlyExpenses
-    ) {
+    if (!additionalMonthlyExpenses && 0 != additionalMonthlyExpenses) {
       setErrorMessage('Missing additionalMonthlyExpenses!')
       return
     }
@@ -118,22 +119,22 @@ export default function ScheduleEmailForm(props) {
     try {
       axios
         .post(`${backendUrl}/api/emailers`, {
-          insurance: parseInt(insurance),
-          vacancy: parseInt(vacancy),
-          property_management: parseInt(propertyManagement),
-          capex: parseInt(capex),
-          repairs: parseInt(repairs),
-          utilities: parseInt(utilities),
-          down_payment: parseInt(downPayment),
-          closing_cost: parseInt(closingCosts),
-          loan_interest: parseInt(loanInterest),
-          loan_months: parseInt(loanMonths),
-          additional_monthly_expenses: parseInt(additionalMonthlyExpenses),
-          min_price: parseInt(minPrice),
-          max_price: parseInt(maxPrice),
+          insurance: parseFloat(insurance),
+          vacancy: parseFloat(vacancy),
+          property_management: parseFloat(propertyManagement),
+          capex: parseFloat(capex),
+          repairs: parseFloat(repairs),
+          utilities: parseFloat(utilities),
+          down_payment: parseFloat(downPayment),
+          closing_cost: parseFloat(closingCosts),
+          loan_interest: parseFloat(loanInterest),
+          loan_months: parseFloat(loanMonths),
+          additional_monthly_expenses: parseFloat(additionalMonthlyExpenses),
+          min_price: parseFloat(minPrice),
+          max_price: parseFloat(maxPrice),
           search_param: searchParams,
-          no_bedrooms: parseInt(numBedrooms),
-          no_bathrooms: parseInt(numBathrooms),
+          no_bedrooms: parseFloat(numBedrooms),
+          no_bathrooms: parseFloat(numBathrooms),
           notes: notes,
           frequency: 'Daily',
         })
@@ -157,136 +158,206 @@ export default function ScheduleEmailForm(props) {
 
   const cocCalculationParams = (
     <Fragment>
-      <div className="flex between centered-items personal-space-bottom">
+      <div className="flex wrap between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="insurance-input">
-          Insurance ($):
+          Insurance{' '}
+          <span title="Enter the per month number you will pay for insurance. Usually this is $60-$80 per month for a single family.">
+            (i)
+          </span>
+          :
         </label>
+
         <input
           type="number"
           class="half"
           value={insurance}
           onInput={eliminateEvent(setInsurance)}
         />
+        <b>$/mo</b>
       </div>
-      <div className="flex between centered-items personal-space-bottom">
+
+      <div className="flex wrap between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="vacancy-input">
-          Vacancy (%):
+          Vacancy{' '}
+          <span title="This is a monthly expense. Enter as a percent of monthly gross income. Usually this is 6-8%">
+            (i)
+          </span>
+          :
         </label>
+
         <input
           type="number"
           class="half"
           value={vacancy}
           onInput={eliminateEvent(setVacancy)}
         />
+        <b>%/mo</b>
       </div>
-      <div className="flex between centered-items personal-space-bottom">
+
+      <div className="flex wrap between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="property-input">
-          Property Management (%):
+          Property Management{' '}
+          <span title="This is a monthly expense. Enter as a percent of monthly gross income. Usually this is 8-12%">
+            (i)
+          </span>
+          :
         </label>
+
         <input
           type="number"
           class="half"
           value={propertyManagement}
           onInput={eliminateEvent(setPropertyManagement)}
         />
+        <b>%/mo</b>
       </div>
-      <div className="flex between centered-items personal-space-bottom">
+
+      <div className="flex wrap between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="capex-input">
-          Capex (%):
+          Capex{' '}
+          <span title="This is a monthly expense. Enter as a percent of monthly gross income. Usually this is 5-15% depending on the condition of the property">
+            (i)
+          </span>
+          :
         </label>
+
         <input
           type="number"
           class="half"
           value={capex}
           onInput={eliminateEvent(setCapex)}
         />
+        <b>%/mo</b>
       </div>
-      <div className="flex between centered-items personal-space-bottom">
+
+      <div className="flex wrap between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="repairs-input">
-          Repairs (%):
+          Repairs{' '}
+          <span title="This is a monthly expense. Enter as a percent of monthly gross income. Usually this is 5-10% depending on the condition of the property">
+            (i)
+          </span>
+          :
         </label>
+
         <input
           type="number"
           class="half"
           value={repairs}
           onInput={eliminateEvent(setRepairs)}
         />
+        <b>%/mo</b>
       </div>
-      <div className="flex between centered-items personal-space-bottom">
+
+      <div className="flex wrap between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="utilities-input">
-          Utilities ($):
+          Utilities{' '}
+          <span title="This is a monthly expense. For a single-family rental, the tenants pay for utilities usually, so put 0. Double check with your broker once">
+            (i)
+          </span>
+          :
         </label>
+
         <input
           type="number"
           class="half"
           value={utilities}
           onInput={eliminateEvent(setUtilities)}
         />
+        <b>$/mo</b>
       </div>
-      <div className="flex between centered-items personal-space-bottom">
+
+      <div className="flex wrap between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="down-payment-input">
-          Down Payment (%):
+          Down Payment{' '}
+          <span title="This is the downpayment % for the loan as required by your bank. Usually this is 20% but check with your lender once">
+            (i)
+          </span>
+          :
         </label>
+
         <input
           type="number"
           class="half"
           value={downPayment}
           onInput={eliminateEvent(setDownPayment)}
         />
+        <b>%</b>
       </div>
-      <div className="flex between centered-items personal-space-bottom">
+
+      <div className="flex wrap between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="closing-cost-input">
-          Closing Cost (%):
+          Closing Cost{' '}
+          <span title="This is the one time cost to close the loan on the property. It includes any bank fees, lawyer fees, appraisal fees etc. Usually it is 3-5% and calculated on the offer price">
+            (i)
+          </span>
+          :
         </label>
+
         <input
           type="number"
           class="half"
           value={closingCosts}
           onInput={eliminateEvent(setClosingCosts)}
         />
+        <b>%</b>
       </div>
-      <div className="flex between centered-items personal-space-bottom">
+
+      <div className="flex wrap between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="loan-interest-input">
-          Loan Interest (%):
+          Loan Interest{' '}
+          <span title="Enter the interest rate charged by your bank">(i)</span>:
         </label>
+
         <input
           type="number"
           class="half"
           value={loanInterest}
           onInput={eliminateEvent(setLoanInterest)}
         />
+        <b>%</b>
       </div>
-      <div className="flex between centered-items personal-space-bottom">
+
+      <div className="flex wrap between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="loan-months-input">
-          Loan Months:
+          Loan Months{' '}
+          <span title="Enter the number of months the loan is for. For example - if the loan is for 30 years, enter 360 months">
+            (i)
+          </span>
+          :
         </label>
+
         <input
           type="number"
           class="half"
           value={loanMonths}
           onInput={eliminateEvent(setLoanMonths)}
         />
+        <b>mos</b>
       </div>
-      <div className="flex between centered-items personal-space-bottom">
+
+      <div className="flex wrap between centered-items personal-space-bottom">
         <label
           className="third align-left"
           htmlFor="additional-monthly-expenses-input"
         >
-          Additional Monthly Expenses ($):
+          Additional Monthly Expenses{' '}
+          <span title="Enter any additional expenses per month">(i)</span>:
         </label>
+
         <input
           type="number"
           class="half"
           value={additionalMonthlyExpenses}
           onInput={eliminateEvent(setAdditionalMonthlyExpenses)}
         />
+        <b>$/mo</b>
       </div>
     </Fragment>
   )
 
   return (
     <div className="padded">
-      <div className="flex between centered-items personal-space-bottom">
+      <div className="flex wrap between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="search-params-input">
           Title:
         </label>
@@ -297,9 +368,9 @@ export default function ScheduleEmailForm(props) {
           placeholder="e.g. High Cash Market"
         />
       </div>
-      <div className="flex between centered-items personal-space-bottom">
+      <div className="flex wrap between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="search-params-input">
-          Location:
+          County:
         </label>
         <input
           value={searchParams}
@@ -308,7 +379,7 @@ export default function ScheduleEmailForm(props) {
           onInput={eliminateEvent(setSearchParams)}
         />
       </div>
-      <div className="flex between centered-items personal-space-bottom">
+      <div className="flex wrap between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="min-price-input">
           Minimum Price:
         </label>
@@ -320,7 +391,7 @@ export default function ScheduleEmailForm(props) {
           onInput={eliminateEvent(setMinPrice)}
         />
       </div>
-      <div className="flex between centered-items personal-space-bottom">
+      <div className="flex wrap between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="max-price-input">
           Maximum Price:
         </label>
@@ -332,7 +403,7 @@ export default function ScheduleEmailForm(props) {
           onInput={eliminateEvent(setMaxPrice)}
         />
       </div>
-      <div className="flex between centered-items personal-space-bottom">
+      <div className="flex wrap between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="num-bedrooms-input">
           Num. Bedrooms (minimum):
         </label>
@@ -344,7 +415,7 @@ export default function ScheduleEmailForm(props) {
           onInput={eliminateEvent(setNumBedrooms)}
         />
       </div>
-      <div className="flex between centered-items personal-space-bottom">
+      <div className="flex wrap between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="num-bedrooms-input">
           Num. Bathrooms (minimum):
         </label>

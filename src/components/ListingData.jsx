@@ -225,7 +225,12 @@ export default function ListingData(props) {
   let content
 
   if (!user) {
-    content = <p>Need to re-sync. Please log out and back in again.</p>
+    content = (
+      <p>
+        Need to re-sync. Please log in to{' '}
+        <a href="https://ostrich.so">Ostrich</a>.
+      </p>
+    )
   } else if (user.billing_id) {
     content = (
       <Fragment>
@@ -233,7 +238,7 @@ export default function ListingData(props) {
         {errorMessage}
         <p>
           {user.billing_id} Subscribed.{' '}
-          <a target="_blank" href={`https://ostr.ch/payments.html#${jwtHash}`}>
+          <a target="_blank" href={`https://ostrich.so/payments.html`}>
             Change
           </a>
         </p>
@@ -253,11 +258,17 @@ export default function ListingData(props) {
       </Fragment>
     )
   } else {
-    content = <Fragment>
-      <p>You are out of free uses. The free plan only allows for {freeUses} free uses a month</p><a target="_blank" href={webappUrl}>
-            Upgrade
-          </a>
+    content = (
+      <Fragment>
+        <p>
+          You are out of free uses. The free plan only allows for {freeUses}{' '}
+          free uses a month
+        </p>
+        <a target="_blank" href={webappUrl}>
+          Upgrade
+        </a>
       </Fragment>
+    )
   }
 
   return (

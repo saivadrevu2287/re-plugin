@@ -69,7 +69,7 @@ function App(props) {
       <a href="/signup" className="link-button">
         <button className="ostrich-button personal-margin-right">
           {' '}
-          Sign Up
+          Signup
         </button>
       </a>
     </Fragment>

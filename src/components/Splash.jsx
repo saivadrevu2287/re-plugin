@@ -19,11 +19,8 @@ export default function Splash(props) {
                     <br />
                   </p>
                   <div class="button-group">
-                    <a href="#" class="button w-button">
+                    <a href="/signup" class="button w-button">
                       Try Ostrich for Free
-                    </a>
-                    <a href="#" class="button secondary w-button">
-                      How it works
                     </a>
                   </div>
                 </div>
@@ -110,7 +107,10 @@ export default function Splash(props) {
                       </div>
                     </div>
                   </div>
-                  <a href="#" class="button secondary w-button">
+                  <a
+                    href="https://chrome.google.com/webstore/detail/ostrich/aicgkflmidjkbcenllnnlbnfnmicpmgo"
+                    class="button secondary w-button"
+                  >
                     Get Plugin
                   </a>
                 </div>
@@ -186,7 +186,7 @@ export default function Splash(props) {
                     </p>
                   </div>
                 </div>
-                <a href="#" class="button w-button">
+                <a href="/signup" class="button w-button">
                   Buy Emailer
                 </a>
               </div>

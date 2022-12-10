@@ -62,7 +62,7 @@ export default function Login(props) {
             Login
           </button>
           <p class="error">{errorMessage}</p>
-          <div className="personal-margin-bottom">
+          <div className="personal-margin-bottom personal-margin-top">
             <span onClick={toForgotPassword} className="blue-text">
               Forgot Password
             </span>
@@ -73,9 +73,11 @@ export default function Login(props) {
           >
             Continue With Google
           </button>
-          <button className="plain-button four-fifths" onClick={toSignup}>
-            Sign Up
-          </button>
+          <div>
+            <a className="four-fifths" onClick={toSignup}>
+              Go to Signup
+            </a>
+          </div>
         </div>
       </div>
     </div>

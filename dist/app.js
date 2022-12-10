@@ -2878,87 +2878,87 @@ function EditEmailForm(props) {
       successMessage = _useState4[0],
       setSuccessMessage = _useState4[1];
 
-  var _useState5 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.min_price : null),
+  var _useState5 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.min_price : '0'),
       _useState6 = _slicedToArray(_useState5, 2),
       minPrice = _useState6[0],
       setMinPrice = _useState6[1];
 
-  var _useState7 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.max_price : null),
+  var _useState7 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.max_price : '0'),
       _useState8 = _slicedToArray(_useState7, 2),
       maxPrice = _useState8[0],
       setMaxPrice = _useState8[1];
 
-  var _useState9 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.search_param : null),
+  var _useState9 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.search_param : '0'),
       _useState10 = _slicedToArray(_useState9, 2),
       searchParams = _useState10[0],
       setSearchParams = _useState10[1];
 
-  var _useState11 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.no_bedrooms : null),
+  var _useState11 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.no_bedrooms : '0'),
       _useState12 = _slicedToArray(_useState11, 2),
       numBedrooms = _useState12[0],
       setNumBedrooms = _useState12[1];
 
-  var _useState13 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.no_bathrooms : null),
+  var _useState13 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.no_bathrooms : '0'),
       _useState14 = _slicedToArray(_useState13, 2),
       numBathrooms = _useState14[0],
       setNumBathrooms = _useState14[1];
 
-  var _useState15 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.notes : null),
+  var _useState15 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.notes : '0'),
       _useState16 = _slicedToArray(_useState15, 2),
       notes = _useState16[0],
       setNotes = _useState16[1];
 
-  var _useState17 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.insurance : null),
+  var _useState17 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.insurance : '0'),
       _useState18 = _slicedToArray(_useState17, 2),
       insurance = _useState18[0],
       setInsurance = _useState18[1];
 
-  var _useState19 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.vacancy : null),
+  var _useState19 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.vacancy : '0'),
       _useState20 = _slicedToArray(_useState19, 2),
       vacancy = _useState20[0],
       setVacancy = _useState20[1];
 
-  var _useState21 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.property_management : null),
+  var _useState21 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.property_management : '0'),
       _useState22 = _slicedToArray(_useState21, 2),
       propertyManagement = _useState22[0],
       setPropertyManagement = _useState22[1];
 
-  var _useState23 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.capex : null),
+  var _useState23 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.capex : '0'),
       _useState24 = _slicedToArray(_useState23, 2),
       capex = _useState24[0],
       setCapex = _useState24[1];
 
-  var _useState25 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.repairs : null),
+  var _useState25 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.repairs : '0'),
       _useState26 = _slicedToArray(_useState25, 2),
       repairs = _useState26[0],
       setRepairs = _useState26[1];
 
-  var _useState27 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.utilities : null),
+  var _useState27 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.utilities : '0'),
       _useState28 = _slicedToArray(_useState27, 2),
       utilities = _useState28[0],
       setUtilities = _useState28[1];
 
-  var _useState29 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.down_payment : null),
+  var _useState29 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.down_payment : '0'),
       _useState30 = _slicedToArray(_useState29, 2),
       downPayment = _useState30[0],
       setDownPayment = _useState30[1];
 
-  var _useState31 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.closing_cost : null),
+  var _useState31 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.closing_cost : '0'),
       _useState32 = _slicedToArray(_useState31, 2),
       closingCosts = _useState32[0],
       setClosingCosts = _useState32[1];
 
-  var _useState33 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.loan_interest : null),
+  var _useState33 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.loan_interest : '0'),
       _useState34 = _slicedToArray(_useState33, 2),
       loanInterest = _useState34[0],
       setLoanInterest = _useState34[1];
 
-  var _useState35 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.loan_months : null),
+  var _useState35 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.loan_months : '0'),
       _useState36 = _slicedToArray(_useState35, 2),
       loanMonths = _useState36[0],
       setLoanMonths = _useState36[1];
 
-  var _useState37 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.additional_monthly_expenses : null),
+  var _useState37 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduledEmail ? scheduledEmail.additional_monthly_expenses : '0'),
       _useState38 = _slicedToArray(_useState37, 2),
       additionalMonthlyExpenses = _useState38[0],
       setAdditionalMonthlyExpenses = _useState38[1];
@@ -2967,23 +2967,23 @@ function EditEmailForm(props) {
     setSuccessMessage('');
   }, [selectedMarket]);
   (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    setMinPrice(scheduledEmail ? scheduledEmail.min_price : null);
-    setMaxPrice(scheduledEmail ? scheduledEmail.max_price : null);
-    setSearchParams(scheduledEmail ? scheduledEmail.search_param : null);
-    setNumBedrooms(scheduledEmail ? scheduledEmail.no_bedrooms : null);
-    setNumBathrooms(scheduledEmail ? scheduledEmail.no_bathrooms : null);
-    setNotes(scheduledEmail ? scheduledEmail.notes : null);
-    setInsurance(scheduledEmail ? scheduledEmail.insurance : null);
-    setVacancy(scheduledEmail ? scheduledEmail.vacancy : null);
-    setPropertyManagement(scheduledEmail ? scheduledEmail.property_management : null);
-    setCapex(scheduledEmail ? scheduledEmail.capex : null);
-    setRepairs(scheduledEmail ? scheduledEmail.repairs : null);
-    setUtilities(scheduledEmail ? scheduledEmail.utilities : null);
-    setDownPayment(scheduledEmail ? scheduledEmail.down_payment : null);
-    setClosingCosts(scheduledEmail ? scheduledEmail.closing_cost : null);
-    setLoanInterest(scheduledEmail ? scheduledEmail.loan_interest : null);
-    setLoanMonths(scheduledEmail ? scheduledEmail.loan_months : null);
-    setAdditionalMonthlyExpenses(scheduledEmail ? scheduledEmail.additional_monthly_expenses : null);
+    setMinPrice(scheduledEmail ? scheduledEmail.min_price : '0');
+    setMaxPrice(scheduledEmail ? scheduledEmail.max_price : '0');
+    setSearchParams(scheduledEmail ? scheduledEmail.search_param : '0');
+    setNumBedrooms(scheduledEmail ? scheduledEmail.no_bedrooms : '0');
+    setNumBathrooms(scheduledEmail ? scheduledEmail.no_bathrooms : '0');
+    setNotes(scheduledEmail ? scheduledEmail.notes : '0');
+    setInsurance(scheduledEmail ? scheduledEmail.insurance : '0');
+    setVacancy(scheduledEmail ? scheduledEmail.vacancy : '0');
+    setPropertyManagement(scheduledEmail ? scheduledEmail.property_management : '0');
+    setCapex(scheduledEmail ? scheduledEmail.capex : '0');
+    setRepairs(scheduledEmail ? scheduledEmail.repairs : '0');
+    setUtilities(scheduledEmail ? scheduledEmail.utilities : '0');
+    setDownPayment(scheduledEmail ? scheduledEmail.down_payment : '0');
+    setClosingCosts(scheduledEmail ? scheduledEmail.closing_cost : '0');
+    setLoanInterest(scheduledEmail ? scheduledEmail.loan_interest : '0');
+    setLoanMonths(scheduledEmail ? scheduledEmail.loan_months : '0');
+    setAdditionalMonthlyExpenses(scheduledEmail ? scheduledEmail.additional_monthly_expenses : '0');
   }, [scheduledEmail]);
 
   if (!scheduledEmail) {
@@ -3010,58 +3010,57 @@ function EditEmailForm(props) {
       return;
     }
 
-    if (!insurance) {
+    if (!insurance && 0 != insurance) {
       setErrorMessage('Missing insurance!');
       return;
     }
 
-    if ((null == vacancy || '' == vacancy) && 0 != vacancy) {
+    if (!vacancy && 0 != vacancy) {
       setErrorMessage('Missing vacancy!');
       return;
     }
 
-    if ((null == propertyManagement || '' == propertyManagement) && 0 != propertyManagement) {
+    if (!propertyManagement && 0 != propertyManagement) {
       setErrorMessage('Missing propertyManagement!');
       return;
     }
 
-    if ((null == repairs || '' == repairs) && 0 != repairs) {
+    if (!repairs && 0 != repairs) {
       setErrorMessage('Missing repairs!');
       return;
     }
 
-    if ((null == capex || '' == capex) && 0 != capex) {
+    if (!capex && 0 != capex) {
       setErrorMessage('Missing capex!');
       return;
     }
 
-    if ((null == utilities || '' == utilities) && 0 != utilities) {
-      console.log(utilities);
+    if (!utilities && 0 != utilities) {
       setErrorMessage('Missing utilities!');
       return;
     }
 
-    if ((null == downPayment || '' == downPayment) && 0 != downPayment) {
-      setErrorMessage('Missing downPayment!');
+    if (!parseFloat(downPayment)) {
+      setErrorMessage('Down Payment cannot be 0. Use a small number instead, like 0.0001');
       return;
     }
 
-    if ((null == closingCosts || '' == closingCosts) && 0 != closingCosts) {
-      setErrorMessage('Missing closingCosts!');
+    if (!parseFloat(closingCosts)) {
+      setErrorMessage('Closing Cost cannot be 0. Use a small number instead, like 0.0001');
       return;
     }
 
-    if ((null == loanInterest || '' == loanInterest) && 0 != loanInterest) {
-      setErrorMessage('Missing loanInterest!');
+    if (!parseFloat(loanInterest)) {
+      setErrorMessage('Loan Interest cannot be 0. If you are buying all cash, enter .0001');
       return;
     }
 
-    if ((null == loanMonths || '' == loanMonths) && 0 != loanMonths) {
-      setErrorMessage('Missing loanMonths!');
+    if (!parseFloat(loanMonths)) {
+      setErrorMessage('Loan Months cannot be 0. Use a small number instead, like 0.0001');
       return;
     }
 
-    if ((null == additionalMonthlyExpenses || '' == additionalMonthlyExpenses) && 0 != additionalMonthlyExpenses) {
+    if (!additionalMonthlyExpenses && 0 != additionalMonthlyExpenses) {
       setErrorMessage('Missing additionalMonthlyExpenses!');
       return;
     }
@@ -3069,22 +3068,22 @@ function EditEmailForm(props) {
     try {
       axios__WEBPACK_IMPORTED_MODULE_2___default().put("".concat(backendUrl, "/api/emailers"), {
         id: scheduledEmail.id,
-        insurance: parseInt(insurance),
-        vacancy: parseInt(vacancy),
-        property_management: parseInt(propertyManagement),
-        capex: parseInt(capex),
-        repairs: parseInt(repairs),
-        utilities: parseInt(utilities),
-        down_payment: parseInt(downPayment),
-        closing_cost: parseInt(closingCosts),
-        loan_interest: parseInt(loanInterest),
-        loan_months: parseInt(loanMonths),
-        additional_monthly_expenses: parseInt(additionalMonthlyExpenses),
-        min_price: parseInt(minPrice),
-        max_price: parseInt(maxPrice),
+        insurance: parseFloat(insurance),
+        vacancy: parseFloat(vacancy),
+        property_management: parseFloat(propertyManagement),
+        capex: parseFloat(capex),
+        repairs: parseFloat(repairs),
+        utilities: parseFloat(utilities),
+        down_payment: parseFloat(downPayment),
+        closing_cost: parseFloat(closingCosts),
+        loan_interest: parseFloat(loanInterest),
+        loan_months: parseFloat(loanMonths),
+        additional_monthly_expenses: parseFloat(additionalMonthlyExpenses),
+        min_price: parseFloat(minPrice),
+        max_price: parseFloat(maxPrice),
         search_param: searchParams,
-        no_bedrooms: parseInt(numBedrooms),
-        no_bathrooms: parseInt(numBathrooms),
+        no_bedrooms: parseFloat(numBedrooms),
+        no_bathrooms: parseFloat(numBathrooms),
         notes: notes,
         frequency: 'Daily'
       }).then(function (r) {
@@ -3107,112 +3106,134 @@ function EditEmailForm(props) {
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "insurance-input"
-  }, "Insurance ($):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Insurance", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "Enter the per month number you will pay for insurance. Usually this is $60-$80 per month for a single family."
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    className: "half",
+    "class": "half",
     value: insurance,
     onInput: eliminateEvent(setInsurance)
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "$/mo")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "vacancy-input"
-  }, "Vacancy (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Vacancy", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "This is a monthly expense. Enter as a percent of monthly gross income. Usually this is 6-8%"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    className: "half",
+    "class": "half",
     value: vacancy,
     onInput: eliminateEvent(setVacancy)
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%/mo")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "property-input"
-  }, "Property Management (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Property Management", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "This is a monthly expense. Enter as a percent of monthly gross income. Usually this is 8-12%"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    className: "half",
+    "class": "half",
     value: propertyManagement,
     onInput: eliminateEvent(setPropertyManagement)
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%/mo")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "capex-input"
-  }, "Capex (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Capex", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "This is a monthly expense. Enter as a percent of monthly gross income. Usually this is 5-15% depending on the condition of the property"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    className: "half",
+    "class": "half",
     value: capex,
     onInput: eliminateEvent(setCapex)
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%/mo")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "repairs-input"
-  }, "Repairs (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Repairs", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "This is a monthly expense. Enter as a percent of monthly gross income. Usually this is 5-10% depending on the condition of the property"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    className: "half",
+    "class": "half",
     value: repairs,
     onInput: eliminateEvent(setRepairs)
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%/mo")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "utilities-input"
-  }, "Utilities ($):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Utilities", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "This is a monthly expense. For a single-family rental, the tenants pay for utilities usually, so put 0. Double check with your broker once"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    className: "half",
+    "class": "half",
     value: utilities,
     onInput: eliminateEvent(setUtilities)
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "$/mo")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "down-payment-input"
-  }, "Down Payment (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Down Payment", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "This is the downpayment % for the loan as required by your bank. Usually this is 20% but check with your lender once"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    className: "half",
+    "class": "half",
     value: downPayment,
     onInput: eliminateEvent(setDownPayment)
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "closing-cost-input"
-  }, "Closing Cost (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Closing Cost", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "This is the one time cost to close the loan on the property. It includes any bank fees, lawyer fees, appraisal fees etc. Usually it is 3-5% and calculated on the offer price"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    className: "half",
+    "class": "half",
     value: closingCosts,
     onInput: eliminateEvent(setClosingCosts)
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "loan-interest-input"
-  }, "Loan Interest (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Loan Interest", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "Enter the interest rate charged by your bank"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    className: "half",
+    "class": "half",
     value: loanInterest,
     onInput: eliminateEvent(setLoanInterest)
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "loan-months-input"
-  }, "Loan Months:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Loan Months", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "Enter the number of months the loan is for. For example - if the loan is for 30 years, enter 360 months"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    className: "half",
+    "class": "half",
     value: loanMonths,
     onInput: eliminateEvent(setLoanMonths)
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "mos")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "additional-monthly-expenses-input"
-  }, "Additional Monthly Expenses ($):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Additional Monthly Expenses", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "Enter any additional expenses per month"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
-    className: "half",
+    "class": "half",
     value: additionalMonthlyExpenses,
     onInput: eliminateEvent(setAdditionalMonthlyExpenses)
-  })));
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "$/mo")));
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "padded"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
@@ -3230,7 +3251,7 @@ function EditEmailForm(props) {
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "search-params-input"
-  }, "Location:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "County:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     value: searchParams,
     className: "half",
     placeholder: "e.g. Essex County, NJ",
@@ -3333,9 +3354,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var allowedMarkets = function allowedMarkets(billing_id) {
-  return billing_id == 'Tier 1' ? 1 : billing_id == 'Tier 2' ? 3 : billing_id == 'Tier 3' ? 5 : 0;
+  return billing_id == 'Tier 1' ? 1 : billing_id == 'Tier 2' ? 1 : billing_id == 'Tier 3' ? 3 : 0;
 };
 
+var scheduleNewMarketKey = 'new';
 function EmailerDashboard(props) {
   var backendUrl = props.backendUrl,
       user = props.user,
@@ -3356,7 +3378,7 @@ function EmailerDashboard(props) {
       scheduledEmails = _useState6[0],
       setScheduledEmails = _useState6[1];
 
-  var _useState7 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(-1),
+  var _useState7 = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(scheduleNewMarketKey),
       _useState8 = _slicedToArray(_useState7, 2),
       selectedMarket = _useState8[0],
       setSelectedMarket = _useState8[1];
@@ -3384,12 +3406,12 @@ function EmailerDashboard(props) {
         setScheduledEmails(r.data);
         setLoadingState(false);
 
-        if (selectedMarket >= r.data.length) {
-          setSelectedMarket(-1);
+        if (r.data.length > 0 && r.data.length == newMaxSize) {
+          setSelectedMarket(r.data[0].notes);
         }
 
-        if (r.data.length >= maxSize) {
-          setSelectedMarket(0);
+        if (r.data.length == 0) {
+          setSelectedMarket(scheduleNewMarketKey);
         }
       })["catch"](function (e) {
         setLoadingState(false);
@@ -3403,29 +3425,28 @@ function EmailerDashboard(props) {
     }
 
     setLoadingState(true);
-  }, [user, successfulSubmition]); // if (loadingState) {
-  //   return <h4>Loading Data...</h4>
-  // }
-
+  }, [user, successfulSubmition]);
   var scheduledEmailList = scheduledEmails.map(function (scheduledEmail, i) {
     return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
       onClick: function onClick() {
-        setSelectedMarket(i);
+        setSelectedMarket(scheduledEmail.notes);
         setShowModal(true);
       },
       key: i,
       className: "padded-double ".concat(i == selectedMarket ? 'gray' : 'hover-item', " border-bottom border-right\n        ").concat(i + 1 > maxSize ? 'error' : '')
     }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, scheduledEmail.notes), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, scheduledEmail.search_param), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "$", (0,_subroutines_math__WEBPACK_IMPORTED_MODULE_6__.nFormatter)(scheduledEmail.min_price), "-$", (0,_subroutines_math__WEBPACK_IMPORTED_MODULE_6__.nFormatter)(scheduledEmail.max_price)), i + 1 > maxSize && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Exceeded Max count per plan; Market Disabled."));
   });
-  var emailerDetails = selectedMarket == -1 ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  var emailerDetails = selectedMarket == scheduleNewMarketKey ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "padded"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "Schedule a New Email"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Once you save your parameters below, you will get an email daily at around 10 am ET with the newest properties and their expected cash flow.")) : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_EmailerDetails__WEBPACK_IMPORTED_MODULE_4__["default"], {
     backendUrl: backendUrl,
     setSuccessfulSubmition: setSuccessfulSubmition,
-    scheduledEmail: scheduledEmails[selectedMarket],
+    scheduledEmail: scheduledEmails.find(function (emailer) {
+      return emailer.notes == selectedMarket;
+    }),
     isAllowedToDuplicate: scheduledEmails.length < maxSize
   });
-  var emailerForm = selectedMarket == -1 ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_ScheduleEmailForm__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  var emailerForm = selectedMarket == scheduleNewMarketKey ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_ScheduleEmailForm__WEBPACK_IMPORTED_MODULE_2__["default"], {
     backendUrl: backendUrl,
     selectedMarket: selectedMarket,
     setSuccessfulSubmition: setSuccessfulSubmition
@@ -3433,13 +3454,15 @@ function EmailerDashboard(props) {
     backendUrl: backendUrl,
     selectedMarket: selectedMarket,
     setSuccessfulSubmition: setSuccessfulSubmition,
-    scheduledEmail: scheduledEmails[selectedMarket]
+    scheduledEmail: scheduledEmails.find(function (emailer) {
+      return emailer.notes == selectedMarket;
+    })
   });
-  var tierMessage = user && user.billing_id ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "You are subscribed to ", user.billing_id, ": On this plan ", maxSize, " markets are allowed. View plans ", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: "payments.html"
-  }, "here"), ".") : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "You are not subscribed! View plans ", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: "payments.html"
-  }, "here"), ".");
+  var tierMessage = user && user.billing_id ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are subscribed to ", user.billing_id, ": On this plan", ' ', maxSize == 1 ? '1 market is' : "".concat(maxSize, " markets are"), " allowed.", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    href: "/payments.html"
+  }, "Change plan here"), "."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "A market can mean anything like a zipcode, county, city, borough etc. For simplicity we consider a county as a market", ' ')) : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h6", null, "You are not subscribed! ", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    href: "/payments.html"
+  }, "Change plan here"), ".");
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", {
     className: "padded"
   }, "Your Targeted Markets"), tierMessage, showModal && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
@@ -3455,11 +3478,11 @@ function EmailerDashboard(props) {
     className: "show-on-small"
   }, scheduledEmails.length < maxSize && !loadingState && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     onClick: function onClick() {
-      setSelectedMarket(-1);
+      setSelectedMarket(scheduleNewMarketKey);
       setShowModal(true);
     },
     key: "create",
-    className: "padded-double border-right border-bottom border-top ".concat(selectedMarket == -1 ? 'gray' : 'hover-item')
+    className: "padded-double border-right border-bottom border-top ".concat(selectedMarket == scheduleNewMarketKey ? 'gray' : 'hover-item')
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "+"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Schedule notifications for a market")), scheduledEmailList), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "hide-on-small"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
@@ -3468,11 +3491,11 @@ function EmailerDashboard(props) {
     className: "fourth"
   }, scheduledEmails.length < maxSize && !loadingState && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     onClick: function onClick() {
-      setSelectedMarket(-1);
+      setSelectedMarket(scheduleNewMarketKey);
       setShowModal(true);
     },
     key: "create",
-    className: "padded-double border-right border-bottom ".concat(selectedMarket == -1 ? 'gray' : 'hover-item')
+    className: "padded-double border-right border-bottom ".concat(selectedMarket == scheduleNewMarketKey ? 'gray' : 'hover-item')
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h5", null, "+"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Schedule notifications for a market")), scheduledEmailList), !loadingState && maxSize != 0 && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "personal-space-top-double full flex around"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
@@ -3956,17 +3979,17 @@ function Login(props) {
   }, "Login"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     "class": "error"
   }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "personal-margin-bottom"
+    className: "personal-margin-bottom personal-margin-top"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
     onClick: toForgotPassword,
     className: "blue-text"
   }, "Forgot Password")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "plain-button four-fifths personal-margin-bottom",
     onClick: proceedWithGoogle
-  }, "Continue With Google"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "plain-button four-fifths",
+  }, "Continue With Google"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    className: "four-fifths",
     onClick: toSignup
-  }, "Sign Up"))));
+  }, "Go to Signup")))));
 }
 
 /***/ }),
@@ -4034,8 +4057,8 @@ function Profile(props) {
     href: "/dashboard",
     className: "button_upgrade w-button"
   }, "Add a Market");
-  var detailsMessage = !user.billing_id ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are currently subscribed to Tier 0. Meaning you have 20 free uses per month of the Chrome plugin. Please upgrade below for unlimited plugin use and access to the emailer feature."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Make sure you are using the same email on the upgrade screen that you signed up with.")) : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "In this Tier, you get unlimited usage of the Chrome Extension and also the emailer feature. Click here to add the location."));
-  var paymentLink = !user.billing_id ? 'payments.html' : 'https://billing.stripe.com/p/login/bIY8wx24h5mC1aM144';
+  var detailsMessage = !user.billing_id ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are currently subscribed to Tier 0. Meaning you have 20 free uses per month of the Chrome plugin. Please upgrade below for unlimited plugin use and access to the emailer feature."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Make sure you are using the same email on the upgrade screen that you signed up with.")) : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "In this Tier, you get unlimited usage of the Chrome Extension and also the emailer feature. Add a market below."));
+  var paymentLink = '/payments.html';
   var billingTier = user.billing_id ? user.billing_id : 'Free Tier';
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("header", {
     className: "section_header1 bg-purple"
@@ -4283,80 +4306,79 @@ function ScheduleEmailForm(props) {
       return;
     }
 
-    if (!insurance) {
+    if (!insurance && 0 != insurance) {
       setErrorMessage('Missing insurance!');
       return;
     }
 
-    if ((null == vacancy || '' == vacancy) && 0 != vacancy) {
+    if (!vacancy && 0 != vacancy) {
       setErrorMessage('Missing vacancy!');
       return;
     }
 
-    if ((null == propertyManagement || '' == propertyManagement) && 0 != propertyManagement) {
+    if (!propertyManagement && 0 != propertyManagement) {
       setErrorMessage('Missing propertyManagement!');
       return;
     }
 
-    if ((null == repairs || '' == repairs) && 0 != repairs) {
+    if (!repairs && 0 != repairs) {
       setErrorMessage('Missing repairs!');
       return;
     }
 
-    if ((null == capex || '' == capex) && 0 != capex) {
+    if (!capex && 0 != capex) {
       setErrorMessage('Missing capex!');
       return;
     }
 
-    if ((null == utilities || '' == utilities) && 0 != utilities) {
-      console.log(utilities);
+    if (!utilities && 0 != utilities) {
       setErrorMessage('Missing utilities!');
       return;
     }
 
-    if ((null == downPayment || '' == downPayment) && 0 != downPayment) {
-      setErrorMessage('Missing downPayment!');
+    if (!parseFloat(downPayment)) {
+      setErrorMessage('Down Payment cannot be 0. Use a small number instead, like 0.0001');
       return;
     }
 
-    if ((null == closingCosts || '' == closingCosts) && 0 != closingCosts) {
-      setErrorMessage('Missing closingCosts!');
+    if (!parseFloat(closingCosts)) {
+      setErrorMessage('Closing Cost cannot be 0. Use a small number instead, like 0.0001');
       return;
     }
 
-    if ((null == loanInterest || '' == loanInterest) && 0 != loanInterest) {
-      setErrorMessage('Missing loanInterest!');
+    if (!parseFloat(loanInterest)) {
+      setErrorMessage('Loan Interest cannot be 0. If you are buying all cash, enter .001');
       return;
     }
 
-    if ((null == loanMonths || '' == loanMonths) && 0 != loanMonths) {
-      setErrorMessage('Missing loanMonths!');
+    if (!parseFloat(loanMonths)) {
+      setErrorMessage('Loan Months cannot be 0. Use a small number instead, like 0.0001');
       return;
     }
 
-    if ((null == additionalMonthlyExpenses || '' == additionalMonthlyExpenses) && 0 != additionalMonthlyExpenses) {
+    if (!additionalMonthlyExpenses && 0 != additionalMonthlyExpenses) {
       setErrorMessage('Missing additionalMonthlyExpenses!');
       return;
     }
 
     try {
       axios__WEBPACK_IMPORTED_MODULE_2___default().post("".concat(backendUrl, "/api/emailers"), {
-        insurance: parseInt(insurance),
-        vacancy: parseInt(vacancy),
-        property_management: parseInt(propertyManagement),
-        capex: parseInt(capex),
-        repairs: parseInt(repairs),
-        utilities: parseInt(utilities),
-        down_payment: parseInt(downPayment),
-        closing_cost: parseInt(closingCosts),
-        loan_interest: parseInt(loanInterest),
-        loan_months: parseInt(loanMonths),
-        additional_monthly_expenses: parseInt(additionalMonthlyExpenses),
-        min_price: parseInt(minPrice),
-        max_price: parseInt(maxPrice),
+        insurance: parseFloat(insurance),
+        vacancy: parseFloat(vacancy),
+        property_management: parseFloat(propertyManagement),
+        capex: parseFloat(capex),
+        repairs: parseFloat(repairs),
+        utilities: parseFloat(utilities),
+        down_payment: parseFloat(downPayment),
+        closing_cost: parseFloat(closingCosts),
+        loan_interest: parseFloat(loanInterest),
+        loan_months: parseFloat(loanMonths),
+        additional_monthly_expenses: parseFloat(additionalMonthlyExpenses),
+        min_price: parseFloat(minPrice),
+        max_price: parseFloat(maxPrice),
         search_param: searchParams,
-        no_bedrooms: parseInt(numBedrooms),
-        no_bathrooms: parseInt(numBathrooms),
+        no_bedrooms: parseFloat(numBedrooms),
+        no_bathrooms: parseFloat(numBathrooms),
         notes: notes,
         frequency: 'Daily'
       }).then(function (r) {
@@ -4375,120 +4397,142 @@ function ScheduleEmailForm(props) {
   };
 
   var cocCalculationParams = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "insurance-input"
-  }, "Insurance ($):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Insurance", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "Enter the per month number you will pay for insurance. Usually this is $60-$80 per month for a single family."
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     "class": "half",
     value: insurance,
     onInput: eliminateEvent(setInsurance)
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "$/mo")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "vacancy-input"
-  }, "Vacancy (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Vacancy", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "This is a monthly expense. Enter as a percent of monthly gross income. Usually this is 6-8%"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     "class": "half",
     value: vacancy,
     onInput: eliminateEvent(setVacancy)
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%/mo")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "property-input"
-  }, "Property Management (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Property Management", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "This is a monthly expense. Enter as a percent of monthly gross income. Usually this is 8-12%"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     "class": "half",
     value: propertyManagement,
     onInput: eliminateEvent(setPropertyManagement)
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%/mo")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "capex-input"
-  }, "Capex (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Capex", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "This is a monthly expense. Enter as a percent of monthly gross income. Usually this is 5-15% depending on the condition of the property"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     "class": "half",
     value: capex,
     onInput: eliminateEvent(setCapex)
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%/mo")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "repairs-input"
-  }, "Repairs (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Repairs", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "This is a monthly expense. Enter as a percent of monthly gross income. Usually this is 5-10% depending on the condition of the property"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     "class": "half",
     value: repairs,
     onInput: eliminateEvent(setRepairs)
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%/mo")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "utilities-input"
-  }, "Utilities ($):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Utilities", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "This is a monthly expense. For a single-family rental, the tenants pay for utilities usually, so put 0. Double check with your broker once"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     "class": "half",
     value: utilities,
     onInput: eliminateEvent(setUtilities)
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "$/mo")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "down-payment-input"
-  }, "Down Payment (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Down Payment", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "This is the downpayment % for the loan as required by your bank. Usually this is 20% but check with your lender once"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     "class": "half",
     value: downPayment,
     onInput: eliminateEvent(setDownPayment)
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "closing-cost-input"
-  }, "Closing Cost (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Closing Cost", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "This is the one time cost to close the loan on the property. It includes any bank fees, lawyer fees, appraisal fees etc. Usually it is 3-5% and calculated on the offer price"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     "class": "half",
     value: closingCosts,
     onInput: eliminateEvent(setClosingCosts)
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "loan-interest-input"
-  }, "Loan Interest (%):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Loan Interest", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "Enter the interest rate charged by your bank"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     "class": "half",
     value: loanInterest,
     onInput: eliminateEvent(setLoanInterest)
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "%")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "loan-months-input"
-  }, "Loan Months:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Loan Months", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "Enter the number of months the loan is for. For example - if the loan is for 30 years, enter 360 months"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     "class": "half",
     value: loanMonths,
     onInput: eliminateEvent(setLoanMonths)
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "mos")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "additional-monthly-expenses-input"
-  }, "Additional Monthly Expenses ($):"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "Additional Monthly Expenses", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    title: "Enter any additional expenses per month"
+  }, "(i)"), ":"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     type: "number",
     "class": "half",
     value: additionalMonthlyExpenses,
     onInput: eliminateEvent(setAdditionalMonthlyExpenses)
-  })));
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("b", null, "$/mo")));
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "padded"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "search-params-input"
@@ -4498,17 +4542,17 @@ function ScheduleEmailForm(props) {
     onInput: eliminateEvent(setNotes),
     placeholder: "e.g. High Cash Market"
   })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "search-params-input"
-  }, "Location:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
+  }, "County:"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     value: searchParams,
     "class": "half",
     placeholder: "e.g. Essex County, NJ",
     onInput: eliminateEvent(setSearchParams)
   })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "min-price-input"
@@ -4519,7 +4563,7 @@ function ScheduleEmailForm(props) {
     placeholder: "e.g. 100000",
     onInput: eliminateEvent(setMinPrice)
   })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "max-price-input"
@@ -4530,7 +4574,7 @@ function ScheduleEmailForm(props) {
     placeholder: "e.g. 300000",
     onInput: eliminateEvent(setMaxPrice)
   })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "num-bedrooms-input"
@@ -4541,7 +4585,7 @@ function ScheduleEmailForm(props) {
     placeholder: "e.g. 3",
     onInput: eliminateEvent(setNumBedrooms)
   })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "flex between centered-items personal-space-bottom"
+    className: "flex wrap between centered-items personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
     className: "third align-left",
     htmlFor: "num-bedrooms-input"
@@ -4654,7 +4698,7 @@ function Signup(props) {
     className: "align-center super-margin-top dashboard-container third break-to-full padded"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", {
     className: "personal-margin-bottom personal-margin-top"
-  }, "Sign Up"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }, "Signup"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "thin-container ostrich-container personal-space-bottom"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("input", {
     name: "username",
@@ -4688,18 +4732,18 @@ function Signup(props) {
     target: "_blank",
     "class": "form_text-bold"
   }, "Privacy Policy")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "four-fifths ostrich-button",
+    className: "four-fifths ostrich-button personal-margin-top",
     type: "submit",
     onClick: signUp
-  }, "Sign Up"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+  }, "Signup"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     "class": "error"
   }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "plain-button four-fifths personal-margin-bottom",
+    className: "plain-button four-fifths personal-margin-bottom personal-margin-top",
     onClick: proceedWithGoogle
-  }, "Continue With Google"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    className: "plain-button four-fifths",
+  }, "Continue With Google"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    className: "four-fifths",
     onClick: toLogin
-  }, "Login"))));
+  }, "Go to Login")))));
 }
 
 /***/ }),
@@ -4736,12 +4780,9 @@ function Splash(props) {
   }, "A daily email that delivers the cash flow analysis of the newest properties in your market", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     "class": "button-group"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: "#",
+    href: "/signup",
     "class": "button w-button"
-  }, "Try Ostrich for Free"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: "#",
-    "class": "button secondary w-button"
-  }, "How it works"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }, "Try Ostrich for Free"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     "class": "header1_image-wrapper"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
     src: "/guy-with-charts.svg",
@@ -4800,7 +4841,7 @@ function Splash(props) {
     alt: "",
     "class": "step_icon"
   }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Click on the extension icon to get the cash flow projection for year 1"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: "#",
+    href: "https://chrome.google.com/webstore/detail/ostrich/aicgkflmidjkbcenllnnlbnfnmicpmgo",
     "class": "button secondary w-button"
   }, "Get Plugin")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     "class": "layout1_image-wrapper"
@@ -4857,7 +4898,7 @@ function Splash(props) {
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "3")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h3", null, "Get Daily Emails"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     "class": "emailer_text"
   }, "Now you will get emails everyday around 3:30 pm ET with any listings and their cash flow return analysis"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: "#",
+    href: "/signup",
     "class": "button w-button"
   }, "Buy Emailer")))))));
 }
@@ -5451,7 +5492,7 @@ function App(props) {
     className: "link-button"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("button", {
     className: "ostrich-button personal-margin-right"
-  }, ' ', "Sign Up")));
+  }, ' ', "Signup")));
   return (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Header__WEBPACK_IMPORTED_MODULE_14__["default"], {
     children: loginOrLogout,
     toHome: toHome

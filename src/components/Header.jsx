@@ -20,11 +20,12 @@ export default function Header(props) {
             id="w-node-df2c582d-9a89-1fcc-9fe7-0e0f1f59e3a2-f8b0799e"
             className="navbar-btn-container"
           >
-            <div className='flex centered-items'>
-            <a href="mailto:v@ostrich.so" className='personal-space-right'>Need Help?</a>
-            {children}
+            <div className="flex centered-items">
+              <a href="mailto:v@ostrich.so" className="personal-space-right">
+                Need Help?
+              </a>
+              {children}
             </div>
-           
           </div>
         </div>
       </div>

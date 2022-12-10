@@ -2585,9 +2585,220 @@ function Payments(props) {
       "publishable-key": "pk_live_51LphqXIDd9tdb2o1bC0M6mYJVzh3dh4MIbiJQXJkvCKJglH39a4bZLzeIMFXoS5p0IYBLqaT75fnkkxls5Ly8d1W006sYTCuzP"
     }));
   } else {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h3", null, "You're subscribed to ", user.billing_id), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-      href: "https://billing.stripe.com/p/login/bIY8wx24h5mC1aM144"
-    }, "Manage Your Subscriptions"));
+    var getStartedLink = 'https://billing.stripe.com/p/login/bIY8wx24h5mC1aM144';
+    var currentTierButton = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "button current"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Current Tier"));
+    var getStartedButton = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+      href: getStartedLink,
+      className: "button pricing w-button"
+    }, "Get started");
+    var freeButton = getStartedButton;
+    var tier1Button = user.billing_id == 'Tier 1' ? currentTierButton : getStartedButton;
+    var tier2Button = user.billing_id == 'Tier 2' ? currentTierButton : getStartedButton;
+    var tier3Button = user.billing_id == 'Tier 3' ? currentTierButton : getStartedButton;
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h3", null, "You're subscribed to ", user.billing_id), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("section", {
+      className: "section_pricing"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "padding-global"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "container-large"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "padding-section-large"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "w-layout-grid pricing18_components"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "pricing18_plan"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "pricing18_content"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "pricing18_content-top"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "text-align-center"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "heading-style-h6"
+    }, "Free Tier"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "heading-style-h1"
+    }, "$0", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+      className: "heading-style-h4"
+    }, "/mo"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "pricing18_feature-list"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      id: "w-node-_039659d2-35ec-3feb-a76e-20d23bec24db-044b8525",
+      className: "pricing_feature-heading"
+    }, "Plugin"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      id: "w-node-_90f9c6e3-252d-5c8b-8a16-a22c21cff8c7-044b8525",
+      className: "pricing18_feature"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "pricing18_icon-wrapper"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+      src: "https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316232dc4aee70_icon_check.svg",
+      loading: "lazy",
+      alt: "",
+      className: "icon-1x1-xsmall"
+    })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "20 Searches/month")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      id: "w-node-e87b2a05-27f2-bc4f-0230-4fb5ecf6d1f6-044b8525",
+      className: "pricing_feature-heading"
+    }, "Emailer"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      id: "w-node-_90f9c6e3-252d-5c8b-8a16-a22c21cff8d6-044b8525",
+      className: "pricing18_feature"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "This plan does not includes Emailer")))), freeButton)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "pricing18_plan"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "pricing18_content"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "pricing18_content-top"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "text-align-center"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "heading-style-h6"
+    }, "Tier 1"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "heading-style-h1"
+    }, "$8.99", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+      className: "heading-style-h4"
+    }, "/mo"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "pricing18_feature-list"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      id: "w-node-ed121502-afd0-d7f4-47be-5dad38123e3d-044b8525",
+      className: "pricing_feature-heading"
+    }, "Plugin"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      id: "w-node-ed121502-afd0-d7f4-47be-5dad38123e3f-044b8525",
+      className: "pricing18_feature"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "pricing18_icon-wrapper"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+      src: "https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316232dc4aee70_icon_check.svg",
+      loading: "lazy",
+      alt: "",
+      className: "icon-1x1-xsmall"
+    })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Unlimited Searches")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      id: "w-node-ed121502-afd0-d7f4-47be-5dad38123e44-044b8525",
+      className: "pricing_feature-heading"
+    }, "Emailer"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      id: "w-node-fe7d86ca-d698-152c-8005-8b7c67f45c68-044b8525",
+      className: "pricing18_feature"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "pricing18_icon-wrapper"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+      src: "https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316232dc4aee70_icon_check.svg",
+      loading: "lazy",
+      alt: "",
+      className: "icon-1x1-xsmall"
+    })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "1 Location")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      id: "w-node-dd34ba97-87d1-8029-5291-ca8a896a8612-044b8525",
+      className: "pricing18_feature"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "pricing18_icon-wrapper"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+      src: "https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316232dc4aee70_icon_check.svg",
+      loading: "lazy",
+      alt: "",
+      className: "icon-1x1-xsmall"
+    })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Upto 8 Listings Everyday")))), tier1Button)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "pricing18_plan"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "pricing18_content"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "pricing18_content-top"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "text-align-center"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "heading-style-h6"
+    }, "Tier 2"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "heading-style-h1"
+    }, "$14.99", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+      className: "heading-style-h4"
+    }, "/mo"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "pricing18_feature-list"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      id: "w-node-_2eb43afc-6058-f7a0-94a9-1a322e5f1b83-044b8525",
+      className: "pricing_feature-heading"
+    }, "Plugin"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      id: "w-node-_2eb43afc-6058-f7a0-94a9-1a322e5f1b85-044b8525",
+      className: "pricing18_feature"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "pricing18_icon-wrapper"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+      src: "https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316232dc4aee70_icon_check.svg",
+      loading: "lazy",
+      alt: "",
+      className: "icon-1x1-xsmall"
+    })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Unlimited Searches")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      id: "w-node-_2eb43afc-6058-f7a0-94a9-1a322e5f1b8a-044b8525",
+      className: "pricing_feature-heading"
+    }, "Emailer"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      id: "w-node-_4241f7ae-65e5-cf23-ec0a-cd43cab63a6c-044b8525",
+      className: "pricing18_feature"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "pricing18_icon-wrapper"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+      src: "https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316232dc4aee70_icon_check.svg",
+      loading: "lazy",
+      alt: "",
+      className: "icon-1x1-xsmall"
+    })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "1 Location")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      id: "w-node-_6238a784-17cf-328b-bead-6b305f1e5a29-044b8525",
+      className: "pricing18_feature"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "pricing18_icon-wrapper"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+      src: "https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316232dc4aee70_icon_check.svg",
+      loading: "lazy",
+      alt: "",
+      className: "icon-1x1-xsmall"
+    })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Upto 20 Listings Everyday")))), tier2Button)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "pricing18_plan"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "pricing18_content"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "pricing18_content-top"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "text-align-center"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "heading-style-h6"
+    }, "Tier 3"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "heading-style-h1"
+    }, "$19.99", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+      className: "heading-style-h4"
+    }, "/mo"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "pricing18_feature-list"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      id: "w-node-_2febbb44-2b03-668e-f727-595b6275e588-044b8525",
+      className: "pricing_feature-heading"
+    }, "Plugin"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      id: "w-node-_2febbb44-2b03-668e-f727-595b6275e58a-044b8525",
+      className: "pricing18_feature"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "pricing18_icon-wrapper"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+      src: "https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316232dc4aee70_icon_check.svg",
+      loading: "lazy",
+      alt: "",
+      className: "icon-1x1-xsmall"
+    })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Unlimited Searches")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      id: "w-node-_2febbb44-2b03-668e-f727-595b6275e58f-044b8525",
+      className: "pricing_feature-heading"
+    }, "Emailer"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      id: "w-node-_7c7dbd83-93e7-22ba-e7ef-961533e8fe7b-044b8525",
+      className: "pricing18_feature"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "pricing18_icon-wrapper"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+      src: "https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316232dc4aee70_icon_check.svg",
+      loading: "lazy",
+      alt: "",
+      className: "icon-1x1-xsmall"
+    })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "3 Locations")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      id: "w-node-_2782fe1a-7738-a68e-c595-3328410b2b09-044b8525",
+      className: "pricing18_feature"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "pricing18_icon-wrapper"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+      src: "https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316232dc4aee70_icon_check.svg",
+      loading: "lazy",
+      alt: "",
+      className: "icon-1x1-xsmall"
+    })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Upto 20 Listings per Location Everyday")))), tier3Button))))))));
   }
 }
 
@@ -2946,11 +3157,6 @@ function App(props) {
       user = _useLogin.user,
       jwt = _useLogin.jwt,
       setJwt = _useLogin.setJwt;
-
-  var logout = function logout() {
-    document.cookie = "token=";
-    setJwt(null);
-  };
 
   var toHome = function toHome() {
     return window.location.href = '/';

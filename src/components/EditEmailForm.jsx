@@ -12,55 +12,55 @@ export default function EditEmailForm(props) {
   const [successMessage, setSuccessMessage] = useState('')
 
   const [minPrice, setMinPrice] = useState(
-    scheduledEmail ? scheduledEmail.min_price : null
+    scheduledEmail ? scheduledEmail.min_price : '0'
   )
   const [maxPrice, setMaxPrice] = useState(
-    scheduledEmail ? scheduledEmail.max_price : null
+    scheduledEmail ? scheduledEmail.max_price : '0'
   )
   const [searchParams, setSearchParams] = useState(
-    scheduledEmail ? scheduledEmail.search_param : null
+    scheduledEmail ? scheduledEmail.search_param : '0'
   )
   const [numBedrooms, setNumBedrooms] = useState(
-    scheduledEmail ? scheduledEmail.no_bedrooms : null
+    scheduledEmail ? scheduledEmail.no_bedrooms : '0'
   )
   const [numBathrooms, setNumBathrooms] = useState(
-    scheduledEmail ? scheduledEmail.no_bathrooms : null
+    scheduledEmail ? scheduledEmail.no_bathrooms : '0'
   )
   const [notes, setNotes] = useState(
-    scheduledEmail ? scheduledEmail.notes : null
+    scheduledEmail ? scheduledEmail.notes : '0'
   )
   const [insurance, setInsurance] = useState(
-    scheduledEmail ? scheduledEmail.insurance : null
+    scheduledEmail ? scheduledEmail.insurance : '0'
   )
   const [vacancy, setVacancy] = useState(
-    scheduledEmail ? scheduledEmail.vacancy : null
+    scheduledEmail ? scheduledEmail.vacancy : '0'
   )
   const [propertyManagement, setPropertyManagement] = useState(
-    scheduledEmail ? scheduledEmail.property_management : null
+    scheduledEmail ? scheduledEmail.property_management : '0'
   )
   const [capex, setCapex] = useState(
-    scheduledEmail ? scheduledEmail.capex : null
+    scheduledEmail ? scheduledEmail.capex : '0'
   )
   const [repairs, setRepairs] = useState(
-    scheduledEmail ? scheduledEmail.repairs : null
+    scheduledEmail ? scheduledEmail.repairs : '0'
   )
   const [utilities, setUtilities] = useState(
-    scheduledEmail ? scheduledEmail.utilities : null
+    scheduledEmail ? scheduledEmail.utilities : '0'
   )
   const [downPayment, setDownPayment] = useState(
-    scheduledEmail ? scheduledEmail.down_payment : null
+    scheduledEmail ? scheduledEmail.down_payment : '0'
   )
   const [closingCosts, setClosingCosts] = useState(
-    scheduledEmail ? scheduledEmail.closing_cost : null
+    scheduledEmail ? scheduledEmail.closing_cost : '0'
   )
   const [loanInterest, setLoanInterest] = useState(
-    scheduledEmail ? scheduledEmail.loan_interest : null
+    scheduledEmail ? scheduledEmail.loan_interest : '0'
   )
   const [loanMonths, setLoanMonths] = useState(
-    scheduledEmail ? scheduledEmail.loan_months : null
+    scheduledEmail ? scheduledEmail.loan_months : '0'
   )
   const [additionalMonthlyExpenses, setAdditionalMonthlyExpenses] = useState(
-    scheduledEmail ? scheduledEmail.additional_monthly_expenses : null
+    scheduledEmail ? scheduledEmail.additional_monthly_expenses : '0'
   )
 
   useEffect(() => {
@@ -68,26 +68,26 @@ export default function EditEmailForm(props) {
   }, [selectedMarket])
 
   useEffect(() => {
-    setMinPrice(scheduledEmail ? scheduledEmail.min_price : null)
-    setMaxPrice(scheduledEmail ? scheduledEmail.max_price : null)
-    setSearchParams(scheduledEmail ? scheduledEmail.search_param : null)
-    setNumBedrooms(scheduledEmail ? scheduledEmail.no_bedrooms : null)
-    setNumBathrooms(scheduledEmail ? scheduledEmail.no_bathrooms : null)
-    setNotes(scheduledEmail ? scheduledEmail.notes : null)
-    setInsurance(scheduledEmail ? scheduledEmail.insurance : null)
-    setVacancy(scheduledEmail ? scheduledEmail.vacancy : null)
+    setMinPrice(scheduledEmail ? scheduledEmail.min_price : '0')
+    setMaxPrice(scheduledEmail ? scheduledEmail.max_price : '0')
+    setSearchParams(scheduledEmail ? scheduledEmail.search_param : '0')
+    setNumBedrooms(scheduledEmail ? scheduledEmail.no_bedrooms : '0')
+    setNumBathrooms(scheduledEmail ? scheduledEmail.no_bathrooms : '0')
+    setNotes(scheduledEmail ? scheduledEmail.notes : '0')
+    setInsurance(scheduledEmail ? scheduledEmail.insurance : '0')
+    setVacancy(scheduledEmail ? scheduledEmail.vacancy : '0')
     setPropertyManagement(
-      scheduledEmail ? scheduledEmail.property_management : null
+      scheduledEmail ? scheduledEmail.property_management : '0'
     )
-    setCapex(scheduledEmail ? scheduledEmail.capex : null)
-    setRepairs(scheduledEmail ? scheduledEmail.repairs : null)
-    setUtilities(scheduledEmail ? scheduledEmail.utilities : null)
-    setDownPayment(scheduledEmail ? scheduledEmail.down_payment : null)
-    setClosingCosts(scheduledEmail ? scheduledEmail.closing_cost : null)
-    setLoanInterest(scheduledEmail ? scheduledEmail.loan_interest : null)
-    setLoanMonths(scheduledEmail ? scheduledEmail.loan_months : null)
+    setCapex(scheduledEmail ? scheduledEmail.capex : '0')
+    setRepairs(scheduledEmail ? scheduledEmail.repairs : '0')
+    setUtilities(scheduledEmail ? scheduledEmail.utilities : '0')
+    setDownPayment(scheduledEmail ? scheduledEmail.down_payment : '0')
+    setClosingCosts(scheduledEmail ? scheduledEmail.closing_cost : '0')
+    setLoanInterest(scheduledEmail ? scheduledEmail.loan_interest : '0')
+    setLoanMonths(scheduledEmail ? scheduledEmail.loan_months : '0')
     setAdditionalMonthlyExpenses(
-      scheduledEmail ? scheduledEmail.additional_monthly_expenses : null
+      scheduledEmail ? scheduledEmail.additional_monthly_expenses : '0'
     )
   }, [scheduledEmail])
 
@@ -114,64 +114,65 @@ export default function EditEmailForm(props) {
       return
     }
 
-    if (!insurance) {
+    if (!insurance && 0 != insurance) {
       setErrorMessage('Missing insurance!')
       return
     }
 
-    if ((null == vacancy || '' == vacancy) && 0 != vacancy) {
+    if (!vacancy && 0 != vacancy) {
       setErrorMessage('Missing vacancy!')
       return
     }
 
-    if (
-      (null == propertyManagement || '' == propertyManagement) &&
-      0 != propertyManagement
-    ) {
+    if (!propertyManagement && 0 != propertyManagement) {
       setErrorMessage('Missing propertyManagement!')
       return
     }
 
-    if ((null == repairs || '' == repairs) && 0 != repairs) {
+    if (!repairs && 0 != repairs) {
       setErrorMessage('Missing repairs!')
       return
     }
 
-    if ((null == capex || '' == capex) && 0 != capex) {
+    if (!capex && 0 != capex) {
       setErrorMessage('Missing capex!')
       return
     }
 
-    if ((null == utilities || '' == utilities) && 0 != utilities) {
-      console.log(utilities)
+    if (!utilities && 0 != utilities) {
       setErrorMessage('Missing utilities!')
       return
     }
 
-    if ((null == downPayment || '' == downPayment) && 0 != downPayment) {
-      setErrorMessage('Missing downPayment!')
+    if (!parseFloat(downPayment)) {
+      setErrorMessage(
+        'Down Payment cannot be 0. Use a small number instead, like 0.0001'
+      )
       return
     }
 
-    if ((null == closingCosts || '' == closingCosts) && 0 != closingCosts) {
-      setErrorMessage('Missing closingCosts!')
+    if (!parseFloat(closingCosts)) {
+      setErrorMessage(
+        'Closing Cost cannot be 0. Use a small number instead, like 0.0001'
+      )
       return
     }
 
-    if ((null == loanInterest || '' == loanInterest) && 0 != loanInterest) {
-      setErrorMessage('Missing loanInterest!')
+    if (!parseFloat(loanInterest)) {
+      setErrorMessage(
+        'Loan Interest cannot be 0. If you are buying all cash, enter .0001'
+      )
       return
     }
 
-    if ((null == loanMonths || '' == loanMonths) && 0 != loanMonths) {
-      setErrorMessage('Missing loanMonths!')
+    if (!parseFloat(loanMonths)) {
+      setErrorMessage(
+        'Loan Months cannot be 0. Use a small number instead, like 0.0001'
+      )
       return
     }
 
-    if (
-      (null == additionalMonthlyExpenses || '' == additionalMonthlyExpenses) &&
-      0 != additionalMonthlyExpenses
-    ) {
+    if (!additionalMonthlyExpenses && 0 != additionalMonthlyExpenses) {
       setErrorMessage('Missing additionalMonthlyExpenses!')
       return
     }
@@ -180,22 +181,22 @@ export default function EditEmailForm(props) {
       axios
         .put(`${backendUrl}/api/emailers`, {
           id: scheduledEmail.id,
-          insurance: parseInt(insurance),
-          vacancy: parseInt(vacancy),
-          property_management: parseInt(propertyManagement),
-          capex: parseInt(capex),
-          repairs: parseInt(repairs),
-          utilities: parseInt(utilities),
-          down_payment: parseInt(downPayment),
-          closing_cost: parseInt(closingCosts),
-          loan_interest: parseInt(loanInterest),
-          loan_months: parseInt(loanMonths),
-          additional_monthly_expenses: parseInt(additionalMonthlyExpenses),
-          min_price: parseInt(minPrice),
-          max_price: parseInt(maxPrice),
+          insurance: parseFloat(insurance),
+          vacancy: parseFloat(vacancy),
+          property_management: parseFloat(propertyManagement),
+          capex: parseFloat(capex),
+          repairs: parseFloat(repairs),
+          utilities: parseFloat(utilities),
+          down_payment: parseFloat(downPayment),
+          closing_cost: parseFloat(closingCosts),
+          loan_interest: parseFloat(loanInterest),
+          loan_months: parseFloat(loanMonths),
+          additional_monthly_expenses: parseFloat(additionalMonthlyExpenses),
+          min_price: parseFloat(minPrice),
+          max_price: parseFloat(maxPrice),
           search_param: searchParams,
-          no_bedrooms: parseInt(numBedrooms),
-          no_bathrooms: parseInt(numBathrooms),
+          no_bedrooms: parseFloat(numBedrooms),
+          no_bathrooms: parseFloat(numBathrooms),
           notes: notes,
           frequency: 'Daily',
         })
@@ -219,127 +220,197 @@ export default function EditEmailForm(props) {
     <Fragment>
       <div className="flex wrap between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="insurance-input">
-          Insurance ($):
+          Insurance{' '}
+          <span title="Enter the per month number you will pay for insurance. Usually this is $60-$80 per month for a single family.">
+            (i)
+          </span>
+          :
         </label>
+
         <input
           type="number"
-          className="half"
+          class="half"
           value={insurance}
           onInput={eliminateEvent(setInsurance)}
         />
+        <b>$/mo</b>
       </div>
+
       <div className="flex wrap between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="vacancy-input">
-          Vacancy (%):
+          Vacancy{' '}
+          <span title="This is a monthly expense. Enter as a percent of monthly gross income. Usually this is 6-8%">
+            (i)
+          </span>
+          :
         </label>
+
         <input
           type="number"
-          className="half"
+          class="half"
           value={vacancy}
           onInput={eliminateEvent(setVacancy)}
         />
+        <b>%/mo</b>
       </div>
+
       <div className="flex wrap between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="property-input">
-          Property Management (%):
+          Property Management{' '}
+          <span title="This is a monthly expense. Enter as a percent of monthly gross income. Usually this is 8-12%">
+            (i)
+          </span>
+          :
         </label>
+
         <input
           type="number"
-          className="half"
+          class="half"
           value={propertyManagement}
           onInput={eliminateEvent(setPropertyManagement)}
         />
+        <b>%/mo</b>
       </div>
+
       <div className="flex wrap between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="capex-input">
-          Capex (%):
+          Capex{' '}
+          <span title="This is a monthly expense. Enter as a percent of monthly gross income. Usually this is 5-15% depending on the condition of the property">
+            (i)
+          </span>
+          :
         </label>
+
         <input
           type="number"
-          className="half"
+          class="half"
           value={capex}
           onInput={eliminateEvent(setCapex)}
         />
+        <b>%/mo</b>
       </div>
+
       <div className="flex wrap between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="repairs-input">
-          Repairs (%):
+          Repairs{' '}
+          <span title="This is a monthly expense. Enter as a percent of monthly gross income. Usually this is 5-10% depending on the condition of the property">
+            (i)
+          </span>
+          :
         </label>
+
         <input
           type="number"
-          className="half"
+          class="half"
           value={repairs}
           onInput={eliminateEvent(setRepairs)}
         />
+        <b>%/mo</b>
       </div>
+
       <div className="flex wrap between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="utilities-input">
-          Utilities ($):
+          Utilities{' '}
+          <span title="This is a monthly expense. For a single-family rental, the tenants pay for utilities usually, so put 0. Double check with your broker once">
+            (i)
+          </span>
+          :
         </label>
+
         <input
           type="number"
-          className="half"
+          class="half"
           value={utilities}
           onInput={eliminateEvent(setUtilities)}
         />
+        <b>$/mo</b>
       </div>
+
       <div className="flex wrap between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="down-payment-input">
-          Down Payment (%):
+          Down Payment{' '}
+          <span title="This is the downpayment % for the loan as required by your bank. Usually this is 20% but check with your lender once">
+            (i)
+          </span>
+          :
         </label>
+
         <input
           type="number"
-          className="half"
+          class="half"
           value={downPayment}
           onInput={eliminateEvent(setDownPayment)}
         />
+        <b>%</b>
       </div>
+
       <div className="flex wrap between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="closing-cost-input">
-          Closing Cost (%):
+          Closing Cost{' '}
+          <span title="This is the one time cost to close the loan on the property. It includes any bank fees, lawyer fees, appraisal fees etc. Usually it is 3-5% and calculated on the offer price">
+            (i)
+          </span>
+          :
         </label>
+
         <input
           type="number"
-          className="half"
+          class="half"
           value={closingCosts}
           onInput={eliminateEvent(setClosingCosts)}
         />
+        <b>%</b>
       </div>
+
       <div className="flex wrap between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="loan-interest-input">
-          Loan Interest (%):
+          Loan Interest{' '}
+          <span title="Enter the interest rate charged by your bank">(i)</span>:
         </label>
+
         <input
           type="number"
-          className="half"
+          class="half"
           value={loanInterest}
           onInput={eliminateEvent(setLoanInterest)}
         />
+        <b>%</b>
       </div>
+
       <div className="flex wrap between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="loan-months-input">
-          Loan Months:
+          Loan Months{' '}
+          <span title="Enter the number of months the loan is for. For example - if the loan is for 30 years, enter 360 months">
+            (i)
+          </span>
+          :
         </label>
+
         <input
           type="number"
-          className="half"
+          class="half"
           value={loanMonths}
           onInput={eliminateEvent(setLoanMonths)}
         />
+        <b>mos</b>
       </div>
+
       <div className="flex wrap between centered-items personal-space-bottom">
         <label
           className="third align-left"
           htmlFor="additional-monthly-expenses-input"
         >
-          Additional Monthly Expenses ($):
+          Additional Monthly Expenses{' '}
+          <span title="Enter any additional expenses per month">(i)</span>:
         </label>
+
         <input
           type="number"
-          className="half"
+          class="half"
           value={additionalMonthlyExpenses}
           onInput={eliminateEvent(setAdditionalMonthlyExpenses)}
         />
+        <b>$/mo</b>
       </div>
     </Fragment>
   )
@@ -359,7 +430,7 @@ export default function EditEmailForm(props) {
       </div>
       <div className="flex wrap between centered-items personal-space-bottom">
         <label className="third align-left" htmlFor="search-params-input">
-          Location:
+          County:
         </label>
         <input
           value={searchParams}

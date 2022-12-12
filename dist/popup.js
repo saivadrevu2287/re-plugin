@@ -3210,7 +3210,8 @@ function ListingData(props) {
 
   if (!user) {
     content = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Need to re-sync. Please log in to", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-      href: "https://ostrich.so"
+      href: "https://ostrich.so",
+      target: "_blank"
     }, "Ostrich"), ".");
   } else if (user.billing_id) {
     content = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, !errorMessage && details, errorMessage, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, user.billing_id, " Subscribed.", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {

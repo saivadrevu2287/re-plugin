@@ -6,7 +6,7 @@ import { handleCopy, dollars, monthlyDollars } from '../subroutines/utils'
 
 const eliminateEvent = (e) => e.target.value
 const tabSeparator = '\t'
-const freeUses = 20
+const freeUses = 10
 
 export default function ListingData(props) {
   const { configurationFields, user, webappUrl } = props
@@ -228,7 +228,7 @@ export default function ListingData(props) {
     content = (
       <p>
         Need to re-sync. Please log in to{' '}
-        <a href="https://ostrich.so">Ostrich</a>.
+        <a href="https://ostrich.so" target='_blank'>Ostrich</a>.
       </p>
     )
   } else if (user.billing_id) {

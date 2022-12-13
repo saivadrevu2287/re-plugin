@@ -8,7 +8,7 @@ export default function Payments(props) {
       <Fragment>
         <h3>You're subscribed to Tier 0</h3>
         <p>
-          You are currently subscribed to Tier 0. Meaning you have 20 free uses
+          You are currently subscribed to Tier 0. Meaning you have 10 free uses
           per month of the Chrome plugin. Please upgrade below for unlimited
           plugin use and access to the emailer feature.
         </p>
@@ -78,7 +78,7 @@ export default function Payments(props) {
                                 className="icon-1x1-xsmall"
                               />
                             </div>
-                            <div>20 Searches/month</div>
+                            <div>10 Searches/month</div>
                           </div>
                           <div
                             id="w-node-e87b2a05-27f2-bc4f-0230-4fb5ecf6d1f6-044b8525"
@@ -228,7 +228,7 @@ export default function Payments(props) {
                                 className="icon-1x1-xsmall"
                               />
                             </div>
-                            <div>Upto 20 Listings Everyday</div>
+                            <div>Up to 20 Listings Everyday</div>
                           </div>
                         </div>
                       </div>
@@ -297,7 +297,7 @@ export default function Payments(props) {
                                 className="icon-1x1-xsmall"
                               />
                             </div>
-                            <div>Upto 20 Listings per Location Everyday</div>
+                            <div>Up to 20 Listings per Location Everyday</div>
                           </div>
                         </div>
                       </div>

@@ -31,7 +31,7 @@ export default function Profile(props) {
     ? '3 locations, 20 listings  per location per day max'
     : ''
 
-  const pluginInfo = !user.billing_id ? '20 free uses' : 'Unlimited Searches'
+  const pluginInfo = !user.billing_id ? '10 free uses' : 'Unlimited Searches'
 
   const upgradeOrChange = !user.billing_id ? 'Upgrade' : 'Change'
 
@@ -46,7 +46,7 @@ export default function Profile(props) {
   const detailsMessage = !user.billing_id ? (
     <Fragment>
       <p>
-        You are currently subscribed to Tier 0. Meaning you have 20 free uses
+        You are currently subscribed to Tier 0. Meaning you have 10 free uses
         per month of the Chrome plugin. Please upgrade below for unlimited
         plugin use and access to the emailer feature.
       </p>

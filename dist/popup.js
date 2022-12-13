@@ -2953,7 +2953,7 @@ var eliminateEvent = function eliminateEvent(e) {
 };
 
 var tabSeparator = '\t';
-var freeUses = 20;
+var freeUses = 10;
 function ListingData(props) {
   var configurationFields = props.configurationFields,
       user = props.user,

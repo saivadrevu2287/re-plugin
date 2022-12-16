@@ -36,10 +36,11 @@ export default function EmailerDashboard(props) {
       axios
         .get(`${backendUrl}/api/emailers`)
         .then((r) => {
+          r.data.sort((a,b) => b.id - a.id)
           setScheduledEmails(r.data)
           setLoadingState(false)
 
-          if (r.data.length > 0 && r.data.length == newMaxSize) {
+          if (r.data.length > 0 && r.data.length >= newMaxSize) {
             setSelectedMarket(r.data[0].notes)
           }
 
@@ -69,7 +70,7 @@ export default function EmailerDashboard(props) {
         }}
         key={i}
         className={`padded-double ${
-          i == selectedMarket ? 'gray' : 'hover-item'
+          scheduledEmails[i].notes == selectedMarket ? 'gray' : 'hover-item'
         } border-bottom border-right
         ${i + 1 > maxSize ? 'error' : ''}`}
       >
@@ -92,7 +93,7 @@ export default function EmailerDashboard(props) {
         <h5>Schedule a New Email</h5>
         <p>
           Once you save your parameters below, you will get an email daily at
-          around 10 am ET with the newest properties and their expected cash
+          around 10am ET with the newest properties and their expected cash
           flow.
         </p>
       </div>
@@ -146,7 +147,7 @@ export default function EmailerDashboard(props) {
 
   return (
     <Fragment>
-      <h4 className="padded">Your Targeted Markets</h4>
+      <h4 className="padded">Targeted Markets</h4>
       {tierMessage}
       {showModal && (
         <div className="modal flex around wrap show-on-small full">

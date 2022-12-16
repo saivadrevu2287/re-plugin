@@ -279,6 +279,9 @@ export default function ListingData(props) {
         <a className="value-large" target="_blank" href={feedbackLink}>
           <img alt="feeback" src="/feedback-8.png" style="width:20px" />
         </a>
+        <a className="value-large" target="_blank" href="https://ostrch.notion.site/Ostrich-Extension-Tutorial-1c29f7df3db543c6b795c55f44ff9acb">
+          Tutorial
+        </a>
       </div>
     </div>
   )

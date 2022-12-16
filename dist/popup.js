@@ -3242,7 +3242,11 @@ function ListingData(props) {
     alt: "feeback",
     src: "/feedback-8.png",
     style: "width:20px"
-  }))));
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    className: "value-large",
+    target: "_blank",
+    href: "https://ostrch.notion.site/Ostrich-Extension-Tutorial-1c29f7df3db543c6b795c55f44ff9acb"
+  }, "Tutorial")));
 }
 
 /***/ }),

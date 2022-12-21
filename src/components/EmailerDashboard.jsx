@@ -36,7 +36,7 @@ export default function EmailerDashboard(props) {
       axios
         .get(`${backendUrl}/api/emailers`)
         .then((r) => {
-          r.data.sort((a,b) => b.id - a.id)
+          r.data.sort((a, b) => b.id - a.id)
           setScheduledEmails(r.data)
           setLoadingState(false)
 

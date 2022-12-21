@@ -8,18 +8,17 @@ module.exports = {
     logout: path.resolve(__dirname, 'src', 'containers', 'Logout.jsx'),
     login: path.resolve(__dirname, 'src', 'containers', 'Login.jsx'),
     payments: path.resolve(__dirname, 'src', 'containers', 'Payments.jsx'),
-    popup: path.resolve(__dirname, 'src', 'containers', 'Popup.jsx'),
-    options: path.resolve(__dirname, 'src', 'containers', 'Options.jsx'),
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'builds', 'webapp'),
     filename: '[name].js',
     clean: true,
   },
   devtool: 'source-map',
   mode: 'development',
   plugins: [
-    new CopyWebpackPlugin(['./public/']),
+    new CopyWebpackPlugin(['./assets/webapp/']),
+    new CopyWebpackPlugin(['./assets/common/']),
     new HtmlWebpackPlugin({
       chunks: ['app'],
       filename: 'index.html',
@@ -39,16 +38,6 @@ module.exports = {
       chunks: ['payments'],
       filename: 'payments.html',
       template: path.resolve(__dirname, 'src', 'build', 'payments.html'),
-    }),
-    new HtmlWebpackPlugin({
-      chunks: ['popup'],
-      filename: 'popup.html',
-      template: path.resolve(__dirname, 'src', 'build', 'popup.html'),
-    }),
-    new HtmlWebpackPlugin({
-      chunks: ['options'],
-      filename: 'options.html',
-      template: path.resolve(__dirname, 'src', 'build', 'index.html'),
     }),
   ],
   module: {

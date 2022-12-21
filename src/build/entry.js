@@ -2,7 +2,7 @@ import { render } from 'preact'
 
 const entry = (container) => {
   setTimeout(() => {
-    console.log('Running!!!')
+    console.log('Running in entry')
     _gaq.push(['_setAccount', 'UA-208478356-1'])
     _gaq.push(['_trackPageview'])
   }, 1000)

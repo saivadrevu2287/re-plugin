@@ -228,7 +228,10 @@ export default function ListingData(props) {
     content = (
       <p>
         Need to re-sync. Please log in to{' '}
-        <a href="https://ostrich.so" target='_blank'>Ostrich</a>.
+        <a href="https://ostrich.so" target="_blank">
+          Ostrich
+        </a>
+        .
       </p>
     )
   } else if (user.billing_id) {
@@ -279,7 +282,11 @@ export default function ListingData(props) {
         <a className="value-large" target="_blank" href={feedbackLink}>
           <img alt="feeback" src="/feedback-8.png" style="width:20px" />
         </a>
-        <a className="value-large" target="_blank" href="https://ostrch.notion.site/Ostrich-Extension-Tutorial-1c29f7df3db543c6b795c55f44ff9acb">
+        <a
+          className="value-large"
+          target="_blank"
+          href="https://ostrch.notion.site/Ostrich-Extension-Tutorial-1c29f7df3db543c6b795c55f44ff9acb"
+        >
           Tutorial
         </a>
       </div>

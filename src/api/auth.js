@@ -35,3 +35,40 @@ export const refreshToken = (
         errorCallback(err.message)
       }
     })
+
+export const verify = (
+  backendUrl,
+  verifyPayload,
+  successCallback,
+  errorCallback
+) =>
+  axios
+    .post(`${backendUrl}/auth/verify`, verifyPayload)
+    .then(successCallback)
+    .catch((err) => {
+      console.log(err)
+      if (err.response) {
+        errorCallback(err.response.data.message)
+      } else {
+        errorCallback(err.message)
+      }
+    })
+
+export const resendCode = (
+  backendUrl,
+  resendCodePayload,
+  successCallback,
+  errorCallback
+) => {
+  axios
+    .post(`${backendUrl}/auth/resend-code`, resendCodePayload)
+    .then(successCallback)
+    .catch((err) => {
+      console.log(err)
+      if (err.response) {
+        errorCallback(err.response.data.message)
+      } else {
+        errorCallback(err.message)
+      }
+    })
+}

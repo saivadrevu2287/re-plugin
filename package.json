@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "build": "webpack --node-env production",
+    "build-webapp": "webpack --node-env production",
+    "build-plugin": "webpack --config webpack.config.plugin.js --node-env production",
     "serve": "webpack-dev-server",
     "format": "prettier --write ."
   },

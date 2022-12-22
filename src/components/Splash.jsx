@@ -3,35 +3,35 @@ import { h, Fragment } from 'preact'
 export default function Splash(props) {
   return (
     <Fragment>
-      <header class="section_header1">
-        <div class="padding-global">
-          <div class="container-large">
-            <div class="padding-section-large">
-              <div class="w-layout-grid header1_component">
+      <header className="section_header1">
+        <div className="padding-global">
+          <div className="container-large">
+            <div className="padding-section-large">
+              <div className="w-layout-grid header1_component">
                 <div
                   id="w-node-_609eae99-230f-41f2-7495-de347fdf3a66-f8b0799e"
-                  class="header1_content"
+                  className="header1_content"
                 >
                   <h1>
                     The fastest way ever <br />
                     to analyze rentals
                   </h1>
-                  <p class="text-size-medium">
+                  <p className="text-size-medium">
                     A Chrome extension and a daily email that delivers <br />
                     the cash flow analysis of the newest properties in your
                     market
                     <br />
                   </p>
-                  <div class="button-group">
-                    <a href="#" class="button w-button">
+                  <div className="button-group">
+                    <a href="/signup" className="button w-button">
                       Try Ostrich
                     </a>
-                    <a href="#" class="button secondary w-button">
+                    <a href="#" className="button secondary w-button">
                       How it works
                     </a>
                   </div>
                 </div>
-                <div class="header1_image-wrapper">
+                <div className="header1_image-wrapper">
                   <img src="/guy-with-charts.svg" loading="lazy" alt="" />
                 </div>
               </div>
@@ -39,27 +39,27 @@ export default function Splash(props) {
           </div>
         </div>
       </header>
-      <section class="section_emailer">
-        <div class="padding-global">
-          <div class="container-large">
-            <div class="padding-section-large">
-              <div class="process-container-2">
-                <div class="process-title-wrap-2">
+      <section className="section_emailer">
+        <div className="padding-global">
+          <div className="container-large">
+            <div className="padding-section-large">
+              <div className="process-container-2">
+                <div className="process-title-wrap-2">
                   <h2>How it works</h2>
-                  <p class="text-size-medium">
+                  <p className="text-size-medium">
                     Ostrich is a freemium product with a Chrome Extension as a
                     free feature and Emailer as a paid feature(Sorry, we use
                     expensive APIs)
                   </p>
                 </div>
-                <div class="w-layout-grid process-grid-2">
-                  <div class="process-card-primary-2">
-                    <div class="icon-embed-xxsmall-2 w-embed">
+                <div className="w-layout-grid process-grid-2">
+                  <div className="process-card-primary-2">
+                    <div className="icon-embed-xxsmall-2 w-embed">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         aria-hidden="true"
                         role="img"
-                        class="iconify iconify--carbon"
+                        className="iconify iconify--carbon"
                         width="100%"
                         height="100%"
                         preserveaspectratio="xMidYMid meet"
@@ -76,7 +76,7 @@ export default function Splash(props) {
                       </svg>
                     </div>
                     <h3>Sign up for free</h3>
-                    <p class="emailer_text">
+                    <p className="emailer_text">
                       When you sign up you get 10
                       <br />
                       free uses per month of the Chrome Extension. Use it find
@@ -86,16 +86,16 @@ export default function Splash(props) {
                       src="https://uploads-ssl.webflow.com/6110b06f10260e518f5d3077/6110b1396056a5e6b0bd01f9_Dot%20Wave.svg"
                       loading="lazy"
                       alt=""
-                      class="process-arrow-01"
+                      className="process-arrow-01"
                     />
                   </div>
-                  <div class="process-card-primary-2">
-                    <div class="icon-embed-xxsmall w-embed">
+                  <div className="process-card-primary-2">
+                    <div className="icon-embed-xxsmall w-embed">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         aria-hidden="true"
                         role="img"
-                        class="iconify iconify--carbon"
+                        className="iconify iconify--carbon"
                         width="100%"
                         height="100%"
                         preserveaspectratio="xMidYMid meet"
@@ -108,7 +108,7 @@ export default function Splash(props) {
                       </svg>
                     </div>
                     <h3>Upgrade for Emailer</h3>
-                    <p class="emailer_text">
+                    <p className="emailer_text">
                       If you upgrade, you get unlimited
                       <br />
                       use of the Extension and depending
@@ -121,16 +121,16 @@ export default function Splash(props) {
                       src="https://uploads-ssl.webflow.com/6110b06f10260e518f5d3077/6110b1396056a5e6b0bd01f9_Dot%20Wave.svg"
                       loading="lazy"
                       alt=""
-                      class="process-arrow-01"
+                      className="process-arrow-01"
                     />
                   </div>
-                  <div class="process-card-primary-2">
-                    <div class="icon-embed-xxsmall-3 w-embed">
+                  <div className="process-card-primary-2">
+                    <div className="icon-embed-xxsmall-3 w-embed">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         aria-hidden="true"
                         role="img"
-                        class="iconify iconify--carbon"
+                        className="iconify iconify--carbon"
                         width="100%"
                         height="100%"
                         preserveaspectratio="xMidYMid meet"
@@ -149,7 +149,7 @@ export default function Splash(props) {
                       </svg>
                     </div>
                     <h3>Get Daily Leads</h3>
-                    <p class="emailer_text">
+                    <p className="emailer_text">
                       Add your markets, and we will send
                       <br />
                       you leads every morning with their <br />
@@ -157,7 +157,7 @@ export default function Splash(props) {
                     </p>
                   </div>
                 </div>
-                <a href="pricing.html" class="button w-button">
+                <a href="/signup" className="button w-button">
                   Sign up for free
                 </a>
               </div>
@@ -165,48 +165,48 @@ export default function Splash(props) {
           </div>
         </div>
       </section>
-      <section class="section_plugin">
-        <div class="padding-global">
-          <div class="container-large">
-            <div class="padding-section-large">
-              <div class="w-layout-grid layout1_component">
+      <section className="section_plugin">
+        <div className="padding-global">
+          <div className="container-large">
+            <div className="padding-section-large">
+              <div className="w-layout-grid layout1_component">
                 <div
                   id="w-node-_6ea6296a-cb90-e88d-339b-0fc6f268787d-f8b0799e"
-                  class="layout1_content"
+                  className="layout1_content"
                 >
                   <h2>Chrome Extension</h2>
-                  <p class="text-size-medium">
+                  <p className="text-size-medium">
                     Use it to find cash flowing markets or simply the cash on
                     cash return <br />
                     of a listing on Zillow.
                   </p>
-                  <div class="plugin_steps">
-                    <div class="plugin_step-wrapper">
+                  <div className="plugin_steps">
+                    <div className="plugin_step-wrapper">
                       <img
                         src="/gis_step.png"
                         loading="lazy"
                         alt=""
-                        class="step_icon"
+                        className="step_icon"
                       />
                       <div>
                         No more copying and pasting numbers into an excel
                       </div>
                     </div>
-                    <div class="plugin_step-wrapper">
+                    <div className="plugin_step-wrapper">
                       <img
                         src="/gis_step.png"
                         loading="lazy"
                         alt=""
-                        class="step_icon"
+                        className="step_icon"
                       />
                       <div>Save hours every week</div>
                     </div>
-                    <div class="plugin_step-wrapper">
+                    <div className="plugin_step-wrapper">
                       <img
                         src="/gis_step.png"
                         loading="lazy"
                         alt=""
-                        class="step_icon"
+                        className="step_icon"
                       />
                       <div>Free for up to 10 listings</div>
                     </div>
@@ -214,12 +214,12 @@ export default function Splash(props) {
                   <a
                     href="https://chrome.google.com/webstore/detail/ostrich/aicgkflmidjkbcenllnnlbnfnmicpmgo"
                     target="_blank"
-                    class="button secondary w-button"
+                    className="button secondary w-button"
                   >
                     Get Extension For Free
                   </a>
                 </div>
-                <div class="layout1_image-wrapper">
+                <div className="layout1_image-wrapper">
                   <img
                     src="/plugin_ss.jpg"
                     loading="lazy"
@@ -238,27 +238,27 @@ export default function Splash(props) {
           </div>
         </div>
       </section>
-      <section class="section_testimonial17">
-        <div class="padding-global">
-          <div class="container-large">
-            <div class="padding-section-large">
-              <div class="margin-bottom margin-xxlarge">
-                <div class="text-align-center">
-                  <div class="max-width-large align-center">
-                    <div class="margin-bottom margin-small">
+      <section className="section_testimonial17">
+        <div className="padding-global">
+          <div className="container-large">
+            <div className="padding-section-large">
+              <div className="margin-bottom margin-xxlarge">
+                <div className="text-align-center">
+                  <div className="max-width-large align-center">
+                    <div className="margin-bottom margin-small">
                       <h2>What happy people have to say</h2>
                     </div>
-                    <p class="text-size-medium">
+                    <p className="text-size-medium">
                       Investors and Brokers alike love Ostrich
                     </p>
                   </div>
                 </div>
               </div>
-              <div class="testimonial17_component">
-                <div class="testimonial17_content">
-                  <div class="margin-bottom margin-small">
-                    <div class="testimonial17_rating-wrapper">
-                      <div class="testimonial17_rating-icon w-embed">
+              <div className="testimonial17_component">
+                <div className="testimonial17_content">
+                  <div className="margin-bottom margin-small">
+                    <div className="testimonial17_rating-wrapper">
+                      <div className="testimonial17_rating-icon w-embed">
                         <svg
                           width="100%"
                           viewbox="0 0 18 17"
@@ -271,7 +271,7 @@ export default function Splash(props) {
                           ></path>
                         </svg>
                       </div>
-                      <div class="testimonial17_rating-icon w-embed">
+                      <div className="testimonial17_rating-icon w-embed">
                         <svg
                           width="100%"
                           viewbox="0 0 18 17"
@@ -284,7 +284,7 @@ export default function Splash(props) {
                           ></path>
                         </svg>
                       </div>
-                      <div class="testimonial17_rating-icon w-embed">
+                      <div className="testimonial17_rating-icon w-embed">
                         <svg
                           width="100%"
                           viewbox="0 0 18 17"
@@ -297,7 +297,7 @@ export default function Splash(props) {
                           ></path>
                         </svg>
                       </div>
-                      <div class="testimonial17_rating-icon w-embed">
+                      <div className="testimonial17_rating-icon w-embed">
                         <svg
                           width="100%"
                           viewbox="0 0 18 17"
@@ -310,7 +310,7 @@ export default function Splash(props) {
                           ></path>
                         </svg>
                       </div>
-                      <div class="testimonial17_rating-icon w-embed">
+                      <div className="testimonial17_rating-icon w-embed">
                         <svg
                           width="100%"
                           viewbox="0 0 18 17"
@@ -324,31 +324,31 @@ export default function Splash(props) {
                         </svg>
                       </div>
                     </div>
-                    <div class="text-size-medium">
+                    <div className="text-size-medium">
                       &quot;Perfect example of a product that delivers the 80/20
                       rule. No fluff and simple. You give me the top 20% of what
                       I need that gets 80% done.&quot;
                     </div>
                   </div>
-                  <div class="testimonial17_client">
-                    <div class="testimonial17_client-image-wrapper">
+                  <div className="testimonial17_client">
+                    <div className="testimonial17_client-image-wrapper">
                       <img
                         src="https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316203124aee66_placeholder-image.svg"
                         loading="lazy"
                         alt=""
-                        class="testimonial17_customer-image"
+                        className="testimonial17_customer-image"
                       />
                     </div>
-                    <div class="testimonial17_client-info">
-                      <p class="text-weight-semibold">Jax Acosta-Rubio</p>
+                    <div className="testimonial17_client-info">
+                      <p className="text-weight-semibold">Jax Acosta-Rubio</p>
                       <p>Investor, Focalpoint</p>
                     </div>
                   </div>
                 </div>
-                <div class="testimonial17_content">
-                  <div class="margin-bottom margin-small">
-                    <div class="testimonial17_rating-wrapper">
-                      <div class="testimonial17_rating-icon w-embed">
+                <div className="testimonial17_content">
+                  <div className="margin-bottom margin-small">
+                    <div className="testimonial17_rating-wrapper">
+                      <div className="testimonial17_rating-icon w-embed">
                         <svg
                           width="100%"
                           viewbox="0 0 18 17"
@@ -361,7 +361,7 @@ export default function Splash(props) {
                           ></path>
                         </svg>
                       </div>
-                      <div class="testimonial17_rating-icon w-embed">
+                      <div className="testimonial17_rating-icon w-embed">
                         <svg
                           width="100%"
                           viewbox="0 0 18 17"
@@ -374,7 +374,7 @@ export default function Splash(props) {
                           ></path>
                         </svg>
                       </div>
-                      <div class="testimonial17_rating-icon w-embed">
+                      <div className="testimonial17_rating-icon w-embed">
                         <svg
                           width="100%"
                           viewbox="0 0 18 17"
@@ -387,7 +387,7 @@ export default function Splash(props) {
                           ></path>
                         </svg>
                       </div>
-                      <div class="testimonial17_rating-icon w-embed">
+                      <div className="testimonial17_rating-icon w-embed">
                         <svg
                           width="100%"
                           viewbox="0 0 18 17"
@@ -400,7 +400,7 @@ export default function Splash(props) {
                           ></path>
                         </svg>
                       </div>
-                      <div class="testimonial17_rating-icon w-embed">
+                      <div className="testimonial17_rating-icon w-embed">
                         <svg
                           width="100%"
                           viewbox="0 0 18 17"
@@ -414,31 +414,31 @@ export default function Splash(props) {
                         </svg>
                       </div>
                     </div>
-                    <div class="text-size-medium">
+                    <div className="text-size-medium">
                       &quot;Ostrich is easier to use on daily basis. I chose to
                       avoid a distracting tool like excel for simpler upfront
                       analysis. &quot;
                     </div>
                   </div>
-                  <div class="testimonial17_client">
-                    <div class="testimonial17_client-image-wrapper">
+                  <div className="testimonial17_client">
+                    <div className="testimonial17_client-image-wrapper">
                       <img
                         src="https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316203124aee66_placeholder-image.svg"
                         loading="lazy"
                         alt=""
-                        class="testimonial17_customer-image"
+                        className="testimonial17_customer-image"
                       />
                     </div>
-                    <div class="testimonial17_client-info">
-                      <p class="text-weight-semibold">Chris Anderson</p>
+                    <div className="testimonial17_client-info">
+                      <p className="text-weight-semibold">Chris Anderson</p>
                       <p>Acquisitions, Real Estate PE</p>
                     </div>
                   </div>
                 </div>
-                <div class="testimonial17_content">
-                  <div class="margin-bottom margin-small">
-                    <div class="testimonial17_rating-wrapper">
-                      <div class="testimonial17_rating-icon w-embed">
+                <div className="testimonial17_content">
+                  <div className="margin-bottom margin-small">
+                    <div className="testimonial17_rating-wrapper">
+                      <div className="testimonial17_rating-icon w-embed">
                         <svg
                           width="100%"
                           viewbox="0 0 18 17"
@@ -451,7 +451,7 @@ export default function Splash(props) {
                           ></path>
                         </svg>
                       </div>
-                      <div class="testimonial17_rating-icon w-embed">
+                      <div className="testimonial17_rating-icon w-embed">
                         <svg
                           width="100%"
                           viewbox="0 0 18 17"
@@ -464,7 +464,7 @@ export default function Splash(props) {
                           ></path>
                         </svg>
                       </div>
-                      <div class="testimonial17_rating-icon w-embed">
+                      <div className="testimonial17_rating-icon w-embed">
                         <svg
                           width="100%"
                           viewbox="0 0 18 17"
@@ -477,7 +477,7 @@ export default function Splash(props) {
                           ></path>
                         </svg>
                       </div>
-                      <div class="testimonial17_rating-icon w-embed">
+                      <div className="testimonial17_rating-icon w-embed">
                         <svg
                           width="100%"
                           viewbox="0 0 18 17"
@@ -490,7 +490,7 @@ export default function Splash(props) {
                           ></path>
                         </svg>
                       </div>
-                      <div class="testimonial17_rating-icon w-embed">
+                      <div className="testimonial17_rating-icon w-embed">
                         <svg
                           width="100%"
                           viewbox="0 0 18 17"
@@ -504,24 +504,24 @@ export default function Splash(props) {
                         </svg>
                       </div>
                     </div>
-                    <div class="text-size-medium">
+                    <div className="text-size-medium">
                       &quot;My favorite email everyday is the Emailer leads.
                       Last thing you want to do after a long day at work is to
                       manually analyze new listings for potential hits&quot;
                       <br />
                     </div>
                   </div>
-                  <div class="testimonial17_client">
-                    <div class="testimonial17_client-image-wrapper">
+                  <div className="testimonial17_client">
+                    <div className="testimonial17_client-image-wrapper">
                       <img
                         src="https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316203124aee66_placeholder-image.svg"
                         loading="lazy"
                         alt=""
-                        class="testimonial17_customer-image"
+                        className="testimonial17_customer-image"
                       />
                     </div>
-                    <div class="testimonial17_client-info">
-                      <p class="text-weight-semibold">HG King</p>
+                    <div className="testimonial17_client-info">
+                      <p className="text-weight-semibold">HG King</p>
                       <p>Investor, Digitheque</p>
                     </div>
                   </div>
@@ -531,19 +531,22 @@ export default function Splash(props) {
           </div>
         </div>
       </section>
-      <section class="section_layout17">
-        <div class="padding-global">
-          <div class="container-large">
-            <div class="padding-section-large-2">
-              <div class="w-layout-grid layout17_component">
-                <a href="#" class="layout17_lightbox w-inline-block w-lightbox">
+      <section className="section_layout17">
+        <div className="padding-global">
+          <div className="container-large">
+            <div className="padding-section-large-2">
+              <div className="w-layout-grid layout17_component">
+                <a
+                  href="#"
+                  className="layout17_lightbox w-inline-block w-lightbox"
+                >
                   <img
                     src="https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316259584aee68_placeholder-video-thumbnail.svg"
                     loading="lazy"
                     alt=""
-                    class="layout17_lightbox-image"
+                    className="layout17_lightbox-image"
                   />
-                  <div class="lightbox-play-icon w-embed">
+                  <div className="lightbox-play-icon w-embed">
                     <svg
                       width="64"
                       height="64"
@@ -559,39 +562,39 @@ export default function Splash(props) {
                       ></path>
                     </svg>
                   </div>
-                  <div class="video-overlay-layer"></div>
+                  <div className="video-overlay-layer"></div>
                 </a>
-                <div class="layout17_content">
-                  <div class="margin-bottom margin-xsmall">
-                    <div class="text-weight-semibold">
+                <div className="layout17_content">
+                  <div className="margin-bottom margin-xsmall">
+                    <div className="text-weight-semibold">
                       Let the analysis come to you
                     </div>
                   </div>
-                  <div class="margin-bottom margin-small">
+                  <div className="margin-bottom margin-small">
                     <h2>Ostrich Emailer</h2>
                   </div>
-                  <div class="margin-bottom margin-small">
-                    <p class="text-size-medium">
+                  <div className="margin-bottom margin-small">
+                    <p className="text-size-medium">
                       <br />
                       Get the latest deals delivered to your inbox daily. Skip
                       checking out Zillow, Redfin, Realtor for deals in your
                       market. <br />
                     </p>
                   </div>
-                  <div class="layout17_item-list">
+                  <div className="layout17_item-list">
                     <div
                       id="w-node-_0f8ff558-8505-8448-f4e0-1d1ff22a22da-f8b0799e"
-                      class="layout17_item"
+                      className="layout17_item"
                     >
-                      <div class="layout17_item-icon-wrapper">
+                      <div className="layout17_item-icon-wrapper">
                         <img
                           src="https://uploads-ssl.webflow.com/624380709031623bfe4aee60/624380709031626fc14aee84_icon.svg"
                           loading="lazy"
                           alt=""
-                          class="icon-1x1-xsmall"
+                          className="icon-1x1-xsmall"
                         />
                       </div>
-                      <div class="layout17_item-text-wrapper">
+                      <div className="layout17_item-text-wrapper">
                         <p>
                           Select Tier 1 or above to get access. We have to pay
                           for the data so Emailer is a paid feature.
@@ -600,17 +603,17 @@ export default function Splash(props) {
                     </div>
                     <div
                       id="w-node-_0f8ff558-8505-8448-f4e0-1d1ff22a22e0-f8b0799e"
-                      class="layout17_item"
+                      className="layout17_item"
                     >
-                      <div class="layout17_item-icon-wrapper">
+                      <div className="layout17_item-icon-wrapper">
                         <img
                           src="https://uploads-ssl.webflow.com/624380709031623bfe4aee60/624380709031626fc14aee84_icon.svg"
                           loading="lazy"
                           alt=""
-                          class="icon-1x1-xsmall"
+                          className="icon-1x1-xsmall"
                         />
                       </div>
-                      <div class="layout17_item-text-wrapper">
+                      <div className="layout17_item-text-wrapper">
                         <p>
                           Enter your location, and the financial assumptions
                           (Loan, expenses etc)
@@ -619,17 +622,17 @@ export default function Splash(props) {
                     </div>
                     <div
                       id="w-node-_0f8ff558-8505-8448-f4e0-1d1ff22a22e6-f8b0799e"
-                      class="layout17_item"
+                      className="layout17_item"
                     >
-                      <div class="layout17_item-icon-wrapper">
+                      <div className="layout17_item-icon-wrapper">
                         <img
                           src="https://uploads-ssl.webflow.com/624380709031623bfe4aee60/624380709031626fc14aee84_icon.svg"
                           loading="lazy"
                           alt=""
-                          class="icon-1x1-xsmall"
+                          className="icon-1x1-xsmall"
                         />
                       </div>
-                      <div class="layout17_item-text-wrapper">
+                      <div className="layout17_item-text-wrapper">
                         <p>
                           Sit back and get leads with their cash flow return
                           analysis
@@ -637,17 +640,17 @@ export default function Splash(props) {
                       </div>
                     </div>
                   </div>
-                  <div class="margin-top margin-medium">
-                    <div class="button-group-2">
-                      <a href="#" class="button-2 is-secondary w-button">
+                  <div className="margin-top margin-medium">
+                    <div className="button-group-2">
+                      <a href="#" className="button-2 is-secondary w-button">
                         Button
                       </a>
                       <a
                         href="#"
-                        class="button-2 is-link is-icon w-inline-block"
+                        className="button-2 is-link is-icon w-inline-block"
                       >
                         <div>Button</div>
-                        <div class="icon-embed-xxsmall w-embed">
+                        <div className="icon-embed-xxsmall w-embed">
                           <svg
                             width="16"
                             height="16"
@@ -670,30 +673,30 @@ export default function Splash(props) {
           </div>
         </div>
       </section>
-      <section class="section_faq4">
-        <div class="padding-global">
-          <div class="container-small">
-            <div class="padding-section-large-2">
-              <div class="margin-bottom margin-xxlarge">
-                <div class="text-align-center">
-                  <div class="max-width-large">
-                    <div class="margin-bottom margin-small">
+      <section className="section_faq4">
+        <div className="padding-global">
+          <div className="container-small">
+            <div className="padding-section-large-2">
+              <div className="margin-bottom margin-xxlarge">
+                <div className="text-align-center">
+                  <div className="max-width-large">
+                    <div className="margin-bottom margin-small">
                       <h2>FAQs</h2>
                     </div>
-                    <p class="text-size-medium">
+                    <p className="text-size-medium">
                       <br />
                     </p>
                   </div>
                 </div>
               </div>
-              <div class="faq4_component">
-                <div class="w-layout-grid faq4_list">
-                  <div class="faq4_accordion">
+              <div className="faq4_component">
+                <div className="w-layout-grid faq4_list">
+                  <div className="faq4_accordion">
                     <div
                       data-w-id="86388f9e-fa23-6b2c-b6a7-51f02abb47af"
-                      class="faq4_question"
+                      className="faq4_question"
                     >
-                      <div class="text-size-medium text-weight-bold">
+                      <div className="text-size-medium text-weight-bold">
                         What is the difference between the Extension and the
                         Emailer?
                       </div>
@@ -701,11 +704,14 @@ export default function Splash(props) {
                         src="https://uploads-ssl.webflow.com/624380709031623bfe4aee60/624380709031621ef64aee78_icon_plus.svg"
                         loading="lazy"
                         alt=""
-                        class="faq-05_icon"
+                        className="faq-05_icon"
                       />
                     </div>
-                    <div style="width: 100%; height: 0px" class="faq4_answer">
-                      <div class="margin-bottom margin-small">
+                    <div
+                      style="width: 100%; height: 0px"
+                      className="faq4_answer"
+                    >
+                      <div className="margin-bottom margin-small">
                         <p>
                           Extension helps you save hours from the manual work of
                           copying and pasting income and expenses into a
@@ -721,23 +727,26 @@ export default function Splash(props) {
                       </div>
                     </div>
                   </div>
-                  <div class="faq4_accordion">
+                  <div className="faq4_accordion">
                     <div
                       data-w-id="86388f9e-fa23-6b2c-b6a7-51f02abb47b8"
-                      class="faq4_question"
+                      className="faq4_question"
                     >
-                      <div class="text-size-medium text-weight-bold">
+                      <div className="text-size-medium text-weight-bold">
                         Why is there a charge?
                       </div>
                       <img
                         src="https://uploads-ssl.webflow.com/624380709031623bfe4aee60/624380709031621ef64aee78_icon_plus.svg"
                         loading="lazy"
                         alt=""
-                        class="faq-05_icon"
+                        className="faq-05_icon"
                       />
                     </div>
-                    <div style="width: 100%; height: 0px" class="faq4_answer">
-                      <div class="margin-bottom margin-small">
+                    <div
+                      style="width: 100%; height: 0px"
+                      className="faq4_answer"
+                    >
+                      <div className="margin-bottom margin-small">
                         <p>
                           I built the tool to unlock speed for my own analysis
                           and then it was all good when few people were using
@@ -751,23 +760,26 @@ export default function Splash(props) {
                       </div>
                     </div>
                   </div>
-                  <div class="faq4_accordion">
+                  <div className="faq4_accordion">
                     <div
                       data-w-id="86388f9e-fa23-6b2c-b6a7-51f02abb47c1"
-                      class="faq4_question"
+                      className="faq4_question"
                     >
-                      <div class="text-size-medium text-weight-bold">
+                      <div className="text-size-medium text-weight-bold">
                         Why is the Extension only limited to Zillow?
                       </div>
                       <img
                         src="https://uploads-ssl.webflow.com/624380709031623bfe4aee60/624380709031621ef64aee78_icon_plus.svg"
                         loading="lazy"
                         alt=""
-                        class="faq-05_icon"
+                        className="faq-05_icon"
                       />
                     </div>
-                    <div style="width: 100%; height: 0px" class="faq4_answer">
-                      <div class="margin-bottom margin-small">
+                    <div
+                      style="width: 100%; height: 0px"
+                      className="faq4_answer"
+                    >
+                      <div className="margin-bottom margin-small">
                         <p>
                           Because Zillow provides rental estimates, which are
                           needed in the calculations.
@@ -775,23 +787,26 @@ export default function Splash(props) {
                       </div>
                     </div>
                   </div>
-                  <div class="faq4_accordion">
+                  <div className="faq4_accordion">
                     <div
                       data-w-id="86388f9e-fa23-6b2c-b6a7-51f02abb47ca"
-                      class="faq4_question"
+                      className="faq4_question"
                     >
-                      <div class="text-size-medium text-weight-bold">
+                      <div className="text-size-medium text-weight-bold">
                         Does the product outside the US?
                       </div>
                       <img
                         src="https://uploads-ssl.webflow.com/624380709031623bfe4aee60/624380709031621ef64aee78_icon_plus.svg"
                         loading="lazy"
                         alt=""
-                        class="faq-05_icon"
+                        className="faq-05_icon"
                       />
                     </div>
-                    <div style="width: 100%; height: 0px" class="faq4_answer">
-                      <div class="margin-bottom margin-small">
+                    <div
+                      style="width: 100%; height: 0px"
+                      className="faq4_answer"
+                    >
+                      <div className="margin-bottom margin-small">
                         <p>
                           No sorry, we are limited to US only at this point.
                         </p>
@@ -800,16 +815,16 @@ export default function Splash(props) {
                   </div>
                 </div>
               </div>
-              <div class="margin-top-2 margin-xxlarge">
-                <div class="text-align-center">
-                  <div class="max-width-medium align-center">
-                    <div class="margin-bottom margin-xsmall">
+              <div className="margin-top-2 margin-xxlarge">
+                <div className="text-align-center">
+                  <div className="max-width-medium align-center">
+                    <div className="margin-bottom margin-xsmall">
                       <h4>Still have questions?</h4>
                     </div>
-                    <div class="margin-top margin-medium">
+                    <div className="margin-top margin-medium">
                       <a
                         href="mailto:v@ostrich.so?subject=Question%20about%20Ostrich"
-                        class="button-2 secondary w-button"
+                        className="button-2 secondary w-button"
                       >
                         Contact
                       </a>

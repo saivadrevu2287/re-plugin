@@ -1,7 +1,7 @@
 import { Fragment, h } from 'preact'
 
 export default function Profile(props) {
-  const { user } = props
+  const { user, dashboardLink } = props
 
   if (!user) {
     return (
@@ -38,7 +38,7 @@ export default function Profile(props) {
   const emailerButton = !user.billing_id ? (
     ''
   ) : (
-    <a href="/dashboard" className="button_upgrade w-button">
+    <a href={dashboardLink} className="button_upgrade w-button">
       Add a Market
     </a>
   )

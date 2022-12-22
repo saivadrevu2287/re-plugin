@@ -1,3 +1,5 @@
+console.log('Running webflow!')
+
 /*!
  * Webflow: Front-end site library
  * @license MIT
@@ -5,7 +7,8 @@
  *   var Webflow = Webflow || [];
  *   Webflow.push(readyFunction);
  */
-/******/ ;(function (modules) {
+/******/
+;(function (modules) {
   // webpackBootstrap
   /******/ // The module cache
   /******/ var installedModules = {}
@@ -23457,6 +23460,7 @@
  * ----------------------------------------------------------------------
  * Webflow: Interactions 2.0: Init
  */
+console.log('init actions')
 Webflow.require('ix2').init({
   events: {
     'e-3': {

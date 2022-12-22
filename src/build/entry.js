@@ -3,8 +3,13 @@ import { render } from 'preact'
 const entry = (container) => {
   setTimeout(() => {
     console.log('Running in entry')
-    _gaq.push(['_setAccount', 'UA-208478356-1'])
-    _gaq.push(['_trackPageview'])
+    // _gaq.push(['_setAccount', 'UA-208478356-1'])
+    // _gaq.push(['_trackPageview'])
+
+    // var script2 = document.createElement("script");
+    // script2.type = "text/javascript";
+    // script2.src = "/webflow.js";
+    // document.getElementById('root').appendChild(script2);
   }, 1000)
 
   const root = 'root'

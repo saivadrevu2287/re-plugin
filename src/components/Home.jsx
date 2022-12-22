@@ -3,7 +3,7 @@ import Splash from './Splash'
 import Profile from './Profile'
 
 export default function Home(props) {
-  const { jwt, user, backendUrl, dashboardLink } = props
+  const { jwt, user, backendUrl } = props
 
   return (
     <Fragment>
@@ -12,7 +12,6 @@ export default function Home(props) {
         <Profile
           user={user}
           backendUrl={backendUrl}
-          dashboardLink={dashboardLink}
         />
       )}
     </Fragment>

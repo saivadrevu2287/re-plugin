@@ -53,10 +53,15 @@ export default function EmailerDashboard(props) {
     setLoadingState(true)
   }, [user, successMessage])
 
+  const saveMessage = maxSize >= scheduledEmails.length 
+    ? "You are past your limit of alloted markets! This market will not send any emails."
+    : ''
+
   const formModal = showModal && (
-    <Modal>
+    <Modal close={() => setShowModal(false)}>
       <CalculationFields
         scheduledEmail={scheduledEmails[selectedMarket]}
+        saveMessage={saveMessage}
         handleSave={(emailer) =>
           selectedMarket == -1
             ? saveEmailer(
@@ -109,7 +114,7 @@ export default function EmailerDashboard(props) {
         setShowModal(true)
         setSelectedMarket(i)
       }}
-      canCopy={scheduledEmails.length < maxSize}
+      canCopy={true}
       handleCopy={() => {
           saveEmailer(
             backendUrl,
@@ -128,7 +133,7 @@ export default function EmailerDashboard(props) {
     />
   ))
 
-  const addLocationButton = scheduledEmails.length < maxSize && (
+  const addLocationButton = (
     <a
       data-w-id="8d20c62d-64a4-1e1c-1d25-9dfdcfb4650c"
       onClick={() => {

@@ -4,7 +4,7 @@ import { useState } from 'preact/hooks'
 const eliminateEvent = (callback) => (event) => callback(event.target.value)
 
 export default function CalculationFields(props) {
-  const { scheduledEmail, handleSave } = props
+  const { scheduledEmail, handleSave, saveMessage } = props
 
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -165,6 +165,7 @@ export default function CalculationFields(props) {
   return (
     <Fragment>
       <div className="modal_form-group">
+        <p className='error'>{saveMessage}</p>
         <div className="modal_group-header">
           <div className="modal_group-heading">Location Settings</div>
           <div className="modal_divider"></div>

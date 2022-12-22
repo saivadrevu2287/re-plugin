@@ -2677,7 +2677,8 @@ var eliminateEvent = function eliminateEvent(callback) {
 
 function CalculationFields(props) {
   var scheduledEmail = props.scheduledEmail,
-      handleSave = props.handleSave;
+      handleSave = props.handleSave,
+      saveMessage = props.saveMessage;
 
   var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
@@ -2865,7 +2866,9 @@ function CalculationFields(props) {
 
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "modal_form-group"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+    className: "error"
+  }, saveMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "modal_group-header"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "modal_group-heading"
@@ -3586,6 +3589,100 @@ function Confirm(props) {
 
 /***/ }),
 
+/***/ "./src/components/DashboardNav.jsx":
+/*!*****************************************!*\
+  !*** ./src/components/DashboardNav.jsx ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ DashboardNav)
+/* harmony export */ });
+/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
+
+function DashboardNav(props) {
+  var activeTab = props.activeTab,
+      actions = props.actions,
+      toHome = props.toHome,
+      toLogout = props.toLogout;
+  var actionsMobile = actions.map(function (action) {
+    var name = action.tab;
+    var selector = action.selector;
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "mobile-nav-link-container",
+      onClick: selector
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "desktop-navigation-block ".concat(activeTab == name && 'active-nav', " mobile")
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, name)));
+  });
+  var actionsDesktop = actions.map(function (action) {
+    var name = action.tab;
+    var selector = action.selector;
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+      onClick: selector,
+      className: "desktop-navigation-block w-inline-block ".concat(activeTab == name && 'w--current')
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, name));
+  });
+  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "data-collapse": "medium",
+    "data-animation": "default",
+    "data-duration": "400",
+    "data-easing": "ease",
+    "data-easing2": "ease",
+    role: "banner",
+    className: "mobile-navigation w-nav"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "container w-container"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    onClick: toHome,
+    className: "mobile-home-link w-nav-brand"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+    src: "/logo.png",
+    width: "44",
+    sizes: "(max-width: 767px) 44px, 100vw",
+    srcset: " /logo-p-500.png   500w, /logo-p-800.png   800w, /logo-p-1080.png 1080w, /logo-p-1600.png 1600w, /logo-p-2000.png 2000w, /logo-p-2600.png 2600w, /logo.png        2825w ",
+    alt: "",
+    className: "desktop-logo"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("nav", {
+    role: "navigation",
+    className: "nav-menu w-nav-menu"
+  }, actionsMobile, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "mobile-nav-link-container bottom-nav",
+    onClick: toLogout
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "desktop-navigation-block bottom-nav"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Logout")))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "menu-button w-nav-button"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "menu-icon-container"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+    src: "/Mobile-Menu-Icon.svg",
+    width: "22",
+    alt: ""
+  }))))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "desktop-navigation"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+    src: "/logo.png",
+    onClick: toHome,
+    width: "44",
+    sizes: "(max-width: 767px) 100vw, 44px",
+    srcset: " /logo-p-500.png   500w, /logo-p-800.png   800w, /logo-p-1080.png 1080w, /logo-p-1600.png 1600w, /logo-p-2000.png 2000w, /logo-p-2600.png 2600w, /logo.png        2825w ",
+    alt: "",
+    className: "desktop-logo"
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "desktop-navigation-container"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "desktop-navigation-icons-container"
+  }, actionsDesktop), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "desktop-navigation-block bottom-nav",
+    onClick: toLogout
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Logout")))));
+}
+
+/***/ }),
+
 /***/ "./src/components/EmailerDashboard.jsx":
 /*!*********************************************!*\
   !*** ./src/components/EmailerDashboard.jsx ***!
@@ -3699,8 +3796,14 @@ function EmailerDashboard(props) {
 
     setLoadingState(true);
   }, [user, successMessage]);
-  var formModal = showModal && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_Modal__WEBPACK_IMPORTED_MODULE_4__["default"], null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_CalculationFields__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  var saveMessage = maxSize >= scheduledEmails.length ? "You are past your limit of alloted markets! This market will not send any emails." : '';
+  var formModal = showModal && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_Modal__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    close: function close() {
+      return setShowModal(false);
+    }
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_CalculationFields__WEBPACK_IMPORTED_MODULE_5__["default"], {
     scheduledEmail: scheduledEmails[selectedMarket],
+    saveMessage: saveMessage,
     handleSave: function handleSave(emailer) {
       return selectedMarket == -1 ? (0,_api_emailer__WEBPACK_IMPORTED_MODULE_6__.saveEmailer)(backendUrl, emailer, function (_) {
         setSuccessMessage('Saved Market, expect an email at 10am ET!');
@@ -3727,7 +3830,7 @@ function EmailerDashboard(props) {
         setShowModal(true);
         setSelectedMarket(i);
       },
-      canCopy: scheduledEmails.length < maxSize,
+      canCopy: true,
       handleCopy: function handleCopy() {
         (0,_api_emailer__WEBPACK_IMPORTED_MODULE_6__.saveEmailer)(backendUrl, _objectSpread(_objectSpread({}, scheduledEmail), {}, {
           notes: "".concat(scheduledEmail.notes, " Clone")
@@ -3737,7 +3840,7 @@ function EmailerDashboard(props) {
       }
     });
   });
-  var addLocationButton = scheduledEmails.length < maxSize && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+  var addLocationButton = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
     "data-w-id": "8d20c62d-64a4-1e1c-1d25-9dfdcfb4650c",
     onClick: function onClick() {
       setShowModal(true);
@@ -3767,6 +3870,53 @@ function EmailerDashboard(props) {
   }, successMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "location_cards-wrapper"
   }, locationCards));
+}
+
+/***/ }),
+
+/***/ "./src/components/ExtensionDetails.jsx":
+/*!*********************************************!*\
+  !*** ./src/components/ExtensionDetails.jsx ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ExtensionDetails)
+/* harmony export */ });
+/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
+
+function ExtensionDetails(props) {
+  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "padding-section-dashboard"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "page-title-container"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h2", null, "Ostrich Chrome Extension")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "ce_main-container"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+    id: "w-node-_8e9e2030-65cf-9533-99e2-41d9d3dbbbe4-fe285f03",
+    "class": "ce_paragraph"
+  }, "Click the extension icon on your Chrome Browser to instantly get the cash on cash analysis of a listing. ", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), "Use the extension to screen listings quickly or to find cash flowing markets.", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    href: "#"
+  }, "See a 2 min video")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-_0ec42e9a-ae6b-1ef9-e4f6-5285a3e2da4b-fe285f03",
+    "class": "note_wrapper"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "note_text"
+  }, "Note"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("ul", {
+    role: "list",
+    "class": "note_list-ul"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("li", {
+    "class": "note_list-li"
+  }, "If you are on the free plan, you get 10 free uses every month"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("li", {
+    "class": "note_list-li"
+  }, "To get unlimited uses upgrade to Tier 1 or above"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    id: "w-node-_250e43ed-3caa-52a1-81cd-f1958440c0fb-fe285f03",
+    href: "https://chrome.google.com/webstore/detail/ostrich/aicgkflmidjkbcenllnnlbnfnmicpmgo",
+    target: "_blank",
+    "class": "button w-button"
+  }, "Download Chrome Extension")));
 }
 
 /***/ }),
@@ -3923,12 +4073,10 @@ __webpack_require__.r(__webpack_exports__);
 function Home(props) {
   var jwt = props.jwt,
       user = props.user,
-      backendUrl = props.backendUrl,
-      dashboardLink = props.dashboardLink;
+      backendUrl = props.backendUrl;
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, !jwt && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_Splash__WEBPACK_IMPORTED_MODULE_1__["default"], null), jwt && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_Profile__WEBPACK_IMPORTED_MODULE_2__["default"], {
     user: user,
-    backendUrl: backendUrl,
-    dashboardLink: dashboardLink
+    backendUrl: backendUrl
   }));
 }
 
@@ -4191,14 +4339,289 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
 
 function Modal(props) {
-  var children = props.children;
+  var children = props.children,
+      close = props.close;
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "modal"
+    className: "modal",
+    onClick: function onClick(e) {
+      if (!e.path.map(function (e) {
+        return e.id;
+      }).includes('modal-content')) {
+        close();
+      }
+    }
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "modal-content"
+    className: "modal-content",
+    id: "modal-content",
+    onClick: function onClick() {}
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "modal-body"
   }, children)));
+}
+
+/***/ }),
+
+/***/ "./src/components/Payments.jsx":
+/*!*************************************!*\
+  !*** ./src/components/Payments.jsx ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Payments)
+/* harmony export */ });
+/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
+/* harmony import */ var _PlanDetails__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PlanDetails */ "./src/components/PlanDetails.jsx");
+
+
+function Payments(props) {
+  var user = props.user;
+
+  if (user && user.billing_id == 'Tier 0') {
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h3", null, "You're subscribed to Tier 0"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are currently subscribed to Tier 0. Meaning you have 10 free uses per month of the Chrome plugin. Please upgrade below for unlimited plugin use and access to the emailer feature."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Make sure you are using the same email on the upgrade screen that you signed up with."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("stripe-pricing-table", {
+      "pricing-table-id": "prctbl_1MCR6NIDd9tdb2o18q1QOupw",
+      "publishable-key": "pk_live_51LphqXIDd9tdb2o1bC0M6mYJVzh3dh4MIbiJQXJkvCKJglH39a4bZLzeIMFXoS5p0IYBLqaT75fnkkxls5Ly8d1W006sYTCuzP"
+    }));
+  } else {
+    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_PlanDetails__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      user: user
+    });
+  }
+}
+
+/***/ }),
+
+/***/ "./src/components/PlanDetails.jsx":
+/*!****************************************!*\
+  !*** ./src/components/PlanDetails.jsx ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ PlanDetails)
+/* harmony export */ });
+/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
+
+function PlanDetails(props) {
+  var user = props.user;
+  var getStartedLink = user ? 'https://billing.stripe.com/p/login/bIY8wx24h5mC1aM144' : '/';
+  var currentTierButton = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "button current"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Current Tier"));
+  var getStartedButton = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    href: getStartedLink,
+    className: "button pricing w-button"
+  }, "Get started");
+  var freeButton = getStartedButton;
+  var tier1Button = user && user.billing_id == 'Tier 1' ? currentTierButton : getStartedButton;
+  var tier2Button = user && user.billing_id == 'Tier 2' ? currentTierButton : getStartedButton;
+  var tier3Button = user && user.billing_id == 'Tier 3' ? currentTierButton : getStartedButton;
+  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("section", {
+    className: "section_pricing"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "padding-global"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "container-large"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "padding-section-large"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "w-layout-grid pricing18_components"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "pricing18_plan"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "pricing18_content"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "pricing18_content-top"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "text-align-center"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "heading-style-h6"
+  }, "Free Tier"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "heading-style-h1"
+  }, "$0", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    className: "heading-style-h4"
+  }, "/mo"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "pricing18_feature-list"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-_039659d2-35ec-3feb-a76e-20d23bec24db-044b8525",
+    className: "pricing_feature-heading"
+  }, "Plugin"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-_90f9c6e3-252d-5c8b-8a16-a22c21cff8c7-044b8525",
+    className: "pricing18_feature"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "pricing18_icon-wrapper"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+    src: "https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316232dc4aee70_icon_check.svg",
+    loading: "lazy",
+    alt: "",
+    className: "icon-1x1-xsmall"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "10 Searches/month")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-e87b2a05-27f2-bc4f-0230-4fb5ecf6d1f6-044b8525",
+    className: "pricing_feature-heading"
+  }, "Emailer"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-_90f9c6e3-252d-5c8b-8a16-a22c21cff8d6-044b8525",
+    className: "pricing18_feature"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "This plan does not includes Emailer")))), freeButton)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "pricing18_plan"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "pricing18_content"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "pricing18_content-top"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "text-align-center"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "heading-style-h6"
+  }, "Tier 1"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "heading-style-h1"
+  }, "$8.99", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    className: "heading-style-h4"
+  }, "/mo"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "pricing18_feature-list"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-ed121502-afd0-d7f4-47be-5dad38123e3d-044b8525",
+    className: "pricing_feature-heading"
+  }, "Plugin"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-ed121502-afd0-d7f4-47be-5dad38123e3f-044b8525",
+    className: "pricing18_feature"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "pricing18_icon-wrapper"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+    src: "https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316232dc4aee70_icon_check.svg",
+    loading: "lazy",
+    alt: "",
+    className: "icon-1x1-xsmall"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Unlimited Searches")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-ed121502-afd0-d7f4-47be-5dad38123e44-044b8525",
+    className: "pricing_feature-heading"
+  }, "Emailer"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-fe7d86ca-d698-152c-8005-8b7c67f45c68-044b8525",
+    className: "pricing18_feature"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "pricing18_icon-wrapper"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+    src: "https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316232dc4aee70_icon_check.svg",
+    loading: "lazy",
+    alt: "",
+    className: "icon-1x1-xsmall"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "1 Location")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-dd34ba97-87d1-8029-5291-ca8a896a8612-044b8525",
+    className: "pricing18_feature"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "pricing18_icon-wrapper"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+    src: "https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316232dc4aee70_icon_check.svg",
+    loading: "lazy",
+    alt: "",
+    className: "icon-1x1-xsmall"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Upto 8 Listings Everyday")))), tier1Button)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "pricing18_plan"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "pricing18_content"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "pricing18_content-top"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "text-align-center"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "heading-style-h6"
+  }, "Tier 2"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "heading-style-h1"
+  }, "$14.99", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    className: "heading-style-h4"
+  }, "/mo"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "pricing18_feature-list"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-_2eb43afc-6058-f7a0-94a9-1a322e5f1b83-044b8525",
+    className: "pricing_feature-heading"
+  }, "Plugin"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-_2eb43afc-6058-f7a0-94a9-1a322e5f1b85-044b8525",
+    className: "pricing18_feature"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "pricing18_icon-wrapper"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+    src: "https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316232dc4aee70_icon_check.svg",
+    loading: "lazy",
+    alt: "",
+    className: "icon-1x1-xsmall"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Unlimited Searches")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-_2eb43afc-6058-f7a0-94a9-1a322e5f1b8a-044b8525",
+    className: "pricing_feature-heading"
+  }, "Emailer"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-_4241f7ae-65e5-cf23-ec0a-cd43cab63a6c-044b8525",
+    className: "pricing18_feature"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "pricing18_icon-wrapper"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+    src: "https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316232dc4aee70_icon_check.svg",
+    loading: "lazy",
+    alt: "",
+    className: "icon-1x1-xsmall"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "1 Location")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-_6238a784-17cf-328b-bead-6b305f1e5a29-044b8525",
+    className: "pricing18_feature"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "pricing18_icon-wrapper"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+    src: "https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316232dc4aee70_icon_check.svg",
+    loading: "lazy",
+    alt: "",
+    className: "icon-1x1-xsmall"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Up to 20 Listings Everyday")))), tier2Button)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "pricing18_plan"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "pricing18_content"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "pricing18_content-top"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "text-align-center"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "heading-style-h6"
+  }, "Tier 3"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "heading-style-h1"
+  }, "$19.99", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    className: "heading-style-h4"
+  }, "/mo"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "pricing18_feature-list"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-_2febbb44-2b03-668e-f727-595b6275e588-044b8525",
+    className: "pricing_feature-heading"
+  }, "Plugin"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-_2febbb44-2b03-668e-f727-595b6275e58a-044b8525",
+    className: "pricing18_feature"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "pricing18_icon-wrapper"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+    src: "https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316232dc4aee70_icon_check.svg",
+    loading: "lazy",
+    alt: "",
+    className: "icon-1x1-xsmall"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Unlimited Searches")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-_2febbb44-2b03-668e-f727-595b6275e58f-044b8525",
+    className: "pricing_feature-heading"
+  }, "Emailer"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-_7c7dbd83-93e7-22ba-e7ef-961533e8fe7b-044b8525",
+    className: "pricing18_feature"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "pricing18_icon-wrapper"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+    src: "https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316232dc4aee70_icon_check.svg",
+    loading: "lazy",
+    alt: "",
+    className: "icon-1x1-xsmall"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "3 Locations")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-_2782fe1a-7738-a68e-c595-3328410b2b09-044b8525",
+    className: "pricing18_feature"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "pricing18_icon-wrapper"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
+    src: "https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316232dc4aee70_icon_check.svg",
+    loading: "lazy",
+    alt: "",
+    className: "icon-1x1-xsmall"
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Up to 20 Listings per Location Everyday")))), tier3Button)))))));
 }
 
 /***/ }),
@@ -4215,102 +4638,161 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ Profile)
 /* harmony export */ });
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
+/* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
+/* harmony import */ var _components_EmailerDashboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/EmailerDashboard */ "./src/components/EmailerDashboard.jsx");
+/* harmony import */ var _components_DashboardNav__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/DashboardNav */ "./src/components/DashboardNav.jsx");
+/* harmony import */ var _components_ExtensionDetails__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/ExtensionDetails */ "./src/components/ExtensionDetails.jsx");
+/* harmony import */ var _components_Payments__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Payments */ "./src/components/Payments.jsx");
+/* harmony import */ var _components_Settings__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Settings */ "./src/components/Settings.jsx");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+var toLogout = function toLogout() {
+  return window.location.replace('/logout.html');
+};
+
+var toLogin = function toLogin() {
+  return window.location.replace('/');
+};
+
+var toHome = function toHome() {
+  return window.location.href = '/';
+};
 
 function Profile(props) {
   var user = props.user,
-      dashboardLink = props.dashboardLink;
+      backendUrl = props.backendUrl;
 
-  if (!user) {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h3", null, "Loading..."));
-  }
+  var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)('Plans'),
+      _useState2 = _slicedToArray(_useState, 2),
+      activeTab = _useState2[0],
+      setActiveTab = _useState2[1];
 
-  var price = !user.billing_id ? 0 : user.billing_id == 'Tier 1' ? 8.99 : user.billing_id == 'Tier 2' ? 14.99 : user.billing_id == 'Tier 3' ? 19.99 : 0;
-  var emailerInfo = !user.billing_id ? 'No Access on Free Tier' : user.billing_id == 'Tier 1' ? '1 Location, 8 listings everyday' : user.billing_id == 'Tier 2' ? '1 Locations, 20 listings  per location per day max' : user.billing_id == 'Tier 3' ? '3 locations, 20 listings  per location per day max' : '';
-  var pluginInfo = !user.billing_id ? '10 free uses' : 'Unlimited Searches';
-  var upgradeOrChange = !user.billing_id ? 'Upgrade' : 'Change';
-  var emailerButton = !user.billing_id ? '' : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: dashboardLink,
-    className: "button_upgrade w-button"
-  }, "Add a Market");
-  var detailsMessage = !user.billing_id ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are currently subscribed to Tier 0. Meaning you have 10 free uses per month of the Chrome plugin. Please upgrade below for unlimited plugin use and access to the emailer feature."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Make sure you are using the same email on the upgrade screen that you signed up with.")) : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "In this Tier, you get unlimited usage of the Chrome Extension and also the emailer feature. Add a market below."));
-  var paymentLink = '/payments.html';
-  var billingTier = user.billing_id ? user.billing_id : 'Free Tier';
-  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("header", {
-    className: "section_header1 bg-purple"
+  var actions = [{
+    tab: 'Plans',
+    selector: function selector() {
+      return setActiveTab('Plans');
+    }
+  }, {
+    tab: 'Extension',
+    selector: function selector() {
+      return setActiveTab('Extension');
+    }
+  }, {
+    tab: 'Emailer',
+    selector: function selector() {
+      return setActiveTab('Emailer');
+    }
+  }, {
+    tab: 'Settings',
+    selector: function selector() {
+      return setActiveTab('Settings');
+    }
+  }];
+  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_DashboardNav__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    actions: actions,
+    activeTab: activeTab,
+    toHome: toHome,
+    toLogout: toLogout
+  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "content-wrapper"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "padding-global"
+    "class": "content-container"
+  }, activeTab == 'Plans' && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Payments__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    user: user,
+    backendUrl: backendUrl
+  }), activeTab == 'Extension' && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_ExtensionDetails__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    user: user,
+    backendUrl: backendUrl
+  }), activeTab == 'Emailer' && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_EmailerDashboard__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    user: user,
+    backendUrl: backendUrl
+  }), activeTab == 'Settings' && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Settings__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    user: user,
+    backendUrl: backendUrl
+  }))));
+}
+
+/***/ }),
+
+/***/ "./src/components/Settings.jsx":
+/*!*************************************!*\
+  !*** ./src/components/Settings.jsx ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Settings)
+/* harmony export */ });
+/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
+
+function Settings(props) {
+  var user = props.user;
+  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "padding-section-dashboard"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "container-large"
+    "class": "page-title-container"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h2", null, "Your Account")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "table_container"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "padding-section-small"
+    "class": "table_wrapper"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "w-layout-grid header1_component-copy"
+    "class": "table_row-group"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    id: "w-node-ceee6e35-be19-e9cc-f01f-a590743015ff-34c18b3d",
-    className: "header1_content-copy"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h1", null, "You are successfully Logged in!"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "heading-style-h6 text-color-black"
-  }, "Your Current Tier"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "current-text"
-  }, billingTier)))))))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("section", {
-    className: "section_pricing"
+    "class": "table_row"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "padding-global"
+    id: "w-node-_6765cd08-0f11-7e06-0d5c-16b2b6b00f76-b1a44aae",
+    "class": "table_cell left"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Email")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-_50bf0cf3-b192-2cf1-e3f7-76d569a8c148-b1a44aae",
+    "class": "table_cell"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "container-large"
+    "class": "table_email-text"
+  }, user.email)))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "table_row-group"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "padding-section-large"
+    "class": "table_row"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "w-layout-grid current-plan_component"
+    id: "w-node-e89b7c5c-533f-1543-603e-929b838b707b-b1a44aae",
+    "class": "table_cell left"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Tier")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-e89b7c5c-533f-1543-603e-929b838b707e-b1a44aae",
+    "class": "table_cell"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "pricing18_plan-_current"
+    "class": "table_email-text"
+  }, user.billing_id)))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    "class": "table_row-group"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "pricing18_content"
+    "class": "table_row"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "pricing18_content-top"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "text-align-center"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "heading-style-h6"
-  }, billingTier), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "heading-style-h1"
-  }, "$", price, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
-    className: "heading-style-h4"
-  }, "/mo"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "pricing18_feature-list"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    id: "w-node-c6127a99-2c7d-7493-6196-05c1a292bcf7-34c18b3d",
-    className: "pricing_feature-heading"
-  }, "Plugin"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    id: "w-node-c6127a99-2c7d-7493-6196-05c1a292bcf9-34c18b3d",
-    className: "pricing18_feature"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "pricing18_icon-wrapper"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
-    src: "https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316232dc4aee70_icon_check.svg",
-    loading: "lazy",
-    alt: "",
-    className: "icon-1x1-xsmall"
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, pluginInfo)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    id: "w-node-c6127a99-2c7d-7493-6196-05c1a292bcfe-34c18b3d",
-    className: "pricing_feature-heading"
-  }, "Emailer"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    id: "w-node-c6127a99-2c7d-7493-6196-05c1a292bd00-34c18b3d",
-    className: "pricing18_feature"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, emailerInfo))))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "current_tier"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "current_tier-text"
-  }, "Your Tier"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    id: "w-node-_6abca0f8-2ab1-4eba-cf07-0e4bb4136682-34c18b3d",
-    className: "upgrade-plan_container"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "current_tier-header"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h2", null, upgradeOrChange, " Tier to Get More"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "text-size-medium"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are logged in as ", user.email), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), detailsMessage)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: paymentLink
-  }, upgradeOrChange, " Plan"), emailerButton)))))));
+    id: "w-node-_902834ff-409e-6c2b-d4d9-18d384be576a-b1a44aae",
+    "class": "table_cell left"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Cancel Your Plan")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-_902834ff-409e-6c2b-d4d9-18d384be576d-b1a44aae",
+    "class": "table_cell"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    href: "/payments.html",
+    "class": "table_link"
+  }, "Cancel Plan")))))));
 }
 
 /***/ }),

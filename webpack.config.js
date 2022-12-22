@@ -8,7 +8,6 @@ module.exports = {
     logout: path.resolve(__dirname, 'src', 'containers', 'Logout.jsx'),
     login: path.resolve(__dirname, 'src', 'containers', 'Login.jsx'),
     payments: path.resolve(__dirname, 'src', 'containers', 'Payments.jsx'),
-    dashboard: path.resolve(__dirname, 'src', 'containers', 'Dashboard.jsx'),
   },
   output: {
     path: path.resolve(__dirname, 'builds', 'webapp'),
@@ -39,11 +38,6 @@ module.exports = {
       chunks: ['payments'],
       filename: 'payments.html',
       template: path.resolve(__dirname, 'src', 'build', 'payments.html'),
-    }),
-    new HtmlWebpackPlugin({
-      chunks: ['dashboard'],
-      filename: 'dashboard.html',
-      template: path.resolve(__dirname, 'src', 'build', 'index.html'),
     }),
   ],
   module: {

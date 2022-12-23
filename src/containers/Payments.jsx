@@ -26,10 +26,10 @@ function App(props) {
     </Fragment>
   ) : (
     <Fragment>
-      <a href="/login" className="link-button">
+      <a href="/" className="link-button">
         <button className="plain-button personal-margin-right">Login</button>
       </a>
-      <a href="/signup" className="link-button">
+      <a href="/" className="link-button">
         <button className="ostrich-button personal-margin-right">
           {' '}
           Signup

@@ -1,4 +1,5 @@
 import { h } from 'preact'
+import config from '../config'
 
 export default function ExtensionDetails(props) {
   return (
@@ -18,7 +19,9 @@ export default function ExtensionDetails(props) {
           <br />
           <br />
           <br />
-          <a href="#">See a 2 min video</a>
+          <a target="_blank" href={config.pluginSetupPage}>
+            See a 2 min video
+          </a>
         </p>
         <div
           id="w-node-_0ec42e9a-ae6b-1ef9-e4f6-5285a3e2da4b-fe285f03"
@@ -27,7 +30,8 @@ export default function ExtensionDetails(props) {
           <div class="note_text">Note</div>
           <ul role="list" class="note_list-ul">
             <li class="note_list-li">
-              If you are on the free plan, you get 10 free uses every month
+              If you are on the free plan, you get{' '}
+              {config.plans['Tier 0'].pluginLookups} free uses every month
             </li>
             <li class="note_list-li">
               To get unlimited uses upgrade to Tier 1 or above

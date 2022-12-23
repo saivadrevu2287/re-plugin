@@ -1,7 +1,8 @@
 import { h } from 'preact'
+import config from '../config'
 
 export default function PlanDetails(props) {
-  const { user, paymentsPageLink } = props
+  const { user, paymentsPageLink, buttonMessage } = props
 
   const getStartedLink = paymentsPageLink
 
@@ -18,6 +19,7 @@ export default function PlanDetails(props) {
   )
 
   const freeButton = getStartedButton
+  const planButtonMessage = <small>{buttonMessage}</small>
 
   const tier1Button =
     user && user.billing_id == 'Tier 1' ? currentTierButton : getStartedButton
@@ -38,7 +40,8 @@ export default function PlanDetails(props) {
                     <div className="text-align-center">
                       <div className="heading-style-h6">Free Tier</div>
                       <div className="heading-style-h1">
-                        $0<span className="heading-style-h4">/mo</span>
+                        ${config.plans['Tier 0'].price}
+                        <span className="heading-style-h4">/mo</span>
                       </div>
                     </div>
                     <div className="pricing18_feature-list">
@@ -60,7 +63,7 @@ export default function PlanDetails(props) {
                             className="icon-1x1-xsmall"
                           />
                         </div>
-                        <div>10 Searches/month</div>
+                        <div>{config.plans['Tier 0'].pluginLookups} Searches/month</div>
                       </div>
                       <div
                         id="w-node-e87b2a05-27f2-bc4f-0230-4fb5ecf6d1f6-044b8525"
@@ -69,14 +72,21 @@ export default function PlanDetails(props) {
                         Emailer
                       </div>
                       <div
-                        id="w-node-_90f9c6e3-252d-5c8b-8a16-a22c21cff8d6-044b8525"
+                        id="w-node-dd34ba97-87d1-8029-5291-ca8a896a8612-044b8525"
                         className="pricing18_feature"
                       >
                         <div>This plan does not includes Emailer</div>
                       </div>
+                      <div
+                        id="w-node-dd34ba97-87d1-8029-5291-ca8a896a8612-044b8525"
+                        className="pricing18_feature"
+                      >
+                        <div>Signup for a higher tier</div>
+                      </div>
                     </div>
                   </div>
                   {freeButton}
+                  {planButtonMessage}
                 </div>
               </div>
               <div className="pricing18_plan">
@@ -85,7 +95,8 @@ export default function PlanDetails(props) {
                     <div className="text-align-center">
                       <div className="heading-style-h6">Tier 1</div>
                       <div className="heading-style-h1">
-                        $8.99<span className="heading-style-h4">/mo</span>
+                        ${config.plans['Tier 1'].price}
+                        <span className="heading-style-h4">/mo</span>
                       </div>
                     </div>
                     <div className="pricing18_feature-list">
@@ -146,6 +157,7 @@ export default function PlanDetails(props) {
                     </div>
                   </div>
                   {tier1Button}
+                  {planButtonMessage}
                 </div>
               </div>
               <div className="pricing18_plan">
@@ -154,7 +166,8 @@ export default function PlanDetails(props) {
                     <div className="text-align-center">
                       <div className="heading-style-h6">Tier 2</div>
                       <div className="heading-style-h1">
-                        $14.99<span className="heading-style-h4">/mo</span>
+                        ${config.plans['Tier 2'].price}
+                        <span className="heading-style-h4">/mo</span>
                       </div>
                     </div>
                     <div className="pricing18_feature-list">
@@ -215,6 +228,7 @@ export default function PlanDetails(props) {
                     </div>
                   </div>
                   {tier2Button}
+                  {planButtonMessage}
                 </div>
               </div>
               <div className="pricing18_plan">
@@ -223,7 +237,8 @@ export default function PlanDetails(props) {
                     <div className="text-align-center">
                       <div className="heading-style-h6">Tier 3</div>
                       <div className="heading-style-h1">
-                        $19.99<span className="heading-style-h4">/mo</span>
+                        ${config.plans['Tier 3'].price}
+                        <span className="heading-style-h4">/mo</span>
                       </div>
                     </div>
                     <div className="pricing18_feature-list">
@@ -265,7 +280,7 @@ export default function PlanDetails(props) {
                             className="icon-1x1-xsmall"
                           />
                         </div>
-                        <div>3 Locations</div>
+                        <div>{config.plans['Tier 3'].locations} Locations</div>
                       </div>
                       <div
                         id="w-node-_2782fe1a-7738-a68e-c595-3328410b2b09-044b8525"
@@ -284,6 +299,7 @@ export default function PlanDetails(props) {
                     </div>
                   </div>
                   {tier3Button}
+                  {planButtonMessage}
                 </div>
               </div>
             </div>

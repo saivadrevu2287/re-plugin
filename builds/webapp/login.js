@@ -46,10 +46,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ Header)
 /* harmony export */ });
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config */ "./src/config.js");
+
 
 function Header(props) {
   var toHome = props.toHome,
-      children = props.children;
+      children = props.children,
+      plans = props.plans,
+      help = props.help;
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "navbar"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
@@ -69,11 +73,60 @@ function Header(props) {
     className: "navbar-btn-container"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex centered-items"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+  }, help && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
     href: "mailto:v@ostrich.so",
     className: "personal-space-right"
-  }, "Need Help?"), children)))));
+  }, "Need Help?"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    href: _config__WEBPACK_IMPORTED_MODULE_1__["default"].pricingPage,
+    className: "personal-space-right"
+  }, "Pricing"), children)))));
 }
+
+/***/ }),
+
+/***/ "./src/config.js":
+/*!***********************!*\
+  !*** ./src/config.js ***!
+  \***********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var config = {
+  backendUrl: 'https://q0sku06vtg.execute-api.us-east-2.amazonaws.com/v1',
+  loginWithGoogleUrl: 'https://ostrich.auth.us-east-2.amazoncognito.com/login?client_id=70apbavl1fsobed4jt7l7ml18h&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://ostrich.so/',
+  stripeBillingUrl: 'https://billing.stripe.com/p/login/bIY8wx24h5mC1aM144',
+  getStartedButtonMessage: 'Use your login email address on the next page',
+  pluginTutorialPage: 'https://ostrch.notion.site/Ostrich-Extension-Tutorial-1c29f7df3db543c6b795c55f44ff9acb',
+  pluginSetupPage: 'https://ostrch.notion.site/Ostrich-Plugin-Setup-1c29f7df3db543c6b795c55f44ff9acb',
+  plans: {
+    'Tier 0': {
+      price: 0,
+      locations: 0,
+      pluginLookups: 10
+    },
+    'Tier 1': {
+      price: 8.99,
+      locations: 1,
+      pluginLookups: 'Unlimited'
+    },
+    'Tier 2': {
+      price: 14.99,
+      locations: 1,
+      pluginLookups: 'Unlimited'
+    },
+    'Tier 3': {
+      price: 19.99,
+      locations: 3,
+      pluginLookups: 'Unlimited'
+    }
+  },
+  pricingPage: '/pricing.html',
+  frontendUrl: 'https://ostrich.so'
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (config);
 
 /***/ }),
 

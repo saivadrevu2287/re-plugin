@@ -3702,6 +3702,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Modal */ "./src/components/Modal.jsx");
 /* harmony import */ var _CalculationFields__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./CalculationFields */ "./src/components/CalculationFields.jsx");
 /* harmony import */ var _api_emailer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../api/emailer */ "./src/api/emailer.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../config */ "./src/config.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -3728,14 +3729,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var allowedMarkets = function allowedMarkets(billing_id) {
-  return billing_id == 'Tier 1' ? 1 : billing_id == 'Tier 2' ? 1 : billing_id == 'Tier 3' ? 3 : 0;
+  return _config__WEBPACK_IMPORTED_MODULE_7__["default"].plans[billing_id ? billing_id : 'Tier 0'].locations;
 };
 
 function EmailerDashboard(props) {
   var backendUrl = props.backendUrl,
-      user = props.user,
-      toPayments = props.toPayments;
+      user = props.user;
 
   var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -3777,7 +3778,6 @@ function EmailerDashboard(props) {
       var newMaxSize = allowedMarkets(user.billing_id);
       setMaxSize(newMaxSize);
       axios__WEBPACK_IMPORTED_MODULE_2___default().get("".concat(backendUrl, "/api/emailers")).then(function (r) {
-        console.log(r);
         r.data.sort(function (a, b) {
           return b.id - a.id;
         });
@@ -3796,8 +3796,8 @@ function EmailerDashboard(props) {
 
     setLoadingState(true);
   }, [user, successMessage]);
-  var saveMessage = maxSize >= scheduledEmails.length ? 'You are past your limit of alloted markets! This market will not send any emails.' : '';
-  var formModal = showModal && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_Modal__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  var saveMessage = maxSize >= scheduledEmails.length ? 'Your current tier does not allow anymore locations: Please upgrade to receive emails as no emails will be sent for this location if you still add it.' : '';
+  var formModal = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_Modal__WEBPACK_IMPORTED_MODULE_4__["default"], {
     close: function close() {
       return setShowModal(false);
     }
@@ -3815,9 +3815,9 @@ function EmailerDashboard(props) {
     }
   }));
   var tierMessage = user && user.billing_id ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are subscribed to ", user.billing_id, ": On this plan", ' ', maxSize == 1 ? '1 market is' : "".concat(maxSize, " markets are"), " allowed.", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: "/payments.html"
-  }, "Change plan here"), ".") : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are not subscribed! ", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: "/payments.html"
+    href: _config__WEBPACK_IMPORTED_MODULE_7__["default"].pricingPage
+  }, "Change plan here"), ".") : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are not subscribed!", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    href: _config__WEBPACK_IMPORTED_MODULE_7__["default"].pricingPage
   }, "Change plan here"), ".");
   var locationCards = scheduledEmails.map(function (scheduledEmail, i) {
     return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_LocationCard__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -3863,7 +3863,7 @@ function EmailerDashboard(props) {
     className: "note_list-li"
   }, "A market can mean anything like a zipcode, county, city, borough etc. For simplicity we consider a county as a market"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "emailer_header-wrapper"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Your Locations"), addLocationButton), formModal, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", null, "Your Locations"), addLocationButton), showModal && formModal, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     className: "error"
   }, errorMessage), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     className: "success"
@@ -3886,6 +3886,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ ExtensionDetails)
 /* harmony export */ });
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config */ "./src/config.js");
+
 
 function ExtensionDetails(props) {
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
@@ -3898,7 +3900,8 @@ function ExtensionDetails(props) {
     id: "w-node-_8e9e2030-65cf-9533-99e2-41d9d3dbbbe4-fe285f03",
     "class": "ce_paragraph"
   }, "Click the extension icon on your Chrome Browser to instantly get the cash on cash analysis of a listing. ", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), "Use the extension to screen listings quickly or to find cash flowing markets.", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("br", null), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: "#"
+    target: "_blank",
+    href: _config__WEBPACK_IMPORTED_MODULE_1__["default"].pluginSetupPage
   }, "See a 2 min video")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     id: "w-node-_0ec42e9a-ae6b-1ef9-e4f6-5285a3e2da4b-fe285f03",
     "class": "note_wrapper"
@@ -3909,7 +3912,7 @@ function ExtensionDetails(props) {
     "class": "note_list-ul"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("li", {
     "class": "note_list-li"
-  }, "If you are on the free plan, you get 10 free uses every month"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("li", {
+  }, "If you are on the free plan, you get", ' ', _config__WEBPACK_IMPORTED_MODULE_1__["default"].plans["Tier 0"].pluginLookups, " free uses every month"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("li", {
     "class": "note_list-li"
   }, "To get unlimited uses upgrade to Tier 1 or above"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
     id: "w-node-_250e43ed-3caa-52a1-81cd-f1958440c0fb-fe285f03",
@@ -4022,10 +4025,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ Header)
 /* harmony export */ });
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config */ "./src/config.js");
+
 
 function Header(props) {
   var toHome = props.toHome,
-      children = props.children;
+      children = props.children,
+      plans = props.plans,
+      help = props.help;
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "navbar"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
@@ -4045,10 +4052,13 @@ function Header(props) {
     className: "navbar-btn-container"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex centered-items"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+  }, help && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
     href: "mailto:v@ostrich.so",
     className: "personal-space-right"
-  }, "Need Help?"), children)))));
+  }, "Need Help?"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    href: _config__WEBPACK_IMPORTED_MODULE_1__["default"].pricingPage,
+    className: "personal-space-right"
+  }, "Pricing"), children)))));
 }
 
 /***/ }),
@@ -4374,7 +4384,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ Payments)
 /* harmony export */ });
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
-/* harmony import */ var _PlanDetails__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PlanDetails */ "./src/components/PlanDetails.jsx");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config */ "./src/config.js");
+/* harmony import */ var _PlanDetails__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PlanDetails */ "./src/components/PlanDetails.jsx");
+
 
 
 function Payments(props) {
@@ -4388,7 +4400,7 @@ function Payments(props) {
   if (isPayments) {
     // if payments page and logged out, show only options
     if (!user) {
-      return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_PlanDetails__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_PlanDetails__WEBPACK_IMPORTED_MODULE_2__["default"], {
         user: user,
         paymentsPageLink: "/"
       });
@@ -4397,9 +4409,10 @@ function Payments(props) {
       return stripeOptions;
     } // if payments page and tier 1, show options with buttons
     else {
-      return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_PlanDetails__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_PlanDetails__WEBPACK_IMPORTED_MODULE_2__["default"], {
         user: user,
-        paymentsPageLink: "https://billing.stripe.com/p/login/bIY8wx24h5mC1aM144"
+        paymentsPageLink: _config__WEBPACK_IMPORTED_MODULE_1__["default"].stripeBillingUrl,
+        buttonMessage: _config__WEBPACK_IMPORTED_MODULE_1__["default"].getStartedButtonMessage
       });
     }
   } else {
@@ -4409,15 +4422,16 @@ function Payments(props) {
 
     if (!user.billing_id || user.billing_id == 'Tier 0') {
       // if plan page, and tier 0 show only options
-      return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_PlanDetails__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_PlanDetails__WEBPACK_IMPORTED_MODULE_2__["default"], {
         user: user,
-        paymentsPageLink: "/payments.html"
+        paymentsPageLink: _config__WEBPACK_IMPORTED_MODULE_1__["default"].pricingPage
       });
     } else {
       // if plan page and tier 1 show options with buttons
-      return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_PlanDetails__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_PlanDetails__WEBPACK_IMPORTED_MODULE_2__["default"], {
         user: user,
-        paymentsPageLink: "https://billing.stripe.com/p/login/bIY8wx24h5mC1aM144"
+        paymentsPageLink: _config__WEBPACK_IMPORTED_MODULE_1__["default"].stripeBillingUrl,
+        buttonMessage: _config__WEBPACK_IMPORTED_MODULE_1__["default"].getStartedButtonMessage
       });
     }
   }
@@ -4437,10 +4451,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ PlanDetails)
 /* harmony export */ });
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config */ "./src/config.js");
+
 
 function PlanDetails(props) {
   var user = props.user,
-      paymentsPageLink = props.paymentsPageLink;
+      paymentsPageLink = props.paymentsPageLink,
+      buttonMessage = props.buttonMessage;
   var getStartedLink = paymentsPageLink;
   var currentTierButton = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "button current"
@@ -4450,6 +4467,7 @@ function PlanDetails(props) {
     className: "button pricing w-button"
   }, "Get started");
   var freeButton = getStartedButton;
+  var planButtonMessage = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("small", null, buttonMessage);
   var tier1Button = user && user.billing_id == 'Tier 1' ? currentTierButton : getStartedButton;
   var tier2Button = user && user.billing_id == 'Tier 2' ? currentTierButton : getStartedButton;
   var tier3Button = user && user.billing_id == 'Tier 3' ? currentTierButton : getStartedButton;
@@ -4475,7 +4493,7 @@ function PlanDetails(props) {
     className: "heading-style-h6"
   }, "Free Tier"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "heading-style-h1"
-  }, "$0", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+  }, "$", _config__WEBPACK_IMPORTED_MODULE_1__["default"].plans["Tier 0"].price, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
     className: "heading-style-h4"
   }, "/mo"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "pricing18_feature-list"
@@ -4492,13 +4510,16 @@ function PlanDetails(props) {
     loading: "lazy",
     alt: "",
     className: "icon-1x1-xsmall"
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "10 Searches/month")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, _config__WEBPACK_IMPORTED_MODULE_1__["default"].plans["Tier 0"].pluginLookups, " Searches/month")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     id: "w-node-e87b2a05-27f2-bc4f-0230-4fb5ecf6d1f6-044b8525",
     className: "pricing_feature-heading"
   }, "Emailer"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    id: "w-node-_90f9c6e3-252d-5c8b-8a16-a22c21cff8d6-044b8525",
+    id: "w-node-dd34ba97-87d1-8029-5291-ca8a896a8612-044b8525",
     className: "pricing18_feature"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "This plan does not includes Emailer")))), freeButton)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "This plan does not includes Emailer")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-dd34ba97-87d1-8029-5291-ca8a896a8612-044b8525",
+    className: "pricing18_feature"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Signup for a higher tier")))), freeButton, planButtonMessage)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "pricing18_plan"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "pricing18_content"
@@ -4510,7 +4531,7 @@ function PlanDetails(props) {
     className: "heading-style-h6"
   }, "Tier 1"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "heading-style-h1"
-  }, "$8.99", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+  }, "$", _config__WEBPACK_IMPORTED_MODULE_1__["default"].plans["Tier 1"].price, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
     className: "heading-style-h4"
   }, "/mo"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "pricing18_feature-list"
@@ -4550,7 +4571,7 @@ function PlanDetails(props) {
     loading: "lazy",
     alt: "",
     className: "icon-1x1-xsmall"
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Upto 8 Listings Everyday")))), tier1Button)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Upto 8 Listings Everyday")))), tier1Button, planButtonMessage)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "pricing18_plan"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "pricing18_content"
@@ -4562,7 +4583,7 @@ function PlanDetails(props) {
     className: "heading-style-h6"
   }, "Tier 2"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "heading-style-h1"
-  }, "$14.99", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+  }, "$", _config__WEBPACK_IMPORTED_MODULE_1__["default"].plans["Tier 2"].price, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
     className: "heading-style-h4"
   }, "/mo"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "pricing18_feature-list"
@@ -4602,7 +4623,7 @@ function PlanDetails(props) {
     loading: "lazy",
     alt: "",
     className: "icon-1x1-xsmall"
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Up to 20 Listings Everyday")))), tier2Button)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Up to 20 Listings Everyday")))), tier2Button, planButtonMessage)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "pricing18_plan"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "pricing18_content"
@@ -4614,7 +4635,7 @@ function PlanDetails(props) {
     className: "heading-style-h6"
   }, "Tier 3"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "heading-style-h1"
-  }, "$19.99", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+  }, "$", _config__WEBPACK_IMPORTED_MODULE_1__["default"].plans["Tier 3"].price, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
     className: "heading-style-h4"
   }, "/mo"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "pricing18_feature-list"
@@ -4644,7 +4665,7 @@ function PlanDetails(props) {
     loading: "lazy",
     alt: "",
     className: "icon-1x1-xsmall"
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "3 Locations")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, _config__WEBPACK_IMPORTED_MODULE_1__["default"].plans["Tier 3"].locations, " Locations")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     id: "w-node-_2782fe1a-7738-a68e-c595-3328410b2b09-044b8525",
     className: "pricing18_feature"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
@@ -4654,7 +4675,7 @@ function PlanDetails(props) {
     loading: "lazy",
     alt: "",
     className: "icon-1x1-xsmall"
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Up to 20 Listings per Location Everyday")))), tier3Button)))))));
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Up to 20 Listings per Location Everyday")))), tier3Button, planButtonMessage)))))));
 }
 
 /***/ }),
@@ -4776,6 +4797,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ Settings)
 /* harmony export */ });
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config */ "./src/config.js");
+
 
 function Settings(props) {
   var user = props.user;
@@ -4822,7 +4845,7 @@ function Settings(props) {
     id: "w-node-_902834ff-409e-6c2b-d4d9-18d384be576d-b1a44aae",
     "class": "table_cell"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: "/payments.html",
+    href: _config__WEBPACK_IMPORTED_MODULE_1__["default"].pricingPage,
     "class": "table_link"
   }, "Cancel Plan")))))));
 }
@@ -4980,6 +5003,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ Splash)
 /* harmony export */ });
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config */ "./src/config.js");
+
 
 function Splash(props) {
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("header", {
@@ -5003,7 +5028,8 @@ function Splash(props) {
     href: "/signup",
     className: "button w-button"
   }, "Try Ostrich"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: "#",
+    target: "_blank",
+    href: _config__WEBPACK_IMPORTED_MODULE_1__["default"].pluginSetupPage,
     className: "button secondary w-button"
   }, "How it works"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "header1_image-wrapper"
@@ -5396,7 +5422,8 @@ function Splash(props) {
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "w-layout-grid layout17_component"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: "#",
+    href: _config__WEBPACK_IMPORTED_MODULE_1__["default"].pluginSetupPage,
+    target: "_blank",
     className: "layout17_lightbox w-inline-block w-lightbox"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
     src: "https://uploads-ssl.webflow.com/624380709031623bfe4aee60/6243807090316259584aee68_placeholder-video-thumbnail.svg",
@@ -5524,7 +5551,7 @@ function Splash(props) {
     alt: "",
     className: "faq-05_icon"
   })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    style: "width: 100%; height: 0px",
+    style: "width: 100%;",
     className: "faq4_answer"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "margin-bottom margin-small"
@@ -5541,7 +5568,7 @@ function Splash(props) {
     alt: "",
     className: "faq-05_icon"
   })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    style: "width: 100%; height: 0px",
+    style: "width: 100%;",
     className: "faq4_answer"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "margin-bottom margin-small"
@@ -5558,7 +5585,7 @@ function Splash(props) {
     alt: "",
     className: "faq-05_icon"
   })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    style: "width: 100%; height: 0px",
+    style: "width: 100%;",
     className: "faq4_answer"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "margin-bottom margin-small"
@@ -5575,7 +5602,7 @@ function Splash(props) {
     alt: "",
     className: "faq-05_icon"
   })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    style: "width: 100%; height: 0px",
+    style: "width: 100%;",
     className: "faq4_answer"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "margin-bottom margin-small"
@@ -5594,6 +5621,53 @@ function Splash(props) {
     className: "button-2 secondary w-button"
   }, "Contact"))))))))));
 }
+
+/***/ }),
+
+/***/ "./src/config.js":
+/*!***********************!*\
+  !*** ./src/config.js ***!
+  \***********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var config = {
+  backendUrl: 'https://q0sku06vtg.execute-api.us-east-2.amazonaws.com/v1',
+  loginWithGoogleUrl: 'https://ostrich.auth.us-east-2.amazoncognito.com/login?client_id=70apbavl1fsobed4jt7l7ml18h&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://ostrich.so/',
+  stripeBillingUrl: 'https://billing.stripe.com/p/login/bIY8wx24h5mC1aM144',
+  getStartedButtonMessage: 'Use your login email address on the next page',
+  pluginTutorialPage: 'https://ostrch.notion.site/Ostrich-Extension-Tutorial-1c29f7df3db543c6b795c55f44ff9acb',
+  pluginSetupPage: 'https://ostrch.notion.site/Ostrich-Plugin-Setup-1c29f7df3db543c6b795c55f44ff9acb',
+  plans: {
+    'Tier 0': {
+      price: 0,
+      locations: 0,
+      pluginLookups: 10
+    },
+    'Tier 1': {
+      price: 8.99,
+      locations: 1,
+      pluginLookups: 'Unlimited'
+    },
+    'Tier 2': {
+      price: 14.99,
+      locations: 1,
+      pluginLookups: 'Unlimited'
+    },
+    'Tier 3': {
+      price: 19.99,
+      locations: 3,
+      pluginLookups: 'Unlimited'
+    }
+  },
+  pricingPage: '/pricing.html',
+  frontendUrl: 'https://ostrich.so'
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (config);
 
 /***/ }),
 
@@ -5643,8 +5717,6 @@ var useLogin = function useLogin(backendUrl, setErrorMessage, toLogin) {
 
 
   (0,preact_hooks__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    console.log(jwt);
-
     if (!jwt) {
       return;
     }
@@ -6050,21 +6122,21 @@ var __webpack_exports__ = {};
   !*** ./src/containers/App.jsx ***!
   \********************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var preact_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact-router */ "./node_modules/preact-router/dist/preact-router.mjs");
-/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
-/* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
+/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
+/* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
+/* harmony import */ var preact_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! preact-router */ "./node_modules/preact-router/dist/preact-router.mjs");
 /* harmony import */ var _build_entry__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../build/entry */ "./src/build/entry.js");
 /* harmony import */ var _subroutines_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../subroutines/utils */ "./src/subroutines/utils.js");
 /* harmony import */ var _hooks_useLogin__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../hooks/useLogin */ "./src/hooks/useLogin.js");
 /* harmony import */ var _components_Login__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Login */ "./src/components/Login.jsx");
 /* harmony import */ var _components_Signup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/Signup */ "./src/components/Signup.jsx");
 /* harmony import */ var _components_Confirm__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/Confirm */ "./src/components/Confirm.jsx");
-/* harmony import */ var _components_EmailerDashboard__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/EmailerDashboard */ "./src/components/EmailerDashboard.jsx");
-/* harmony import */ var _components_Home__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/Home */ "./src/components/Home.jsx");
-/* harmony import */ var _components_Logout__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/Logout */ "./src/components/Logout.jsx");
-/* harmony import */ var _components_ForgotPassword__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../components/ForgotPassword */ "./src/components/ForgotPassword.jsx");
-/* harmony import */ var _components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../components/ConfirmForgotPassword */ "./src/components/ConfirmForgotPassword.jsx");
-/* harmony import */ var _components_Header__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../components/Header */ "./src/components/Header.jsx");
+/* harmony import */ var _components_Home__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/Home */ "./src/components/Home.jsx");
+/* harmony import */ var _components_Logout__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/Logout */ "./src/components/Logout.jsx");
+/* harmony import */ var _components_ForgotPassword__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/ForgotPassword */ "./src/components/ForgotPassword.jsx");
+/* harmony import */ var _components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../components/ConfirmForgotPassword */ "./src/components/ConfirmForgotPassword.jsx");
+/* harmony import */ var _components_Header__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../components/Header */ "./src/components/Header.jsx");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../config */ "./src/config.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -6092,13 +6164,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
-var loginWithGoogleUrl = 'https://ostrich.auth.us-east-2.amazoncognito.com/login?client_id=70apbavl1fsobed4jt7l7ml18h&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://ostrich.so/';
-var backendUrl = 'https://q0sku06vtg.execute-api.us-east-2.amazonaws.com/v1';
+var loginWithGoogleUrl = _config__WEBPACK_IMPORTED_MODULE_14__["default"].loginWithGoogleUrl;
+var backendUrl = _config__WEBPACK_IMPORTED_MODULE_14__["default"].backendUrl;
 var emailerLink = 'https://ostrch.notion.site/Ostrich-Emailer-08759238028f4964805e86eb8dca5cbd';
 
 function App(props) {
-  var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useState)(),
+  var _useState = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_1__.useState)(),
       _useState2 = _slicedToArray(_useState, 2),
       errorMessage = _useState2[0],
       setErrorMessage = _useState2[1];
@@ -6107,6 +6178,11 @@ function App(props) {
       user = _useLogin.user,
       jwt = _useLogin.jwt,
       setJwt = _useLogin.setJwt;
+
+  var url = (0,preact_router__WEBPACK_IMPORTED_MODULE_2__.getCurrentUrl)();
+  console.log({
+    url: url
+  });
 
   var handleLoginResults = function handleLoginResults(_) {
     return function (r) {
@@ -6120,21 +6196,21 @@ function App(props) {
   };
 
   var toSignup = function toSignup() {
-    return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/signup');
+    return (0,preact_router__WEBPACK_IMPORTED_MODULE_2__.route)('/signup');
   };
 
   var toLogin = function toLogin() {
-    return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/login');
+    return (0,preact_router__WEBPACK_IMPORTED_MODULE_2__.route)('/login');
   };
 
   var dashboardLink = '/dashboard.html';
 
   var toHome = function toHome() {
-    return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/');
+    return (0,preact_router__WEBPACK_IMPORTED_MODULE_2__.route)('/');
   };
 
   var toForgotPassword = function toForgotPassword() {
-    return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)('/forgot-password');
+    return (0,preact_router__WEBPACK_IMPORTED_MODULE_2__.route)('/forgot-password');
   };
 
   var proceedWithGoogle = function proceedWithGoogle() {
@@ -6145,92 +6221,92 @@ function App(props) {
 
   var handleVerifyResults = function handleVerifyResults(email) {
     return function (r) {
-      return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)("/login?email=".concat(email), true);
+      return (0,preact_router__WEBPACK_IMPORTED_MODULE_2__.route)("/login?email=".concat(email), true);
     };
   };
 
   var handleSignupResults = function handleSignupResults(email) {
     return function (r) {
-      return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)("/confirm?email=".concat(email), true);
+      return (0,preact_router__WEBPACK_IMPORTED_MODULE_2__.route)("/confirm?email=".concat(email), true);
     };
   };
 
   var handleForgotPasswordResults = function handleForgotPasswordResults(email) {
     return function (r) {
-      return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)("/confirm-forgot-password?email=".concat(email), true);
+      return (0,preact_router__WEBPACK_IMPORTED_MODULE_2__.route)("/confirm-forgot-password?email=".concat(email), true);
     };
   };
 
   var handleConfirmForgotPasswordResults = function handleConfirmForgotPasswordResults(email) {
     return function (r) {
-      return (0,preact_router__WEBPACK_IMPORTED_MODULE_0__.route)("/login?email=".concat(email), true);
+      return (0,preact_router__WEBPACK_IMPORTED_MODULE_2__.route)("/login?email=".concat(email), true);
     };
   };
 
-  var loginOrLogout = jwt ? (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("a", {
+  var loginOrLogout = jwt ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
     href: logout,
     className: "link-button"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("button", {
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "ostrich-button personal-margin-right"
-  }, "Logout"))) : (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("a", {
+  }, "Logout"))) : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
     href: "/login",
     className: "link-button"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("button", {
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "plain-button personal-margin-right"
-  }, "Login")), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("a", {
+  }, "Login")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
     href: "/signup",
     className: "link-button"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("button", {
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "ostrich-button personal-margin-right"
   }, ' ', "Signup")));
-  var header = (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Header__WEBPACK_IMPORTED_MODULE_14__["default"], {
+  var header = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Header__WEBPACK_IMPORTED_MODULE_13__["default"], {
     children: loginOrLogout,
     toHome: toHome
   });
-  return (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact_router__WEBPACK_IMPORTED_MODULE_0__["default"], null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("main", {
+  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact_router__WEBPACK_IMPORTED_MODULE_2__["default"], null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("main", {
     className: "personal-space-top content",
     path: "/login"
-  }, header, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Login__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, header, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Login__WEBPACK_IMPORTED_MODULE_6__["default"], {
     backendUrl: backendUrl,
     handleLoginResults: handleLoginResults,
     toSignup: toSignup,
     proceedWithGoogle: proceedWithGoogle,
     toForgotPassword: toForgotPassword
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("main", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("main", {
     className: "personal-space-top content",
     path: "/signup"
-  }, header, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Signup__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, header, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Signup__WEBPACK_IMPORTED_MODULE_7__["default"], {
     backendUrl: backendUrl,
     handleSignupResults: handleSignupResults,
     toLogin: toLogin,
     proceedWithGoogle: proceedWithGoogle
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("main", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("main", {
     className: "personal-space-top content",
     path: "/confirm"
-  }, header, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Confirm__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, header, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Confirm__WEBPACK_IMPORTED_MODULE_8__["default"], {
     backendUrl: backendUrl,
     handleVerifyResults: handleVerifyResults
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("main", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("main", {
     className: "personal-space-top content",
     path: "/logout"
-  }, header, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Logout__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }, header, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Logout__WEBPACK_IMPORTED_MODULE_10__["default"], {
     backendUrl: backendUrl
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("main", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("main", {
     className: "personal-space-top content",
     path: "/forgot-password"
-  }, header, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_ForgotPassword__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }, header, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_ForgotPassword__WEBPACK_IMPORTED_MODULE_11__["default"], {
     backendUrl: backendUrl,
     handleForgotPasswordResults: handleForgotPasswordResults
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("main", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("main", {
     className: "personal-space-top content",
     path: "/confirm-forgot-password"
-  }, header, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }, header, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_12__["default"], {
     backendUrl: backendUrl,
     handleConfirmForgotPasswordResults: handleConfirmForgotPasswordResults
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("main", {
-    className: "personal-space-top content",
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("main", {
+    className: "personal-space-top",
     path: "/"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Home__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Home__WEBPACK_IMPORTED_MODULE_9__["default"], {
     backendUrl: backendUrl,
     jwt: jwt,
     user: user,
@@ -6239,7 +6315,7 @@ function App(props) {
   }))));
 }
 
-(0,_build_entry__WEBPACK_IMPORTED_MODULE_3__["default"])((0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(App, null));
+(0,_build_entry__WEBPACK_IMPORTED_MODULE_3__["default"])((0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(App, null));
 })();
 
 /******/ })()

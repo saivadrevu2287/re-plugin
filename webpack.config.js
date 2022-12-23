@@ -36,7 +36,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       chunks: ['payments'],
-      filename: 'payments.html',
+      filename: 'pricing.html',
       template: path.resolve(__dirname, 'src', 'build', 'payments.html'),
     }),
   ],

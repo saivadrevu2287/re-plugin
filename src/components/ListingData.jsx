@@ -3,10 +3,11 @@ import { useEffect, useState } from 'preact/hooks'
 import { runScraper } from '../subroutines/scraper'
 import { toInt, calculateCOC } from '../subroutines/math'
 import { handleCopy, dollars, monthlyDollars } from '../subroutines/utils'
+import config from '../config'
 
 const eliminateEvent = (e) => e.target.value
 const tabSeparator = '\t'
-const freeUses = 10
+const freeUses = config.plans['Tier 0'].pluginLookups
 
 export default function ListingData(props) {
   const { configurationFields, user, webappUrl } = props
@@ -228,7 +229,7 @@ export default function ListingData(props) {
     content = (
       <p>
         Need to re-sync. Please log in to{' '}
-        <a href="https://ostrich.so" target="_blank">
+        <a href={config.frontendUrl} target="_blank">
           Ostrich
         </a>
         .
@@ -241,7 +242,10 @@ export default function ListingData(props) {
         {errorMessage}
         <p>
           {user.billing_id} Subscribed.{' '}
-          <a target="_blank" href={`https://ostrich.so/payments.html`}>
+          <a
+            target="_blank"
+            href={`${config.frontendUrl}${config.pricingPage}`}
+          >
             Change
           </a>
         </p>
@@ -285,7 +289,7 @@ export default function ListingData(props) {
         <a
           className="value-large"
           target="_blank"
-          href="https://ostrch.notion.site/Ostrich-Extension-Tutorial-1c29f7df3db543c6b795c55f44ff9acb"
+          href={config.pluginTutorialPage}
         >
           Tutorial
         </a>

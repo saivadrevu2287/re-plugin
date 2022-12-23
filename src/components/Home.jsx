@@ -7,7 +7,12 @@ export default function Home(props) {
 
   return (
     <Fragment>
-      {!jwt && <Fragment>{header}<Splash /></Fragment>}
+      {!jwt && (
+        <Fragment>
+          {header}
+          <Splash />
+        </Fragment>
+      )}
       {jwt && <Profile user={user} backendUrl={backendUrl} />}
     </Fragment>
   )

@@ -1,4 +1,5 @@
 import { h } from 'preact'
+import config from '../config'
 
 export default function Settings(props) {
   const { user } = props
@@ -54,7 +55,7 @@ export default function Settings(props) {
                 id="w-node-_902834ff-409e-6c2b-d4d9-18d384be576d-b1a44aae"
                 class="table_cell"
               >
-                <a href="/payments.html" class="table_link">
+                <a href={config.pricingPage} class="table_link">
                   Cancel Plan
                 </a>
               </div>

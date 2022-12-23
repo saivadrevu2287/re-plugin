@@ -10,7 +10,6 @@ const useLogin = (backendUrl, setErrorMessage, toLogin) => {
 
   // when we get a jwt, get your user information
   useEffect(() => {
-    console.log(jwt)
     if (!jwt) {
       return
     }

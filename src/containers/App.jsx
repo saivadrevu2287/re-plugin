@@ -15,17 +15,18 @@ import ForgotPassword from '../components/ForgotPassword'
 import ConfirmForgotPassword from '../components/ConfirmForgotPassword'
 import Header from '../components/Header'
 
-const url = getCurrentUrl()
-console.log({url})
+import config from '../config'
 
-const loginWithGoogleUrl =
-  'https://ostrich.auth.us-east-2.amazoncognito.com/login?client_id=70apbavl1fsobed4jt7l7ml18h&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://ostrich.so/'
-const backendUrl = 'https://q0sku06vtg.execute-api.us-east-2.amazonaws.com/v1'
+const loginWithGoogleUrl = config.loginWithGoogleUrl
+const backendUrl = config.backendUrl
 const emailerLink =
   'https://ostrch.notion.site/Ostrich-Emailer-08759238028f4964805e86eb8dca5cbd'
 function App(props) {
   const [errorMessage, setErrorMessage] = useState()
   const { user, jwt, setJwt } = useLogin(backendUrl, setErrorMessage, () => {})
+
+  const url = getCurrentUrl()
+  console.log({ url })
 
   const handleLoginResults = (_) => (r) => {
     setJwt(r)
@@ -118,23 +119,26 @@ function App(props) {
             handleForgotPasswordResults={handleForgotPasswordResults}
           />
         </main>
-        <main className="personal-space-top content" path="/confirm-forgot-password">
+        <main
+          className="personal-space-top content"
+          path="/confirm-forgot-password"
+        >
           {header}
           <ConfirmForgotPassword
-          backendUrl={backendUrl}
-          handleConfirmForgotPasswordResults={
-            handleConfirmForgotPasswordResults
-          }
-        />
+            backendUrl={backendUrl}
+            handleConfirmForgotPasswordResults={
+              handleConfirmForgotPasswordResults
+            }
+          />
         </main>
-        <main className="personal-space-top content" path="/">
+        <main className="personal-space-top" path="/">
           <Home
-          backendUrl={backendUrl}
-          jwt={jwt}
-          user={user}
-          dashboardLink={dashboardLink}
-          header={header}
-        />
+            backendUrl={backendUrl}
+            jwt={jwt}
+            user={user}
+            dashboardLink={dashboardLink}
+            header={header}
+          />
         </main>
       </Router>
     </Fragment>

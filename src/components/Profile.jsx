@@ -32,9 +32,7 @@ export default function Profile(props) {
       />
       <div class="content-wrapper">
         <div class="content-container">
-          {activeTab == 'Plans' && (
-            <Payments user={user} />
-          )}
+          {activeTab == 'Plans' && <Payments user={user} />}
           {activeTab == 'Extension' && (
             <ExtensionDetails user={user} backendUrl={backendUrl} />
           )}

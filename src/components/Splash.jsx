@@ -1,4 +1,5 @@
 import { h, Fragment } from 'preact'
+import config from '../config'
 
 export default function Splash(props) {
   return (
@@ -26,7 +27,11 @@ export default function Splash(props) {
                     <a href="/signup" className="button w-button">
                       Try Ostrich
                     </a>
-                    <a href="#" className="button secondary w-button">
+                    <a
+                      target="_blank"
+                      href={config.pluginSetupPage}
+                      className="button secondary w-button"
+                    >
                       How it works
                     </a>
                   </div>
@@ -537,7 +542,8 @@ export default function Splash(props) {
             <div className="padding-section-large-2">
               <div className="w-layout-grid layout17_component">
                 <a
-                  href="#"
+                  href={config.pluginSetupPage}
+                  target="_blank"
                   className="layout17_lightbox w-inline-block w-lightbox"
                 >
                   <img
@@ -707,10 +713,7 @@ export default function Splash(props) {
                         className="faq-05_icon"
                       />
                     </div>
-                    <div
-                      style="width: 100%; height: 0px"
-                      className="faq4_answer"
-                    >
+                    <div style="width: 100%;" className="faq4_answer">
                       <div className="margin-bottom margin-small">
                         <p>
                           Extension helps you save hours from the manual work of
@@ -742,10 +745,7 @@ export default function Splash(props) {
                         className="faq-05_icon"
                       />
                     </div>
-                    <div
-                      style="width: 100%; height: 0px"
-                      className="faq4_answer"
-                    >
+                    <div style="width: 100%;" className="faq4_answer">
                       <div className="margin-bottom margin-small">
                         <p>
                           I built the tool to unlock speed for my own analysis
@@ -775,10 +775,7 @@ export default function Splash(props) {
                         className="faq-05_icon"
                       />
                     </div>
-                    <div
-                      style="width: 100%; height: 0px"
-                      className="faq4_answer"
-                    >
+                    <div style="width: 100%;" className="faq4_answer">
                       <div className="margin-bottom margin-small">
                         <p>
                           Because Zillow provides rental estimates, which are
@@ -802,10 +799,7 @@ export default function Splash(props) {
                         className="faq-05_icon"
                       />
                     </div>
-                    <div
-                      style="width: 100%; height: 0px"
-                      className="faq4_answer"
-                    >
+                    <div style="width: 100%;" className="faq4_answer">
                       <div className="margin-bottom margin-small">
                         <p>
                           No sorry, we are limited to US only at this point.

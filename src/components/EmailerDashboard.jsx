@@ -6,18 +6,13 @@ import Modal from './Modal'
 import CalculationFields from './CalculationFields'
 
 import { updateEmailer, saveEmailer } from '../api/emailer'
+import config from '../config'
 
 const allowedMarkets = (billing_id) =>
-  billing_id == 'Tier 1'
-    ? 1
-    : billing_id == 'Tier 2'
-    ? 1
-    : billing_id == 'Tier 3'
-    ? 3
-    : 0
+  config.plans[billing_id ? billing_id : 'Tier 0'].locations
 
 export default function EmailerDashboard(props) {
-  const { backendUrl, user, toPayments } = props
+  const { backendUrl, user } = props
 
   const [showModal, setShowModal] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
@@ -35,7 +30,6 @@ export default function EmailerDashboard(props) {
       axios
         .get(`${backendUrl}/api/emailers`)
         .then((r) => {
-          console.log(r)
           r.data.sort((a, b) => b.id - a.id)
           setScheduledEmails(r.data)
           setLoadingState(false)
@@ -55,10 +49,10 @@ export default function EmailerDashboard(props) {
 
   const saveMessage =
     maxSize >= scheduledEmails.length
-      ? 'You are past your limit of alloted markets! This market will not send any emails.'
+      ? 'Your current tier does not allow anymore locations: Please upgrade to receive emails as no emails will be sent for this location if you still add it.'
       : ''
 
-  const formModal = showModal && (
+  const formModal = (
     <Modal close={() => setShowModal(false)}>
       <CalculationFields
         scheduledEmail={scheduledEmails[selectedMarket]}
@@ -96,11 +90,12 @@ export default function EmailerDashboard(props) {
       <p>
         You are subscribed to {user.billing_id}: On this plan{' '}
         {maxSize == 1 ? '1 market is' : `${maxSize} markets are`} allowed.{' '}
-        <a href="/payments.html">Change plan here</a>.
+        <a href={config.pricingPage}>Change plan here</a>.
       </p>
     ) : (
       <p>
-        You are not subscribed! <a href="/payments.html">Change plan here</a>.
+        You are not subscribed!{' '}
+        <a href={config.pricingPage}>Change plan here</a>.
       </p>
     )
 
@@ -160,7 +155,7 @@ export default function EmailerDashboard(props) {
         <h4>Your Locations</h4>
         {addLocationButton}
       </div>
-      {formModal}
+      {showModal && formModal}
       <p className="error">{errorMessage}</p>
       <p className="success">{successMessage}</p>
       <div className="location_cards-wrapper">{locationCards}</div>

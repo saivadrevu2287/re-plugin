@@ -2533,10 +2533,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ Header)
 /* harmony export */ });
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config */ "./src/config.js");
+
 
 function Header(props) {
   var toHome = props.toHome,
-      children = props.children;
+      children = props.children,
+      plans = props.plans,
+      help = props.help;
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "navbar"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
@@ -2556,10 +2560,13 @@ function Header(props) {
     className: "navbar-btn-container"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex centered-items"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+  }, help && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
     href: "mailto:v@ostrich.so",
     className: "personal-space-right"
-  }, "Need Help?"), children)))));
+  }, "Need Help?"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
+    href: _config__WEBPACK_IMPORTED_MODULE_1__["default"].pricingPage,
+    className: "personal-space-right"
+  }, "Pricing"), children)))));
 }
 
 /***/ }),
@@ -2576,7 +2583,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ Payments)
 /* harmony export */ });
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
-/* harmony import */ var _PlanDetails__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PlanDetails */ "./src/components/PlanDetails.jsx");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config */ "./src/config.js");
+/* harmony import */ var _PlanDetails__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PlanDetails */ "./src/components/PlanDetails.jsx");
+
 
 
 function Payments(props) {
@@ -2590,7 +2599,7 @@ function Payments(props) {
   if (isPayments) {
     // if payments page and logged out, show only options
     if (!user) {
-      return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_PlanDetails__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_PlanDetails__WEBPACK_IMPORTED_MODULE_2__["default"], {
         user: user,
         paymentsPageLink: "/"
       });
@@ -2599,9 +2608,10 @@ function Payments(props) {
       return stripeOptions;
     } // if payments page and tier 1, show options with buttons
     else {
-      return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_PlanDetails__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_PlanDetails__WEBPACK_IMPORTED_MODULE_2__["default"], {
         user: user,
-        paymentsPageLink: "https://billing.stripe.com/p/login/bIY8wx24h5mC1aM144"
+        paymentsPageLink: _config__WEBPACK_IMPORTED_MODULE_1__["default"].stripeBillingUrl,
+        buttonMessage: _config__WEBPACK_IMPORTED_MODULE_1__["default"].getStartedButtonMessage
       });
     }
   } else {
@@ -2611,15 +2621,16 @@ function Payments(props) {
 
     if (!user.billing_id || user.billing_id == 'Tier 0') {
       // if plan page, and tier 0 show only options
-      return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_PlanDetails__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_PlanDetails__WEBPACK_IMPORTED_MODULE_2__["default"], {
         user: user,
-        paymentsPageLink: "/payments.html"
+        paymentsPageLink: _config__WEBPACK_IMPORTED_MODULE_1__["default"].pricingPage
       });
     } else {
       // if plan page and tier 1 show options with buttons
-      return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_PlanDetails__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_PlanDetails__WEBPACK_IMPORTED_MODULE_2__["default"], {
         user: user,
-        paymentsPageLink: "https://billing.stripe.com/p/login/bIY8wx24h5mC1aM144"
+        paymentsPageLink: _config__WEBPACK_IMPORTED_MODULE_1__["default"].stripeBillingUrl,
+        buttonMessage: _config__WEBPACK_IMPORTED_MODULE_1__["default"].getStartedButtonMessage
       });
     }
   }
@@ -2639,10 +2650,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ PlanDetails)
 /* harmony export */ });
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config */ "./src/config.js");
+
 
 function PlanDetails(props) {
   var user = props.user,
-      paymentsPageLink = props.paymentsPageLink;
+      paymentsPageLink = props.paymentsPageLink,
+      buttonMessage = props.buttonMessage;
   var getStartedLink = paymentsPageLink;
   var currentTierButton = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "button current"
@@ -2652,6 +2666,7 @@ function PlanDetails(props) {
     className: "button pricing w-button"
   }, "Get started");
   var freeButton = getStartedButton;
+  var planButtonMessage = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("small", null, buttonMessage);
   var tier1Button = user && user.billing_id == 'Tier 1' ? currentTierButton : getStartedButton;
   var tier2Button = user && user.billing_id == 'Tier 2' ? currentTierButton : getStartedButton;
   var tier3Button = user && user.billing_id == 'Tier 3' ? currentTierButton : getStartedButton;
@@ -2677,7 +2692,7 @@ function PlanDetails(props) {
     className: "heading-style-h6"
   }, "Free Tier"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "heading-style-h1"
-  }, "$0", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+  }, "$", _config__WEBPACK_IMPORTED_MODULE_1__["default"].plans["Tier 0"].price, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
     className: "heading-style-h4"
   }, "/mo"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "pricing18_feature-list"
@@ -2694,13 +2709,16 @@ function PlanDetails(props) {
     loading: "lazy",
     alt: "",
     className: "icon-1x1-xsmall"
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "10 Searches/month")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, _config__WEBPACK_IMPORTED_MODULE_1__["default"].plans["Tier 0"].pluginLookups, " Searches/month")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     id: "w-node-e87b2a05-27f2-bc4f-0230-4fb5ecf6d1f6-044b8525",
     className: "pricing_feature-heading"
   }, "Emailer"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    id: "w-node-_90f9c6e3-252d-5c8b-8a16-a22c21cff8d6-044b8525",
+    id: "w-node-dd34ba97-87d1-8029-5291-ca8a896a8612-044b8525",
     className: "pricing18_feature"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "This plan does not includes Emailer")))), freeButton)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "This plan does not includes Emailer")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    id: "w-node-dd34ba97-87d1-8029-5291-ca8a896a8612-044b8525",
+    className: "pricing18_feature"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Signup for a higher tier")))), freeButton, planButtonMessage)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "pricing18_plan"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "pricing18_content"
@@ -2712,7 +2730,7 @@ function PlanDetails(props) {
     className: "heading-style-h6"
   }, "Tier 1"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "heading-style-h1"
-  }, "$8.99", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+  }, "$", _config__WEBPACK_IMPORTED_MODULE_1__["default"].plans["Tier 1"].price, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
     className: "heading-style-h4"
   }, "/mo"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "pricing18_feature-list"
@@ -2752,7 +2770,7 @@ function PlanDetails(props) {
     loading: "lazy",
     alt: "",
     className: "icon-1x1-xsmall"
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Upto 8 Listings Everyday")))), tier1Button)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Upto 8 Listings Everyday")))), tier1Button, planButtonMessage)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "pricing18_plan"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "pricing18_content"
@@ -2764,7 +2782,7 @@ function PlanDetails(props) {
     className: "heading-style-h6"
   }, "Tier 2"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "heading-style-h1"
-  }, "$14.99", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+  }, "$", _config__WEBPACK_IMPORTED_MODULE_1__["default"].plans["Tier 2"].price, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
     className: "heading-style-h4"
   }, "/mo"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "pricing18_feature-list"
@@ -2804,7 +2822,7 @@ function PlanDetails(props) {
     loading: "lazy",
     alt: "",
     className: "icon-1x1-xsmall"
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Up to 20 Listings Everyday")))), tier2Button)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Up to 20 Listings Everyday")))), tier2Button, planButtonMessage)), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "pricing18_plan"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "pricing18_content"
@@ -2816,7 +2834,7 @@ function PlanDetails(props) {
     className: "heading-style-h6"
   }, "Tier 3"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "heading-style-h1"
-  }, "$19.99", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+  }, "$", _config__WEBPACK_IMPORTED_MODULE_1__["default"].plans["Tier 3"].price, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
     className: "heading-style-h4"
   }, "/mo"))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "pricing18_feature-list"
@@ -2846,7 +2864,7 @@ function PlanDetails(props) {
     loading: "lazy",
     alt: "",
     className: "icon-1x1-xsmall"
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "3 Locations")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, _config__WEBPACK_IMPORTED_MODULE_1__["default"].plans["Tier 3"].locations, " Locations")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     id: "w-node-_2782fe1a-7738-a68e-c595-3328410b2b09-044b8525",
     className: "pricing18_feature"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
@@ -2856,8 +2874,55 @@ function PlanDetails(props) {
     loading: "lazy",
     alt: "",
     className: "icon-1x1-xsmall"
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Up to 20 Listings per Location Everyday")))), tier3Button)))))));
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Up to 20 Listings per Location Everyday")))), tier3Button, planButtonMessage)))))));
 }
+
+/***/ }),
+
+/***/ "./src/config.js":
+/*!***********************!*\
+  !*** ./src/config.js ***!
+  \***********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var config = {
+  backendUrl: 'https://q0sku06vtg.execute-api.us-east-2.amazonaws.com/v1',
+  loginWithGoogleUrl: 'https://ostrich.auth.us-east-2.amazoncognito.com/login?client_id=70apbavl1fsobed4jt7l7ml18h&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://ostrich.so/',
+  stripeBillingUrl: 'https://billing.stripe.com/p/login/bIY8wx24h5mC1aM144',
+  getStartedButtonMessage: 'Use your login email address on the next page',
+  pluginTutorialPage: 'https://ostrch.notion.site/Ostrich-Extension-Tutorial-1c29f7df3db543c6b795c55f44ff9acb',
+  pluginSetupPage: 'https://ostrch.notion.site/Ostrich-Plugin-Setup-1c29f7df3db543c6b795c55f44ff9acb',
+  plans: {
+    'Tier 0': {
+      price: 0,
+      locations: 0,
+      pluginLookups: 10
+    },
+    'Tier 1': {
+      price: 8.99,
+      locations: 1,
+      pluginLookups: 'Unlimited'
+    },
+    'Tier 2': {
+      price: 14.99,
+      locations: 1,
+      pluginLookups: 'Unlimited'
+    },
+    'Tier 3': {
+      price: 19.99,
+      locations: 3,
+      pluginLookups: 'Unlimited'
+    }
+  },
+  pricingPage: '/pricing.html',
+  frontendUrl: 'https://ostrich.so'
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (config);
 
 /***/ }),
 
@@ -2907,8 +2972,6 @@ var useLogin = function useLogin(backendUrl, setErrorMessage, toLogin) {
 
 
   (0,preact_hooks__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    console.log(jwt);
-
     if (!jwt) {
       return;
     }
@@ -3223,12 +3286,12 @@ function App(props) {
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "ostrich-button personal-margin-right"
   }, "Logout"))) : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: "/login",
+    href: "/",
     className: "link-button"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "plain-button personal-margin-right"
   }, "Login")), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
-    href: "/signup",
+    href: "/",
     className: "link-button"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     className: "ostrich-button personal-margin-right"

@@ -1,7 +1,6 @@
-import Router from 'preact-router'
 import { h, Fragment } from 'preact'
 import { useState } from 'preact/hooks'
-import { route } from 'preact-router'
+import Router, { route, getCurrentUrl } from 'preact-router'
 import entry from '../build/entry'
 
 import { setCookie } from '../subroutines/utils'
@@ -10,12 +9,14 @@ import useLogin from '../hooks/useLogin'
 import Login from '../components/Login'
 import Signup from '../components/Signup'
 import Confirm from '../components/Confirm'
-import EmailerDashboard from '../components/EmailerDashboard'
 import Home from '../components/Home'
 import Logout from '../components/Logout'
 import ForgotPassword from '../components/ForgotPassword'
 import ConfirmForgotPassword from '../components/ConfirmForgotPassword'
 import Header from '../components/Header'
+
+const url = getCurrentUrl()
+console.log({url})
 
 const loginWithGoogleUrl =
   'https://ostrich.auth.us-east-2.amazoncognito.com/login?client_id=70apbavl1fsobed4jt7l7ml18h&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://ostrich.so/'
@@ -75,59 +76,67 @@ function App(props) {
     </Fragment>
   )
 
+  const header = <Header children={loginOrLogout} toHome={toHome} />
+
   return (
     <Fragment>
-      <Header children={loginOrLogout} toHome={toHome} />
-      <main className="personal-space-top content">
-        <Router>
+      <Router>
+        <main className="personal-space-top content" path="/login">
+          {header}
           <Login
-            path="/login"
             backendUrl={backendUrl}
             handleLoginResults={handleLoginResults}
             toSignup={toSignup}
             proceedWithGoogle={proceedWithGoogle}
             toForgotPassword={toForgotPassword}
           />
+        </main>
+        <main className="personal-space-top content" path="/signup">
+          {header}
           <Signup
-            path="/signup"
             backendUrl={backendUrl}
             handleSignupResults={handleSignupResults}
             toLogin={toLogin}
             proceedWithGoogle={proceedWithGoogle}
           />
+        </main>
+        <main className="personal-space-top content" path="/confirm">
+          {header}
           <Confirm
-            path="/confirm"
             backendUrl={backendUrl}
             handleVerifyResults={handleVerifyResults}
           />
-          <EmailerDashboard
-            path="/dashboard"
-            jwt={jwt}
-            backendUrl={backendUrl}
-            user={user}
-          />
-          <Logout path="/logout" backendUrl={backendUrl} />
+        </main>
+        <main className="personal-space-top content" path="/logout">
+          {header}
+          <Logout backendUrl={backendUrl} />
+        </main>
+        <main className="personal-space-top content" path="/forgot-password">
+          {header}
           <ForgotPassword
-            path="/forgot-password"
             backendUrl={backendUrl}
             handleForgotPasswordResults={handleForgotPasswordResults}
           />
+        </main>
+        <main className="personal-space-top content" path="/confirm-forgot-password">
+          {header}
           <ConfirmForgotPassword
-            path="/confirm-forgot-password"
-            backendUrl={backendUrl}
-            handleConfirmForgotPasswordResults={
-              handleConfirmForgotPasswordResults
-            }
-          />
+          backendUrl={backendUrl}
+          handleConfirmForgotPasswordResults={
+            handleConfirmForgotPasswordResults
+          }
+        />
+        </main>
+        <main className="personal-space-top content" path="/">
           <Home
-            path="/"
-            backendUrl={backendUrl}
-            jwt={jwt}
-            user={user}
-            dashboardLink={dashboardLink}
-          />
-        </Router>
-      </main>
+          backendUrl={backendUrl}
+          jwt={jwt}
+          user={user}
+          dashboardLink={dashboardLink}
+          header={header}
+        />
+        </main>
+      </Router>
     </Fragment>
   )
 }

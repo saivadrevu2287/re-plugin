@@ -1,7 +1,7 @@
 import { h, Fragment } from 'preact'
 
 export default function Header(props) {
-  const { toHome, children } = props
+  const { toHome, children, plans, help } = props
   return (
     <Fragment>
       <div className="navbar">
@@ -21,9 +21,12 @@ export default function Header(props) {
             className="navbar-btn-container"
           >
             <div className="flex centered-items">
-              <a href="mailto:v@ostrich.so" className="personal-space-right">
+              {help && <a href="mailto:v@ostrich.so" className="personal-space-right">
                 Need Help?
-              </a>
+              </a>}
+              {plans && <a href="/payments.html" className="personal-space-right">
+                View Plans
+              </a>}
               {children}
             </div>
           </div>

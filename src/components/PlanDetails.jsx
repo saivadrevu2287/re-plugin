@@ -1,11 +1,9 @@
 import { h } from 'preact'
 
 export default function PlanDetails(props) {
-  const { user } = props
+  const { user, paymentsPageLink } = props
 
-  const getStartedLink = user
-    ? 'https://billing.stripe.com/p/login/bIY8wx24h5mC1aM144'
-    : '/'
+  const getStartedLink = paymentsPageLink
 
   const currentTierButton = (
     <div className="button current">

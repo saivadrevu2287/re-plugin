@@ -53,9 +53,10 @@ export default function EmailerDashboard(props) {
     setLoadingState(true)
   }, [user, successMessage])
 
-  const saveMessage = maxSize >= scheduledEmails.length 
-    ? "You are past your limit of alloted markets! This market will not send any emails."
-    : ''
+  const saveMessage =
+    maxSize >= scheduledEmails.length
+      ? 'You are past your limit of alloted markets! This market will not send any emails.'
+      : ''
 
   const formModal = showModal && (
     <Modal close={() => setShowModal(false)}>
@@ -116,20 +117,17 @@ export default function EmailerDashboard(props) {
       }}
       canCopy={true}
       handleCopy={() => {
-          saveEmailer(
-            backendUrl,
-            {
-              ...scheduledEmail,
-              notes: `${scheduledEmail.notes} Clone`,
-            },
-            (_) =>
-              setSuccessMessage(
-                'Duplicated Market, expect an email at 10am ET!'
-              ),
-            setErrorMessage
-          )
-        }
-      }
+        saveEmailer(
+          backendUrl,
+          {
+            ...scheduledEmail,
+            notes: `${scheduledEmail.notes} Clone`,
+          },
+          (_) =>
+            setSuccessMessage('Duplicated Market, expect an email at 10am ET!'),
+          setErrorMessage
+        )
+      }}
     />
   ))
 

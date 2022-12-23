@@ -165,7 +165,7 @@ export default function CalculationFields(props) {
   return (
     <Fragment>
       <div className="modal_form-group">
-        <p className='error'>{saveMessage}</p>
+        <p className="error">{saveMessage}</p>
         <div className="modal_group-header">
           <div className="modal_group-heading">Location Settings</div>
           <div className="modal_divider"></div>

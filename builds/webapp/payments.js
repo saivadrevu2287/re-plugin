@@ -2580,17 +2580,48 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Payments(props) {
-  var user = props.user;
+  var user = props.user,
+      isPayments = props.isPayments;
+  var stripeOptions = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h3", null, "You're subscribed to Tier 0"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are currently subscribed to Tier 0. Meaning you have 10 free uses per month of the Chrome plugin. Please upgrade below for unlimited plugin use and access to the emailer feature."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Make sure you are using the same email on the upgrade screen that you signed up with."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("stripe-pricing-table", {
+    "pricing-table-id": "prctbl_1MCR6NIDd9tdb2o18q1QOupw",
+    "publishable-key": "pk_live_51LphqXIDd9tdb2o1bC0M6mYJVzh3dh4MIbiJQXJkvCKJglH39a4bZLzeIMFXoS5p0IYBLqaT75fnkkxls5Ly8d1W006sYTCuzP"
+  }));
 
-  if (user && user.billing_id == 'Tier 0') {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h3", null, "You're subscribed to Tier 0"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are currently subscribed to Tier 0. Meaning you have 10 free uses per month of the Chrome plugin. Please upgrade below for unlimited plugin use and access to the emailer feature."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Make sure you are using the same email on the upgrade screen that you signed up with."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("stripe-pricing-table", {
-      "pricing-table-id": "prctbl_1MCR6NIDd9tdb2o18q1QOupw",
-      "publishable-key": "pk_live_51LphqXIDd9tdb2o1bC0M6mYJVzh3dh4MIbiJQXJkvCKJglH39a4bZLzeIMFXoS5p0IYBLqaT75fnkkxls5Ly8d1W006sYTCuzP"
-    }));
+  if (isPayments) {
+    // if payments page and logged out, show only options
+    if (!user) {
+      return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_PlanDetails__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        user: user,
+        paymentsPageLink: "/"
+      });
+    } // if payments page and tier 0, show stripe options
+    else if (!user.billing_id || user.billing_id == 'Tier 0') {
+      return stripeOptions;
+    } // if payments page and tier 1, show options with buttons
+    else {
+      return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_PlanDetails__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        user: user,
+        paymentsPageLink: "https://billing.stripe.com/p/login/bIY8wx24h5mC1aM144"
+      });
+    }
   } else {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_PlanDetails__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      user: user
-    });
+    if (!user) {
+      return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h1", null, "Loading");
+    }
+
+    if (!user.billing_id || user.billing_id == 'Tier 0') {
+      // if plan page, and tier 0 show only options
+      return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_PlanDetails__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        user: user,
+        paymentsPageLink: "/payments.html"
+      });
+    } else {
+      // if plan page and tier 1 show options with buttons
+      return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_PlanDetails__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        user: user,
+        paymentsPageLink: "https://billing.stripe.com/p/login/bIY8wx24h5mC1aM144"
+      });
+    }
   }
 }
 
@@ -2610,8 +2641,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
 
 function PlanDetails(props) {
-  var user = props.user;
-  var getStartedLink = user ? 'https://billing.stripe.com/p/login/bIY8wx24h5mC1aM144' : '/';
+  var user = props.user,
+      paymentsPageLink = props.paymentsPageLink;
+  var getStartedLink = paymentsPageLink;
   var currentTierButton = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "button current"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Current Tier"));
@@ -3209,7 +3241,8 @@ function App(props) {
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h4", {
     className: "padded"
   }, "Payments"), errorMessage, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Payments__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    user: user
+    user: user,
+    isPayments: true
   })));
 }
 

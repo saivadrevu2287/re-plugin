@@ -79,10 +79,10 @@ export default function LocationCard(props) {
           <div className="location_card-value">{emailer.no_bathrooms}</div>
         </div>
         {canCopy && (
-            <button onClick={handleCopy} className="location_edit">
-              Clone Market
-            </button>
-          )}
+          <button onClick={handleCopy} className="location_edit">
+            Clone Market
+          </button>
+        )}
       </div>
     </div>
   )

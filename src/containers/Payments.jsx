@@ -44,7 +44,7 @@ function App(props) {
       <div className="personal-space-top content">
         <h4 className="padded">Payments</h4>
         {errorMessage}
-        <Payments user={user} />
+        <Payments user={user} isPayments={true} />
       </div>
     </div>
   )

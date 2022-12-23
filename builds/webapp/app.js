@@ -3796,7 +3796,7 @@ function EmailerDashboard(props) {
 
     setLoadingState(true);
   }, [user, successMessage]);
-  var saveMessage = maxSize >= scheduledEmails.length ? "You are past your limit of alloted markets! This market will not send any emails." : '';
+  var saveMessage = maxSize >= scheduledEmails.length ? 'You are past your limit of alloted markets! This market will not send any emails.' : '';
   var formModal = showModal && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_Modal__WEBPACK_IMPORTED_MODULE_4__["default"], {
     close: function close() {
       return setShowModal(false);
@@ -4073,8 +4073,9 @@ __webpack_require__.r(__webpack_exports__);
 function Home(props) {
   var jwt = props.jwt,
       user = props.user,
-      backendUrl = props.backendUrl;
-  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, !jwt && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_Splash__WEBPACK_IMPORTED_MODULE_1__["default"], null), jwt && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_Profile__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      backendUrl = props.backendUrl,
+      header = props.header;
+  return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, !jwt && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, header, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_Splash__WEBPACK_IMPORTED_MODULE_1__["default"], null)), jwt && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_Profile__WEBPACK_IMPORTED_MODULE_2__["default"], {
     user: user,
     backendUrl: backendUrl
   }));
@@ -4377,17 +4378,48 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Payments(props) {
-  var user = props.user;
+  var user = props.user,
+      isPayments = props.isPayments;
+  var stripeOptions = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h3", null, "You're subscribed to Tier 0"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are currently subscribed to Tier 0. Meaning you have 10 free uses per month of the Chrome plugin. Please upgrade below for unlimited plugin use and access to the emailer feature."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Make sure you are using the same email on the upgrade screen that you signed up with."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("stripe-pricing-table", {
+    "pricing-table-id": "prctbl_1MCR6NIDd9tdb2o18q1QOupw",
+    "publishable-key": "pk_live_51LphqXIDd9tdb2o1bC0M6mYJVzh3dh4MIbiJQXJkvCKJglH39a4bZLzeIMFXoS5p0IYBLqaT75fnkkxls5Ly8d1W006sYTCuzP"
+  }));
 
-  if (user && user.billing_id == 'Tier 0') {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h3", null, "You're subscribed to Tier 0"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "You are currently subscribed to Tier 0. Meaning you have 10 free uses per month of the Chrome plugin. Please upgrade below for unlimited plugin use and access to the emailer feature."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Make sure you are using the same email on the upgrade screen that you signed up with."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("stripe-pricing-table", {
-      "pricing-table-id": "prctbl_1MCR6NIDd9tdb2o18q1QOupw",
-      "publishable-key": "pk_live_51LphqXIDd9tdb2o1bC0M6mYJVzh3dh4MIbiJQXJkvCKJglH39a4bZLzeIMFXoS5p0IYBLqaT75fnkkxls5Ly8d1W006sYTCuzP"
-    }));
+  if (isPayments) {
+    // if payments page and logged out, show only options
+    if (!user) {
+      return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_PlanDetails__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        user: user,
+        paymentsPageLink: "/"
+      });
+    } // if payments page and tier 0, show stripe options
+    else if (!user.billing_id || user.billing_id == 'Tier 0') {
+      return stripeOptions;
+    } // if payments page and tier 1, show options with buttons
+    else {
+      return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_PlanDetails__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        user: user,
+        paymentsPageLink: "https://billing.stripe.com/p/login/bIY8wx24h5mC1aM144"
+      });
+    }
   } else {
-    return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_PlanDetails__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      user: user
-    });
+    if (!user) {
+      return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("h1", null, "Loading");
+    }
+
+    if (!user.billing_id || user.billing_id == 'Tier 0') {
+      // if plan page, and tier 0 show only options
+      return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_PlanDetails__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        user: user,
+        paymentsPageLink: "/payments.html"
+      });
+    } else {
+      // if plan page and tier 1 show options with buttons
+      return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_PlanDetails__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        user: user,
+        paymentsPageLink: "https://billing.stripe.com/p/login/bIY8wx24h5mC1aM144"
+      });
+    }
   }
 }
 
@@ -4407,8 +4439,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
 
 function PlanDetails(props) {
-  var user = props.user;
-  var getStartedLink = user ? 'https://billing.stripe.com/p/login/bIY8wx24h5mC1aM144' : '/';
+  var user = props.user,
+      paymentsPageLink = props.paymentsPageLink;
+  var getStartedLink = paymentsPageLink;
   var currentTierButton = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "button current"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, "Current Tier"));
@@ -4716,8 +4749,7 @@ function Profile(props) {
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     "class": "content-container"
   }, activeTab == 'Plans' && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Payments__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    user: user,
-    backendUrl: backendUrl
+    user: user
   }), activeTab == 'Extension' && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_ExtensionDetails__WEBPACK_IMPORTED_MODULE_4__["default"], {
     user: user,
     backendUrl: backendUrl
@@ -6151,50 +6183,59 @@ function App(props) {
   }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("button", {
     className: "ostrich-button personal-margin-right"
   }, ' ', "Signup")));
-  return (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Header__WEBPACK_IMPORTED_MODULE_14__["default"], {
+  var header = (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Header__WEBPACK_IMPORTED_MODULE_14__["default"], {
     children: loginOrLogout,
     toHome: toHome
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("main", {
-    className: "personal-space-top content"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact_router__WEBPACK_IMPORTED_MODULE_0__["default"], null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Login__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    path: "/login",
+  });
+  return (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(preact_router__WEBPACK_IMPORTED_MODULE_0__["default"], null, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("main", {
+    className: "personal-space-top content",
+    path: "/login"
+  }, header, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Login__WEBPACK_IMPORTED_MODULE_6__["default"], {
     backendUrl: backendUrl,
     handleLoginResults: handleLoginResults,
     toSignup: toSignup,
     proceedWithGoogle: proceedWithGoogle,
     toForgotPassword: toForgotPassword
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Signup__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    path: "/signup",
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("main", {
+    className: "personal-space-top content",
+    path: "/signup"
+  }, header, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Signup__WEBPACK_IMPORTED_MODULE_7__["default"], {
     backendUrl: backendUrl,
     handleSignupResults: handleSignupResults,
     toLogin: toLogin,
     proceedWithGoogle: proceedWithGoogle
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Confirm__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    path: "/confirm",
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("main", {
+    className: "personal-space-top content",
+    path: "/confirm"
+  }, header, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Confirm__WEBPACK_IMPORTED_MODULE_8__["default"], {
     backendUrl: backendUrl,
     handleVerifyResults: handleVerifyResults
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_EmailerDashboard__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    path: "/dashboard",
-    jwt: jwt,
-    backendUrl: backendUrl,
-    user: user
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Logout__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    path: "/logout",
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("main", {
+    className: "personal-space-top content",
+    path: "/logout"
+  }, header, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Logout__WEBPACK_IMPORTED_MODULE_11__["default"], {
     backendUrl: backendUrl
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_ForgotPassword__WEBPACK_IMPORTED_MODULE_12__["default"], {
-    path: "/forgot-password",
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("main", {
+    className: "personal-space-top content",
+    path: "/forgot-password"
+  }, header, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_ForgotPassword__WEBPACK_IMPORTED_MODULE_12__["default"], {
     backendUrl: backendUrl,
     handleForgotPasswordResults: handleForgotPasswordResults
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_13__["default"], {
-    path: "/confirm-forgot-password",
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("main", {
+    className: "personal-space-top content",
+    path: "/confirm-forgot-password"
+  }, header, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_ConfirmForgotPassword__WEBPACK_IMPORTED_MODULE_13__["default"], {
     backendUrl: backendUrl,
     handleConfirmForgotPasswordResults: handleConfirmForgotPasswordResults
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Home__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    path: "/",
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)("main", {
+    className: "personal-space-top content",
+    path: "/"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_1__.h)(_components_Home__WEBPACK_IMPORTED_MODULE_10__["default"], {
     backendUrl: backendUrl,
     jwt: jwt,
     user: user,
-    dashboardLink: dashboardLink
+    dashboardLink: dashboardLink,
+    header: header
   }))));
 }
 

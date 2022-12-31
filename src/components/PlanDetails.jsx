@@ -18,7 +18,7 @@ export default function PlanDetails(props) {
     </a>
   )
 
-  const freeButton = getStartedButton
+  const freeButton = user && user.billing_id == 'Tier 0' ? currentTierButton : getStartedButton
   const planButtonMessage = <small>{buttonMessage}</small>
 
   const tier1Button =

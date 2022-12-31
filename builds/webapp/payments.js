@@ -2665,7 +2665,7 @@ function PlanDetails(props) {
     href: getStartedLink,
     className: "button pricing w-button"
   }, "Get started");
-  var freeButton = getStartedButton;
+  var freeButton = user && user.billing_id == 'Tier 0' ? currentTierButton : getStartedButton;
   var planButtonMessage = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("small", null, buttonMessage);
   var tier1Button = user && user.billing_id == 'Tier 1' ? currentTierButton : getStartedButton;
   var tier2Button = user && user.billing_id == 'Tier 2' ? currentTierButton : getStartedButton;

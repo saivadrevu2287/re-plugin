@@ -235,7 +235,7 @@ export default function ListingData(props) {
         .
       </p>
     )
-  } else if (user.billing_id) {
+  } else if (user.billing_id != 'Tier 0') {
     content = (
       <Fragment>
         {!errorMessage && details}

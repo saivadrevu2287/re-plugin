@@ -18,14 +18,22 @@ const useLogin = (backendUrl, setErrorMessage, toLogin) => {
     getUserData(
       backendUrl,
       (data) => setUser(data),
-      (e) => setErrorMessage(e.response.data.message)
+      (error) => {
+        if (error.code == "ERR_NETWORK") {
+          setJwt(null)
+          setCookie('')
+          toLogin()
+        } else {
+          console.log({...error})
+        }
+      }
     )
   }, [jwt])
 
   useEffect(() => {
     // login when there is login with google
     if (window.location.hash) {
-      console.log('hash')
+      console.log('login from hash')
       const token = parseQueryParams(window.location.hash)
       console.log(token)
       if (token.id_token) {
@@ -35,7 +43,7 @@ const useLogin = (backendUrl, setErrorMessage, toLogin) => {
     }
     // login when there is a cookie
     else if (document.cookie) {
-      console.log('cookie')
+      console.log('login from cookie')
       const cookies = parseCookies(document.cookie)
       if (cookies.token) {
         const token = JSON.parse(cookies.token)

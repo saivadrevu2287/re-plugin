@@ -2548,10 +2548,13 @@ var getUserData = function getUserData(backendUrl, successCallback, errorCallbac
   return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(backendUrl, "/api/users")).then(function (response) {
     return successCallback(response.data);
   })["catch"](function (err) {
-    console.log(err);
-    errorCallback(err.message);
+    errorCallback(err);
   });
 };
+/*
+https://ostrich.so/#access_token=eyJraWQiOiJDMGc2RXJHRUdPVTgxd3BOV3VIMlRBTXFOQzFFWnN1SHRUMUFzclE5cm5nPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJmZTRlYTgwNi0wYjdlLTQ3NzYtYTI1Mi0xNTBhZGJhYjgxMGIiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0yLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMl9ubmQzaDVaMVoiLCJjbGllbnRfaWQiOiI3MGFwYmF2bDFmc29iZWQ0anQ3bDdtbDE4aCIsIm9yaWdpbl9qdGkiOiIyZTIyYmUyNy0zZjRjLTQ4ZjUtODE5NS05ZmI1ZWMzYjIzNTAiLCJldmVudF9pZCI6IjE0ZGI1MmNiLWZhNTMtNDk1NC1iNGViLWNiNmI0YjVlNTAwYSIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE2NzI4MzgxMTAsImV4cCI6MTY3MjkyNDUxMCwiaWF0IjoxNjcyODM4MTEwLCJqdGkiOiJjOGFmYjFkZi0zMzBmLTRmZGQtYmRhOS04NjM1MDllZTJlMzAiLCJ1c2VybmFtZSI6ImhnbWF4d2VsbGtpbmdAZ21haWwuY29tIn0.ADKi53DdQh7iUFXMmqfNDmEUXlSZqvTECATdxKwXU3M4hF1rfHsR-PzAp2DZW9S6yGy_JuMPLwF3ZyraJri7quxUjMhnhkM3rFMde-NpxGb1dM-VXVZ8evgRLiRM-pRG08EaX7MKmCG0Vr80EfHH5awZFW61cnIk2l6fNhjXb-EuGgn5wMIRNAqmfqzmK93aj5Nf-ZvsLxjs7DdsAskq9VDKn48z7vkZheKKTNoYgEnpEOmkp5zElcmbmqi3vTCLmxUIvumxOwrz9PKMLmzd5nUgmPYHZnsNc_fY6IkHRjXsnyzFCtc742zjnL8HKeDlHSxM8GF57hMgtpEtJAoLgg&expires_in=86400&token_type=Bearer&refresh_token=eyJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiUlNBLU9BRVAifQ.Mo-yHpqIuItvddWsbPES0ci-fnH90jzZ6FLwuAGkF0eA7VU352HqvD_LRQqRnhNTTOfghujn_BhsAbig47Agp182zIm_MiAJFxQyfiU5mhta67bnD7nxKw3EneupgOvU1yguJ4-SZmtomKWHQvNmK_nOqaZbZwOSgieIslE7fMe17E9j7UDBj7E0q3PMiMS-NQNubVMtm3bxnJGNhxXpUPxW9nNyEObSZpxJmGBCqn9Yp4hKUJtsSR7Mbsazl04TtdaitBZ7EUFwk8tpDRzV5k5mqTjZwBYLHJ4K5CpVrgUSFx1eTOcDfOsGUlWTARgMEWmZIvpGyNi0UPGCO7uikw.9uTQ7-0K5uTGVNk0.T4NWE4UXRgQqKMuApiTUOsQ6bExFQLBoHBgxSA-BDLTYyviDJaAnUbwpkhU1sWA5QbOFpzHixUMvBZoLhP9DT6Cjzibgnyqaujbf8jaq6VEYMLxHsT0KzQPJtVIWGv9EwLh4I7Uug3efu8cCRsGXTQTIwLICcWIkPNS5IhvGaR2uSxs0U50NTBkgHTePxsTbQEDaHNM_SA44X4tAfJpOv5ag7UGW1YROQc3A6eWb1bGK9oomj6Lmq3ldUe53vn6eEJAaDAsUPIyMQxzPKetUxbn_jqNWf-Pm3YuwR18yYRwi73Wq3DBpPPCZ2BLE9b8ShU_OL14MVM7NL6Lk9SZ8H0Q_3_MxPu_LNqklO2cvINoJM_bbXtW5Jz5j49c4RztZmkg9EeSGM8ch2jx_LI79H036MVICSHD4hbTzaBODl1rpUQmdlMXr4NA-R-pCwRGXmJDvrf-W7ZgfRiW0IYJz7kFEl3FrbwqyxyNDDpgqW3hjdMR8wJhTLet3MA_icdjz_w28h3TmJJACMyy-_bsokAl-Mppa_bzFSj8pmBt5XY__iwPvy1U3_ANNCUsfWBy1Y80JP6CLInxUxgImcW5QYXlL75763P3OTmquyqi1fGTJHn7ED8Rf4zpJMUmpc2STcQuSbTnNC4OtsbQrxHF10vmrWM8L9Gjxj5NYGVeP08llxdSSV7R10hvW1jDnPCa1kj9-Y8lUILD8M6ZmIacmc7xz2y6voeH7ZTDTsk-ae9QQOvAQode-ulcJ7IBnHHdPjcyCyVEiPKW7BAGmx7aEwOhvDlYP5D3FTOrQfLsxvVmJckBzpgMNH4XnrHq2OP4TJE7jcPmifU3WsLMAsABDiK0IRMJ9DdXvGDfJzjIap3OLk-fX4vGDywm4OrW9afzkm38lPFu3kTTO1yZG16DdjOJHHFxmBIHFh3baqWTZaZbUKJV7xY5p2uQNXGD_GJzxI7kJhe7CUrVwgoyyz7CsLgHpFTVxPsS9oC6f5eKSdz4ZgbW9IZtkU8OB9s12ZqAhQs-RhOn_QuxWAOE2mbRSqFTFGZol7tqWd7Rms1auR-rKwhzEYRDSdvO7OIjBeYB60mM3hsneGGW_Y-GTpb0RjQ6wS3sNw0GuqsKtfdmz_qI6LvyN1ZT2koA3L0I2iayArCBVS9thvoASiGUSkgTJ09UAugJ9Ne5aGEJFsnkFZHhn0_jD96Yi1SycAxelf-Ni3TqjhAfsbVKU9_LWnGaAAk8LQxWVuV6EhDO-UdFU6UmYLORfO2XSJbo0V2ZKKWoQ4VpB4_YXBioZ-RR4n_bwzv8hRMO9gGPidvk885U.q1B-VWNKcGp4MLMD6vIzag&id_token=bananas
+
+*/
 
 /***/ }),
 
@@ -3240,7 +3243,7 @@ function ListingData(props) {
       href: _config__WEBPACK_IMPORTED_MODULE_5__["default"].frontendUrl,
       target: "_blank"
     }, "Ostrich"), ".");
-  } else if (user.billing_id) {
+  } else if (user.billing_id != 'Tier 0') {
     content = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, !errorMessage && details, errorMessage, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, user.billing_id, " Subscribed.", ' ', (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
       target: "_blank",
       href: "".concat(_config__WEBPACK_IMPORTED_MODULE_5__["default"].frontendUrl).concat(_config__WEBPACK_IMPORTED_MODULE_5__["default"].pricingPage)
@@ -3584,17 +3587,17 @@ var config = {
       pluginLookups: 10
     },
     'Tier 1': {
-      price: 8.99,
+      price: 5.99,
       locations: 1,
       pluginLookups: 'Unlimited'
     },
     'Tier 2': {
-      price: 14.99,
+      price: 7.99,
       locations: 1,
       pluginLookups: 'Unlimited'
     },
     'Tier 3': {
-      price: 19.99,
+      price: 12.99,
       locations: 3,
       pluginLookups: 'Unlimited'
     }

@@ -108,17 +108,17 @@ var config = {
       pluginLookups: 10
     },
     'Tier 1': {
-      price: 8.99,
+      price: 5.99,
       locations: 1,
       pluginLookups: 'Unlimited'
     },
     'Tier 2': {
-      price: 14.99,
+      price: 7.99,
       locations: 1,
       pluginLookups: 'Unlimited'
     },
     'Tier 3': {
-      price: 19.99,
+      price: 12.99,
       locations: 3,
       pluginLookups: 'Unlimited'
     }

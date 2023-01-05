@@ -48,7 +48,7 @@ export default function EmailerDashboard(props) {
   }, [user, successMessage])
 
   const saveMessage =
-    maxSize >= scheduledEmails.length
+  scheduledEmails.length >= maxSize
       ? 'Your current tier does not allow anymore locations: Please upgrade to receive emails as no emails will be sent for this location if you still add it.'
       : ''
 

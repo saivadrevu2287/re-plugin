@@ -6,11 +6,6 @@ import entry from '../build/entry'
 import { getUserData } from '../api/user'
 
 import ListingData from '../components/ListingData'
-import Signup from '../components/Signup'
-import Login from '../components/Login'
-import Confirm from '../components/Confirm'
-import ForgotPassword from '../components/ForgotPassword'
-import ConfirmForgotPassword from '../components/ConfirmForgotPassword'
 import PluginLoginButton from '../components/PluginLoginButton'
 
 const backendUrl = 'https://q0sku06vtg.execute-api.us-east-2.amazonaws.com/v1'
@@ -21,7 +16,7 @@ export default function Popup(props) {
   const [jwt, setJwt] = useState(null)
   const [user, setUser] = useState(null)
   const [errorMessage, setErrorMessage] = useState()
-
+  console.log({configurationFields})
   useEffect(() => {
     if (!jwt) {
       return

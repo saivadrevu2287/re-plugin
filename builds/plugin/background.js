@@ -66,16 +66,16 @@ const autoSignin = (details) => () => {
           }, {})
 
         if (jwt.id_token) {
-          configurationFields.jwt = jwt
+          data.configurationFields.jwt = jwt
           console.log('loggingIn')
-          chrome.storage.sync.set({ configurationFields })
+          chrome.storage.sync.set({ configurationFields: data.configurationFields })
         }
       }
 
       if (url.match(/\/logout.html/)) {
-        configurationFields.jwt = null
+        data.configurationFields.jwt = null
         console.log('loggingOut')
-        chrome.storage.sync.set({ configurationFields })
+        chrome.storage.sync.set({ configurationFields: data.configurationFields })
       }
     }
   })
